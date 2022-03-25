@@ -1,15 +1,224 @@
-/* Archivos subidos */
-header,
-main,
-footer {
-    padding-left: 300px;
+* {
+    margin: 0;
+    padding: 0;
 }
-
-@media only screen and (max-width : 992px) {
-
-    header,
-    main,
-    footer {
+  
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+}
+main{
+    margin-left: 19.5%;
+}
+footer{
+    margin-left: 19.5%;
+}
+/*Inicio de estilos para el sidenav*/
+/*side-nav*/
+#side-navbarcont{
+    background-color: #F4A172;
+    overflow: auto;
+}
+/*Logo*/
+.icono-sidenav{
+    padding: 15px;
+    margin-top: 20%;
+}
+/*menu sidenav*/
+  .menuopciones-sidenav{
+    margin: 25% 5% 0 5%;
+}
+/*botones del sidenav*/
+.botones-sidenav{
+    height: 70px;
+    width: 100%;
+    margin-bottom: 65px;
+    transition: .2s ease all;
+}
+/*estilo del boton al estar siendo apuntado*/
+.botones-sidenav:hover{
+    border: 4px solid #FA7479;
+    background-color: rgb(84,84,84,35%);
+    background-blend-mode: soft-light;
+    transform: scale(1.0);
+}
+/*Icono del boton sidenav*/
+#icono-opcion-sidenav{
+    margin: 0;
+    padding: 0;
+}
+/*Texto del boton sidenav*/
+#texto-opcion-sidenav{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 25%;
+    right: 15%;
+    color: black;
+    font-weight: bold;
+}
+/*Fin de estilos del sidenav*/
+/*Inicio de estilos del navbar*/
+/*Estilo del titulo del apartado en el navbar*/
+.titulo-nav{
+    margin-left: 9%;
+}
+/*Span del titulo del apartado en el navbar*/
+.titulo-nav span{
+    color: black;
+    font-weight: bold;
+}
+/*Icono del usuario en el navbar*/
+.usericon-apartadot{
+    color: black;
+}
+/*Contenedor del navbar*/
+.navbar-contenedor{
+    background-color: white;
+}
+/*Texto dentro del navbar*/
+.navbar-contenedor a{
+    color: #8D8888;
+}
+/*Icono del menu del trigger del sidenav para mobiles y tablets*/
+.menuicon-navbar{
+    color: black;
+}
+/*Estilo del icono de logout del navbar*/
+.logout-navbar{
+    height: 65px;
+    padding-top: 10px;
+}
+/*Contenedor de las opciones del navbar*/
+.opciones-navbar{
+    position: relative;
+    right: 5%;
+}
+/*Fin de inicios del navbar*/
+/*Inicio de estilos del footer*/
+/*Contenedor de los botones de navegación footer*/
+#contenedor-botonnavg{
+    padding: 0;
+    position: relative;
+    right: 25px;
+}
+#contenedor-botonnavg:hover{
+    transform: scale(1.2);
+}
+/*boton de navegación del footer*/
+.botonnavg-footer{
+    margin: 5px;
+    background-color: #F4A172;
+    width: 50px;
+    color: white;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*Icono dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer i{
+    position: relative;
+    right: 5px;
+    bottom: 5px;
+    color: white;
+}
+/*Span dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer span{
+    font-size: 30px;
+    color: white;
+}
+/*Fin de inicios de estilos del footer*/
+/*Estilo del boton de hacia arriba*/
+#hasta_arriba {
+    background-color: #FA7479;
+    display: none;
+    transition: .2s;
+}
+/*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width:600px) {
+    /*Solucionando main*/
+    /*Solucionando el main*/
+    main{
+        margin-left: 0;
         padding-left: 0;
+    }
+    /*Solucionando el footer*/
+    footer{
+        margin-left: 0;
+    }
+    /*menu sidenav*/
+    .menuopciones-sidenav{
+        margin: 0% 5% 0 5%;
+    }
+    /*botones del sidenav*/
+    .botones-sidenav{
+        margin-bottom: 10px;
+    }
+    /*icono de usuario en el sidenav*/
+    #icono-opcion-sidenav .user-icon{
+        position: relative;
+        left: 10%;
+    }
+    /*texto del sidenav sobre los componentes que eran del navbar*/
+    #texto-opcion-sidenav-nav{
+        margin: 0;
+        padding: 0;
+        position: relative;
+        right: 15%;
+        color: black;
+        font-weight: bold;
+    }
+    /*Estilo del titulo del apartado en el navbar*/
+    .titulo-nav{
+        margin-left: 0;
+    }
+    /*Span del titulo del apartado en el navbar*/
+    .titulo-nav span{
+        font-size:20px;
+    }
+    /*Estilo del boton de hacia arriba*/
+    #hasta_arriba {
+        background-color: #FA7479;
+        display: none;
+        transition: .2s;
+        margin-bottom: 75px;
+    }
+}
+  
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    /*Solucionando el main*/
+    main{
+        margin-left: 0;
+    }
+    /*Solucionando el footer*/
+    footer{
+        margin-left: 0;
+    }
+    /*Logo*/
+    .icono-sidenav{
+        padding: 15px;
+        margin-top: 15%;
+    }
+    /*opciones del contenedor de los botones del sidenav*/
+    .menuopciones-sidenav{
+        margin: 0% 5% 0 5%;
+    }
+    /*botones del sidenav*/
+    .botones-sidenav{
+        margin-bottom: 10px;
+    }
+    /*Estilo del titulo del apartado en el navbar*/
+    .titulo-nav{
+        margin-left: 0;
+    }
+    /*Estilo de las opciones del navbar*/
+    .opciones-navbar{
+        position: relative;
+        left: 5px;
     }
 }
