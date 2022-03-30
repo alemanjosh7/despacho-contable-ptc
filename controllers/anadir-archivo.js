@@ -146,7 +146,6 @@ function prevArchivo(e) {
             imgPreview.setAttribute("src",this.result);
             barraEstadoSub.style.display = 'none';
         })
-        onupload
         //Indicamos de donde obtendra el lector de archivos el resultado
         reader.readAsDataURL(archivoSubido.files[0]);
     }
