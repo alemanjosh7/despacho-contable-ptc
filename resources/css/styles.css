@@ -357,6 +357,7 @@ footer {
   align-items: center;
 }
 
+
 .direction p {
   font-size: 18px;
 }
@@ -399,6 +400,13 @@ footer {
   padding: 10px 10px 30px 10px;
 
   border-radius: 5px;
+}
+#input-file:focus {
+  border-bottom: 1px solid #fa7479;
+  box-shadow: 0 1px 0 0 #fa7479;
+}
+#input-file:focus + label {
+  color: #fa7479;
 }
 
 #company-searcher {
@@ -447,7 +455,10 @@ footer {
 
 .upload-files-section {
   margin-top: 4%;
+  display: flex;
+  justify-content: flex-end;
 }
+
 
 /*Empleados */
 .employee-cards .card .card-image {
@@ -539,8 +550,26 @@ footer {
   margin-right: 10px;
 }
 
-.fixed-action-btn{
+.card .fixed-action-btn{
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index:3;
 }
+
+.btn-large, .btn-large:hover{
+  background-color: #fa7479;
+}
+
+.frm-employee{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Elevador btn*/
+#hasta_arriba {
+  display: none;
+  transition: .2s;
+  color: #fa7479;
+}
+
