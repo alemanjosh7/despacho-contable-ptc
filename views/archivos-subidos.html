@@ -92,6 +92,31 @@
         </ul>
     </header>
     <main>
+
+        <div class="row upload-files-section">
+            <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
+            <div class="col l3 m12">
+                <div class="direction">
+                    <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
+                    <p> > Archivos </p>
+                </div>
+            </div>
+            <form action="post" class="col l7 m12 frm-files">
+                <div class="row">
+                    <div class="col l6">
+                        <div class="file-searcher">
+                            <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
+                            <input id="input-file" type="text" placeholder="Buscar archivos">
+                        </div>
+                    </div>
+                    <div class="col l6">
+                        <a class="btn-add btn" href="#anadir-archivosub"><i class=" material-icons left">add</i>Añadir
+                            archivos</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
         <!--Modal de Añadir Archivos Subidos-->
         <div id="anadir-archivosub" class="modal">
             <div class="modal-content">
@@ -184,29 +209,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row upload-files-section">
-            <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
-            <div class="col l3 m12">
-                <div class="direction">
-                    <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
-                    <p> > Archivos </p>
-                </div>
-            </div>
-            <form action="post" class="col l7 m12 frm-files">
-                <div class="row">
-                    <div class="col l6">
-                        <div class="file-searcher">
-                            <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
-                            <input id="input-file" type="text" placeholder="Buscar archivos">
-                        </div>
-                    </div>
-                    <div class="col l6">
-                        <a class="btn-add btn"><i class="material-icons left">add</i>Añadir archivos</a>
-                    </div>
-                </div>
-            </form>
-
         </div>
         <div class="row upload-files">
             <div class="col l3 m6 search-box">
@@ -334,9 +336,10 @@
             </div>
         </div>
     </footer>
+
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../controllers/archivos-subidos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
