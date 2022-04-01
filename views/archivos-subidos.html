@@ -94,29 +94,29 @@
     <main>
         <div class="row upload-files-section">
             <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
-            <div class="col s3">
+            <div class="col l3 m12">
                 <div class="direction">
                     <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
-                    <p> > Archivos subidos</p>
+                    <p> > Archivos </p>
                 </div>
             </div>
-            <div class="col s9">
+            <form action="post" class="col l7 m12 frm-files">
                 <div class="row">
-                    <div class="col offset-s2 s4">
+                    <div class="col l6">
                         <div class="file-searcher">
                             <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
-                            <input id="input-file" type="text" placeholder="Buscar archivo">
+                            <input id="input-file" type="text" placeholder="Buscar archivos">
                         </div>
                     </div>
-                    <div class="col s5">
-                        <a class="btn-add btn"><i class="material-icons left">add</i>Añadir archivo</a>
+                    <div class="col l6">
+                        <a class="btn-add btn"><i class="material-icons left">add</i>Añadir archivos</a>
                     </div>
                 </div>
-            </div>
+            </form>
 
         </div>
         <div class="row upload-files">
-            <div class="col s3 search-box">
+            <div class="col l3 m6 search-box">
                 <div class="wrapper">
                     <div class="search-input">
                         <div class="company-search-box">
@@ -138,38 +138,76 @@
                     </div>
                 </div>
             </div>
-            <div class="col s6 container">
+            <div class="col l7 center m6 container-files">
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
-
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
                     </div>
                 </div>
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
-
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
                     </div>
                 </div>
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
-
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <img src="../resources/icons/delete.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large" id="hasta_arriba">
+            <i class="large material-icons">arrow_upward</i>
+        </a>
+        <ul>
+    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -205,7 +243,7 @@
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../controllers/plantilla.js"></script>
+    <script src="../controllers/archivos-subidos.js"></script>
 </body>
 
 </html>
