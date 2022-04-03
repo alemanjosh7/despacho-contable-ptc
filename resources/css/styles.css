@@ -51,6 +51,33 @@ footer {
   margin-top: 20%;
 }
 
+/*Logo Perfil - Carlos Trigueros*/
+.navbar-logo{
+  height: auto;
+  width: auto;
+}
+
+.navbar-perfil{
+  height: 95px;
+  background-color: white;
+}
+
+/*Cards - Carlos Trigueros*/
+.card {
+  height: 380px;
+  width: 345px;
+}
+
+.img-card1 img{
+  height: 200px;
+  width: auto;
+}
+
+.img-card2 img{
+  width: auto;
+  height: 195px;
+}
+
 /*menu sidenav*/
 .menuopciones-sidenav {
   margin: 25% 5% 0 5%;
