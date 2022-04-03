@@ -8,17 +8,28 @@ html {
   padding: 0;
 }
 
-body {
-  display: flex;
+body {  
+ display: flex;
   min-height: 100vh;
   flex-direction: column;
   background-color: #f1f5f9;
   font-family: "Poppins", sans-serif;
 }
 
-main {
+ #Fondo-login{
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+}
+
+main{
   padding-left: 300px;
 }
+
+#Fondo-login main{
+  padding-left: 0px;
+}
+
+
 
 footer {
   margin-left: 19.5%;
@@ -49,7 +60,15 @@ footer {
 .icono-sidenav {
   padding: 15px;
   margin-top: 20%;
+
 }
+/*Logo login*/
+.icono-login{
+  padding: 3px;
+  height: 90px;
+ 
+
+ }
 
 /*Logo Perfil - Carlos Trigueros*/
 .navbar-logo{
@@ -137,6 +156,8 @@ footer {
 /*Contenedor del navbar*/
 .navbar-contenedor {
   background-color: white;
+  padding-bottom:  10px;
+  height: 95px;
 }
 
 /*Texto dentro del navbar*/
@@ -345,6 +366,8 @@ footer {
 .upload-files {
   margin-top: 28px;
 }
+
+
 
 .btn-add {
   background-color: #fa7479;
@@ -602,4 +625,272 @@ footer {
   display: none;
   transition: .2s;
   color: #fa7479;
+}
+
+/*log in*/
+
+
+/*contenedor login*/
+.login-container{
+  margin-top: 150px;
+  margin: 11%;
+  margin-top: 13%;
+  
+}
+
+/*diseño boton inicio sesión*/
+#Iniciar_btn{
+ background-color: #fa7479;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color:black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 500;
+  height: 55px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  width: 200px; 
+  outline: none;
+  padding: 17px 14px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-transform: initial;
+  text-decoration-color: black;
+
+}
+
+
+/*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+  
+}
+
+.container-col1{
+ background-color: rgba(60,60,60,0.5);
+ padding-bottom: 30px;
+ padding-top: 80px;
+ margin-left: 30px;
+ margin-right: 30px;
+ height: 430px;
+
+}
+
+.container-col2{
+
+ padding-top: 10px;
+ padding-right: 35px;
+ padding-left: 35px;
+
+
+}
+
+.text-style-p{
+ 
+  color: white;
+  font-size: 13px;
+  
+ 
+}
+
+.text-style-title{
+ 
+  font-size: 40px;
+  color: white;
+  margin-top: -8px;
+  margin-bottom: 10px;
+ 
+  
+}
+
+/*seccion derecha login*/
+.login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  
+}
+
+
+
+/*texto login*/
+.Text-log{
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-size: 19px;
+  
+
+}
+
+
+/*inputs*/
+#username:focus{
+   border-bottom: 1px solid #fa7479;
+   box-shadow: 0 1px 0 0 #fa7479;
+}
+
+#contraseña:focus{
+  border-bottom: 1px solid #fa7479;
+  box-shadow: 0 1px 0 0 #fa7479;
+}
+
+#username:focus+label{
+  color: #fa7479;
+}
+
+#contraseña:focus+label{
+  color: #fa7479;
+}
+
+
+
+.d-container-col1{
+  
+}
+
+
+/*texto recuperar contra*/
+
+.text-recuperar-contra{
+
+}
+
+/*texto olvidar contra*/
+
+#olvidarcontra_boton{
+  color: black;
+}
+
+/*Estilo de OJOS para ocultar y mostrar contraseñas*/
+  #cronometro{
+    display: none;
+    color: #DF5333;
+    margin-left: 15px;
+  }
+  #reenviarPIN{
+    cursor: pointer;
+  }
+  #ocultarmostrar_contraseña{
+    cursor: pointer;
+  }
+
+  #ocultarmostrar_contraseñas{
+    cursor: pointer;
+  }
+
+  /*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width: 600px) {
+
+    .login-container{
+    margin-top: 150px;
+    margin: 0%;
+    margin-top: 13%;   
+  }
+
+    .text-style-p{
+   
+    color: white;
+    font-size: 10px;  
+  }
+
+  .text-style-title{
+   
+    font-size: 30px;
+    color: white;
+    margin-top: -8px;
+    margin-bottom: 10px; 
+    margin-right: 10px;
+  }
+    .container-col1{
+   background-color: rgba(60,60,60,0.5);
+   padding-bottom: 30px;
+   padding-top: 80px;
+   margin-left: 20px;
+   margin-right: 20px;
+   height: 430px;
+ }
+
+}
+
+/*Tablets*/
+@media screen and (min-width: 900px) and (max-width: 1000px) {
+/*contenedor login*/
+  .login-container{
+    margin-top: 150px;
+    margin: 0%;
+    margin-top: 13%;
+    margin-left: 140px;
+    
+  }
+  /*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  width: 500px;
+  }
+ /*seccion derecha login*/
+  .login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  width: 500px;
+  
+ }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 900px) {
+/*contenedor login*/
+  .login-container{
+    margin-top: 150px;
+    margin: 4%;
+    margin-top: 13%;
+    margin-left: 100px;
+    
+  }
+
+    /*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  width: 400px;
+  }
+ /*seccion derecha login*/
+  .login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  width: 400px; 
+ }
+
 }
