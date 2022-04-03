@@ -393,6 +393,7 @@ footer {
   margin: 30px;
   box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
   font-size: 20px;
+  background-color: #ffffff;
 }
 
 /*Search Bar with Auto Complete*/
@@ -605,6 +606,303 @@ footer {
 }
 
 /*Modals*/
+/*Estilos del modal de añadir archivo para la página de archivos YESENIA*/
+/*Estilo del contenedor del modal*/
+#anadir-archivoarh {
+  margin-top: 2%;
+  background: #F1F5F9;
+  font-family: 'Poppins', sans-serif;
+}
+
+#anadir-archivosub {
+  margin-top: 2%;
+  background: #F1F5F9;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Estilo del contenedor dentro del modal*/
+#anadir-archivoarh .modal-content {
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Estilo del footer del modal*/
+#anadir-archivoarh .modal-footer {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Estilo del contenedor dentro del modal*/
+#anadir-archivosub .modal-content {
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Estilo del footer del modal*/
+#anadir-archivosub .modal-footer {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Fila del formulario de añadir una empresa*/
+.filaform-archivo {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+/*Boton añadir empresa dentro del modal*/
+#btn-añadirArchivoarhModal {
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa {
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa:hover {
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+/*Inpust de añadir empresa*/
+.inputs-añadirempr {
+  color: #000;
+  font-weight: bold;
+  margin-top: 15px !important;
+  background-color: #F8F8F8 !important;
+  border: 2px solid #F4A172 !important;
+  border-radius: 5px !important;
+}
+
+/*Labels de añadir empresa*/
+.labels-anadirempr {
+  color: black !important;
+  font-weight: bold !important;
+}
+
+/*Contenedor del Mensaje del modal*/
+.mensaje-modal {
+  margin-top: 15px;
+  color: red;
+}
+
+/*Mensaje del modal*/
+.mensaje-modal h6 {
+  display: none;
+}
+
+/*Estilos del preloader de añadir empresa*/
+#preloader-añadirarh {
+  margin-top: 15px;
+  display: none;
+}
+
+/*Estilos del boton de agregar archivo*/
+.agregararchivoarh span {
+  text-transform: capitalize;
+  position: relative;
+  bottom: 5px;
+  margin-left: 5px;
+}
+
+/*contenedor del boton de agregar archivo*/
+.agregararchivoarh {
+  margin-top: 15px;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+/*contenedor del boton de agregar archivo*/
+.agregararchivoarh:hover {
+  margin-top: 15px;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+/*Contenedor que muestra el archivo seleccionado*/
+.inputarh-texto {
+  position: relative;
+  left: 1.5% !important;
+}
+
+/*Fila de los botones*/
+/*Contenedor de los botones*/
+.filabtn-añadirarh {
+  margin-top: 0 !important;
+  padding-top: 0;
+}
+
+/*Contenedor de previsualizar*/
+.preview-file {
+  border: 3px dotted #F4A172;
+  width: 98%;
+  margin-left: 1%;
+  min-height: 250px !important;
+  max-height: 550px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 25px;
+}
+
+/*Estilo de la imagen de preview por defecto*/
+#imagen-Preview {
+  min-width: 25px;
+  min-height: 25px;
+}
+
+/*Estilos para la barra de carga*/
+#barraraprg-garch {
+  display: none;
+}
+
+/*Contenedor del previsualizador del pdf*/
+#prevPDF-arh {
+  display: none;
+}
+
+/*Estilos del modal de eliminar */
+/*Inicio del estilo del diseño del modal de confirmar eliminación de empresa*/
+/*Contenedor o Modal*/
+#eliminar-empresamodal {
+  margin-top: 7%;
+  background: #F1F5F9;
+  width: 350px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Contenedor del contenido del modal*/
+#eliminar-empresamodal .modal-content {
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Contenedor del contenido del modal*/
+#eliminar-empresamodal .modal-footer {
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*Boton de aceptar eliminar empresa del modal de confirmación de eliminar empresa*/
+#aceptareliminarempresa_boton {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+}
+
+/*Boton de cancelar eliminar empresa*/
+.cancelarEliminarempre {
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cancelarEliminarempre:hover {
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+/*Estilos del preloader de confirmar eliminación de empresas*/
+#confirmareliminarempr_preloader {
+  position: relative;
+  left: 34.5%;
+  margin: 20px;
+  display: none;
+}
+
+@media screen and (min-width: 100px) and (max-width: 767px) {
+  .upload-files {
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 10px;
+
+  }
+
+  .searcher-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .searcher-row .col {
+    margin-top: 10px;
+  }
+
+  .upload-files-section {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .upload-files .col {
+    margin: auto;
+  }
+
+}
+
+
+/*Fin de estilos del modal de eliminar empresa*/
+/*Telefonos*/
+@media (max-width:600px) {
+
+  /*Contenedor que muestra el archivo seleccionado*/
+  .inputarh-texto {
+    left: 0 !important;
+  }
+
+  #anadir-archivoarh {
+    width: 95%;
+  }
+}
+
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .inputarh-texto {
+    margin-left: 2% !important;
+    left: 0 !important;
+  }
+}
+
+/* Modals */
 /*Estilos del modal de añadir archivo para la página de archivos YESENIA*/
 /*Estilo del contenedor del modal*/
 #anadir-archivoarh {

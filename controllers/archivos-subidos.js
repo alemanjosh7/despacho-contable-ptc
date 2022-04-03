@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
+    var instances = M.Sidenav.init(elems);
 });
 
 /*Boton de ir hacia arriba*/
@@ -22,11 +22,6 @@ hastatop.addEventListener("click", function () {
     });
 });
 
-// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-// var collapsibleElem = document.querySelector('.collapsible');
-// var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-// Or with jQuery
 //Opciones para los modal
 var opcionesModal = {
     preventScrolling: true,//Evita que se pueda hacer scroll a la página principal
