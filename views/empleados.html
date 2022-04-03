@@ -331,21 +331,21 @@
         </div>
         <section class="row upload-files-section">
             <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
-            <div class="col l3 m12">
+            <div class="col xl5 l3 m12">
                 <div class="direction">
                     <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
                     <p> > Empleados</p>
                 </div>
             </div>
-            <form action="post" class="col l12 m12 frm-employee">
-                <div class="row">
+            <form action="post" class="xl8 col l12 m12 frm-employee">
+                <div class="row s12 center center-align">
                     <div class="col l6">
                         <div class="file-searcher">
                             <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
                             <input id="input-file" type="text" placeholder="Buscar empleados">
                         </div>
                     </div>
-                    <div class="col l6">
+                    <div class="col l6 s8 btn-add-container">
                         <a class="btn-add btn modal-trigger" href="#anadir-empleado"><i
                                 class="material-icons left">add</i>Añadir
                             empleado</a>
@@ -354,10 +354,10 @@
             </form>
         </section>
         <section class="employee-cards row center-align">
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(0);"
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" 
                             id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
@@ -393,10 +393,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(1);">
+                        <a class="btn-floating btn-large" onclick="changeOption(1);" >
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -431,10 +431,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(2);">
+                        <a class="btn-floating btn-large" onclick="changeOption(2);" >
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -469,10 +469,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(3);">
+                        <a class="btn-floating btn-large" onclick="changeOption(3);" >
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -507,7 +507,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
                         <a class="btn-floating btn-large" onclick="changeOption(4);">
@@ -545,7 +545,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
                         <a class="btn-floating btn-large" onclick="changeOption(5);">
@@ -583,10 +583,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(6);">
+                        <a class="btn-floating btn-large" onclick="changeOption(6);" >
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -621,10 +621,48 @@
                     </div>
                 </div>
             </div>
-            <div class="col l3 m6">
+            <div class="col l4 m6">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(7);">
+                        <a class="btn-floating btn-large" onclick="changeOption(7);" >
+                            <i class="large material-icons">more_horiz</i>
+                        </a>
+                        <ul>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"><i
+                                        class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i
+                                        class="material-icons">edit</i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-image">
+                        <img src="../resources/img/employee-example.png">
+                    </div>
+                    <div class="card-content center">
+                        <div class="name-employee">
+                            <p>Ricardo Perez</p>
+                        </div>
+                        <div class="employee-information">
+                            <div class="info">
+                                <img src="../resources/icons/role.png" alt="">
+                                <p>Tiempo completo</p>
+                            </div>
+                            <div class="info">
+                                <img src="../resources/icons/email.png" alt="">
+                                <p>ricardo_perez@gmail.com</p>
+                            </div>
+                            <div class="info">
+                                <img src="../resources/icons/telephone.png" alt="">
+                                <p>(+503) 7864-1341</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col l4 m6">
+                <div class="card">
+                    <div class="fixed-action-btn">
+                        <a class="btn-floating btn-large" onclick="changeOption(8);">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -664,7 +702,7 @@
 
     </main>
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large" onclick="changeOption(8);" id="hasta_arriba">
+        <a class="btn-floating btn-large" onclick="changeOption(9);" id="hasta_arriba">
             <i class="large material-icons">arrow_upward</i>
         </a>
         <ul>

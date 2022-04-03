@@ -1197,6 +1197,18 @@ footer {
   #anadir-archivoarh {
     width: 95%;
   }
+
+  .employee-cards .col {
+    margin-left: 9%;
+  }
+
+  .frm-employee {
+    margin-left: 19%;
+  }
+
+  .frm-employee .btn-add-container {
+    margin-left: 15%;
+  }
 }
 
 /*Tablets*/
