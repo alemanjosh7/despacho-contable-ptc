@@ -92,7 +92,243 @@
         </ul>
     </header>
     <main>
+        <!--Modal de Añadir Archivo-->
+        <div id="anadir-empleado" class="modal">
+            <div class="modal-content">
+                <!--Titulo del modal-->
+                <h4 class="center-align">Añadir empleado</h4>
+                <!--Formulario para añadir una empresa-->
+                <form method="post">
+                    <!--Fila del formulario-->
+                    <div class="row filaform-archivo">
+                        <!--Nombre de la empresa-->
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Usuario" id="nombre-arch" type="text"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Usuario</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Contraseña" id="nombre-arch" type="password"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Contraseña</label>
+                        </div>
+                        <div class="input-field col s12 m5 offset-m1 l6">
+                            <input placeholder="Nombre" id="nombreempr-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="nombreempr-arch" class="labels-anadirempr">Nombre:</label>
+                        </div>
+                        <!--Nombre del folder-->
+                        <div class="input-field col s12 m5 l6">
+                            <input placeholder="Apellidos" id="nombrefold-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="nombrefold-arch" class="labels-anadirempr">Apellidos:</label>
+                        </div>
+                        <!--Nombre del Archivo-->
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="DUI" id="nombre-arch" type="text" class="validate inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">DUI:</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Teléfono" id="nombre-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Teléfono:</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Correo" id="nombre-arch" type="email"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Correo</label>
+                        </div>
+                        <div class="select-tipo-empleado input-field col s12 m5 offset-m1 l6 center-align">
+                            <select>
+                                <option value="" disabled selected>¿Qué tipo de empleado es?</option>
+                                <option value="1">Tiempo Completo</option>
+                                <option value="2">Medio Tiempo</option>
+                                <option value="3">Pasantía</option>
+                            </select>
+                            <label>Selecciona tipo de empleado</label>
+                        </div>
 
+
+
+                        <div class="progress" id="barraraprg-garch">
+                            <div class="indeterminate"></div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="row filabtn-añadirarh">
+                    <div class="center">
+                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
+                            <i class="material-icons left">add</i>Añadir Empleado
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirempr">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                        <div class="left col s12 m7 l4 center-align mensaje-modal">
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                        </div>
+                        <div class="center col s12 m3 l4" id="preloader-añadirarh">
+                            <div class="preloader-wrapper active">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="editar-empleado" class="modal">
+            <div class="modal-content">
+                <!--Titulo del modal-->
+                <h4 class="center-align">Editar empleado</h4>
+                <!--Formulario para añadir una empresa-->
+                <form method="post">
+                    <!--Fila del formulario-->
+                    <div class="row filaform-archivo">
+                        <!--Nombre de la empresa-->
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Usuario" id="nombre-arch" type="text"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Usuario</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Contraseña" id="nombre-arch" type="password"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Contraseña</label>
+                        </div>
+                        <div class="input-field col s12 m5 offset-m1 l6">
+                            <input placeholder="Nombre" id="nombreempr-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="nombreempr-arch" class="labels-anadirempr">Nombre:</label>
+                        </div>
+                        <!--Nombre del folder-->
+                        <div class="input-field col s12 m5 l6">
+                            <input placeholder="Apellidos" id="nombrefold-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="nombrefold-arch" class="labels-anadirempr">Apellidos:</label>
+                        </div>
+                        <!--Nombre del Archivo-->
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="DUI" id="nombre-arch" type="text" class="validate inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">DUI:</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Teléfono" id="nombre-arch" type="text"
+                                class="validate inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Teléfono:</label>
+                        </div>
+                        <div class="input-field col s12 m10 offset-m1 l6">
+                            <input placeholder="Correo" id="nombre-arch" type="email"
+                                class="validate  inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Correo</label>
+                        </div>
+                        <div class="select-tipo-empleado input-field col s12 m5 offset-m1 l6 center-align">
+                            <select>
+                                <option value="" disabled selected>¿Qué tipo de empleado es?</option>
+                                <option value="1">Tiempo Completo</option>
+                                <option value="2">Medio Tiempo</option>
+                                <option value="3">Pasantía</option>
+                            </select>
+                            <label>Selecciona tipo de empleado</label>
+                        </div>
+
+
+
+                        <div class="progress" id="barraraprg-garch">
+                            <div class="indeterminate"></div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="row filabtn-añadirarh">
+                    <div class="center">
+                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
+                            <i class="material-icons left">add</i>Editar empleado
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirempr">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                        <div class="left col s12 m7 l4 center-align mensaje-modal">
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                        </div>
+                        <div class="center col s12 m3 l4" id="preloader-añadirarh">
+                            <div class="preloader-wrapper active">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Diseño de confirmación de eliminar empleados-->
+        <div id="eliminar-empleadoomodal" class="modal">
+            <div class="fondo-modaldatos modal-content">
+                <div class="center-align">
+                    <h4>Confirmar Elminación del Empleado</h4>
+                    <p>¿Desea eliminar el empleado permanentemente?</p>
+                </div>
+                <!--Preloader de la actualización de los datos del perdil-->
+                <div class="preloader-wrapper active" id="confirmareliminarempr_preloader">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--Contenido importante del modal-Boton de actualizar-->
+                <div class="center-align">
+                    <a href="#!" class="waves-effect waves-light btn center-align"
+                        id="aceptareliminarempresa_boton">Eliminar
+                        empleado</a>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer" id="fondomodal-footer">
+                    <div class="left col offset-s1 m5 l4">
+                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                            id="cancelar-eliminarempr">
+                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section class="row upload-files-section">
             <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
             <div class="col l3 m12">
@@ -110,7 +346,9 @@
                         </div>
                     </div>
                     <div class="col l6">
-                        <a class="btn-add btn"><i class="material-icons left">add</i>Añadir empleados</a>
+                        <a class="btn-add btn modal-trigger" href="#anadir-empleado"><i
+                                class="material-icons left">add</i>Añadir
+                            empleado</a>
                     </div>
                 </div>
             </form>
@@ -119,15 +357,16 @@
             <div class="col l3 m6 offset-s3 center-align offset-s3">
                 <div class="card">
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large">
+                        <a class="btn-floating btn-large" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -159,11 +398,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -195,11 +435,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -231,11 +472,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -267,11 +509,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -303,11 +546,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -339,11 +583,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -375,11 +620,12 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue"><i class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"
+                                    ><i class="material-icons">delete</i></a></li>
+                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-                  
+
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
@@ -448,8 +694,9 @@
         </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
-    <script src="../resources/js/materialize.js"></script>
+    <script src="../resources/js/materialize.min.js"></script>
     <script src="../controllers/empleados.js"></script>
+    <script src="../controllers/modals.js"></script>
 </body>
 
 </html>
