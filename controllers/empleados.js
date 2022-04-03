@@ -1,14 +1,23 @@
 const btnPuntitos = document.getElementById('btn-puntitos');
-
+var instancesButton;
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
-  var instances = M.Sidenav.init(elems);
+  var instances_sidenav = M.Sidenav.init(elems);
   var elems = document.querySelectorAll('.fixed-action-btn');
   var instances = M.FloatingActionButton.init(elems, {
     direction: 'bottom',
-
+    hoverEnabled: false,
   });
+  instancesButton = instances;
 });
+
+function changeOption(id) {
+  for (let i = 0; i < instancesButton.length; i++) {
+    if (id == i) continue;
+    instancesButton[i].close();
+  }
+}
+
 
 /*Boton de ir hacia arriba*/
 
