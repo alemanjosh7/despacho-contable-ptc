@@ -51,10 +51,10 @@ footer {
   margin-top: 20%;
 }
 
-/*Logo Perfil - Carlos Trigueros*/
-.navbar-logo{
-  height: auto;
-  width: auto;
+/*Logo Perfil - Carlos*/
+.navbar-logo img{
+  width: 270px;
+  height: 90px;
 }
 
 .navbar-perfil{
@@ -62,20 +62,41 @@ footer {
   background-color: white;
 }
 
-/*Cards - Carlos Trigueros*/
-.card {
-  height: 380px;
-  width: 345px;
+/*Perfil y Info - Carlos*/
+#perfil-fondo{
+  background-image: url("../img/fondo.png");
+  background-size: cover;
 }
 
-.img-card1 img{
-  height: 200px;
+.info-img img{
+  height: 347px;
+  width: 100%;
+}
+
+.info-main p{
+  padding-top: 10%;
+}
+
+.perfil-todo{
+  margin-top: 5%;
+}
+
+.perfil-cont{
+  background-color: white;
+}
+
+.perfil-img img{
+  height: 120px;
   width: auto;
 }
 
-.img-card2 img{
-  width: auto;
-  height: 195px;
+.info-cont{
+  background-color: white;
+  height: 354px;
+}
+
+.btn-volver{
+  margin-top: 50px;
 }
 
 /*menu sidenav*/
