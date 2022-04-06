@@ -1,27 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-});
-
-/*Boton de ir hacia arriba*/
-
-var hastatop = document.getElementById("hasta_arriba");
-
-window.onscroll = function () {
-    if (document.documentElement.scrollTop > 200) {
-        hastatop.style.display = "block";
-    } else {
-        hastatop.style.display = "none";
-    }
-};
-
-hastatop.addEventListener("click", function () {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-    });
-});
-
 //Opciones para los modal
 var opcionesModal = {
     preventScrolling: true,//Evita que se pueda hacer scroll a la página principal

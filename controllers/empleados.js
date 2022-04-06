@@ -1,11 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'bottom',
-    });
+const btnPuntitos = document.getElementById('btn-puntitos');
+var instancesButton;
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances_sidenav = M.Sidenav.init(elems);
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'bottom',
+    hoverEnabled: false,
   });
+  instancesButton = instances;
+});
+
+function changeOption(id) {
+  for (let i = 0; i < instancesButton.length; i++) {
+    if (id == i) continue;
+    instancesButton[i].close();
+  }
+}
+
 
 /*Boton de ir hacia arriba*/
 
@@ -26,8 +38,9 @@ hastatop.addEventListener("click", function () {
   });
 });
 
+
+
   // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
   // var collapsibleElem = document.querySelector('.collapsible');
   // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
 
-  // Or with jQuery
