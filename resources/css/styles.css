@@ -1,367 +1,1760 @@
-html {
-  scrollbar-width: normal;
-  scrollbar-color: #f4a172;
-}
-
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
-
+  
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background-color: #f1f5f9;
-  font-family: "Poppins", sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
 }
-
-main {
-  padding-left: 300px;
+main{
+    margin-left: 19.5%;
 }
-
-footer {
-  margin-left: 19.5%;
+footer{
+    margin-left: 19.5%;
 }
-
 /*Inicio de estilos para el sidenav*/
 /*side-nav*/
-#side-navbarcont {
-  background-color: #f4a172;
+#side-navbarcont{
+    background-color: #F4A172;
+    overflow: auto;
 }
-
-.scrollbar {
-  background-color: #f5f5f5;
-  float: left;
-  height: 300px;
-  margin-bottom: 25px;
-  margin-left: 22px;
-  margin-top: 40px;
-  width: 65px;
-  overflow-y: scroll;
-}
-
-.force-overflow {
-  min-height: 450px;
-}
-
 /*Logo*/
-.icono-sidenav {
-  padding: 15px;
-  margin-top: 20%;
+.icono-sidenav{
+    padding: 15px;
+    margin-top: 20%;
 }
-
-/*Logo Perfil - Carlos Trigueros*/
-.navbar-logo{
-  height: auto;
-  width: auto;
-}
-
-.navbar-perfil{
-  height: 95px;
-  background-color: white;
-}
-
-/*Cards - Carlos Trigueros*/
-.card {
-  height: 380px;
-  width: 345px;
-}
-
-.img-card1 img{
-  height: 200px;
-  width: auto;
-}
-
-.img-card2 img{
-  width: auto;
-  height: 195px;
-}
-
 /*menu sidenav*/
-.menuopciones-sidenav {
-  margin: 25% 5% 0 5%;
+  .menuopciones-sidenav{
+    margin: 25% 5% 0 5%;
 }
-
 /*botones del sidenav*/
-.botones-sidenav {
-  height: 70px;
-  width: 100%;
-  margin-bottom: 65px;
-  transition: 0.2s ease all;
+.botones-sidenav{
+    height: 70px;
+    width: 100%;
+    margin-bottom: 65px;
+    transition: .2s ease all;
 }
-
 /*estilo del boton al estar siendo apuntado*/
-.botones-sidenav:hover {
-  border: 4px solid #fa7479;
-  background-color: rgb(84, 84, 84, 35%);
-  background-blend-mode: soft-light;
-  transform: scale(1);
+.botones-sidenav:hover{
+    border: 4px solid #FA7479;
+    background-color: rgb(84,84,84,35%);
+    background-blend-mode: soft-light;
+    transform: scale(1.0);
 }
-
 /*Icono del boton sidenav*/
-#icono-opcion-sidenav {
-  margin: 0;
-  padding: 0;
+#icono-opcion-sidenav{
+    margin: 0;
+    padding: 0;
 }
-
 /*Texto del boton sidenav*/
-#texto-opcion-sidenav {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: 25%;
-  right: 15%;
-  color: black;
-  font-weight: bold;
-}
-
-/*Fin de estilos del sidenav*/
-/*Inicio de estilos del navbar*/
-/*Estilo del titulo del apartado en el navbar*/
-.titulo-nav {
-  margin-left: 9%;
-}
-
-/*Span del titulo del apartado en el navbar*/
-.titulo-nav span {
-  color: black;
-  font-weight: bold;
-}
-
-/*Icono del usuario en el navbar*/
-.usericon-apartadot {
-  color: black;
-}
-
-/*Contenedor del navbar*/
-.navbar-contenedor {
-  background-color: white;
-}
-
-/*Texto dentro del navbar*/
-.navbar-contenedor a {
-  color: #8d8888;
-}
-
-/*Icono del menu del trigger del sidenav para mobiles y tablets*/
-.menuicon-navbar {
-  color: black;
-}
-
-/*Estilo del icono de logout del navbar*/
-.logout-navbar {
-  height: 65px;
-  padding-top: 10px;
-}
-
-/*Contenedor de las opciones del navbar*/
-.opciones-navbar {
-  position: relative;
-  right: 5%;
-}
-
-/*Fin de inicios del navbar*/
-/*Inicio de estilos del footer*/
-/*Contenedor de los botones de navegación footer*/
-#contenedor-botonnavg {
-  padding: 0;
-  position: relative;
-  right: 25px;
-}
-
-#contenedor-botonnavg:hover {
-  transform: scale(1.2);
-}
-
-/*boton de navegación del footer*/
-.botonnavg-footer {
-  margin: 5px;
-  background-color: #f4a172;
-  width: 50px;
-  color: white;
-  height: 50px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/*Icono dentro del contenedor del menu de navegación del footer*/
-.botonnavg-footer i {
-  position: relative;
-  right: 5px;
-  bottom: 5px;
-  color: white;
-}
-
-/*Span dentro del contenedor del menu de navegación del footer*/
-.botonnavg-footer span {
-  font-size: 30px;
-  color: white;
-}
-
-/*Fin de inicios de estilos del footer*/
-/*Estilo del boton de hacia arriba*/
-#hasta_arriba {
-  background-color: #fa7479;
-  display: none;
-  transition: 0.2s;
-}
-
-/*Estilos extra responsive*/
-/*Telefonos*/
-@media (max-width: 600px) {
-
-  /*Solucionando main*/
-  /*Solucionando el main*/
-  main {
-    margin-left: 0;
-    padding-left: 0;
-  }
-
-  /*Solucionando el footer*/
-  footer {
-    margin-left: 0;
-  }
-
-  /*menu sidenav*/
-  .menuopciones-sidenav {
-    margin: 0% 5% 0 5%;
-  }
-
-  /*botones del sidenav*/
-  .botones-sidenav {
-    margin-bottom: 10px;
-  }
-
-  /*icono de usuario en el sidenav*/
-  #icono-opcion-sidenav .user-icon {
-    position: relative;
-    left: 10%;
-  }
-
-  /*texto del sidenav sobre los componentes que eran del navbar*/
-  #texto-opcion-sidenav-nav {
+#texto-opcion-sidenav{
     margin: 0;
     padding: 0;
     position: relative;
+    top: 25%;
     right: 15%;
     color: black;
     font-weight: bold;
-  }
-
-  /*Estilo del titulo del apartado en el navbar*/
-  .titulo-nav {
-    margin-left: 0;
-  }
-
-  /*Span del titulo del apartado en el navbar*/
-  .titulo-nav span {
-    font-size: 20px;
-  }
-
-  /*Estilo del boton de hacia arriba*/
-  #hasta_arriba {
-    background-color: #fa7479;
-    display: none;
-    transition: 0.2s;
-    margin-bottom: 75px;
-  }
 }
-
+/*Fin de estilos del sidenav*/
+/*Inicio de estilos del navbar*/
+/*Estilo del titulo del apartado en el navbar*/
+.titulo-nav{
+    margin-left: 9%;
+}
+/*Span del titulo del apartado en el navbar*/
+.titulo-nav span{
+    color: black;
+    font-weight: bold;
+}
+/*Icono del usuario en el navbar*/
+.usericon-apartadot{
+    color: black;
+}
+/*Contenedor del navbar*/
+.navbar-contenedor{
+    background-color: white;
+}
+/*Texto dentro del navbar*/
+.navbar-contenedor a{
+    color: #8D8888;
+}
+/*Icono del menu del trigger del sidenav para mobiles y tablets*/
+.menuicon-navbar{
+    color: black;
+}
+/*Estilo del icono de logout del navbar*/
+.logout-navbar{
+    height: 65px;
+    padding-top: 10px;
+}
+/*Contenedor de las opciones del navbar*/
+.opciones-navbar{
+    position: relative;
+    right: 5%;
+}
+/*Fin de inicios del navbar*/
+/*Inicio de estilos del footer*/
+/*Contenedor de los botones de navegación footer*/
+#contenedor-botonnavg{
+    padding: 0;
+    position: relative;
+    right: 25px;
+}
+#contenedor-botonnavg:hover{
+    transform: scale(1.2);
+}
+/*boton de navegación del footer*/
+.botonnavg-footer{
+    margin: 5px;
+    background-color: #F4A172;
+    width: 50px;
+    color: white;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/*Icono dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer i{
+    position: relative;
+    right: 5px;
+    bottom: 5px;
+    color: white;
+}
+/*Span dentro del contenedor del menu de navegación del footer*/
+.botonnavg-footer span{
+    font-size: 30px;
+    color: white;
+}
+/*Fin de inicios de estilos del footer*/
+/*Estilo del boton de hacia arriba*/
+#hasta_arriba {
+    background-color: #FA7479;
+    display: none;
+    transition: .2s;
+}
+/*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width:600px) {
+    /*Solucionando main*/
+    /*Solucionando el main*/
+    main{
+        margin-left: 0;
+        padding-left: 0;
+    }
+    /*Solucionando el footer*/
+    footer{
+        margin-left: 0;
+    }
+    /*menu sidenav*/
+    .menuopciones-sidenav{
+        margin: 0% 5% 0 5%;
+    }
+    /*botones del sidenav*/
+    .botones-sidenav{
+        margin-bottom: 10px;
+    }
+    /*icono de usuario en el sidenav*/
+    #icono-opcion-sidenav .user-icon{
+        position: relative;
+        left: 10%;
+    }
+    /*texto del sidenav sobre los componentes que eran del navbar*/
+    #texto-opcion-sidenav-nav{
+        margin: 0;
+        padding: 0;
+        position: relative;
+        right: 15%;
+        color: black;
+        font-weight: bold;
+    }
+    /*Estilo del titulo del apartado en el navbar*/
+    .titulo-nav{
+        margin-left: 0;
+    }
+    /*Span del titulo del apartado en el navbar*/
+    .titulo-nav span{
+        font-size:20px;
+    }
+    /*Estilo del boton de hacia arriba*/
+    #hasta_arriba {
+        background-color: #FA7479;
+        display: none;
+        transition: .2s;
+        margin-bottom: 75px;
+    }
+}
+  
 /*Tablets*/
 @media screen and (min-width: 600px) and (max-width: 992px) {
-
-  /*Solucionando el main*/
-  main {
-    padding-left: 0px;
-  }
-
-  /*Solucionando el footer*/
-  footer {
-    margin-left: 0;
-  }
-
-  /*Logo*/
-  .icono-sidenav {
-    padding: 15px;
-    margin-top: 15%;
-  }
-
-  /*opciones del contenedor de los botones del sidenav*/
-  .menuopciones-sidenav {
-    margin: 0% 5% 0 5%;
-  }
-
-  /*botones del sidenav*/
-  .botones-sidenav {
-    margin-bottom: 10px;
-  }
-
-  /*Estilo del titulo del apartado en el navbar*/
-  .titulo-nav {
-    margin-left: 0;
-  }
-
-  /*Estilo de las opciones del navbar*/
-  .opciones-navbar {
+    /*Solucionando el main*/
+    main{
+        margin-left: 0;
+    }
+    /*Solucionando el footer*/
+    footer{
+        margin-left: 0;
+    }
+    /*Logo*/
+    .icono-sidenav{
+        padding: 15px;
+        margin-top: 15%;
+    }
+    /*opciones del contenedor de los botones del sidenav*/
+    .menuopciones-sidenav{
+        margin: 0% 5% 0 5%;
+    }
+    /*botones del sidenav*/
+    .botones-sidenav{
+        margin-bottom: 10px;
+    }
+    /*Estilo del titulo del apartado en el navbar*/
+    .titulo-nav{
+        margin-left: 0;
+    }
+    /*Estilo de las opciones del navbar*/
+    .opciones-navbar{
+        position: relative;
+        left: 5px;
+    }
+}
+/*Inicio del estilo del diseño del modal de cerrar sesion*/
+/*Contenedor o Modal*/
+#cerrarSesionModal{ 
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#cerrarSesionModal .modal-content{ 
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#cerrarSesionModal .modal-footer{ 
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Boton de aceptar eliminar empresa del modal de confirmación de eliminar empresa*/
+#cerrarSesionModalbtn {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+}
+/*Boton de cancelar eliminar empresa*/
+.cancelarEliminarempre{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cancelarEliminarempre:hover{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+/*Fin de estilos de cerrar sesion modal*/
+/*Jesús*/
+/*Inicio de estilos de Empresas*/
+/*Contenedor de las empresas*/
+.contenedor-empresas{
+    margin: 4% 5%;
+}
+/*Inicio de estilos del subnavbar*/
+/*Contenedor del Icono de Home en empresas del subnavbar*/
+#conthomeicon-subnavempre{
+    padding-right: 0;
+    margin: 1% 0;
+}
+/*Contenedor que indica en que apartado*/
+#contapartado-subnavempre{
+    padding-left: 0;
+    padding-top: 5px;
     position: relative;
-    left: 5px;
+    right: 4.3%;
+    margin: 1% 0;
+}
+/*Estilo de la etiqueta a dentro del estilo contenedor que indica el apartado*/
+#contapartado-subnavempre a {
+    color: black;
+}
+/*Estilo del icono de buscar*/
+.buscar-empresas{
+    color: black;
+    cursor: pointer;
+}
+/*Estilo del placeholder del input de buscar*/
+#inputbuscar-empresas::placeholder{
+    color: black;
+    font-weight: lighter;
+}
+/*Estilo del input del color*/
+#inputbuscar-empresas{
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+#inputbuscar-empresas:focus{
+    border-bottom: 1px solid #fa7479;
+    box-shadow: 0 1px 0 0 #fa7479;
+}
+#inputbuscar-empresas:focus+label {
+    color: #fa7479;  
+}
+.input-field #inputbuscar-empresas{
+    background-color: transparent;
+}
+.input-field .prefix.active {
+    color: #000;
+}
+/*Estilo del contenedor de buscar empresas*/
+#contenedor-buscarempresas{
+    margin-top: 0;
+    position: relative;
+    bottom: 5px;
+    left: 15%;
+}
+/*Boton de añadir empresa*/
+#añadir-empresa{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    position: relative;
+    left: 50%;
+    text-transform: capitalize;
+}
+/*Fin de estilos del subnav*/
+/*Inicio de estilos de las cards para las empresas*/
+/*Fila de las cards*/
+#empresas-card{
+    margin-top: 5%;
+}
+/*Contenedor de los botones*/
+.botones-cardempresa{
+    margin: 5px;
+    padding-top: 5%;
+}
+/*Contenedor del card*/
+.contenedor-card{
+    cursor: pointer;
+    margin-left: 6.9% !important;
+}
+/*Estilo de las empresas cuando el mouse esta por encima*/
+.jesusparte .card:hover{
+    background-color: #F4A172;
+    transform: scale(1.09);
+}
+.jesusparte footer{
+    margin-bottom: 20px;
+}
+/*Estilo del Nombre de la empresa*/
+.contenedor-card h6{
+    font-weight: bold;
+}   
+/*Estilo de la divisón en las empresas*/
+.division-empresa{
+    border: 2px solid #8D8888;
+    background-color: #8D8888;
+    margin-bottom: 25px;
+}
+/*Fin de estilos de las cards para las empresas*/
+/*Inicio de los estilos del modal de añadir empresa*/
+#modalAnadirEmpresa{
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#modalAnadirEmpresa .modal-content{
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#modalAnadirEmpresa .modal-footer{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Boton añadir empresa dentro del modal*/
+#btn-añadirEmpresaModal{
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa:hover{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+/*Fila del formulario de añadir una empresa*/
+.filaform-empresa{
+    margin-top: 50px;
+}
+/*Inpust de añadir empresa*/
+.inputs-añadirempr{
+    color: #000;
+    font-weight: bold;
+    margin-top: 15px !important;
+    background-color: #F8F8F8 !important;
+    border: 2px solid #F4A172 !important;
+    border-radius: 5px !important;
+}
+/*Labels de añadir empresa*/
+.labels-anadirempr{
+    color: black !important;
+    font-weight: bold !important;
+}
+/*Contenedor del Mensaje del modal*/
+.mensaje-modal{
+    margin-top: 15px;
+    color: red;
+}
+/*Mensaje del modal*/
+.mensaje-modal h6{
+    display: none;
+}
+/*Estilos del preloader de añadir empresa*/
+#preloader-añadirempr{
+    margin-top: 15px;
+    display: none;
+}
+/*Fin de los estilos del modal de añadir empresa*/
+/*Inicio del estilo del diseño del modal de confirmar eliminación de empresa*/
+/*Contenedor o Modal*/
+#eliminar-empresamodal{ 
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#eliminar-empresamodal .modal-content{ 
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#eliminar-empresamodal .modal-footer{ 
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Boton de aceptar eliminar empresa del modal de confirmación de eliminar empresa*/
+#aceptareliminarempresa_boton {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+}
+/*Boton de cancelar eliminar empresa*/
+.cancelarEliminarempre{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cancelarEliminarempre:hover{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+/*Estilos del preloader de confirmar eliminación de empresas*/
+#confirmareliminarempr_preloader {
+    position: relative;
+    left: 34.5%;
+    margin: 20px;
+    display: none;
+}
+/*Fin de estilos del modal de eliminar empresa*/
+/*Inicio de estilos del modal de confirmar empresa*/
+#modificar-empresamodal{
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#modificar-empresamodal .modal-content{
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#modificar-empresamodal .modal-footer{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilos del boton de confirmar Modificación de empresa*/
+#btn-modificarEmpresaModal{
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilos del preloader de confirmación de modificación de empresas*/
+/*Preloader de modificar empresa*/
+#preloader-modificarempr{
+    margin-top: 15px;
+    display: none;
+}
+/*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width:600px) {    
+    /*Contenedor de las empresas*/
+    .contenedor-empresas{
+        margin-top: 10%;
+    }
+    /*Contenedor que indica en que apartado*/
+    #contapartado-subnavempre{
+        position: relative;
+        right: 5%;
+    }
+    /*Estilo del contenedor de buscar empresas*/
+    #contenedor-buscarempresas{
+        margin-top: 3%;
+        position: relative;
+        bottom: 5px;
+        left: 0;
+    }
+    /*Boton de añadir empresa*/
+    #añadir-empresa{
+        background-color: #FA7479;
+        color: white;
+        border-radius: 10px;
+        margin-top: 5px;
+        left: 25%;
+    }
+    /*Contenedor de las card*/
+    .contenedor-card{
+        cursor: pointer;
+        margin-left: 0 !important;
+    }
+}
+  
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    /*Contenedor que indica en que apartado*/
+    #contapartado-subnavempre{
+        position: relative;
+        right: 1%;
+    }
+    /*Estilo del contenedor de buscar empresas*/
+    #contenedor-buscarempresas{
+        margin-top: 3%;
+        position: relative;
+        bottom: 5px;
+        left: 0;
+    }
+    /*Boton de añadir empresa*/
+    #añadir-empresa{
+        background-color: #FA7479;
+        color: white;
+        border-radius: 10px;
+        margin-top: 10%;
+        left: 25%;
+    }
+    /*Contenedor de las card*/
+    .contenedor-card{
+        cursor: pointer;
+        margin-left: 0 !important;
+    }
+    /*Estilos del preloader de añadir empresa*/
+    #preloader-añadirempr{
+        margin-top: 0;
+    }
+    /*Estilos del preloader de modificar empresa*/
+    #preloader-modificarempr{
+        margin-top: 0;
+    }
+}
+/*Fin de estilos de empresas*/
+/*Inicio de estilos de folders*/
+/*Inicio de estilos del subnavbar*/
+/*Contenedor del boton de regresar*/
+#div-regresarbotonfolders{
+    padding-right: 0;
+    margin: 2% 0;
+}
+/*Estilo del boton de regresar*/
+#regresar_btnfolders{
+    color: black;
+    width: auto;
+}
+/*Icono de home*/
+#conthomeicon-subnavfold{
+    padding-right: 0;
+    margin: 1% 0;
+    position: relative;
+    right: 5%;
+}
+/*Contenedor del apartado que indica donde se esta*/
+/*Contenedor que indica en que apartado*/
+#contapartado-subnavfold{
+    padding-left: 0;
+    margin: 1.9% 0;
+    position: relative;
+    right: 5%;
+}
+/*Estilo de la etiqueta a dentro del estilo contenedor que indica el apartado*/
+#contapartado-subnavfold a {
+    color: black;
+}
+/*Columna del buscador y boton de añadir folder*/
+.col-buscadorfold{
+    padding: 0 !important;
+}
+/*Contenedor del buscador*/
+#contenedor-buscarfolders{
+    margin-top: 0;
+    position: relative;
+    bottom: 5px;
+}
+/*Boton de añadir empresa*/
+#añadir-folder{
+    background-color: #FA7479;
+    color: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    position: relative;
+    text-transform: capitalize;
+}
+/*Inidicador que se encuentra en el folder*/
+.indicador-fold{
+  right: 12% !important;
+}
+/*Fin de estilos del subnavbar*/
+/*Inicio de los estilos del contenedor de los folders*/
+#folders-card{
+    margin-top: 5%;
+}
+.division-folder{
+    border: 2px solid #8D8888;
+    background-color: #8D8888;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+/*Fin de estilos del contenedor de los folders*/
+/*Inicio de estilos del modal de añadir folder*/
+#modalAnadirFolder{
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#modalAnadirFolder .modal-content{
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#modalAnadirFolder .modal-footer{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Boton de añadir folder modal*/
+#btn-añadirFolderModal{
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Preloader de añadir folder*/
+#preloader-añadirfold{
+    display: none;
+}
+/*Fin de estilos del modal de añadir un folder*/
+/*Inicio de estilos del modal de eliminar un folder*/
+#eliminar-foldermodal{
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#eliminar-foldermodal .modal-content{ 
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#eliminar-foldermodall .modal-footer{ 
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Preloader de eliminar folder*/
+#confirmareliminarfold_preloader {
+    position: relative;
+    left: 34.5%;
+    margin: 20px;
+    display: none;
+}
+/*Boton de confirmación de eliminación de folder*/
+#aceptareliminarfolder_boton{
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+}
+/*Estilos del modal de modificar folder*/
+/*Contenedor del modal*/
+#modificar-foldermodal{
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#modificar-foldermodal .modal-content{
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#modificar-foldermodal .modal-footer{
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+/*Estilo del boton de modificar modal*/
+#btn-modificarFolderModal{
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+/*Estilo del preloader de modificar modal*/
+#preloader-modificarfold{
+    display: none;
+}
+/*Extras responsive*/
+/*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width:600px) {    
+    /*Estilo del contenedor de buscar folders*/
+    #contenedor-buscarfolders{
+        margin-top: 3%;
+        position: relative;
+        bottom: 5px;
+        left: 5%;
+    }
+    /*Boton de añadir folder*/
+    #añadir-folder{
+        left: 25%;
+    }
+    /*Inidicador que se encuentra en el folder*/
+  .indicador-fold{
+    right: 7% !important;
   }
 }
-
-/*Scroll personalizado*/
-#side-navbarcont::-webkit-scrollbar {
-  width: 6px;
-  background-color: #f5f5f5;
+  
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    /*Estilo del contenedor de buscar folders*/
+    #contenedor-buscarfolders{
+        margin-top: 3%;
+        position: relative;
+        bottom: 5px;
+        left: 5%;
+    }
+    /*Boton de añadir folder*/
+    #añadir-folder{
+        margin-top: 10%;
+        left: 25%;
+    }
 }
-
-#side-navbarcont::-webkit-scrollbar-thumb {
-  background-color: #f4a27298;
-}
-
-#side-navbarcont::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
-  margin-bottom: 250px;
-}
-
+/*Fin de estilos de folders*/
+/*Arístides*/
+/*Arístides*/
 /* Página de Archivos Subidos  */
 .file-searcher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .file-name,
+  .file-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .file-name img {
+    margin-right: 10px;
+  }
+  
+  .file-options img {
+    width: 48px;
+    height: 38px;
+    cursor: pointer;
+  }
+  
+  .file-options a {
+    margin-top: 10px;
+  }
+  
+  
+  .file-searcher #input-file {
+    margin-left: 12px;
+  }
+  
+  .file-searcher img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .upload-files {
+    margin-top: 28px;
+    padding-left: 100px;
+  }
+  
+  .btn-add {
+    background-color: #fa7479;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    text-transform: initial;
+  }
+  
+  .btn-add:hover,
+  .btn-add:focus {
+    background-color: #fa7478c7;
+  }
+  
+  .direction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .direction p {
+    font-size: 18px;
+  }
+  
+  .direction img {
+    width: 27px;
+    height: 36px;
+    margin: 0 10px 2px 10px;
+  }
+  
+  .container-files {
+    margin-top: -30px;
+  }
+  
+  .file-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 30px;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+  
+  /*Search Bar with Auto Complete*/
+  .wrapper {
+    max-width: 450px;
+  
+    margin: 0 auto;
+  }
+  
+  .search-box {
+    background-color: #ffffff;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+  
+    border-radius: 5px;
+  }
+  
+  #company-searcher {
+    margin-top: 15px;
+    padding: 4px;
+  }
+  
+  #company-searcher::placeholder {
+    color: #000;
+    opacity: 1;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .wrapper .search-input {
+    background-color: #fff;
+  
+    width: 100%;
+    padding: 10px 10px 30px 10px;
+  
+    border-radius: 5px;
+  }
+  
+  #input-file:focus {
+    border-bottom: 1px solid #fa7479;
+    box-shadow: 0 1px 0 0 #fa7479;
+  }
+  
+  #input-file:focus+label {
+    color: #fa7479;
+  }
+  
+  #company-searcher {
+    border-bottom: 0 solid #000;
+    font-size: 18px;
+  }
+  
+  .autocom-box {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+  }
+  
+  .autocom-box li {
+    font-size: 18px;
+    list-style: none;
+    padding: 8px 10px 2px 10px;
+  }
+  
+  #company-searcher:focus {
+    border-bottom: 0px solid #fa7479;
+    box-shadow: 0 0px 0 0 #fff;
+  }
+  
+  #company-searcher:focus+label {
+    color: #fff;
+  }
+  
+  .company-search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #f4a172;
+    max-height: 55px;
+    margin-bottom: 2px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+  }
+  
+  .company-search-box img {
+    width: 30px;
+    margin: 2px 5px 0 0;
+  }
+  
+  /* Contenedor de archivos */
+  
+  .upload-files-section {
+    margin-top: 4%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  
+  /*Empleados */
+  /*modal eliminar empleado*/
+  #eliminar-empleadoomodal {
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .employee-cards .card .card-image {
+    width: 100px;
+  
+  }
+  
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-image {
+    margin-top: 20px;
+  }
+  
+  .info img {
+    margin-right: 10px;
+  }
+  
+  .employee-cards .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .employee-cards .name-employee {
+    font-size: 20pt;
+    margin: 9px;
+    font-weight: 600;
+  }
+  
+  .employee-information .info {
+    margin: 15px;
+  }
+  
+  .btn-option {
+    display: flex;
+    padding-left: 80%;
+  }
+  
+  .btn-option i {
+    font-size: 45px;
+    cursor: pointer;
+    color: #F4A172;
+  }
+  
+  
+  #card-reveal-info {
+  
+    top: 45%;
+    left: 41%;
+    width: 190px;
+    height: 160px;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+  
+  }
+  
+  .delete,
+  .edit {
+    font-family: 'Poppins';
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  
+  }
+  
+  .options {
+    padding-top: 10px;
+    padding-right: 20px;
+  }
+  
+  .delete,
+  .edit {
+    padding: 10px;
+  }
+  
+  .delete img {
+    width: 25px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .edit img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .card .fixed-action-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+  }
+  
+  .btn-large,
+  .btn-large:hover {
+    background-color: #fa7479;
+  }
+  
+  .frm-employee {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Elevador btn*/
+  #hasta_arriba {
+    display: none;
+    transition: .2s;
+    color: #fa7479;
+  }
+  
+  /*Modals*/
+  /* Modal de Empleados */
+  #anadir-empleado {
+    font-family: 'Poppins',
+      sans-serif;
+  }
+  
+  #anadir-empleado form input,
+  #editar-empleado form input {
+    padding-left: 10px;
+  }
+  
+  .select-tipo-empleado {
+    margin-top: 30px;
+  }
+  
+  /*Estilos del modal de añadir archivo para la página de archivos YESENIA*/
+  /*Estilo del contenedor del modal*/
+  #anadir-archivoarh {
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #anadir-archivosub {
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .select-empresa {
+    margin-top: 30px;
+  }
+  
+  /*Estilo del contenedor dentro del modal*/
+  #anadir-archivoarh .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del footer del modal*/
+  #anadir-archivoarh .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del contenedor dentro del modal*/
+  #anadir-archivosub .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del footer del modal*/
+  #anadir-archivosub .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Fila del formulario de añadir una empresa*/
+  .filaform-archivo {
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  
+  /*Boton añadir empresa dentro del modal*/
+  #btn-añadirArchivoarhModal {
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo del boton de cerrar modal*/
+  .cerrarModalEmpresa {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo de cuando esta hover el boton de cerrar modal*/
+  /*Estilo del boton de cerrar modal*/
+  .cerrarModalEmpresa:hover {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+  }
+  
+  /*Inpust de añadir empresa*/
+  .inputs-añadirempr {
+    color: #000;
+    font-weight: bold;
+    margin-top: 15px !important;
+    background-color: #F8F8F8 !important;
+    border: 2px solid #F4A172 !important;
+    border-radius: 5px !important;
+  }
+  
+  /*Labels de añadir empresa*/
+  .labels-anadirempr {
+    color: black !important;
+    font-weight: bold !important;
+  }
+  
+  /*Contenedor del Mensaje del modal*/
+  .mensaje-modal {
+    margin-top: 15px;
+    color: red;
+  }
+  
+  /*Mensaje del modal*/
+  .mensaje-modal h6 {
+    display: none;
+  }
+  
+  /*Estilos del preloader de añadir empresa*/
+  #preloader-añadirarh {
+    margin-top: 15px;
+    display: none;
+  }
+  
+  /*Estilos del boton de agregar archivo*/
+  .agregararchivoarh span {
+    text-transform: capitalize;
+    position: relative;
+    bottom: 5px;
+    margin-left: 5px;
+  }
+  
+  /*contenedor del boton de agregar archivo*/
+  .agregararchivoarh {
+    margin-top: 15px;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*contenedor del boton de agregar archivo*/
+  .agregararchivoarh:hover {
+    margin-top: 15px;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*Contenedor que muestra el archivo seleccionado*/
+  .inputarh-texto {
+    position: relative;
+    left: 1.5% !important;
+  }
+  
+  /*Fila de los botones*/
+  /*Contenedor de los botones*/
+  .filabtn-añadirarh {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  
+  /*Contenedor de previsualizar*/
+  .preview-file {
+    border: 3px dotted #F4A172;
+    width: 98%;
+    margin-left: 1%;
+    min-height: 250px !important;
+    max-height: 550px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 25px;
+  }
+  
+  /*Estilo de la imagen de preview por defecto*/
+  #imagen-Preview {
+    min-width: 25px;
+    min-height: 25px;
+  }
+  
+  /*Estilos para la barra de carga*/
+  #barraraprg-garch {
+    display: none;
+  }
+  
+  /*Contenedor del previsualizador del pdf*/
+  #prevPDF-arh {
+    display: none;
+  }
+  
+  /*Estilos del modal de eliminar */
+  /*Inicio del estilo del diseño del modal de confirmar eliminación de empresa*/
+  /*Contenedor o Modal*/
+  #eliminar-empresamodal {
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #eliminar-archivomodal {
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Contenedor del contenido del modal*/
+  #eliminar-empresamodal .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Contenedor del contenido del modal*/
+  #eliminar-empresamodal .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Boton de aceptar eliminar empresa del modal de confirmación de eliminar empresa*/
+  #aceptareliminarempresa_boton {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+  }
+  
+  /*Boton de cancelar eliminar empresa*/
+  .cancelarEliminarempre {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo de cuando esta hover el boton de cerrar modal*/
+  /*Estilo del boton de cerrar modal*/
+  .cancelarEliminarempre:hover {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+  }
+  
+  /*Estilos del preloader de confirmar eliminación de empresas*/
+  #confirmareliminarempr_preloader {
+    position: relative;
+    left: 34.5%;
+    margin: 20px;
+    display: none;
+  }
+  
+  @media screen and (min-width: 100px) and (max-width: 767px) {
+    .upload-files {
+      padding-left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin-top: 10px;
+  
+    }
+  
+    .searcher-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  
+    .searcher-row .col {
+      margin-top: 10px;
+    }
+  
+    .upload-files-section {
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .upload-files .col {
+      margin: auto;
+    }
+  
+  }
+  
+  
+  /*Fin de estilos del modal de eliminar empresa*/
+  /*Telefonos*/
+  @media (max-width:600px) {
+  
+    /*Contenedor que muestra el archivo seleccionado*/
+    .inputarh-texto {
+      left: 0 !important;
+    }
+  
+    #anadir-archivoarh {
+      width: 95%;
+    }
+  }
+  
+  /*Tablets*/
+  @media screen and (min-width: 600px) and (max-width: 992px) {
+    .inputarh-texto {
+      margin-left: 2% !important;
+      left: 0 !important;
+    }
+  }
+  
+  /* Modals */
+  /*Estilos del modal de añadir archivo para la página de archivos YESENIA*/
+  /*Estilo del contenedor del modal*/
+  #anadir-archivoarh {
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #anadir-archivosub {
+    margin-top: 2%;
+    background: #F1F5F9;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del contenedor dentro del modal*/
+  #anadir-archivoarh .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del footer del modal*/
+  #anadir-archivoarh .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del contenedor dentro del modal*/
+  #anadir-archivosub .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Estilo del footer del modal*/
+  #anadir-archivosub .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Fila del formulario de añadir una empresa*/
+  .filaform-archivo {
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  
+  /*Boton añadir empresa dentro del modal*/
+  #btn-añadirArchivoarhModal {
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo del boton de cerrar modal*/
+  .cerrarModalEmpresa {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo de cuando esta hover el boton de cerrar modal*/
+  /*Estilo del boton de cerrar modal*/
+  .cerrarModalEmpresa:hover {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+  }
+  
+  /*Inpust de añadir empresa*/
+  .inputs-añadirempr {
+    color: #000;
+    font-weight: bold;
+    margin-top: 15px !important;
+    background-color: #F8F8F8 !important;
+    border: 2px solid #F4A172 !important;
+    border-radius: 5px !important;
+  }
+  
+  /*Labels de añadir empresa*/
+  .labels-anadirempr {
+    color: black !important;
+    font-weight: bold !important;
+  }
+  
+  /*Contenedor del Mensaje del modal*/
+  .mensaje-modal {
+    margin-top: 15px;
+    color: red;
+  }
+  
+  /*Mensaje del modal*/
+  .mensaje-modal h6 {
+    display: none;
+  }
+  
+  /*Estilos del preloader de añadir empresa*/
+  #preloader-añadirarh {
+    margin-top: 15px;
+    display: none;
+  }
+  
+  /*Estilos del boton de agregar archivo*/
+  .agregararchivoarh span {
+    text-transform: capitalize;
+    position: relative;
+    bottom: 5px;
+    margin-left: 5px;
+  }
+  
+  /*contenedor del boton de agregar archivo*/
+  .agregararchivoarh {
+    margin-top: 15px;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*contenedor del boton de agregar archivo*/
+  .agregararchivoarh:hover {
+    margin-top: 15px;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
+  
+  /*Contenedor que muestra el archivo seleccionado*/
+  .inputarh-texto {
+    position: relative;
+    left: 1.5% !important;
+  }
+  
+  /*Fila de los botones*/
+  /*Contenedor de los botones*/
+  .filabtn-añadirarh {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  
+  /*Contenedor de previsualizar*/
+  .preview-file {
+    border: 3px dotted #F4A172;
+    width: 98%;
+    margin-left: 1%;
+    min-height: 250px !important;
+    max-height: 550px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 25px;
+  }
+  
+  /*Estilo de la imagen de preview por defecto*/
+  #imagen-Preview {
+    min-width: 25px;
+    min-height: 25px;
+  }
+  
+  /*Estilos para la barra de carga*/
+  #barraraprg-garch {
+    display: none;
+  }
+  
+  /*Contenedor del previsualizador del pdf*/
+  #prevPDF-arh {
+    display: none;
+  }
+  
+  /*Estilos del modal de eliminar */
+  /*Inicio del estilo del diseño del modal de confirmar eliminación de empresa*/
+  /*Contenedor o Modal*/
+  #eliminar-empresamodal {
+    margin-top: 7%;
+    background: #F1F5F9;
+    width: 350px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Contenedor del contenido del modal*/
+  #eliminar-empresamodal .modal-content {
+    margin: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Contenedor del contenido del modal*/
+  #eliminar-empresamodal .modal-footer {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /*Boton de aceptar eliminar empresa del modal de confirmación de eliminar empresa*/
+  #aceptareliminarempresa_boton {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+  }
+  
+  /*Boton de cancelar eliminar empresa*/
+  .cancelarEliminarempre {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    text-transform: capitalize;
+  }
+  
+  /*Estilo de cuando esta hover el boton de cerrar modal*/
+  /*Estilo del boton de cerrar modal*/
+  .cancelarEliminarempre:hover {
+    background-color: #FA7479;
+    color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+  }
+  
+  /*Estilos del preloader de confirmar eliminación de empresas*/
+  #confirmareliminarempr_preloader {
+    position: relative;
+    left: 34.5%;
+    margin: 20px;
+    display: none;
+  }
+  
+  /*Fin de estilos del modal de eliminar empresa*/
+  /*Telefonos*/
+  @media (max-width:600px) {
+  
+    /*Contenedor que muestra el archivo seleccionado*/
+    .inputarh-texto {
+      left: 0 !important;
+    }
+  
+    #anadir-archivoarh {
+      width: 95%;
+    }
+  }
+  
+  /*Tablets*/
+  @media screen and (min-width: 600px) and (max-width: 992px) {
+    .inputarh-texto {
+      margin-left: 2% !important;
+      left: 0 !important;
+    }
+  }
+/*Jonathan*/
+#Fondo-login{
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+}
+#Fondo-login main{
+  padding-left: 0px;
+  margin-left: 0;
+}
+/*log in*/
+
+
+/*contenedor login*/
+.login-container{
+  margin-top: 150px;
+  margin: 11%;
+  margin-top: 13%;
+  
 }
 
-.file-searcher #input-file {
-  margin-left: 12px;
-}
-
-.file-searcher img {
-  width: 32px;
-  height: 32px;
-}
-
-.upload-files {
-  margin-top: 28px;
-}
-
-.btn-add {
-  background-color: #fa7479;
+/*diseño boton inicio sesión*/
+#Iniciar_btn{
+ background-color: #fa7479;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
-  color: #ffffff;
+  color:black;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
-  height: 40px;
+  height: 55px;
   line-height: 20px;
   list-style: none;
   margin: 0;
+  width: 200px; 
   outline: none;
-  padding: 10px 16px;
+  padding: 17px 14px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -371,235 +1764,764 @@ footer {
   -webkit-user-select: none;
   touch-action: manipulation;
   text-transform: initial;
-}
+  text-decoration-color: black;
 
-.btn-add:hover,
-.btn-add:focus {
-  background-color: #fa7478c7;
-}
-
-.direction {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 
-.direction p {
-  font-size: 18px;
+/*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+  
 }
 
-.direction img {
-  width: 27px;
-  height: 36px;
-  margin: 0 10px 2px 10px;
+.container-col1{
+ background-color: rgba(60,60,60,0.5);
+ padding-bottom: 30px;
+ padding-top: 80px;
+ margin-left: 30px;
+ margin-right: 30px;
+ height: 430px;
+
 }
 
-/*Search Bar with Auto Complete*/
-.wrapper {
-  max-width: 450px;
+.container-col2{
 
-  margin: 0 auto;
+ padding-top: 10px;
+ padding-right: 35px;
+ padding-left: 35px;
+
+
 }
 
-.search-box {
-  background-color: #ffffff;
-  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
-
-  border-radius: 5px;
+.text-style-p{
+ 
+  color: white;
+  font-size: 13px;
+  
+ 
 }
 
-#company-searcher {
-  margin-top: 15px;
-  padding: 4px;
+.text-style-title{
+ 
+  font-size: 40px;
+  color: white;
+  margin-top: -8px;
+  margin-bottom: 10px;
+ 
+  
 }
 
-#company-searcher::placeholder {
-  color: #000;
-  opacity: 1;
-  font-family: "Poppins", sans-serif;
+/*seccion derecha login*/
+.login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  
 }
 
-.wrapper .search-input {
-  background-color: #fff;
 
-  width: 100%;
-  padding: 10px 10px 30px 10px;
 
-  border-radius: 5px;
+/*texto login*/
+.Text-log{
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-size: 19px;
+  
+
 }
 
-#input-file:focus {
+
+/*inputs*/
+#username:focus{
+   border-bottom: 1px solid #fa7479;
+   box-shadow: 0 1px 0 0 #fa7479;
+}
+
+#contraseña:focus{
   border-bottom: 1px solid #fa7479;
   box-shadow: 0 1px 0 0 #fa7479;
 }
 
-#input-file:focus+label {
+#username:focus+label{
   color: #fa7479;
 }
 
-#company-searcher {
-  border-bottom: 0 solid #000;
-  font-size: 18px;
+#contraseña:focus+label{
+  color: #fa7479;
 }
 
-.autocom-box {
-  background-color: #f1f5f9;
-  border-radius: 8px;
+/*texto olvidar contra*/
+
+#olvidarcontra_boton{
+  color: black;
 }
 
-.autocom-box li {
-  font-size: 18px;
-  list-style: none;
-  padding: 8px 10px 2px 10px;
-}
+/*Estilo de OJOS para ocultar y mostrar contraseñas*/
+  #cronometro{
+    display: none;
+    color: #DF5333;
+    margin-left: 15px;
+  }
+  #reenviarPIN{
+    cursor: pointer;
+  }
+  #ocultarmostrar_contraseña{
+    cursor: pointer;
+  }
 
-#company-searcher:focus {
-  border-bottom: 0px solid #fa7479;
-  box-shadow: 0 0px 0 0 #fff;
-}
+  #ocultarmostrar_contraseñas{
+    cursor: pointer;
+  }
 
-#company-searcher:focus+label {
-  color: #fff;
-}
+  /*Estilos extra responsive*/
+/*Telefonos*/
+@media (max-width: 600px) {
 
-.company-search-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  background-color: #f4a172;
-  max-height: 55px;
-  margin-bottom: 2px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 20px;
-}
+    .login-container{
+    margin-top: 150px;
+    margin: 0%;
+    margin-top: 13%;   
+  }
 
-.company-search-box img {
-  width: 30px;
-  margin: 2px 5px 0 0;
-}
+    .text-style-p{
+   
+    color: white;
+    font-size: 10px;  
+  }
 
-/* Contenedor de archivos */
-
-.upload-files-section {
-  margin-top: 4%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-/*Empleados */
-.employee-cards .card .card-image {
-  width: 100px;
-
-}
-
-.info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-image {
-  margin-top: 20px;
-}
-
-.info img {
-  margin-right: 10px;
-}
-
-.employee-cards .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.employee-cards .name-employee {
-  font-size: 20pt;
-  margin: 9px;
-  font-weight: 600;
-}
-
-.employee-information .info {
-  margin: 15px;
-}
-
-.btn-option {
-  display: flex;
-  padding-left: 80%;
-}
-
-.btn-option i {
-  font-size: 45px;
-  cursor: pointer;
-  color: #F4A172;
-}
-
-
-#card-reveal-info {
-
-  top: 45%;
-  left: 41%;
-  width: 190px;
-  height: 160px;
-  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.25);
+  .text-style-title{
+   
+    font-size: 30px;
+    color: white;
+    margin-top: -8px;
+    margin-bottom: 10px; 
+    margin-right: 10px;
+  }
+    .container-col1{
+   background-color: rgba(60,60,60,0.5);
+   padding-bottom: 30px;
+   padding-top: 80px;
+   margin-left: 20px;
+   margin-right: 20px;
+   height: 430px;
+ }
 
 }
 
-.delete,
-.edit {
-  font-family: 'Poppins';
-  font-style: normal;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
+/*Tablets*/
+@media screen and (min-width: 900px) and (max-width: 1000px) {
+/*contenedor login*/
+  .login-container{
+    margin-top: 150px;
+    margin: 0%;
+    margin-top: 13%;
+    margin-left: 140px;
+    
+  }
+  /*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  width: 500px;
+  }
+ /*seccion derecha login*/
+  .login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  width: 500px;
+  
+ }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 900px) {
+/*contenedor login*/
+  .login-container{
+    margin-top: 150px;
+    margin: 4%;
+    margin-top: 13%;
+    margin-left: 100px;
+    
+  }
+
+    /*seccion izquierda login*/
+.login-col1{
+  background-image: url("../img/contador.png");   
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  width: 400px;
+  }
+ /*seccion derecha login*/
+  .login-col2{
+  background-color: white;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 30px;
+  height: 500px;
+  width: 400px; 
+ }
 
 }
-
-.options {
+/*Logo login*/
+.navbar-contenedorLogin{
+  height: 95px;
+  background-color: white;
+}
+.icono-login img{
+  margin-top: 3px;
+  padding: 3px;
+  height: 90px;
+}
+/*Yesenia*/
+/*Inicio de estilos Archivos*/
+.contenedor-archivos{
+  padding-left: 50px;
   padding-top: 10px;
-  padding-right: 20px;
+}
+.contenedor-archivos a{
+  color: #000;
+}
+/*Inicio de estilos del subnavbar*/
+/*Contenedor del Icono de Home en archivo del subnavbar*/
+#conthomeicon-subnavempre{
+  padding-right: 0;
+  margin: 1% 0;
 }
 
-.delete,
-.edit {
-  padding: 10px;
+/*Estilo del icono de buscar*/
+.buscar-archivos{
+  color: black;
+  cursor: pointer;
 }
-
-.delete img {
-  width: 25px;
+/*Estilo del placeholder del input de buscar*/
+#inputbuscar-archivos::placeholder{
+  color: black;
+  font-weight: lighter;
+}
+/*Estilo del input del color*/
+#inputbuscar-archivos{
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+/*Estilo del contenedor de buscar archivos*/
+#contenedor-buscararchivos{
+  float: right;
+  margin-top: 0;
+  position: relative;
+  bottom: 30px;
+  left: 15%;
+}
+.container-archivos{
+  padding-left: 70px;
+}
+.panel-archivo{
+  color: white;
+ border: 5px solid #D4CACA;
+}
+#añadir-archivo{
+  background-color: #FA7479;
+  color: white;
+  border-radius: 10px;
+  margin-top: 5px;
+  float: right;
+  left: 55%;
+  text-transform: capitalize;
+  bottom: 20px;
+}
+.icono-ver{
   height: 20px;
-  margin-right: 10px;
+  float: right;
 }
-
-.edit img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+.icono-descarga{
+ height: 20px;
+ padding-left: 10px;
+ float: right;
 }
-
-.card .fixed-action-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 3;
+.icono-modificar{
+  height: 23px;
+  padding-left: 10px;
+  float: right;
 }
-
-.btn-large,
-.btn-large:hover {
-  background-color: #fa7479;
+.icono-eliminar{
+  height: 22px;
+  padding-left: 10px;
+  float: right;
 }
-
-.frm-employee {
-  display: flex;
-  justify-content: flex-end;
+.contenido-tabla{
+  border: 1.5px solid black;
 }
-
-/* Elevador btn*/
-#hasta_arriba {
+/*Estilo del contenedor del modal*/
+#anadir-archivoarh .mordificar-archivo{
+  margin-top: 2%;
+  background: #F1F5F9;
+  font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#anadir-archivoarh .modal-content .mordificar-archivo{
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#anadir-archivoarh .modal-footer .mordificar-archivo{
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+/*Fila del formulario de añadir una archivo*/
+.filaform-archivo{
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+/*Boton añadir archivo dentro del modal*/
+#btn-añadirArchivoarhModal{
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa{
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cerrarModalEmpresa:hover{
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+/*Inpust de añadir archivo*/
+.inputs-añadirempr{
+  color: #000;
+  font-weight: bold;
+  margin-top: 15px !important;
+  background-color: #F8F8F8 !important;
+  border: 2px solid #F4A172 !important;
+  border-radius: 5px !important;
+}
+/*Labels de añadir archivo*/
+.labels-anadirempr{
+  color: black !important;
+  font-weight: bold !important;
+}
+/*Contenedor del Mensaje del modal*/
+.mensaje-modal{
+  margin-top: 15px;
+  color: red;
+}
+/*Mensaje del modal*/
+.mensaje-modal h6{
   display: none;
-  transition: .2s;
-  color: #fa7479;
+}
+/*Estilos del preloader de añadir archivo*/
+#preloader-añadirarh{
+  margin-top: 15px;
+  display: none;
+}
+/*Estilos del boton de agregar archivo*/
+.agregararchivoarh span{
+  text-transform: capitalize;
+  position: relative;
+  bottom: 5px;
+  margin-left: 5px;
+}
+/*contenedor del boton de agregar archivo*/
+.agregararchivoarh{
+  margin-top: 15px;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+/*contenedor del boton de agregar archivo*/
+.agregararchivoarh:hover{
+  margin-top: 15px;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+/*Contenedor que muestra el archivo seleccionado*/
+.inputarh-texto{
+  position: relative;
+  left: 1.5% !important;
+}
+/*Fila de los botones*/
+/*Contenedor de los botones*/
+.filabtn-añadirarh{
+  margin-top: 0 !important;
+  padding-top: 0;
+}
+/*Contenedor de previsualizar*/
+.preview-file{
+  border: 3px dotted #F4A172;
+  width: 98%;
+  margin-left: 1%;
+  min-height: 250px !important;
+  max-height: 550px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 25px;
+}
+/*Estilo de la imagen de preview por defecto*/
+#imagen-Preview{
+  min-width: 25px;
+  min-height: 25px;
+}
+/*Estilos para la barra de carga*/
+#barraraprg-garch{
+  display: none;
+}
+/*Contenedor del previsualizador del pdf*/
+#prevPDF-arh{
+  display: none;
+}
+/*Estilos del modal de eliminar */
+/*Inicio del estilo del diseño del modal de confirmar eliminación de archivo*/
+/*Contenedor o Modal*/
+#modalEliminarArchivo{ 
+  margin-top: 7%;
+  background: #F1F5F9;
+  width: 350px;
+  font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#modalEliminarArchivo .modal-content{ 
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+/*Contenedor del contenido del modal*/
+#modalEliminarArchivo .modal-footer{ 
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
+/*Boton de aceptar archivo archivo del modal de confirmación de eliminar archivo*/
+#aceptareliminararch_boton {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+}
+/*Boton de cancelar eliminar archivo*/
+.cancelarEliminararch{
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+/*Estilo de cuando esta hover el boton de cerrar modal*/
+/*Estilo del boton de cerrar modal*/
+.cancelarEliminararch:hover{
+  background-color: #FA7479;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+/*Estilos del preloader de confirmar eliminación de aarchivo*/
+#confirmareliminararch_preloader {
+  position: relative;
+  left: 34.5%;
+  margin: 20px;
+  display: none;
+}
+
+#btn_regresar{
+  position: relative;
+  right: 5% !important;
+}
+
+.btn_home{
+  position: relative;
+  right: 160% !important;
+}
+.btn_empresa{
+  position: relative;
+  right: 45% !important;
+}
+.btn_folders{
+  position: relative;
+  right: 80% !important;
+}
+.btn_archivos{
+  position: relative;
+  right: 125% !important;
+}
+/*Fin de estilos del modal de eliminar archivo*/
+#homeicon-archivos img{
+  position: relative;
+  bottom: 5px !important;
+  margin-left: 5px !important;
+}
+#inputbuscar-archivos:focus{
+  border-bottom: 1px solid #fa7479;
+  box-shadow: 0 1px 0 0 #fa7479;
+  background-color: transparent;
+}
+#inputbuscar-archivos:focus+label {
+  color: #fa7479;  
+}
+/*Telefonos*/
+@media (max-width:600px) { 
+  .archivos-indicacionsn{
+    position: relative;
+    left: 0% !important;
+  }   
+  /*Contenedor que muestra el archivo seleccionado*/
+  .inputarh-texto{
+      left: 0 !important;
+  }
+  #anadir-archivoarh{
+      width: 95%;
+  }
+  #contenedor-buscararchivos{
+      padding-top: 40px;
+      width: 250px;
+   }
+
+   .buscar-archivos{
+       padding-top: 40px;
+    }
+
+   /*icono de usuario en el sidenav*/
+   #icono-opcion-sidenav .user-icon{
+       position: relative;
+       left: 10%;
+   }
+   /*texto del sidenav sobre los componentes que eran del navbar*/
+   #texto-opcion-sidenav-nav{
+       margin: 0;
+       padding: 0;
+       position: relative;
+       right: 15%;
+       color: black;
+       font-weight: bold;
+   }
+   /*Estilo del titulo del apartado en el navbar*/
+   .titulo-nav{
+       margin-left: 0;
+   }
+   /*Span del titulo del apartado en el navbar*/
+   .titulo-nav span{
+       font-size:20px;
+   }
+   /*Estilo del boton de hacia arriba*/
+   #hasta_arriba {
+       background-color: #FA7479;
+       display: none;
+       transition: .2s;
+       margin-bottom: 75px;
+   }
+   .panel-archivo{
+      width: 140%;
+  }
+  .icono-eliminar{
+      margin-top: 35%;
+      margin-bottom: 35%;
+   }
+  .icono-modificar{
+     margin-bottom: 35%;
+  }
+  .icono-descarga{
+      margin-bottom: 40%;
+   }
+   .icono-ver{
+      margin-bottom: 35%;
+   }
+   .btn_home{
+      position: relative;
+      right: 22% !important;
+  }
+  .btn_empresa{
+      position: relative;
+      right: 30% !important;
+  }
+  .btn_folders{
+      position: relative;
+      right: 50% !important;
+  }
+  .container-archivos{
+    position: relative;
+    right: 20% !important;
+  }
+  .btn-añadir{
+    position: relative;
+    right: 30% !important;
+  }
+  #contenedor-botonnavg{
+    margin-left: 5px !important;
+    position: relative;
+    left: 1%;
+  }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .archivos-indicacionsn{
+    position: relative;
+    left: 8% !important;
+  }
+  .buscador-archivos{
+    margin-top: 5%;
+  }
+  .inputarh-texto{
+      margin-left: 2% !important; 
+      left: 0 !important;
+  }
+  #contenedor-buscararchivos{
+      padding-top: 40px;
+      width: 250px;
+   }
+
+   .buscar-archivos{
+       padding-top: 40px;
+    }
+  .tabla-archivos{
+      width: 430px;
+  }
+  .panel-archivo{
+      width: 480px;
+  }
+  .btn_home{
+      position: relative;
+      right: 22% !important;
+  }
+  .btn_empresa{
+      position: relative;
+      right: 30% !important;
+  }
+  .btn_folders{
+      position: relative;
+      right: 50% !important;
+  }
+  .btn_archivos{
+      position: relative;
+      right: 80% !important;
+  }
+  .icono-eliminar{
+
+    margin-top:20%;
+
+    margin-bottom: 20%;
+
+    }
+
+    .icono-modificar{
+
+        margin-top: 20%;
+
+    margin-bottom: 20%;
+
+    }
+
+    .icono-descarga{
+
+        margin-bottom: 20%;
+
+     }
+
+     .icono-ver{
+
+        margin-bottom: 20%;
+
+     }
+}
+/*Carlos*/
+/*Logo Perfil - Carlos*/
+.navbar-logo img{
+  width: 270px;
+  height: 90px;
+}
+
+.navbar-perfil{
+  height: 95px;
+  background-color: white;
+}
+
+/*Perfil y Info - Carlos*/
+#perfil-fondo{
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+}
+
+.info-img img{
+  height: 348px;
+  width: 100%;
+}
+
+.info-main p{
+  padding-top: 6%;
+}
+.info-main{
+  padding: 10%;
+}
+.perfil-todo{
+  margin-top: 5%;
+}
+
+.perfil-cont{
+  background-color: white;
+  margin-right: 2% !important;
+}
+
+.perfil-img img{
+  height: 120px;
+  width: auto;
+}
+
+.info-cont{
+  background-color: white;
+  height: 354px;
+}
+.btn-volver{
+  margin-top: 50px;
+}
+/*Telefonos*/
+@media (max-width:600px) {
+  .perfil-cont{
+    margin-bottom: 5% !important;
+  }
+}
+/*Tablets*/
+@media screen and (min-width: 600px) and (max-width: 992px) {
+  .perfil-todo{
+    position: relative;
+    
+  }
+  .perfil-cont{
+    margin-bottom: 5% !important;
+  }
 }
