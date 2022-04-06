@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../resources/css/styles.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <!--Importando las fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Icono del sitio web-->
+    <link rel="icon" href="../resources/icons/icono-web.png">
+</head>
+
+<body id="Fondo-login">
+    <div>
+        <header>
+            <div class="navbar-fixed">
+                <nav class="navbar-contenedorLogin z-depth-3 center-align">
+                    <div class="icono-login">
+                        <img class="responsive-image " src="../resources/img/logo-login.png">
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <!--Fila de la información-->
+                <div class="row login-container ">
+                    <!--Columna de información para el envio-->
+                    <div class="col l6 m8 s12">
+                        <div class="row login-col1 z-depth-5">
+                            <div class="container-col1">
+                                <div class="container-col2">
+                                    <div class="col l12 m9 s12 center-align text-style-title">
+                                        <p>Smart Bookkeeping</p>
+                                    </div>
+                                    <div class="col l12 m12 s12 center-align text-style-p">
+                                        <p>La aplicación administrativa para ayudar a la gestión del despacho contable
+                                            almacenando los archivos de las diversas empresas a las que se le lleve la
+                                            contaduría y teniendo la capacidad de separar los archivos por categoría de
+                                            los trabajos: Hacienda, Libros, Resivos etc. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Columna de información para el envio-->
+                    <div class="col l6 m8 s12">
+                        <div class="row login-col2 z-depth-5">
+                            <div class="row ">
+                                <div class="col s12 left-align Text-log">
+                                    <b>LOG IN</b>
+                                </div>
+                                <!--Contenedor del apartado de los elementos de las compras-->
+                                <div class="col s12" id="parte-orden">
+                                    <div class="row">
+                                        <div class="d-container-col1">
+                                            <form>
+                                                <div class="col l10 m11 s10 input-field" id="titulo-orden">
+                                                        <input id="username" type="text" class="center-align">
+                                                        <label for="username">Usuario</label>
+                                                </div>
+                                                <div class="input-field col l10 m11 s10">
+                                                    <input id="contraseña" type="password" class="center-align">
+                                                    <label for="contraseña">Contraseña</label>
+                                                    <i class="tooltipped material-icons prefix right-align"
+                                                        data-position="top" data-tooltip="Mostrar/Ocultar"
+                                                        id="ocultarmostrar_contraseña">visibility</i>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 center-align">
+                                    <div class="row">
+                                        <div class="col l11 m6 offset-m2 s11 center-align">
+                                            <a href="./empresas.html"
+                                                class="modal-trigger waves-effect waves-light btn"
+                                                id="Iniciar_btn">Iniciar sesión</a>
+                                            <div class="col m12 offset-m2 l12">
+                                                <a class="modal-trigger text-recuperar-contra" id="olvidarcontra_boton"
+                                                    href="#modalPIN">¿Olvidaste tu contraseña?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--No borrar del codigo-->
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large " id="hasta_arriba">
+                    <i class="large material-icons">arrow_upward</i>
+                </a>
+                <ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../controllers/index.js"></script>
+</body>
+
+</html>

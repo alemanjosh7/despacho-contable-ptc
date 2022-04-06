@@ -18,35 +18,44 @@
 </head>
 
 <body>
+
     <header>
-        <div class="navbar-fixed" id="personalized-scroll">
+        <!--Navbar-->
+        <div class="navbar-fixed">
             <nav class="navbar-contenedor z-depth-3">
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo center titulo-nav"><span>Archivos subidos</span></a>
+                    <!--Titulo del apartado-->
+                    <a href="#!" class="brand-logo center titulo-nav"><span>Archivos-subidos</span></a>
+                    <!--Boton para el sidenav responsive-->
                     <a href="#" data-target="side-navbarcont" class="sidenav-trigger"><i
                             class="material-icons menuicon-navbar">menu</i></a>
+                    <!--Apartado del usuario y logou-->
                     <ul class="right hide-on-small-and-down opciones-navbar">
+                        <!--Usuario solo para tablets y computadoras-->
                         <li><a class="waves-effect waves-light tooltipped" data-position="bottom"
-                                data-tooltip="Ver el perfil" href="login.html" id="username-navbar">User1<i
+                                data-tooltip="Ver el perfil" href="perfil.html" id="username-navbar">User1<i
                                     class="material-icons right usericon-apartadot">person</i></a>
                         </li>
-                        <li><a href="badges.html" class="logout-navbar tooltipped" data-position="bottom"
+                        <!--Boton de logout solo para tablets y computadoras-->
+                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger" data-position="bottom"
                                 data-tooltip="Cerrar Sesión"><img class="responsive-img"
                                     src="../resources/icons/logout-icon-navbar.png"></a></li>
                     </ul>
                 </div>
             </nav>
         </div>
-
-        <ul id="side-navbarcont" class="sidenav sidenav-fixed ">
-
+        <!--Sidenav-->
+        <ul id="side-navbarcont" class="sidenav sidenav-fixed">
+            <!--Icono de la empresa-->
             <li>
                 <div class="icono-sidenav">
                     <img class="responsive-image" src="../resources/img/logo-sidenav.png">
                 </div>
             </li>
+            <!--Menu de opciones-->
             <li>
                 <div class="menuopciones-sidenav">
+                    <!--Boton de Empleados-->
                     <a class="row waves-effect  botones-sidenav" href="empleados.html">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img" src="../resources/icons/empleados-icon-sidenav.png">
@@ -55,6 +64,7 @@
                             Empleados
                         </div>
                     </a>
+                    <!--Boton de Archivos subidos-->
                     <a class="row waves-effect  botones-sidenav" href="archivos-subidos.html">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img" src="../resources/icons/archivossub-icon-sidenav.png">
@@ -63,7 +73,8 @@
                             Archivos Subidos
                         </div>
                     </a>
-                    <a class="row waves-effect  botones-sidenav" href="archivos-subidos.html">
+                    <!--Boton de Empresas-->
+                    <a class="row waves-effect  botones-sidenav" href="empresas.html">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img" src="../resources/icons/empresas-icon-sidenav.png">
                         </div>
@@ -71,7 +82,8 @@
                             Empresas
                         </div>
                     </a>
-                    <a class="row waves-effect hide-on-med-and-up botones-sidenav" href="archivos-subidos.html">
+                    <!--Boton de Perfil solo para telefonos-->
+                    <a class="row waves-effect hide-on-med-and-up botones-sidenav" href="perfil.html">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img user-icon" src="../resources/icons/user-icon-sidenav.png">
                         </div>
@@ -79,7 +91,8 @@
                             <span>user1</span>
                         </div>
                     </a>
-                    <a class="row waves-effect hide-on-med-and-up botones-sidenav" href="archivos-subidos.html">
+                    <!--Boton de logout solo para telefonos-->
+                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger" href="#cerrarSesionModal">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img user-icon" src="../resources/icons//logout-icon-sidenav.png">
                         </div>
@@ -92,31 +105,256 @@
         </ul>
     </header>
     <main>
-        <div class="row upload-files-section">
-            <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
-            <div class="col s3">
-                <div class="direction">
-                    <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
-                    <p> > Archivos subidos</p>
-                </div>
-            </div>
-            <div class="col s9">
-                <div class="row">
-                    <div class="col offset-s2 s4">
-                        <div class="file-searcher">
-                            <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
-                            <input id="input-file" type="text" placeholder="Buscar archivo">
+
+        <!--Modal de Añadir Archivo-->
+        <div id="anadir-archivoarh" class="modal">
+            <div class="modal-content">
+                <!--Titulo del modal-->
+                <h4 class="center-align">Añadir Archivo</h4>
+                <!--Indicaciones del modal-->
+                <p class="center-align">Añada un archivo <b>¡No todos los archivos podran visualizarse!</b></p>
+                <!--Formulario para añadir una empresa-->
+                <form method="post">
+                    <!--Fila del formulario-->
+                    <div class="row filaform-archivo">
+                        <!--Nombre de la empresa-->
+                        <div class="input-field col s12 m5 offset-m1 l6">
+                            <input placeholder="Nombre Empresa" id="nombreempr-arch" type="text"
+                                class="validate center-align inputs-añadirempr " disabled value="Lolin">
+                            <label for="nombreempr-arch" class="labels-anadirempr">Nombre de la empresa:</label>
+                        </div>
+                        <!--Nombre del folder-->
+                        <div class="input-field col s12 m5 l6">
+                            <input placeholder="Nombre Folder" id="nombrefold-arch" type="text"
+                                class="validate center-align inputs-añadirempr" disabled value="Lolin Folder">
+                            <label for="nombrefold-arch" class="labels-anadirempr">Nombre del folder:</label>
+                        </div>
+                        <!--Nombre del Archivo-->
+                        <div class="input-field col s12 m10 offset-m1 l12">
+                            <input placeholder="Nombre Archivo" id="nombre-arch" type="text"
+                                class="validate center-align inputs-añadirempr">
+                            <label for="empresa-empr" class="labels-anadirempr">Nombre del Archivo:</label>
+                        </div>
+                        <!--Input de agregar archivo-->
+                        <div class="file-field input-field col s12" id="fila-agregararch">
+                            <div class="btn agregararchivoarh col s12 m3 offset-m1 l2">
+                                <i class="material-icons">insert_drive_file</i>
+                                <span>Archivo</span>
+                                <input type="file" id="archivosubido-arch">
+                            </div>
+                            <div class="file-path-wrapper col s12 m7 l10  inputarh-texto">
+                                <input class="file-path inputs-añadirempr" type="text" disabled
+                                    id="nombreArchivo-input">
+                            </div>
+                        </div>
+                        <div class="progress" id="barraraprg-garch">
+                            <div class="indeterminate"></div>
+                        </div>
+                        <!--Input de previsualizar archivo-->
+                        <div class="preview-file col" id="preview-col">
+                            <img src="../resources/img/previsualizar-img.png" alt="Previsualizar Imagen"
+                                class="responsive-image imagen-previmg" id="imagen-Preview">
+                            <span class="texto-previmg" id="texto-prevw">Previsualizador de Archivos</span>
+                            <embed src="" width="100%" height="500" id="prevPDF-arh" />
                         </div>
                     </div>
-                    <div class="col s5">
-                        <a class="btn-add btn"><i class="material-icons left">add</i>Añadir archivo</a>
+                </form>
+                <div class="row filabtn-añadirarh">
+                    <div class="center">
+                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
+                            <i class="material-icons left">add</i>Añadir Archivo
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirempr">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                        <div class="left col s12 m7 l4 center-align mensaje-modal">
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                        </div>
+                        <div class="center col s12 m3 l4" id="preloader-añadirarh">
+                            <div class="preloader-wrapper active">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!--Diseño de confirmación de eliminar archivos-->
+        <div id="eliminar-archivomodal" class="modal">
+            <div class="fondo-modaldatos modal-content">
+                <div class="center-align">
+                    <h4>Confirmar Elminación del Archivo</h4>
+                    <p>¿Desea eliminar el archivo permanentemente?</p>
+                </div>
+                <!--Preloader de la actualización de los datos del perdil-->
+                <div class="preloader-wrapper active" id="confirmareliminarempr_preloader">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--Contenido importante del modal-Boton de actualizar-->
+                <div class="center-align">
+                    <a href="#!" class="waves-effect waves-light btn center-align"
+                        id="aceptareliminarempresa_boton">Eliminar
+                        archivo</a>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer" id="fondomodal-footer">
+                    <div class="left col offset-s1 m5 l4">
+                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                            id="cancelar-eliminarempr">
+                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal de Añadir Archivos Subidos-->
+        <div id="anadir-archivosub" class="modal">
+            <div class="modal-content">
+                <!--Titulo del modal-->
+                <h4 class="center-align">Añadir Archivo</h4>
+                <!--Indicaciones del modal-->
+                <p class="center-align">Añada un archivo <b>¡No todos los archivos podran visualizarse!</b></p>
+                <!--Formulario para añadir una empresa-->
+                <form method="post">
+                    <!--Fila del formulario-->
+                    <div class="row filaform-archivo">
+                        <!--Seleccionar la empresa a la que posee acceso-->
+                        <div class="input-field col s12 m5 offset-m1 l6 select-empresa">
+                            <select>
+                                <option value="" disabled selected>¿A que empresa pertenece?</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <label>Selecciona empresa</label>
+
+                        </div>
+                        <!--Nombre del folder-->
+                        <div class="input-field col s12 m5 l6">
+                            <input placeholder="Nombre del archivo" id="nombrefold-arch" type="text"
+                                class="validate center-align inputs-añadirempr">
+                            <label for="nombrefold-arch" class="labels-anadirempr">Nombre del archivo:</label>
+                        </div>
+                        <!--Nombre del Archivo-->
+                        <div class="input-field col s12 m10 offset-m1 l12">
+                            <textarea placeholder="Nombre Archivo" id="nombre-arch" type="text"
+                                class="materialze-textarea center-align inputs-añadirempr"></textarea>
+                            <label for="empresa-empr" class="labels-anadirempr">Descripción</label>
+                        </div>
+                        <!--Input de agregar archivo-->
+                        <div class="file-field input-field col s12" id="fila-agregararch">
+                            <div class="btn agregararchivoarh col s12 m3 offset-m1 l2">
+                                <i class="material-icons">insert_drive_file</i>
+                                <span>Archivo</span>
+                                <input type="file" id="archivosubido-arch">
+                            </div>
+                            <div class="file-path-wrapper col s12 m7 l10  inputarh-texto">
+                                <input class="file-path inputs-añadirempr" type="text" disabled
+                                    id="nombreArchivo-input">
+                            </div>
+                        </div>
+                        <div class="progress" id="barraraprg-garch">
+                            <div class="indeterminate"></div>
+                        </div>
+                        <!--Input de previsualizar archivo-->
+                        <div class="preview-file col" id="preview-col">
+                            <img src="../resources/img/previsualizar-img.png" alt="Previsualizar Imagen"
+                                class="responsive-image imagen-previmg" id="imagen-Preview">
+                            <span class="texto-previmg" id="texto-prevw">Previsualizador de Archivos</span>
+                            <embed src="" width="100%" height="500" id="prevPDF-arh" />
+                        </div>
+                    </div>
+                </form>
+                <div class="row filabtn-añadirarh">
+                    <div class="center">
+                        <a href="#anadir-archivosub" class="waves-effect waves-ligth btn z-depth-2"
+                            id="btn-añadirArchivoarhModal">
+                            <i class="material-icons left">add</i>Añadir Archivo
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirempr">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                        <div class="left col s12 m7 l4 center-align mensaje-modal">
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                        </div>
+                        <div class="center col s12 m3 l4" id="preloader-añadirarh">
+                            <div class="preloader-wrapper active">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row upload-files-section">
+            <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
+            <div class="col l3 m12 s12 direction-container">
+                <div class="direction">
+                    <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
+                    <p> > Archivos </p>
+                </div>
+            </div>
+            <form action="post" class="col l7 m12 s12 frm-files">
+                <div class="row searcher-row">
+                    <div class="col l6">
+                        <div class="file-searcher">
+                            <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
+                            <input id="input-file" type="text" placeholder="Buscar archivos">
+                        </div>
+                    </div>
+                    <div class="col l6">
+                        <a class="btn-add btn modal-trigger" href="#anadir-archivosub"><i
+                                class=" material-icons left">add</i>Añadir
+                            archivos</a>
+                    </div>
+                </div>
+            </form>
 
         </div>
+
         <div class="row upload-files">
-            <div class="col s3 search-box">
+            <div class="col l5 m4 search-box">
                 <div class="wrapper">
                     <div class="search-input">
                         <div class="company-search-box">
@@ -138,37 +376,117 @@
                     </div>
                 </div>
             </div>
-            <div class="col s6 container">
+            <div class="col l7 center m7 container-files">
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
 
                     </div>
                 </div>
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
 
                     </div>
                 </div>
                 <div class="file-container">
                     <div class="file-name">
                         <img src="../resources/icons/file-icon.png" alt="">
-                        <p class="title-name">Haciendo.xml</p>
+                        <p class="title-name">Hacienda.xml</p>
                     </div>
                     <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
+
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
+
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
+
+                    </div>
+                </div>
+                <div class="file-container">
+                    <div class="file-name">
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <p class="title-name">Hacienda.xml</p>
+                    </div>
+                    <div class="file-options">
+                        <img src="../resources/icons/download.png" alt="">
+                        <a href="#eliminar-archivomodal" class="modal-trigger">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
 
                     </div>
                 </div>
             </div>
         </div>
+        <!--Diseño de logout-->
+        <div id="cerrarSesionModal" class="modal">
+            <div class="fondo-modaldatos modal-content">
+                <div class="center-align">
+                    <h4>Confirmación de cerrar sesión</h4>
+                    <p>¿Desea cerrar sesión?</p>
+                </div>
+                <!--Contenido importante del modal-Boton de actualizar-->
+                <div class="center-align">
+                    <a href="index.html" class="waves-effect waves-light btn center-align"
+                        id="cerrarSesionModalbtn">Cerrar Sesión</a>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer" id="fondomodal-footer">
+                    <div class="left col offset-s1 m5 l4">
+                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                            id="cancelar-cerrarSesion">
+                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large" id="hasta_arriba">
+            <i class="large material-icons">arrow_upward</i>
+        </a>
+        <ul>
+    </div>
 
     <footer>
         <div class="container">
@@ -203,9 +521,12 @@
             </div>
         </div>
     </footer>
+
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../controllers/plantilla.js"></script>
+    <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
+    <script src="../controllers/modals.js"></script>
+    <script src="../controllers/validaciones.js"></script>
+
 </body>
 
 </html>
