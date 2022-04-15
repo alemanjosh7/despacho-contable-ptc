@@ -37,8 +37,8 @@
                                     class="material-icons right usericon-apartadot">person</i></a>
                         </li>
                         <!--Boton de logout solo para tablets y computadoras-->
-                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger" data-position="bottom"
-                                data-tooltip="Cerrar Sesión"><img class="responsive-img"
+                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger"
+                                data-position="bottom" data-tooltip="Cerrar Sesión"><img class="responsive-img"
                                     src="../resources/icons/logout-icon-navbar.png"></a></li>
                     </ul>
                 </div>
@@ -55,6 +55,15 @@
             <!--Menu de opciones-->
             <li>
                 <div class="menuopciones-sidenav">
+                    <!--Boton de Inicio-->
+                    <a class="row waves-effect  botones-sidenav" href="inicio.html">
+                        <div class="col s6" id="icono-opcion-sidenav">
+                            <img class="responsive-img" src="../resources/icons/inicio-icon-sidenav.png">
+                        </div>
+                        <div class="col s6" id="texto-opcion-sidenav">
+                            Inicio
+                        </div>
+                    </a>
                     <!--Boton de Empleados-->
                     <a class="row waves-effect  botones-sidenav" href="empleados.html">
                         <div class="col s6" id="icono-opcion-sidenav">
@@ -92,7 +101,8 @@
                         </div>
                     </a>
                     <!--Boton de logout solo para telefonos-->
-                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger" href="#cerrarSesionModal">
+                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger"
+                        href="#cerrarSesionModal">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img user-icon" src="../resources/icons//logout-icon-sidenav.png">
                         </div>
@@ -147,6 +157,7 @@
                                     id="nombreArchivo-input">
                             </div>
                         </div>
+                        <!--Barra de progreso-->
                         <div class="progress" id="barraraprg-garch">
                             <div class="indeterminate"></div>
                         </div>
@@ -159,6 +170,7 @@
                         </div>
                     </div>
                 </form>
+                <!--Botón para añadir nuevo archivo-->
                 <div class="row filabtn-añadirarh">
                     <div class="center">
                         <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
@@ -172,9 +184,11 @@
                                 <i class="material-icons left">keyboard_arrow_left</i>Regresar
                             </a>
                         </div>
+                        <!--Validación para verificar que los campos no estén vacios-->
                         <div class="left col s12 m7 l4 center-align mensaje-modal">
-                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacíos!</h6>
                         </div>
+                        <!--Preloader para el botón de añadir archivo-->
                         <div class="center col s12 m3 l4" id="preloader-añadirarh">
                             <div class="preloader-wrapper active">
                                 <div class="spinner-layer spinner-red-only">
@@ -198,6 +212,7 @@
         <!--Diseño de confirmación de eliminar archivos-->
         <div id="eliminar-archivomodal" class="modal">
             <div class="fondo-modaldatos modal-content">
+                <!--Botón para confirmar si desea eliminar el archivo permanentemente-->
                 <div class="center-align">
                     <h4>Confirmar Elminación del Archivo</h4>
                     <p>¿Desea eliminar el archivo permanentemente?</p>
@@ -279,6 +294,7 @@
                                     id="nombreArchivo-input">
                             </div>
                         </div>
+                        <!--Barra de progreso-->
                         <div class="progress" id="barraraprg-garch">
                             <div class="indeterminate"></div>
                         </div>
@@ -291,23 +307,29 @@
                         </div>
                     </div>
                 </form>
+                <!--Boton para añadir archivo y poder acceder a la ventana para llenar toda la información que corresponde al diagrama o bd-->
                 <div class="row filabtn-añadirarh">
                     <div class="center">
+                        <!--Botón para añdir archivo-->
                         <a href="#anadir-archivosub" class="waves-effect waves-ligth btn z-depth-2"
                             id="btn-añadirArchivoarhModal">
                             <i class="material-icons left">add</i>Añadir Archivo
                         </a>
                     </div>
+                    <!--Contenedor del botón para poder regresar y de validaciones-->
                     <div class="row">
+                        <!--Botón para regresar, es decir, cerrar el modal y así poder seguir navegando por el sistema-->
                         <div class="left col offset-s1 m5 l4">
                             <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
                                 id="cancelar-Añadirempr">
                                 <i class="material-icons left">keyboard_arrow_left</i>Regresar
                             </a>
                         </div>
+                        <!--Validación para pedirle al usuario que verifique si los campos no están vacíos-->
                         <div class="left col s12 m7 l4 center-align mensaje-modal">
-                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacíos!</h6>
                         </div>
+                        <!--Preloader para que cargue la acción tomada-->
                         <div class="center col s12 m3 l4" id="preloader-añadirarh">
                             <div class="preloader-wrapper active">
                                 <div class="spinner-layer spinner-red-only">
@@ -335,14 +357,17 @@
                     <p> > Archivos </p>
                 </div>
             </div>
+            <!--Formulario que pregunta si desea añadir un nuevo archivo-->
             <form action="post" class="col l7 m12 s12 frm-files">
                 <div class="row searcher-row">
                     <div class="col l6">
+                        <!--Contenedor donde pregunta si desea buscar nuevos archivos y así hacer una busqueda dinámica de ellos-->
                         <div class="file-searcher">
                             <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
                             <input id="input-file" type="text" placeholder="Buscar archivos">
                         </div>
                     </div>
+                    <!--Botón de añadir archivos utilizando un modal trigger de Materialize-->
                     <div class="col l6">
                         <a class="btn-add btn modal-trigger" href="#anadir-archivosub"><i
                                 class=" material-icons left">add</i>Añadir
@@ -352,7 +377,7 @@
             </form>
 
         </div>
-
+        <!--Contenedor principal del buscador de empresas-->
         <div class="row upload-files">
             <div class="col l5 m4 search-box">
                 <div class="wrapper">
@@ -361,6 +386,7 @@
                             <input type="text" placeholder="Buscar empresa" id="company-searcher">
                             <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
                         </div>
+                        <!--Empreas tomadas como ejemplo para que carguen del buscador-->
                         <div class="autocom-box">
                             <li>Alibaba Grpdr</li>
                             <li>Legify</li>
@@ -376,142 +402,195 @@
                     </div>
                 </div>
             </div>
+            <!--Contenedor de la parte de archivos y así pueda cargarlos dependiendo de que empresa se escoja-->
             <div class="col l7 center m7 container-files">
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
                     </div>
                 </div>
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
                     </div>
                 </div>
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
                     </div>
                 </div>
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
                     </div>
                 </div>
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
                     </div>
                 </div>
+                <!--Contenedor del archivo-->
                 <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
                     <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
                         <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
                         <p class="title-name">Hacienda.xml</p>
                     </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
+                        <!--Boton para descargar-->
                         <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
                         <a href="#eliminar-archivomodal" class="modal-trigger">
                             <img src="../resources/icons/delete.png" alt="">
                         </a>
 
+                    </div>
+                </div>
+
+            </div>
+            <!--Diseño de logout-->
+            <div id="cerrarSesionModal" class="modal">
+                <div class="fondo-modaldatos modal-content">
+                    <div class="center-align">
+                        <!--Texto que muestra si desea cerrar sesión o no-->
+                        <h4>Confirmación de cerrar sesión</h4>
+                        <p>¿Desea cerrar sesión?</p>
+                    </div>
+                    <!--Contenido importante del modal-Boton de actualizar-->
+                    <div class="center-align">
+                        <a href="index.html" class="waves-effect waves-light btn center-align"
+                            id="cerrarSesionModalbtn">Cerrar Sesión</a>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer" id="fondomodal-footer">
+                        <div class="left col offset-s1 m9 l8">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                                id="cancelar-cerrarSesion">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Diseño de logout-->
-        <div id="cerrarSesionModal" class="modal">
-            <div class="fondo-modaldatos modal-content">
-                <div class="center-align">
-                    <h4>Confirmación de cerrar sesión</h4>
-                    <p>¿Desea cerrar sesión?</p>
-                </div>
-                <!--Contenido importante del modal-Boton de actualizar-->
-                <div class="center-align">
-                    <a href="index.html" class="waves-effect waves-light btn center-align"
-                        id="cerrarSesionModalbtn">Cerrar Sesión</a>
-                </div>
-                <!--Pie del modal-->
-                <div class="modal-footer" id="fondomodal-footer">
-                    <div class="left col offset-s1 m5 l4">
-                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
-                            id="cancelar-cerrarSesion">
-                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
+    <!--Botpin Fixed Action para poder dirigrse a la parte de arriba automáticamente-->
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large" id="hasta_arriba">
+            <!--ícono sacado de google icons de una flechita para arriba-->
             <i class="large material-icons">arrow_upward</i>
         </a>
         <ul>
     </div>
 
     <footer>
+        <!--Contenedor del footer-->
         <div class="container">
+            <!--Row donde se situa los numeros de las paginas del formulario-->
             <div class="row">
                 <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+                    <!--Boton para digirse a la página anterior-->
                     <div class="botonnavg-footer center">
                         <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
                                 class="material-icons medium">chevron_left</i></a>
                     </div>
                 </div>
+                <!--Boton que dirige a la página 1 del formulario a mostrar-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>1</span></a>
                     </div>
                 </div>
+                <!--Boton que dirige a la página 2 del formulario a mostrar-->
                 <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>2</span></a>
                     </div>
                 </div>
+                <!--Indicador de que existen más páginas a mostrarse y que se puede acceder a ellas apretando el boton que le sigue-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>...</span></a>
                     </div>
                 </div>
+                <!--Boton que lleva a la página siguiente del formulario-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
@@ -524,9 +603,8 @@
 
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
-    <script src="../controllers/modals.js"></script>
     <script src="../controllers/validaciones.js"></script>
-
+    <script src="../controllers/archivos-subidos.js"></script>
 </body>
 
 </html>

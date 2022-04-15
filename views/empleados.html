@@ -36,8 +36,8 @@
                                     class="material-icons right usericon-apartadot">person</i></a>
                         </li>
                         <!--Boton de logout solo para tablets y computadoras-->
-                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger" data-position="bottom"
-                                data-tooltip="Cerrar Sesión"><img class="responsive-img"
+                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger"
+                                data-position="bottom" data-tooltip="Cerrar Sesión"><img class="responsive-img"
                                     src="../resources/icons/logout-icon-navbar.png"></a></li>
                     </ul>
                 </div>
@@ -54,6 +54,15 @@
             <!--Menu de opciones-->
             <li>
                 <div class="menuopciones-sidenav">
+                    <!--Boton de Inicio-->
+                    <a class="row waves-effect  botones-sidenav" href="inicio.html">
+                        <div class="col s6" id="icono-opcion-sidenav">
+                            <img class="responsive-img" src="../resources/icons/inicio-icon-sidenav.png">
+                        </div>
+                        <div class="col s6" id="texto-opcion-sidenav">
+                            Inicio
+                        </div>
+                    </a>
                     <!--Boton de Empleados-->
                     <a class="row waves-effect  botones-sidenav" href="empleados.html">
                         <div class="col s6" id="icono-opcion-sidenav">
@@ -91,7 +100,8 @@
                         </div>
                     </a>
                     <!--Boton de logout solo para telefonos-->
-                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger" href="#cerrarSesionModal">
+                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger"
+                        href="#cerrarSesionModal">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img user-icon" src="../resources/icons//logout-icon-sidenav.png">
                         </div>
@@ -113,61 +123,67 @@
                 <form method="post">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
-                        <!--Nombre de la empresa-->
+                        <!--Nombre del usuario-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Usuario" id="nombre-arch" type="text"
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Usuario</label>
                         </div>
+                        <!--Contraseña del usuario-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Contraseña" id="nombre-arch" type="password"
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Contraseña</label>
                         </div>
+                        <!--Nombre del empleado-->
                         <div class="input-field col s12 m5 offset-m1 l6">
                             <input placeholder="Nombre" id="nombreempr-arch" type="text"
                                 class="validate inputs-añadirempr">
                             <label for="nombreempr-arch" class="labels-anadirempr">Nombre:</label>
                         </div>
-                        <!--Nombre del folder-->
+                        <!--Apellidos del empleado-->
                         <div class="input-field col s12 m5 l6">
                             <input placeholder="Apellidos" id="nombrefold-arch" type="text"
                                 class="validate inputs-añadirempr">
                             <label for="nombrefold-arch" class="labels-anadirempr">Apellidos:</label>
                         </div>
-                        <!--Nombre del Archivo-->
+                        <!--DUI del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="DUI" id="nombre-arch" type="text" class="validate inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">DUI:</label>
                         </div>
+                        <!--Telefono del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Teléfono" id="nombre-arch" type="text"
                                 class="validate inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Teléfono:</label>
                         </div>
+                        <!--Correo del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Correo" id="nombre-arch" type="email"
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Correo</label>
                         </div>
+                        <!--Tipo del empleado-->
                         <div class="select-tipo-empleado input-field col s12 m5 offset-m1 l6 center-align">
+                            <!--Select box para escoger el tipo de empleado-->
                             <select>
                                 <option value="" disabled selected>¿Qué tipo de empleado es?</option>
                                 <option value="1">Tiempo Completo</option>
                                 <option value="2">Medio Tiempo</option>
                                 <option value="3">Pasantía</option>
                             </select>
+                            <!--Label sobre tipo de empleado-->
                             <label>Selecciona tipo de empleado</label>
                         </div>
-
-
-
+                        <!--Barra de carga-->
                         <div class="progress" id="barraraprg-garch">
                             <div class="indeterminate"></div>
                         </div>
 
                     </div>
                 </form>
+                <!--Añadir empleado-->
                 <div class="row filabtn-añadirarh">
                     <div class="center">
                         <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
@@ -181,9 +197,11 @@
                                 <i class="material-icons left">keyboard_arrow_left</i>Regresar
                             </a>
                         </div>
+                        <!--Validación para verificar que los campos no estén vacios-->
                         <div class="left col s12 m7 l4 center-align mensaje-modal">
                             <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
                         </div>
+                        <!--Cargar preloader de añadir-->
                         <div class="center col s12 m3 l4" id="preloader-añadirarh">
                             <div class="preloader-wrapper active">
                                 <div class="spinner-layer spinner-red-only">
@@ -203,7 +221,7 @@
                 </div>
             </div>
         </div>
-
+        <!--Modal para editar empleado-->
         <div id="editar-empleado" class="modal">
             <div class="modal-content">
                 <!--Titulo del modal-->
@@ -218,11 +236,13 @@
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Usuario</label>
                         </div>
+                        <!--Contraseña del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Contraseña" id="nombre-arch" type="password"
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Contraseña</label>
                         </div>
+                        <!--Nombre del empleado-->
                         <div class="input-field col s12 m5 offset-m1 l6">
                             <input placeholder="Nombre" id="nombreempr-arch" type="text"
                                 class="validate inputs-añadirempr">
@@ -239,16 +259,19 @@
                             <input placeholder="DUI" id="nombre-arch" type="text" class="validate inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">DUI:</label>
                         </div>
+                        <!--Teléfono del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Teléfono" id="nombre-arch" type="text"
                                 class="validate inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Teléfono:</label>
                         </div>
+                        <!--Correo del empleado-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Correo" id="nombre-arch" type="email"
                                 class="validate  inputs-añadirempr">
                             <label for="empresa-empr" class="labels-anadirempr">Correo</label>
                         </div>
+                        <!--Selectbox para escoger el tipo del empleado-->
                         <div class="select-tipo-empleado input-field col s12 m5 offset-m1 l6 center-align">
                             <select>
                                 <option value="" disabled selected>¿Qué tipo de empleado es?</option>
@@ -258,21 +281,22 @@
                             </select>
                             <label>Selecciona tipo de empleado</label>
                         </div>
-
-
-
+                        <!--Barra de progreso-->
                         <div class="progress" id="barraraprg-garch">
                             <div class="indeterminate"></div>
                         </div>
 
                     </div>
                 </form>
+                <!--Contenedor del botón para añadir empleado-->
                 <div class="row filabtn-añadirarh">
                     <div class="center">
+                        <!--Botón de añadir empleado-->
                         <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
                             <i class="material-icons left">add</i>Editar empleado
                         </a>
                     </div>
+                    <!--Botón para regresar y cerrar el modal-->
                     <div class="row">
                         <div class="left col offset-s1 m5 l4">
                             <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
@@ -280,9 +304,11 @@
                                 <i class="material-icons left">keyboard_arrow_left</i>Regresar
                             </a>
                         </div>
+                        <!--Validación para que los campos no estén vacios y así el usuario pueda fijarse y agregar la información restante-->
                         <div class="left col s12 m7 l4 center-align mensaje-modal">
                             <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
                         </div>
+                        <!--Preloader del modal-->
                         <div class="center col s12 m3 l4" id="preloader-añadirarh">
                             <div class="preloader-wrapper active">
                                 <div class="spinner-layer spinner-red-only">
@@ -343,12 +369,13 @@
         </div>
         <section class="row upload-files-section">
             <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
-            <div class="col l3 m12">
+            <div class="col l4 m12">
                 <div class="direction">
                     <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
                     <p> > Empleados</p>
                 </div>
             </div>
+            <!--Formulario para buscar empleados-->
             <form action="post" class="col l12 m12 frm-employee">
                 <div class="row">
                     <div class="col l6">
@@ -365,12 +392,14 @@
                 </div>
             </form>
         </section>
+        <!--Contenedor para las cards mostrando la información de x empleado-->
         <section class="employee-cards row center-align">
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(0);"
-                            id="btn-puntitos">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -380,23 +409,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -406,9 +441,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(1);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -418,23 +455,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -444,9 +487,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(2);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -456,23 +501,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -482,9 +533,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(3);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -494,23 +547,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -520,9 +579,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(4);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -532,23 +593,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -558,9 +625,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(5);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -570,23 +639,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -596,9 +671,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(6);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -608,23 +685,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -634,9 +717,11 @@
                 </div>
             </div>
             <div class="col l3 m6">
+                <!--Card para el empleado-->
                 <div class="card">
+                    <!--Fixed Button para que el usuario pueda escoger las diferentes opciones tales como eliminar y editar en cada uno de los empleados-->
                     <div class="fixed-action-btn">
-                        <a class="btn-floating btn-large" onclick="changeOption(7);">
+                        <a class="btn-floating btn-large" onclick="changeOption(0);" id="btn-puntitos">
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
@@ -646,23 +731,29 @@
                                         class="material-icons">edit</i></a></li>
                         </ul>
                     </div>
-
+                    <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
                         <img src="../resources/img/employee-example.png">
                     </div>
+                    <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
+                        <!--Nombre del empleado-->
                         <div class="name-employee">
                             <p>Ricardo Perez</p>
                         </div>
+                        <!--Contenedor de la informacion extra del empleado-->
                         <div class="employee-information">
+                            <!--Tiempo completo-->
                             <div class="info">
                                 <img src="../resources/icons/role.png" alt="">
                                 <p>Tiempo completo</p>
                             </div>
+                            <!--Correo del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/email.png" alt="">
                                 <p>ricardo_perez@gmail.com</p>
                             </div>
+                            <!--Telefono del empleado-->
                             <div class="info">
                                 <img src="../resources/icons/telephone.png" alt="">
                                 <p>(+503) 7864-1341</p>
@@ -673,32 +764,68 @@
             </div>
 
         </section>
-
+        <!--No borrar del codigo-->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large " id="hasta_arriba">
+                <i class="large material-icons">arrow_upward</i>
+            </a>
+            <ul>
+        </div>
+        <!--Diseño de logout-->
+        <div id="cerrarSesionModal" class="modal">
+            <div class="fondo-modaldatos modal-content">
+                <div class="center-align">
+                    <h4>Confirmación de cerrar sesión</h4>
+                    <p>¿Desea cerrar sesión?</p>
+                </div>
+                <!--Contenido importante del modal-Boton de actualizar-->
+                <div class="center-align">
+                    <a href="index.html" class="waves-effect waves-light btn center-align"
+                        id="cerrarSesionModalbtn">Cerrar Sesión</a>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer" id="fondomodal-footer">
+                    <div class="left col offset-s1 m5 l4">
+                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                            id="cancelar-cerrarSesion">
+                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
+        <!--Contenedor del footer-->
         <div class="container">
+            <!--Row donde se situa los numeros de las paginas del formulario-->
             <div class="row">
                 <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+                    <!--Boton para digirse a la página anterior-->
                     <div class="botonnavg-footer center">
                         <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
                                 class="material-icons medium">chevron_left</i></a>
                     </div>
                 </div>
+                <!--Boton que dirige a la página 1 del formulario a mostrar-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>1</span></a>
                     </div>
                 </div>
+                <!--Boton que dirige a la página 2 del formulario a mostrar-->
                 <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>2</span></a>
                     </div>
                 </div>
+                <!--Indicador de que existen más páginas a mostrarse y que se puede acceder a ellas apretando el boton que le sigue-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a><span>...</span></a>
                     </div>
                 </div>
+                <!--Boton que lleva a la página siguiente del formulario-->
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center">
                         <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
@@ -709,8 +836,9 @@
         </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
-    <script src="../resources/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script src="../controllers/empleados.js"></script>
+    <script src="../controllers/validaciones.js"></script>
     <script src="../controllers/modals.js"></script>
 </body>
 
