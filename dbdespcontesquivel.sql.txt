@@ -52,7 +52,7 @@ CREATE TABLE folders(
 CREATE TABLE archivos(
 	id_archivo serial NOT NULL,
 	nombre_archivo varchar(200) NOT NULL,
-	fecha_subida date NOT NULL,
+	fecha_subida date default current_date NOT NULL,
 	fk_id_folder int NOT NULL,
 	CONSTRAINT archivos_pk PRIMARY KEY(id_archivo),
 	CONSTRAINT archivos_folders_fk FOREIGN KEY (fk_id_folder) 
@@ -75,11 +75,11 @@ CREATE TABLE empresas_empleados(
 CREATE TABLE archivos_subidosemp(
 	id_archivos_subidosemp serial NOT NULL,
 	nombre_archivo varchar(200) NOT NULL,
-	fecha_subida date NOT NULL,
+	fecha_subida date default current_date NOT NULL,
 	descripcion varchar (150) NOT NULL,
 	fk_id_empleado int NOT NULL,
 	fk_id_empresa int NOT NULL,
-	fk_id_estado int NOT NULL,
+	fk_id_estado int NOT NULL default 1,
 	CONSTRAINT archivos_subidosemp_pk PRIMARY KEY(id_archivos_subidosemp),
 	CONSTRAINT archivos_subidosemp_fk FOREIGN KEY (fk_id_empleado)
 	REFERENCES empleados (id_empleado) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -100,7 +100,8 @@ INSERT INTO tipo_empleado
 VALUES
 ('Pasantia'),
 ('Temporal'),
-('Tiempo completo');
+('Tiempo completo'),
+('Administrador');
 select * from tipo_empleado;
 --TABLA empleados
 
