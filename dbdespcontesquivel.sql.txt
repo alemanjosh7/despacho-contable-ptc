@@ -1,0 +1,642 @@
+CREATE DATABASE dbdespcontesquivel;
+
+CREATE TABLE tipo_empleado(
+	id_tipo_empleado serial NOT NULL,
+	tipo_empleado varchar(50) NOT NULL,
+	CONSTRAINT tipo_empleados_pk PRIMARY KEY(id_tipo_empleado)
+);
+
+CREATE TABLE empleados(
+	id_empleado serial NOT NULL,
+	nombre_empleado varchar(100) NOT NULL,
+	apellido_empleado varchar(100) NOT NULL,
+	dui_empleado varchar(10) NOT NULL,
+	telefono_empleadocontc varchar(9) NOT NULL,
+	correo_empleadocontc varchar(55) NOT NULL,
+	usuario_empleado varchar(100) NOT NULL,
+	contrasena_empleado varchar(500) NOT NULL,
+	fk_id_tipo_empleado int NOT NULL,
+	CONSTRAINT empleados_pk PRIMARY KEY (id_empleado),
+	CONSTRAINT empleados_tipo_empleado_fk FOREIGN KEY (fk_id_tipo_empleado)
+	REFERENCES tipo_empleado (id_tipo_empleado)  ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE estados(
+	id_estado serial NOT NULL,
+	nombre_estado varchar(100) NOT NULL,
+	CONSTRAINT estados_pk PRIMARY KEY(id_estado)
+);
+
+
+CREATE TABLE empresas(
+	id_empresa serial NOT NULL,
+	nombre_cliente varchar(100) NOT NULL,
+	apellido_cliente varchar(100) NOT NULL,
+	nombre_empresa varchar(100) NOT NULL,
+	numero_empresacontc varchar(9),
+	correo_empresacontc varchar(55),
+	direccion_empresa varchar(150),
+	nit_empresa varchar(20),
+	CONSTRAINT empresas_pk PRIMARY KEY (id_empresa)
+);
+
+CREATE TABLE folders(
+	id_folder serial NOT NULL,
+	nombre_folder varchar(100) NOT NULL,
+	fk_id_empresa int NOT NULL,
+	CONSTRAINT foldes_pk PRIMARY KEY (id_folder),
+	CONSTRAINT folders_empresas_fk FOREIGN KEY (fk_id_empresa)
+	REFERENCES empresas (id_empresa)  ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE archivos(
+	id_archivo serial NOT NULL,
+	nombre_archivo varchar(200) NOT NULL,
+	fecha_subida date NOT NULL,
+	fk_id_folder int NOT NULL,
+	CONSTRAINT archivos_pk PRIMARY KEY(id_archivo),
+	CONSTRAINT archivos_folders_fk FOREIGN KEY (fk_id_folder) 
+	REFERENCES folders(id_folder)  ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+alter table archivos add column tamano varchar(50);
+
+CREATE TABLE empresas_empleados(
+	id_empresas_empleado serial NOT NULL,
+	fk_id_empleado int NOT NULL,
+	fk_id_empresa int NOT NULL,
+	CONSTRAINT empresas_empleados_pk PRIMARY KEY(id_empresas_empleado), 
+	CONSTRAINT empresas_empleados_empleados_fk FOREIGN KEY (fk_id_empleado)
+	REFERENCES empleados (id_empleado)  ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT empresas_empleados_empresas_fk FOREIGN KEY (fk_id_empresa) 
+	REFERENCES empresas (id_empresa) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE archivos_subidosemp(
+	id_archivos_subidosemp serial NOT NULL,
+	nombre_archivo varchar(200) NOT NULL,
+	fecha_subida date NOT NULL,
+	descripcion varchar (150) NOT NULL,
+	fk_id_empleado int NOT NULL,
+	fk_id_empresa int NOT NULL,
+	fk_id_estado int NOT NULL,
+	CONSTRAINT archivos_subidosemp_pk PRIMARY KEY(id_archivos_subidosemp),
+	CONSTRAINT archivos_subidosemp_fk FOREIGN KEY (fk_id_empleado)
+	REFERENCES empleados (id_empleado) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT archivos_subidosemp_estado_fk FOREIGN KEY (fk_id_estado)
+	REFERENCES estados (id_estado) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT archivos_subidosemp_empresas_fk FOREIGN KEY(fk_id_empresa )
+	REFERENCES empresas (id_empresa) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+alter table archivos_subidosemp add column tamano varchar(50); 
+--Fase de evaluación
+--INSERTS
+--TABLA tipo_empleado
+
+truncate table tipo_empleado RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO tipo_empleado
+(tipo_empleado)
+VALUES
+('Pasantia'),
+('Temporal'),
+('Tiempo completo');
+select * from tipo_empleado;
+--TABLA empleados
+
+truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO empleados (nombre_empleado,apellido_empleado,dui_empleado,telefono_empleadocontc,correo_empleadocontc,usuario_empleado,contrasena_empleado,fk_id_tipo_empleado)
+VALUES
+  ('Salvador','Ball','17831201-4','591-5447','ball.salvador@gmail.com','Salvador245','LU71NEI3VR',3),
+  ('Elliott','Decker','40180680-6','148-7113','delliott5601@gmail.com','Michael','PK12NTE5EF',3),
+  ('Shay','Pacheco','28768781-8','332-5156','pacheco-shay3385@gmail.com','Evan','YQ63OLC6VB',2),
+  ('Brody','Mayo','9399716-6','548-5201','b_mayo7190@gmail.com','Basil','WC98URS0ED',3),
+  ('Pearl','Mullen','22757810-6','324-7481','mullen-pearl@gmail.com','Xenos','GC46YCW6WK',2),
+  ('Brandon','Weber','29281111-K','487-5892','w.brandon@gmail.com','Ahmed','QKL58HDY7BM',2),
+  ('Daniel','Hopper','10928607-9','450-8132','h.daniel3040@gmail.com','Robin','ETK58ULQ5UU',1),
+  ('Linus','Bond','40253593-8','758-8725','bond.linus@gmail.com','Yen','MED15KIM9TZ',1),
+  ('Malachi','Wilkerson','30830692-5','724-7766','wilkerson.malachi4193@gmail.com','Noel','MCP31WQK2RE',1),
+  ('Gemma','Leonard','4929294-5','956-5513','leonard-gemma9157@gmail.com','Hilel','QHQ18AWT7ZP',1);
+select * from empleados
+--TABLA estado
+truncate table estados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO estados (nombre_estado)
+VALUES
+  ('No descargado'),
+  ('Descargado'),
+  ('Eliminado');
+select * from estados
+--TABLA empresas
+truncate table empresas RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO empresas (nombre_cliente,apellido_cliente,nombre_empresa,numero_empresacontc ,correo_empresacontc,direccion_empresa,nit_empresa)
+VALUES
+  ('Bert','Snider','Eros Turpis Ltd','517-1051','snider@gmail.com','Ap #670-3545 Vel Ave','49255381-6'),
+  ('Timothy','Norman','Vitae Erat Vel Inc.','752-4620','norman2039@gmail.com','913-8782 Molestie St.','7827912-5'),
+  ('Hyatt','Rowland','Sapien Molestie Orci Corp.','361-6738','rowland6515@gmail.com','891-9698 Erat St.','11802878-3'),
+  ('Leroy','O''Neill','Eu Euismod Ltd','978-5852','oneill685@gmail.com','441-9126 Lacus. Avenue','929747-2'),
+  ('Faith','Rollins','Lorem Industries','935-1633','rollins@gmail.com','181-9901 Gravida Ave','39167171-0'),
+  ('Gloria','Moran','Amet Lorem Ltd','165-7534','moran3790@gmail.com','Ap #334-6517 Phasellus Street','30100987-9'),
+  ('Rama','Rogers','Ipsum Primis Ltd','932-8168','rogers@gmail.com','Ap #371-479 Tristique Avenue','1323514-7'),
+  ('Octavia','Witt','Dapibus Ligula Incorporated','400-6073','witt@gmail.com','340-8607 Nunc Road','42433823-0'),
+  ('Remedios','Jenkins','Cursus Et Limited','717-8816','jenkins@gmail.com','270-1322 Quisque St.','21287846-4'),
+  ('Maisie','Skinner','Lectus Cum Industries','774-8566','skinner3659@gmail.com','Ap #993-2612 Odio Rd.','9802512-8');
+select * from empresas
+--TABLA folders
+truncate table folders RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO folders (nombre_folder,fk_id_empresa)
+VALUES
+  ('Duis',9),
+  ('adipiscing elit.',6),
+  ('tristique neque',4),
+  ('arcu.',4),
+  ('Proin mi.',5),
+  ('Cras',9),
+  ('dui. Cras',5),
+  ('semper tellus',6),
+  ('id, libero.',5),
+  ('nisi dictum',6);
+select * from folders;
+--TABLA archivos
+truncate table archivos RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO archivos (nombre_archivo,fecha_subida,fk_id_folder)
+VALUES
+  ('semper erat,','24-12-21',10),
+  ('arcu ac','23-01-22',10),
+  ('adipiscing lobortis','15-11-21',10),
+  ('lobortis augue','21-05-22',10),
+  ('Phasellus dapibus','28-07-22',10),
+  ('consectetuer ipsum','14-01-22',5),
+  ('nisi nibh','26-04-21',2),
+  ('Maecenas ornare','09-01-22',5),
+  ('ut odio','16-06-22',1),
+  ('sed sem','16-06-22',2);
+select * from archivos
+--TABLA empresas_empleados
+truncate table empresas_empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO empresas_empleados (fk_id_empleado,fk_id_empresa)
+VALUES
+  (10,8),
+  (3,4),
+  (8,3),
+  (6,6),
+  (5,9),
+  (2,6),
+  (4,4),
+  (6,6),
+  (3,4),
+  (1,10),
+  (2,7),
+  (8,7),
+  (7,1),
+  (9,8),
+  (5,9),
+  (5,4),
+  (3,8),
+  (8,3),
+  (9,1),
+  (6,7),
+  (3,7),
+  (10,4),
+  (6,8),
+  (2,2),
+  (4,3),
+  (2,9),
+  (2,5),
+  (3,4),
+  (10,1),
+  (4,5);
+select * from empresas_empleados;
+
+--TABLA archivos_subidosemp
+truncate table archivos_subidosemp RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
+INSERT INTO archivos_subidosemp (nombre_archivo,fecha_subida,descripcion,fk_id_empleado,fk_id_empresa,fk_id_estado)
+VALUES
+  ('Praesent eu','13-01-23','lacus. Quisque purus sapien,',6,9,1),
+  ('ante dictum','11-11-21','convallis erat, eget tincidunt',9,2,1),
+  ('sit amet','16-10-21','tempus scelerisque, lorem ipsum',8,7,1),
+  ('ut, sem.','11-10-22','augue eu tellus. Phasellus',4,1,1),
+  ('risus. Donec','15-06-21','elit. Aliquam auctor, velit',7,5,1),
+  ('Praesent interdum','08-06-21','mauris erat eget ipsum. Suspendisse',5,2,1),
+  ('ante dictum','28-08-21','non massa non ante bibendum',7,5,1),
+  ('Cras vulputate','02-11-21','ipsum dolor sit amet, consectetuer',5,3,1),
+  ('ac mattis','28-06-21','sagittis. Duis gravida. Praesent eu',3,7,1),
+  ('pharetra ut,','26-05-22','Donec tempus, lorem fringilla ornare',2,2,1),
+  ('orci luctus','09-02-22','facilisis, magna tellus faucibus leo,',4,8,1),
+  ('nec, mollis','29-06-21','Curabitur dictum. Phasellus in felis.',6,4,1),
+  ('lacinia vitae,','09-08-21','Cras dolor dolor, tempus non,',7,10,1),
+  ('vulputate ullamcorper','21-05-22','scelerisque neque. Nullam nisl. Maecenas',8,6,1),
+  ('hendrerit neque.','18-12-21','netus et malesuada fames ac',2,10,1),
+  ('ac sem','01-09-22','bibendum fermentum metus. Aenean sed',2,9,1),
+  ('at lacus.','02-05-22','neque tellus, imperdiet non, vestibulum',2,10,1),
+  ('ornare. Fusce','12-01-23','nunc. In at pede. Cras',2,4,1),
+  ('leo. Morbi','07-04-23','rhoncus id, mollis nec, cursus',4,5,1),
+  ('Fusce aliquam,','18-02-22','iaculis nec, eleifend non, dapibus',4,8,1),
+  ('laoreet ipsum.','28-04-22','mi. Duis risus odio, auctor',5,9,1),
+  ('nisl. Maecenas','30-12-21','sollicitudin commodo ipsum. Suspendisse non',3,7,1),
+  ('ipsum. Suspendisse','22-11-21','at auctor ullamcorper, nisl arcu',4,4,1),
+  ('Mauris non','30-05-22','erat eget ipsum. Suspendisse sagittis.',9,3,1),
+  ('commodo auctor','20-04-21','risus. Nunc ac sem ut',9,10,1),
+  ('Sed congue,','07-02-22','ipsum primis in faucibus orci',6,2,1),
+  ('Sed nulla','25-09-21','vestibulum nec, euismod in, dolor.',6,5,1),
+  ('nascetur ridiculus','11-02-23','vel, convallis in, cursus et,',9,10,1),
+  ('dui. Cum','08-05-21','Donec vitae erat vel pede',10,9,1),
+  ('eleifend. Cras','03-03-23','libero at auctor ullamcorper, nisl',4,2,1);
+select * from archivos_subidosemp;
+--Joins
+--Mostrar los folders y las empresas a las que pertenecen
+select empresas.nombre_empresa, folders.nombre_folder from empresas 
+inner join folders on empresas.id_empresa = folders.id_folder order by empresas.nombre_empresa
+--Mostrar el archivo junto con el folder y la empresa a la que pertenecen
+select empresas.nombre_empresa, folders.nombre_folder, archivos.nombre_archivo from archivos 
+inner join folders on archivos.fk_id_folder = folders.id_folder 
+inner join empresas on folders.fk_id_empresa = empresas.id_empresa
+--Mostrar los archivos subidos junto a la empresa a la que pertenecen
+select empresas.nombre_empresa,archivos.nombre_archivo from archivos 
+inner join folders on archivos.fk_id_folder = folders.id_folder 
+inner join empresas on folders.fk_id_empresa = empresas.id_empresa
+--Funciones
+--Función para devolver el id de un empleado para el login
+CREATE OR REPLACE FUNCTION obtenerIdEmpleado(usu varchar, contra varchar) returns 
+TABLE("id" int)
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+RETURN QUERY SELECT emp.id_empleado FROM empleados as emp WHERE emp.usuario_empleado = usu AND emp.contrasena_empleado = contra;
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+select * from empleados
+select * from obtenerIdEmpleado('Michael','PK12NTE5EF');
+--Funcion para insertar un empleado
+CREATE OR REPLACE FUNCTION insertarEmpleado(nombre_e varchar, apellidos_e varchar, dui_e varchar, tel_e varchar, correo_e varchar, usuario_e varchar, contra_e varchar, tipo_e int) 
+RETURNS 
+VOID
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+INSERT INTO empleados VALUES(default, nombre_e, apellidos_e, dui_e, tel_e, correo_e, usuario_e, contra_e, tipo_e);
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+select insertarEmpleado('Herbert','Profesor2','17831201-4','591-5447','ball.salvador@gmail.com','Salvador245','LU71NEI3VR',3);
+select * from empleados
+--Función para insertar un administrador
+CREATE OR REPLACE FUNCTION insertarAdmin(nombre_a varchar, usuario_a varchar, contrasena_a varchar) 
+RETURNS 
+VOID
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+INSERT INTO admins VALUES(default, nombre_a, usuario_a, contrasena_a);
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+select * from insertarAdmin('Admin','admin2','123');
+--Group by,Order by,Beetween
+--group by--
+--agrupar folders por empresa--
+SELECT
+nombre_folder,
+nombre_empresa
+FROM
+folders,empresas
+GROUP BY nombre_folder,nombre_empresa;
+--order by--
+--cantidad de folders--
+SELECT
+nombre_folder,nombre_empresa
+FROM folders,empresas
+ORDER BY nombre_empresa DESC;
+--between--
+--archivos subidos entre dos fechas--
+SELECT
+nombre_archivo,fecha_subida
+FROM archivos
+WHERE fecha_subida BETWEEN '2022-05-01' and '2022-07-30'
+ORDER BY fecha_subida DESC
+--TRIGGERS--
+--Que actualice la fecha de subida de un archivo al insertar este
+CREATE FUNCTION actualizarArchivoFecha() RETURNS TRIGGER
+AS
+$$
+DECLARE 
+--Declaramos las variables
+idmax int:=(SELECT MAX(id_archivo)FROM archivos);
+BEGIN
+--Indicamos el procedimiento a realizar
+UPDATE archivos SET fecha_subida=current_date 
+WHERE id_archivo=idmax;
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;--Final del la función del trigger
+--Inicio del trigger
+CREATE TRIGGER tr_ActualizarArchivoFecha AFTER INSERT ON archivos
+FOR EACH ROW
+EXECUTE PROCEDURE actualizarArchivoFecha();--Final del Trigger
+--Probamos el trigger actualizando un archivo pero primero seleccionamos uno
+INSERT INTO archivos(nombre_archivo,fecha_subida,fk_id_folder) 
+values('maribel05/22.img','2020-05-04',1); 
+SELECT * from archivos where id_archivo = 13;
+--Que actualice la fecha de subida de un archivo subido al actualizar este
+CREATE FUNCTION actualizarArchivoSubFecha() RETURNS TRIGGER
+AS
+$$
+DECLARE 
+--Declaramos las variables
+idmax int:=(SELECT MAX(id_archivos_subidosemp) FROM archivos_subidosemp);
+BEGIN
+--Indicamos el procedimiento a realizar
+UPDATE archivos_subidosemp SET fecha_subida=current_date 
+WHERE id_archivos_subidosemp=idmax;
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;--Final del la función del trigger
+--Inicio del trigger
+CREATE TRIGGER tr_ActualizarArchivoSubFecha AFTER INSERT ON archivos_subidosemp
+FOR EACH ROW
+EXECUTE PROCEDURE actualizarArchivoSubFecha();--Final del Trigger
+--Probamos el trigger actualizando un archivo pero primero seleccionamos uno
+INSERT INTO archivos_subidosemp(nombre_archivo,fecha_subida,descripcion,fk_id_empleado,fk_id_empresa) 
+values('maribel05/22.img','2020-05-04','mando a revision',1,1); 
+SELECT * from archivos_subidosemp where id_archivos_subidosemp  = 32;
+--OPERACIONES ARITMETICAS
+--Contar cuantos folders de cada empresa hay
+create view numeroFoldersEmpr
+as
+select empr.id_empresa,empr.nombre_empresa,count(*) as "Numero de folders" 
+from folders as fold, empresas as empr 
+where fold.fk_id_empresa = empr.id_empresa group by id_empresa;
+SELECT * from numeroFoldersEmpr order by id_empresa;--Comprobamos
+--Contar cuantos archivos de cada empresa y folders hay
+create view numeroArchivosEmprfold
+as
+select empr.id_empresa,empr.nombre_empresa,fold.id_folder,fold.nombre_folder,
+count(*) as "Número de archivos"
+from folders as fold, empresas as empr, archivos as arch 
+where arch.fk_id_folder = fold.id_folder and fold.fk_id_empresa = empr.id_empresa 
+group by id_empresa, id_folder order by id_folder;
+SELECT * from numeroArchivosEmprfold;--Comprobamos
+--Contar cuantos archivos subidos de cada empresa hay
+create view numeroArchivosSubEmpr
+as
+select empr.id_empresa,empr.nombre_empresa,count(*) as "Número de archivos subidos"
+from empresas as empr, archivos_subidosemp as arch 
+where arch.fk_id_empresa = empr.id_empresa 
+group by id_empresa order by empr.id_empresa;
+SELECT * from numeroArchivosSubEmpr;--Comprobamos
+--Consultas con parametros
+--Función parametrizadas de todos los archivos de X Folder
+CREATE OR REPLACE FUNCTION obtenerArchivosFolder(folder varchar) 
+RETURNS 
+TABLE("id" int, "nombre del archivo" varchar, "fecha subida" date)
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+RETURN QUERY SELECT arch.id_archivo, arch.nombre_archivo, arch.fecha_subida FROM archivos as arch
+INNER JOIN folders as fol ON fol.nombre_folder = folder and fol.id_folder = arch.fk_id_folder;
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+select * from obtenerArchivosFolder('Duis');--Comprobamos
+--Consultas con Parametros de rango de fechas
+--Todos los archivos entre x fechas X y Y como parámetros.
+CREATE FUNCTION archivosEntreFechasJ(fechai date, fechaf date) returns 
+--Indicamos las columnas y sus valores
+Table("id" int, "nombre del archivo" varchar, "fecha de subida" date, 
+	  "nombre del folder" varchar)
+AS 
+$$
+DECLARE
+BEGIN
+--Retornamos el select
+RETURN QUERY SELECT arch.id_archivo,arch.nombre_archivo,arch.fecha_subida, fold.nombre_folder
+FROM  archivos AS arch
+INNER JOIN folders AS fold ON arch.fk_id_folder = fold.id_folder
+WHERE arch.fecha_subida>=fechai AND arch.fecha_subida<=fechaf ORDER BY arch.fecha_subida;
+END
+$$
+LANGUAGE plpgsql;
+--Comprobamos
+select * from archivosEntreFechasJ('2021-12-14','2022-01-24');--Comprobar
+--Todos los archivos subidos entre x fechas X y Y como parámetros.
+CREATE FUNCTION archivosSubEntreFechasJ(fechai date, fechaf date) returns 
+--Indicamos las columnas y sus valores
+Table("id" int, "nombre del archivo" varchar, "fecha de subida" date, 
+	  "descripcion" varchar,"nombre del empleado" varchar,"nombre de la empresa" varchar)
+AS 
+$$
+DECLARE
+BEGIN
+--Retornamos el select
+RETURN QUERY SELECT arch.id_archivos_subidosemp ,arch.nombre_archivo,arch.fecha_subida,
+arch.descripcion,emp.nombre_empleado,empr.nombre_empresa
+FROM  archivos_subidosemp AS arch
+INNER JOIN empleados AS emp ON arch.fk_id_empleado = emp.id_empleado
+INNER JOIN empresas AS empr ON arch.fk_id_empresa = empr.id_empresa
+WHERE arch.fecha_subida>=fechai AND arch.fecha_subida<=fechaf ORDER BY arch.fecha_subida;
+END
+$$
+LANGUAGE plpgsql;
+--Comprobamos
+select * from archivosSubEntreFechasJ('2021-12-14','2022-01-24');--Comprobar
+--Todos los archivos subidos desde el mes pasado hasta hoy
+CREATE FUNCTION archivosMesPasadoJ() returns 
+--Indicamos las columnas y sus valores
+Table("id" int, "nombre del archivo" varchar, "fecha de subida" date, 
+	  "nombre del folder" varchar)
+AS 
+$$
+DECLARE
+BEGIN
+--Retornamos el select
+RETURN QUERY SELECT arch.id_archivo,arch.nombre_archivo,arch.fecha_subida, fold.nombre_folder
+FROM  archivos AS arch
+INNER JOIN folders AS fold ON arch.fk_id_folder = fold.id_folder
+WHERE arch.fecha_subida>=(current_date - interval '1 month') AND 
+arch.fecha_subida<=current_date ORDER BY arch.fecha_subida;
+END
+$$
+LANGUAGE plpgsql;
+--Comprobamos
+select * from archivosMesPasadoJ();
+--consulta--
+--Todos los folders de x empresa--
+CREATE FUNCTION tFoldersempr(empresa varchar) returns 
+--Indicamos las columnas y sus valores
+Table("nombre del folder" varchar,"nombre de la empresa" varchar)
+AS 
+$$
+DECLARE
+BEGIN
+--Retornamos el select
+RETURN QUERY SELECT
+nombre_folder,
+nombre_empresa
+FROM
+folders,
+empresas
+WHERE
+nombre_empresa=empresa;
+END
+$$
+LANGUAGE plpgsql;
+--Comprobamos
+select * from tFoldersempr('Amet Lorem Ltd');
+--Consultas para graficos
+--Numero de archivos subidos y archivos de x Empresa
+--Creamos funciones que retornen el número de archivos y el número de archivos subidos de x empresa
+--para invocarlos en la función general
+--Numero de archivos en las empresas
+CREATE FUNCTION archivosEmpresaPrJ(empresa varchar) returns 
+--Indicamos las columnas y sus valores
+Table("id empresa" int, "nombre de la empresa" varchar, "narchivos" bigint)
+AS 
+$$
+DECLARE
+--Declaramos los 
+BEGIN
+--Retornamos el select
+RETURN QUERY 
+select empr.id_empresa,empr.nombre_empresa,
+count(*) as nArchivos
+from folders as fold, empresas as empr, archivos as arch 
+where arch.fk_id_folder = fold.id_folder and fold.fk_id_empresa = empr.id_empresa and empr.nombre_empresa=empresa
+group by id_empresa order by id_empresa;
+END
+$$
+LANGUAGE plpgsql;
+
+select * from archivosEmpresaPrJ('Amet Lorem Ltd');
+--Numero de archivos Subidos en las empresas
+CREATE FUNCTION archivosSEmpresaPrJ(empresa varchar) returns 
+--Indicamos las columnas y sus valores
+Table("id empresa" int, "nombre de la empresa" varchar, "narchivoss" bigint)
+AS 
+$$
+DECLARE
+--Declaramos los 
+BEGIN
+--Retornamos el select
+RETURN QUERY 
+select empr.id_empresa,empr.nombre_empresa,count(*) as nArchivosS
+from empresas as empr, archivos_subidosemp as arch 
+where arch.fk_id_empresa = empr.id_empresa and empr.nombre_empresa=empresa
+group by id_empresa order by empr.id_empresa;
+END
+$$
+LANGUAGE plpgsql;
+--Creamos la función general que retorne todos los datos unificados
+CREATE FUNCTION archivosTEmpresaJ(empresa varchar) returns 
+--Indicamos las columnas y sus valores
+Table("id" int, "nombre de la empresa" varchar, "Archivos en folders" bigint, 
+	  "Archivos subidos por empleados" bigint)
+AS 
+$$
+DECLARE
+BEGIN
+--Retornamos el select
+RETURN QUERY 
+select id_empresa,nombre_empresa,(select narchivos from archivosEmpresaPrJ(empresa)) as "Archivos Folder",
+(select narchivoss from archivosSEmpresaPrJ(empresa)) as "Archivos Empleado"
+from empresas 
+where nombre_empresa=empresa;
+END
+$$
+LANGUAGE plpgsql;
+--Comprobamos
+select * from archivosTEmpresaJ('Lectus Cum Industries');--Comprobar
+
+select * from empresas
+--Función parametrizadas de todos los archivos de X Folder de X empresa
+CREATE OR REPLACE FUNCTION obtenerArchivosFolderEmpresa(folder varchar, empresa varchar) 
+RETURNS 
+TABLE("id" int, "nombre del archivo" varchar, "fecha subida" date)
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+RETURN QUERY SELECT arch.id_archivo, arch.nombre_archivo, arch.fecha_subida FROM archivos as arch
+INNER JOIN folders as fol ON fol.nombre_folder = folder and fol.id_folder = arch.fk_id_folder
+INNER JOIN empresas as emp ON emp.nombre_empresa = empresa and emp.id_empresa =fol.fk_id_empresa;
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+
+select * from obtenerArchivosFolderEmpresa('nisi dictum','Amet Lorem Ltd');--Comprobamos
+--Función parametrizadas de Todas las empresas de x empleado
+CREATE OR REPLACE FUNCTION obtenerEmpresaEmp(nombre varchar, apellido varchar) 
+RETURNS 
+TABLE("id Empresa" int, "nombre de la empresa" varchar, "nombre del empleado" varchar, 
+	  "apellido del empleado" varchar, "id Empleado" int)
+AS
+$$
+DECLARE
+BEGIN
+--Indicamos la query a realizar para que cumpla el objetivo de la función
+RETURN QUERY 
+select empr.id_empresa,empr.nombre_empresa,emp.nombre_empleado,emp.apellido_empleado,emp.id_empleado 
+from empresas as empr, empleados as emp, empresas_empleados as empe 
+where empr.id_empresa = empe.fk_id_empresa and emp.id_empleado = empe.fk_id_empleado 
+and emp.nombre_empleado = nombre and emp.apellido_empleado = apellido;
+END
+$$
+LANGUAGE plpgsql; --Final de la función
+
+select * from obtenerEmpresaEmp('Elliott','Decker');--Comprobamos
+
+select * from empleados
+--Todos los archivos subidos por empleados de x empresa
+create or replace function archivosEmpresa(nempresa varchar)
+returns 
+table ("id" int, archivo varchar(150), "id_empresa" int, empresa varchar(150))
+as
+$$
+declare 
+begin
+return query select ta.id_archivos_subidosemp, ta.nombre_archivo,  te.id_empresa, te.nombre_empresa
+from archivos_subidosemp ta, empresas te
+where ta.fk_id_empresa=te.id_empresa and te.nombre_empresa=nempresa;
+end
+$$
+language plpgsql;
+
+select*from archivosEmpresa('Sapien Molestie Orci Corp.');--Comprobando
+--Todos los empleados de x tipo
+create or replace function tEmpleadosTipo(tipo varchar)
+returns 
+table ("id" int, "nombre empleado" varchar(150), "apellido empleado" varchar, "dui" varchar(150),
+	  "telefono empleado" varchar,"correo empleado" varchar,"usuario" varchar,"contrasena" varchar,
+	  "tipo de empleado" varchar)
+as
+$$
+declare 
+begin
+return query 
+select emp.id_empleado, emp.nombre_empleado, emp.apellido_empleado,emp.dui_empleado,
+emp.telefono_empleadocontc, emp.correo_empleadocontc, emp.usuario_empleado, emp.contrasena_empleado,
+timp.tipo_empleado
+from empleados as emp
+inner join tipo_empleado as timp on emp.fk_id_tipo_empleado = timp.id_tipo_empleado
+where timp.tipo_empleado = tipo
+order by emp.id_empleado;
+end
+$$
+language plpgsql;
+select * from empleados
+select*from tEmpleadosTipo('Pasantia');--Comprobando
+
+
+
+
+
