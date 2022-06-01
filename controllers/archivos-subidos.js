@@ -1,6 +1,7 @@
+//Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Modal.init(document.querySelectorAll('#cerrarSesionModal'));
 });
 
 /*Boton de ir hacia arriba*/

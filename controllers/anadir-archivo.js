@@ -76,7 +76,7 @@ cancelarArchivobtn.addEventListener('click', function () {
     mensaje.style.display = 'none';
     //Limpiamos los campos
     //Creamos arreglo de los componentes a limpiar
-    arregloLC = [nombreEmpresa, nombreArchivo, nombreFolder, archivoSubido, nombreArchivoInp];
+    arregloLC = [nombreEmpresa, nombreArchivo, nombreFolder, archivoSubido,nombreArchivoInp];
     borrarCampos(arregloLC);
     resetPrevisualizador();
 });
@@ -98,8 +98,8 @@ function prevArchivo(e) {
     //Creamos la  ruta del archivo
     var archivoRuta = archivoSubido.value;
     //Creamos las extensiones de imagenes y pdf para saber si es pdf o imagen
-    var extIMG = /(.JPG|.PNG|.jpg|.jpg|.GIF|.gif|.mp4|.MP4|.jpeg|.JPEG|.mp3|.MP3)$/i;//Imagen 
-    var extPDF = /(.pdf|.PDF)$/i;//PDF
+    var extIMG = /(.JPG|.PNG|.jpg|.jpg|.jpeg|.JPEG)$/i;//Imagen 
+    var extPDF = /(.pdf|.PDF|.GIF|.gif|.mp4|.MP4|.mp3|.MP3)$/i;//PDF
     //Creamos un lector de archivos
     const reader = new FileReader();
     //Comprobamos si es compatible para previsualizar
@@ -111,7 +111,7 @@ function prevArchivo(e) {
         textoPreview.style.display = 'block';
         textoPreview.innerText = 'Este archivo esta subido pero no esta disponible para visualizar';
         //Regresando la imagen a su estado original
-        imgPreview.style.display = 'block';
+        imgPreview.style.display ='block';
         imgPreview.style.width = '45px';
         imgPreview.style.height = '45px';
         //Colocando la imagen que indica que hubo un error
@@ -120,30 +120,30 @@ function prevArchivo(e) {
     } else if (extPDF.exec(archivoRuta)) {
         //Como es pdf mostraremos el pdf
         //Ocultamos la imagen y texto por default
-        imgPreview.style.display = 'none';
+        imgPreview.style.display ='none';
         textoPreview.style.display = 'none';
         //Mostramos el componente del previsualizador del pdf
         prevPDF.style.display = 'block';
         //Creamos evento que coloque el resultado del lector de archivo al cargar
-        reader.addEventListener("load", function (e) {
-            prevPDF.setAttribute("src", e.target.result);
+        reader.addEventListener("load",function(e){
+            prevPDF.setAttribute("src",e.target.result);
             barraEstadoSub.style.display = 'none';
         })
         //Indicamos de donde obtendra el lector de archivos el resultado
         reader.readAsDataURL(archivoSubido.files[0]);
-    } else if (extIMG.exec(archivoRuta)) {
+    } else if(extIMG.exec(archivoRuta)){
         //Como es imagen mostraremos la imagen en el componente de previsualización
         prevPDF.style.display = 'none';
         //Ocultamos el texto del preview
-        textoPreview.style.display = 'none';
+        textoPreview.style.display='none';
         //Mostramos imagen
-        imgPreview.style.display = 'block';
+        imgPreview.style.display ='block';
         //Asignamos nuevos valores al componente de la imagen para que avarque el maximo de altura y anchura
-        imgPreview.style.width = '100%';
-        imgPreview.style.height = '100%';
+        imgPreview.style.width= '100%';
+        imgPreview.style.height= '100%';
         //Creamos evento que coloque el resultado del lector de archivo al cargar
-        reader.addEventListener("load", function () {
-            imgPreview.setAttribute("src", this.result);
+        reader.addEventListener("load",function(){
+            imgPreview.setAttribute("src",this.result);
             barraEstadoSub.style.display = 'none';
         })
         //Indicamos de donde obtendra el lector de archivos el resultado
@@ -156,21 +156,21 @@ function resetPrevisualizador() {
     textoPreview.innerText = 'Previsualizador de Archivos';
     textoPreview.style.display = 'block';
     //Mostramos imagen
-    imgPreview.style.display = 'none';
+    imgPreview.style.display ='none';
     imgPreview.style.width = '45px';
     imgPreview.style.height = '45px';
     imgPreview.setAttribute("src", '../resources/img/previsualizar-img.png');
-    barraEstadoSub.style.display = 'none';
+    barraEstadoSub.style.display = 'none'; 
     prevPDF.style.display = 'none';
 };
 /*Acción del evento del modal de eliminar empresa*/
 //Validar que se muestre el preloader al aceptar eliminar empresa
-eliminarEmpresaBtn.addEventListener('click', function () {
-    preloaderEliminarempre.style.display = 'block';
+eliminarEmpresaBtn.addEventListener('click', function(){
+    preloaderEliminarempre.style.display='block';
     eliminarEmpresaBtn.classList.add('disabled');
 });
 //Validar que si se cancela la eliminación de empresa se esconda el preloader y se reactive el boton
-cancelEliminarEmprBtn.addEventListener('click', function () {
-    preloaderEliminarempre.style.display = 'none';
+cancelEliminarEmprBtn.addEventListener('click', function(){
+    preloaderEliminarempre.style.display='none';
     eliminarEmpresaBtn.classList.remove('disabled');
 });
