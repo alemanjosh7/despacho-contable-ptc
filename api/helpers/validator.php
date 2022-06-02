@@ -108,6 +108,26 @@ class Validator
             return false;
         }
     }
+    /*
+    *   Método para validar un archivo 
+    *
+    *   Parámetros: $file (archivo de un formulario)
+    *   
+    *   Retorno: booleano (true si el archivo es correcto o false en caso contrario).
+    */
+    public function validateFile($file)
+    {
+        // Se verifica si el archivo existe, de lo contrario se establece el mensaje de error correspondiente.
+        if ($file) {
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            // Se establece un nombre único para el archivo.
+            $this->fileName = uniqid() . '.' . $extension;
+            return true;
+        } else {
+            $this->fileError = 'El archivo  no existe';
+            return false;
+        }
+    }
 
     /*
     *   Método para validar un correo electrónico.
