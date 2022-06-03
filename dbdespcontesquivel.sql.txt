@@ -1,5 +1,11 @@
 CREATE DATABASE dbdespcontesquivel;
 
+CREATE TABLE estados(
+	id_estado serial NOT NULL,
+	nombre_estado varchar(100) NOT NULL,
+	CONSTRAINT estados_pk PRIMARY KEY(id_estado)
+);
+
 CREATE TABLE tipo_empleado(
 	id_tipo_empleado serial NOT NULL,
 	tipo_empleado varchar(50) NOT NULL,
@@ -20,13 +26,9 @@ CREATE TABLE empleados(
 	CONSTRAINT empleados_tipo_empleado_fk FOREIGN KEY (fk_id_tipo_empleado)
 	REFERENCES tipo_empleado (id_tipo_empleado)  ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-CREATE TABLE estados(
-	id_estado serial NOT NULL,
-	nombre_estado varchar(100) NOT NULL,
-	CONSTRAINT estados_pk PRIMARY KEY(id_estado)
-);
-
+alter table empleados add column fk_id_estado int;--Añadiendo el campo 
+alter table empleados alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
+alter table empleados add constraint empleados_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
 
 CREATE TABLE empresas(
 	id_empresa serial NOT NULL,
@@ -40,6 +42,11 @@ CREATE TABLE empresas(
 	CONSTRAINT empresas_pk PRIMARY KEY (id_empresa)
 );
 
+alter table empresas add column fk_id_estado int;--Añadiendo el campo 
+alter table empresas alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
+alter table empresas add constraint empresas_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
+
+
 CREATE TABLE folders(
 	id_folder serial NOT NULL,
 	nombre_folder varchar(100) NOT NULL,
@@ -48,6 +55,11 @@ CREATE TABLE folders(
 	CONSTRAINT folders_empresas_fk FOREIGN KEY (fk_id_empresa)
 	REFERENCES empresas (id_empresa)  ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+alter table folders add column fk_id_estado int;--Añadiendo el campo 
+alter table folders alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
+alter table folders add constraint folders_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
+
 
 CREATE TABLE archivos(
 	id_archivo serial NOT NULL,
@@ -60,6 +72,10 @@ CREATE TABLE archivos(
 );
 
 alter table archivos add column tamano varchar(50);
+alter table archivos add column fk_id_estado int;--Añadiendo el campo 
+alter table archivos alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
+alter table archivos add constraint archivos_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
+
 
 CREATE TABLE empresas_empleados(
 	id_empresas_empleado serial NOT NULL,
@@ -125,8 +141,10 @@ INSERT INTO estados (nombre_estado)
 VALUES
   ('No descargado'),
   ('Descargado'),
-  ('Eliminado');
-select * from estados
+  ('Eliminado'),
+  ('Activo'),
+  ('Inactivo');
+select * from estados;
 --TABLA empresas
 truncate table empresas RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 INSERT INTO empresas (nombre_cliente,apellido_cliente,nombre_empresa,numero_empresacontc ,correo_empresacontc,direccion_empresa,nit_empresa)
@@ -141,7 +159,7 @@ VALUES
   ('Octavia','Witt','Dapibus Ligula Incorporated','400-6073','witt@gmail.com','340-8607 Nunc Road','42433823-0'),
   ('Remedios','Jenkins','Cursus Et Limited','717-8816','jenkins@gmail.com','270-1322 Quisque St.','21287846-4'),
   ('Maisie','Skinner','Lectus Cum Industries','774-8566','skinner3659@gmail.com','Ap #993-2612 Odio Rd.','9802512-8');
-select * from empresas
+select * from empresas;
 --TABLA folders
 truncate table folders RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 INSERT INTO folders (nombre_folder,fk_id_empresa)
@@ -171,7 +189,7 @@ VALUES
   ('Maecenas ornare','09-01-22',5),
   ('ut odio','16-06-22',1),
   ('sed sem','16-06-22',2);
-select * from archivos
+select * from archivos;
 --TABLA empresas_empleados
 truncate table empresas_empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 INSERT INTO empresas_empleados (fk_id_empleado,fk_id_empresa)
