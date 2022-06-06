@@ -103,57 +103,5 @@ class Estados extends Validator
         $params = array($this->id_estado);
         return Database::executeRow($sql, $params);
     }
-
-
+    
 }
-
-
-/*Final*/ 
-
-
-
-
-
-
-
-
-
-
-
-
- /*
-    *   Métodos para consultas 
-    */
-
-//useless functions (borrar si es asi)
-
-    //Función para consultar estados con limit
-    public function obtenerEstadosLimit($limit)
-    {
-        $sql = 'SELECT id_estado, nombre_estado
-                FROM estados
-                WHERE id_estado = 4 
-                ORDER BY id_estado DESC LIMIT 6';
-        $params = array($limit);
-        return Database::getRows($sql, $params);
-    }
-
-
-    public function buscarEstados($value)
-    {
-        $sql = 'SELECT id_estado, nombre_estado
-        FROM estados 
-        WHERE nombre_estado ILIKE ? 
-        AND id_estado = 4 ';
-        $params = array("%$value%");
-        return Database::getRows($sql, $params);
-    }
-
-    public function buscarEstados($value)
-    {
-        $sql = '';
-        $params = array("%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
-
-
