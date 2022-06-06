@@ -108,7 +108,22 @@ class Estados extends Validator
 }
 
 
+/*Final*/ 
 
+
+
+
+
+
+
+
+
+
+
+
+ /*
+    *   Métodos para consultas 
+    */
 
 //useless functions (borrar si es asi)
 
