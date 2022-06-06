@@ -14,7 +14,7 @@ Paso 2. Modificar las credenciales necesarias para la conexión con la base de d
 
 Paso 3. Ingresar al sitio web que se desea visualizar.
     Inicio del sitio privado (al ingresar por primera vez se pedirá crear un usuario):
-        localhost/despEsquivel/views/dashboard/
+        localhost/despEsquivel/views/
 
 Para que funcione PostgreSQL con XAMPP, es necesario acceder a la dirección C:\xampp\php y hacer lo siguiente:
 1. Ubicar y abrir el archvio php.ini
