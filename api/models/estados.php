@@ -127,7 +127,7 @@ class Estados extends Validator
 
 //useless functions (borrar si es asi)
 
-    //Función para consultar las empresas con limit
+    //Función para consultar estados con limit
     public function obtenerEstadosLimit($limit)
     {
         $sql = 'SELECT id_estado, nombre_estado
