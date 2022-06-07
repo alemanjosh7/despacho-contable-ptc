@@ -6,11 +6,15 @@ CREATE TABLE estados(
 	CONSTRAINT estados_pk PRIMARY KEY(id_estado)
 );
 
+alter table estados add constraint estados_unq unique (nombre_estado);
+
 CREATE TABLE tipo_empleado(
 	id_tipo_empleado serial NOT NULL,
 	tipo_empleado varchar(50) NOT NULL,
 	CONSTRAINT tipo_empleados_pk PRIMARY KEY(id_tipo_empleado)
 );
+
+alter table tipo_empleado add constraint tipo_empleado_unq unique (tipo_empleado);
 
 CREATE TABLE empleados(
 	id_empleado serial NOT NULL,
@@ -29,7 +33,12 @@ CREATE TABLE empleados(
 alter table empleados add column fk_id_estado int;--Añadiendo el campo 
 alter table empleados alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
 alter table empleados add constraint empleados_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
-
+alter table empleados add constraint nombre_empleado_unq unique (nombre_empleado);--Añadiendo clausula unique
+alter table empleados add constraint apellido_empleado_unq unique (apellido_empleado);--Añadiendo clausula unique
+alter table empleados add constraint dui_empleado_unq unique (dui_empleado);--Añadiendo clausula unique
+alter table empleados add constraint telefono_empleadocontc_unq unique (telefono_empleadocontc);--Añadiendo clausula unique
+alter table empleados add constraint correo_empleadocontc_unq unique (correo_empleadocontc);--Añadiendo clausula unique
+alter table empleados add constraint usuario_empleado_unq unique (usuario_empleado);--Añadiendo clausula unique
 CREATE TABLE empresas(
 	id_empresa serial NOT NULL,
 	nombre_cliente varchar(100) NOT NULL,
@@ -45,7 +54,9 @@ CREATE TABLE empresas(
 alter table empresas add column fk_id_estado int;--Añadiendo el campo 
 alter table empresas alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
 alter table empresas add constraint empresas_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
-
+alter table empresas add constraint nombre_empresa_unq unique (nombre_empresa);--Añadiendo clausula unique
+alter table empresas add constraint nit_empresa_unq unique (nit_empresa);--Añadiendo clausula unique
+alter table empresas add constraint direccion_empresa_unq unique (direccion_empresa);--Añadiendo clausula unique
 
 CREATE TABLE folders(
 	id_folder serial NOT NULL,
@@ -59,7 +70,7 @@ CREATE TABLE folders(
 alter table folders add column fk_id_estado int;--Añadiendo el campo 
 alter table folders alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
 alter table folders add constraint folders_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
-
+alter table folders add constraint nombre_folder_unq unique (nombre_folder);--Añadiendo clausula unique
 
 CREATE TABLE archivos(
 	id_archivo serial NOT NULL,
@@ -75,7 +86,7 @@ alter table archivos add column tamano varchar(50);
 alter table archivos add column fk_id_estado int;--Añadiendo el campo 
 alter table archivos alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
 alter table archivos add constraint archivos_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
-
+alter table archivos add column nombre_original varchar(200);
 
 CREATE TABLE empresas_empleados(
 	id_empresas_empleado serial NOT NULL,
@@ -106,6 +117,7 @@ CREATE TABLE archivos_subidosemp(
 );
 
 alter table archivos_subidosemp add column tamano varchar(50); 
+alter table archivos_subidosemp add column nombre_original varchar(200);
 --Fase de evaluación
 --INSERTS
 --TABLA tipo_empleado
@@ -134,7 +146,7 @@ VALUES
   ('Linus','Bond','40253593-8','758-8725','bond.linus@gmail.com','Yen','MED15KIM9TZ',1),
   ('Malachi','Wilkerson','30830692-5','724-7766','wilkerson.malachi4193@gmail.com','Noel','MCP31WQK2RE',1),
   ('Gemma','Leonard','4929294-5','956-5513','leonard-gemma9157@gmail.com','Hilel','QHQ18AWT7ZP',1);
-select * from empleados
+select * from empleados;
 --TABLA estado
 truncate table estados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--
 INSERT INTO estados (nombre_estado)
