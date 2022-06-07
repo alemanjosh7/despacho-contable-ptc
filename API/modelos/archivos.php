@@ -4,7 +4,7 @@
 *   Es clase hija de Validator.
 */
 
-class Archivos extends ValidatorFile
+class Archivos extends ValidateFile
 {
     // Declaración de atributos (propiedades).
     private $id_archivo = null;
