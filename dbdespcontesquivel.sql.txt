@@ -39,6 +39,9 @@ alter table empleados add constraint dui_empleado_unq unique (dui_empleado);--A�
 alter table empleados add constraint telefono_empleadocontc_unq unique (telefono_empleadocontc);--Añadiendo clausula unique
 alter table empleados add constraint correo_empleadocontc_unq unique (correo_empleadocontc);--Añadiendo clausula unique
 alter table empleados add constraint usuario_empleado_unq unique (usuario_empleado);--Añadiendo clausula unique
+
+alter table empleados drop constraint nombre_empleado_unq;--Eliminando unique nombre
+alter table empleados drop constraint apellido_empleado_unq;--Eliminando unique apellido
 CREATE TABLE empresas(
 	id_empresa serial NOT NULL,
 	nombre_cliente varchar(100) NOT NULL,
@@ -46,8 +49,8 @@ CREATE TABLE empresas(
 	nombre_empresa varchar(100) NOT NULL,
 	numero_empresacontc varchar(9),
 	correo_empresacontc varchar(55),
-	direccion_empresa varchar(150),
-	nit_empresa varchar(20),
+	direccion_empresa varchar(150) NOT NULL,
+	nit_empresa varchar(20) NOT NULL,
 	CONSTRAINT empresas_pk PRIMARY KEY (id_empresa)
 );
 
@@ -71,6 +74,8 @@ alter table folders add column fk_id_estado int;--Añadiendo el campo
 alter table folders alter column fk_id_estado set default 4;--Añadiendo el default a la tabla
 alter table folders add constraint folders_estado_fk foreign key (fk_id_estado) references estados(id_estado) on update cascade on delete cascade;
 alter table folders add constraint nombre_folder_unq unique (nombre_folder);--Añadiendo clausula unique
+
+alter table folders drop constraint nombre_folder_unq;--Eliminando unique nombre folder
 
 CREATE TABLE archivos(
 	id_archivo serial NOT NULL,
