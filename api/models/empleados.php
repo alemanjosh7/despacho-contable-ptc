@@ -6,16 +6,16 @@
 class Clientes extends Validator
 {
     // Declaración de atributos (propiedades).
-    private $id_empleado = null; //id de cliente
-    private $nombre_empleado = null; //nombre del cliente
-    private $apellido_empleado = null; //apellido del cliente
-    private $dui_empleado = null; //dui del cliente
-    private $telefono_empleadocontc = null; //telefono del cliente
-    private $correo_empleadocontc = null; //correo del cliente
-    private $usuario_empleado = null; //usuario del cliente
-    private $contrasena_empleado = null; //contraseña del cliente
-    private $id_tipo_empleado = null;
-    private $id_estado = null;
+    private $id_empleado = null; //id de empleado
+    private $nombre_empleado = null; //nombre del empleado
+    private $apellido_empleado = null; //apellido del empleado
+    private $dui_empleado = null; //dui del empleado
+    private $telefono_empleadocontc = null; //telefono del empleado
+    private $correo_empleadocontc = null; //correo del empleado
+    private $usuario_empleado = null; //usuario del empleado
+    private $contrasena_empleado = null; //contraseña del empleado
+    private $id_tipo_empleado = null; //tipo empleado
+    private $id_estado = null; //estado del empleado
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
