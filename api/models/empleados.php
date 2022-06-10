@@ -252,7 +252,7 @@ class Clientes extends Validator
         return Database::executeRow($sql, $params);
     }
     //Eliminar empleado
-    public function eliminarCliente()
+    public function eliminarEmpleado()
     {
         $sql = 'DELETE FROM empleados
                 WHERE id_empleado = ?';
