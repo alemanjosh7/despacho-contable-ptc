@@ -187,8 +187,8 @@ class Clientes extends Validator
         $sql = 'SELECT id_empleado FROM empleados WHERE usuario_empleado = ?';
         $params = array($usuario);
         if ($data = Database::getRow($sql, $params)) {
-            $this->id = $data['id_empleado'];
-            $this->usuario = $usuario;
+            $this->id_empleado = $data['id_empleado'];
+            $this->usuario_empleado = $usuario;
             return true;
         } else {
             return false;
