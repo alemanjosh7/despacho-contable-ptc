@@ -276,7 +276,7 @@ select * from archivos_subidosemp;
 --Joins
 --Mostrar los folders y las empresas a las que pertenecen
 select empresas.nombre_empresa, folders.nombre_folder from empresas 
-inner join folders on empresas.id_empresa = folders.id_folder order by empresas.nombre_empresa
+inner join folders on empresas.id_empresa = folders.id_folder order by empresas.nombre_empresa;
 --Mostrar el archivo junto con el folder y la empresa a la que pertenecen
 select empresas.nombre_empresa, folders.nombre_folder, archivos.nombre_archivo from archivos 
 inner join folders on archivos.fk_id_folder = folders.id_folder 
