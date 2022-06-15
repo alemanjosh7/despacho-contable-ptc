@@ -24,16 +24,16 @@
             <div class="navbar-fixed">
                 <nav class="navbar-contenedorLogin z-depth-3 center-align">
                     <div class="icono-login">
-                        <img class="responsive-image " src="../resources/img/logo-login.png">
+                        <img class="responsive-image " src="../resources/img/logo-login2.png">
                     </div>
                 </nav>
             </div>
         </header>
         <main>
+            <!--Contenedor de Login-->
             <div class="container">
-                <!--Fila de la información-->
                 <div class="row login-container ">
-                    <!--Columna de información para el envio-->
+                    <!--Seccion izquierda del Login-->
                     <div class="col l6 m8 s12">
                         <div class="row login-col1 z-depth-5">
                             <div class="container-col1">
@@ -51,24 +51,27 @@
                             </div>
                         </div>
                     </div>
-                    <!--Columna de información para el envio-->
+                    <!--Seccion derecha del Login-->
                     <div class="col l6 m8 s12">
                         <div class="row login-col2 z-depth-5">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col s12 left-align Text-log">
                                     <b>Iniciar Sesión</b>
                                 </div>
-                                <!--Contenedor del apartado de los elementos de las compras-->
+                                <!--elementos del Login-->
                                 <div class="col s12" id="parte-orden">
                                     <div class="row">
                                         <div class="d-container-col1">
-                                            <form>
+                                            <form id="session-form">
+                                                <!--Inputs del nombre de usuario-->
                                                 <div class="col l10 m11 s10 input-field" id="titulo-orden">
-                                                    <input id="username" type="text" class="center-align">
+                                                    <input id="username" name="usuario" type="text"
+                                                        class="center-align">
                                                     <label for="username">Usuario</label>
                                                 </div>
+                                                <!--Inputs de la contraseña de usuario-->
                                                 <div class="input-field col l10 m11 s10">
-                                                    <input id="contraseña" type="password" class="center-align">
+                                                    <input id="contraseña" name="contrasena" type="password" class="center-align">
                                                     <label for="contraseña">Contraseña</label>
                                                     <i class="tooltipped material-icons prefix right-align"
                                                         data-position="top" data-tooltip="Mostrar/Ocultar"
@@ -81,8 +84,12 @@
                                 <div class="col s12 center-align">
                                     <div class="row">
                                         <div class="col l11 m6 offset-m2 s11 center-align">
-                                            <a href="./empresas.html" class="modal-trigger waves-effect waves-light btn"
+                                             <!--Boton de iniciar sesión-->
+                                            <div>
+                                                <a class="modal-trigger waves-effect waves-light btn"
                                                 id="Iniciar_btn">Continuar</a>
+                                            </div>
+                                            <!--Boton de Olvidar contraseña-->
                                             <div class="col m12 offset-m2 l12">
                                                 <a class="modal-trigger text-recuperar-contra" id="olvidarcontra_boton"
                                                     href="#modalPIN">¿Olvidaste tu contraseña?</a>
@@ -106,7 +113,9 @@
     </div>
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/index.js"></script>
 </body>
 
