@@ -134,7 +134,7 @@
                     </div>
                     <!--Parte que indica en que página se encuentra-->
                     <div class="col s4 m3 l3" id="contapartado-subnavfold">
-                        <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Regresar a Empresas">>
+                        <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Regresar a Empresas" href="javascript: history.go(-1)">>
                             Empresas</a>
                     </div>
                     <div class="col s3 m2 l2 indicador-fold" id="contapartado-subnavfold">
@@ -144,12 +144,12 @@
                 </div>
                 <!--Columna del buscador-->
                 <div class="col s12 l6 col-buscadorfold">
-                    <form method="post">
+                    <form method="post" id="buscador-form">
                         <div class="input-field col s11 m6 l7" id="contenedor-buscarfolders">
                             <i class="material-icons prefix small buscar-empresas tooltipped" data-position="top"
                                 data-tooltip="Busca un Folder">search</i>
                             <input id="inputbuscar-empresas" type="search" class="validate"
-                                placeholder="Buscar Folders">
+                                placeholder="Buscar Folders" name="search">
                         </div>
                         <div class="col s12 m6 l5">
                             <a class="waves-effect waves-ligth btn z-depth-3 modal-trigger" id="añadir-folder"
@@ -162,163 +162,20 @@
             </div>
             <!--Fila de los folders-->
             <div class="row" id="folders-card">
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Hacienda</h6>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <!--Preloader de carga-->
+        <div class="preloader-wrapper big active" id="preloader-cargarJ">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
                 </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Libros de Contaduría</h6>
-                            </div>
-                        </div>
-                    </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
                 </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Recibos</h6>
-                            </div>
-                        </div>
-                    </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
                 </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Declaraciones</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Contratos</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-foldermodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-foldermodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Folder"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-folder.png">
-                            </div>
-                            <div class="division-folder"></div>
-                            <div class="center">
-                                <h6 class="">Extras</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <!--No borrar del codigo-->
@@ -337,7 +194,7 @@
                 </div>
                 <!--Contenido importante del modal-Boton de actualizar-->
                 <div class="center-align">
-                    <a href="index.html" class="waves-effect waves-light btn center-align"
+                    <a class="waves-effect waves-light btn center-align"
                         id="cerrarSesionModalbtn">Cerrar Sesión</a>
                 </div>
                 <!--Pie del modal-->
@@ -359,13 +216,13 @@
                 <!--Indicaciones del modal-->
                 <p class="center-align">Ingrese el nombre del nuevo folder a añadir a la empresa</p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post">
+                <form method="post" id="formAnadir">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
                         <!--Nombre del Folder-->
                         <div class="input-field col s12 m6 offset-m3 offset-l3">
                             <input placeholder="Nombre del Folder" id="nombre-folder" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombre">
                             <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
                         </div>
                     </div>
@@ -450,13 +307,19 @@
                 <!--Indicaciones del modal-->
                 <p class="center-align">Visualice los datos guardados del folder o modifiquelos</p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post">
+                <form method="post" id="formActualizar">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
                         <!--Nombre del Folder-->
+                        <div class="input-field col s12 m6 offset-m3 offset-l3 hide">
+                            <input placeholder="Nombre del Folder" id="id-folder" type="text"
+                                class="validate center-align inputs-añadirempr" name="id">
+                            <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
+                        </div>
+                        <!--Nombre del Folder-->
                         <div class="input-field col s12 m6 offset-m3 offset-l3">
                             <input placeholder="Nombre del Folder" id="modnombre-folder" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombre">
                             <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
                         </div>
                     </div>
@@ -498,31 +361,32 @@
         </div>
     </main>
     <footer>
+        <!--Contenedor del menu para la páginación-->
         <div class="container">
             <div class="row">
                 <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center" id="pagnavg-atr">
                         <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
                                 class="material-icons medium">chevron_left</i></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
-                        <a><span>1</span></a>
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumeroi">1</span></a>
                     </div>
                 </div>
                 <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
-                        <a><span>2</span></a>
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumerof">2</span></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
                         <a><span>...</span></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center" id="pagnavg-adl">
                         <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
                                 class="material-icons medium">chevron_right</i></a>
                     </div>
@@ -532,8 +396,11 @@
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../controllers/folders.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../controllers/online.js"></script>
+    <script type="text/javascript" src="../controllers/folders.js"></script>
 </body>
 
 </html>

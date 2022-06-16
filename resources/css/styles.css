@@ -1719,8 +1719,10 @@ footer{
   }
 /*Jonathan*/
 #Fondo-login{
-  background-image: url("../img/fondo.png");
-  background-size: cover;
+  background-image: url("../img/fondohd.png");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
 }
 #Fondo-login main{
   padding-left: 0px;
@@ -1739,7 +1741,7 @@ footer{
 
 /*diseño boton inicio sesión*/
 #Iniciar_btn{
- background-color: #fa7479;
+  background-color: #fa7479;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -1765,20 +1767,18 @@ footer{
   touch-action: manipulation;
   text-transform: initial;
   text-decoration-color: black;
-
 }
 
 
 /*seccion izquierda login*/
 .login-col1{
-  background-image: url("../img/contador.png");   
+  background-image: url("../img/workspace7.jpg");   
+  background-position: right; 
   background-repeat: no-repeat;
   background-size: cover;
   height: 500px;
   padding-top: 40px;
   padding-bottom: 30px;
-
-  
 }
 
 .container-col1{
@@ -1827,8 +1827,25 @@ footer{
   height: 500px;
   
 }
+/*Modals de recuperar contraseña*/
 
-
+#modalrestablecer{
+  margin-top: 2%;
+  background: #F1F5F9;
+  font-family: 'Poppins', sans-serif;
+}
+/*Estilo del contenedor dentro del modal*/
+#modalrestablecer .modal-content{
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Poppins', sans-serif;
+}
+/*Estilo del footer del modal*/
+#modalrestablecer .modal-footer{
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+}
 
 /*texto login*/
 .Text-log{
@@ -1929,7 +1946,7 @@ footer{
   }
   /*seccion izquierda login*/
 .login-col1{
-  background-image: url("../img/contador.png");   
+  background-image: url("../img/workspace7.jpg");   
   background-repeat: no-repeat;
   background-size: cover;
   height: 500px;
@@ -1961,7 +1978,7 @@ footer{
 
     /*seccion izquierda login*/
 .login-col1{
-  background-image: url("../img/contador.png");   
+  background-image: url("../img/workspace7.jpg");   
   background-repeat: no-repeat;
   background-size: cover;
   height: 500px;
@@ -2524,4 +2541,41 @@ footer{
   .perfil-cont{
     margin-bottom: 5% !important;
   }
+}
+
+/*Empresas - Jesus*/
+/*Preloader de carga para los elementos*/
+#preloader-cargarJ{
+  display: none;
+  position: absolute;
+  z-index: 3;
+  left: 55%;
+  top: 45%;
+}
+
+/*Estilo del banner de inicio*/
+.inicioJ #banner-saludo{
+  font-family: 'Pt Serif',serif;
+  background-color: #FA7479;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: -10px -5px  black;
+  margin-bottom: 0px;
+}
+
+/*Boton de añadir folder modal*/
+.btn-añadirFolderModal{
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+}
+
+.btn-añadirFolderModal:hover{
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
 }

@@ -7570,7 +7570,6 @@ $jscomp.polyfill = function (e, r, p, m) {
     M.initializeJqueryWrapper(Slider, 'slider', 'M_Slider');
   }
 })(cash, M.anime);
-var contador = 0;
 ;(function ($, anim) {
   $(document).on('click', '.card', function (e) {
     if ($(this).children('.card-reveal').length) {
@@ -7579,14 +7578,12 @@ var contador = 0;
         $card.data('initialOverflow', $card.css('overflow') === undefined ? '' : $card.css('overflow'));
       }
       var $cardReveal = $(this).find('.card-reveal');
-      
       if ($(e.target).is($('.card-reveal .card-title')) || $(e.target).is($('.card-reveal .card-title i'))) {
         // Make Reveal animate down and display none
-        contador--;
         anim({
           targets: $cardReveal[0],
           translateY: 0,
-          duration: 0,
+          duration: 225,
           easing: 'easeInOutQuad',
           complete: function (anim) {
             var el = anim.animatables[0].target;
@@ -7595,13 +7592,12 @@ var contador = 0;
           }
         });
       } else if ($(e.target).is($('.card .activator')) || $(e.target).is($('.card .activator i'))) {
-        contador++;
         $card.css('overflow', 'hidden');
         $cardReveal.css({ display: 'block' });
         anim({
           targets: $cardReveal[0],
           translateY: '-100%',
-          duration: 0,
+          duration: 300,
           easing: 'easeInOutQuad'
         });
       }

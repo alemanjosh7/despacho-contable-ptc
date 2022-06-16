@@ -37,8 +37,8 @@
                                     class="material-icons right usericon-apartadot">person</i></a>
                         </li>
                         <!--Boton de logout solo para tablets y computadoras-->
-                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger" data-position="bottom"
-                                data-tooltip="Cerrar Sesión"><img class="responsive-img"
+                        <li><a href="#cerrarSesionModal" class="logout-navbar tooltipped modal-trigger"
+                                data-position="bottom" data-tooltip="Cerrar Sesión"><img class="responsive-img"
                                     src="../resources/icons/logout-icon-navbar.png"></a></li>
                     </ul>
                 </div>
@@ -101,7 +101,8 @@
                         </div>
                     </a>
                     <!--Boton de logout solo para telefonos-->
-                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger" href="#cerrarSesionModal">
+                    <a class="row waves-effect hide-on-med-and-up botones-sidenav modal-trigger"
+                        href="#cerrarSesionModal">
                         <div class="col s6" id="icono-opcion-sidenav">
                             <img class="responsive-img user-icon" src="../resources/icons//logout-icon-sidenav.png">
                         </div>
@@ -129,11 +130,11 @@
                     <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Estas en inicio">>Empresas</a>
                 </div>
                 <!--Buscador-->
-                <form method="post" class="col m12 l10">
+                <form method="post" class="col m12 l10" id="buscador-form">
                     <div class="input-field col s12 m6 l4 offset-l3" id="contenedor-buscarempresas">
                         <i class="material-icons prefix small buscar-empresas tooltipped" data-position="top"
                             data-tooltip="Busca una empresa">search</i>
-                        <input id="inputbuscar-empresas" type="search" class="validate" placeholder="Buscar Empresa">
+                        <input id="inputbuscar-empresas" type="search" class="validate" placeholder="Buscar Empresa" name="search">
                     </div>
                     <div class="col s9 m6 l4">
                         <a class="waves-effect waves-ligth btn z-depth-3 modal-trigger" id="añadir-empresa"
@@ -145,161 +146,20 @@
             </div>
             <!--Parte de las cards para las empresas-->
             <div class="row" id="empresas-card">
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">Maribel de Bukele</h6>
-                            </div>
-                        </div>
-                    </div>
+                
+            </div>
+        </div>
+        <!--Preloader de carga-->
+        <div class="preloader-wrapper big active" id="preloader-cargarJ">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
                 </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">Aviatsa</h6>
-                            </div>
-                        </div>
-                    </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
                 </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">Peletería Jubis</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">Games Plus</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">Finca nombre de Dios</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Contenedor del card-->
-                <div class="col s12 m6 l3 contenedor-card">
-                    <div class="card">
-                        <div class="botones">
-                            <!--Boton de modificar y eliminar-->
-                            <div class="right-align botones-cardempresa">
-                                <a href="#modificar-empresamodal" class="modal-trigger tooltipped" data-position="left"
-                                    data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/modificar-empresa.png"></a>
-                                <a href="#eliminar-empresamodal" class="modal-trigger tooltipped" data-position="top"
-                                    data-tooltip="Eliminar Empresa"><img class="responsive-img"
-                                        src="../resources/icons/eliminar-empresa.png"></a>
-                            </div>
-                        </div>
-                        <!--Contenido del card-->
-                        <div class="card-content">
-                            <div class="imagen-cardempresa center-align">
-                                <img class="responsive-img" src="../resources/img/icono-empresa.png">
-                            </div>
-                            <div class="division-empresa"></div>
-                            <div class="center">
-                                <h6 class="">El naranjo</h6>
-                            </div>
-                        </div>
-                    </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
                 </div>
             </div>
         </div>
@@ -318,37 +178,37 @@
                 <!--Indicaciones del modal-->
                 <p class="center-align">Ingrese los datos para añadir un empresa</p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="formAñadir">
+                <form id="formAñadir">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
                         <!--Nombre del cliente-->
                         <div class="input-field col s12 m5 offset-m1 l4">
                             <input placeholder="Nombre del Cliente" id="nombre-clienteempr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombrecl">
                             <label for="nombre-clienteempr" class="labels-anadirempr">Cliente Nombre:</label>
                         </div>
                         <!--Apellido del cliente-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="Apellido del Cliente" id="apellido-clienteempr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="apellidocl">
                             <label for="apellido-clienteempr" class="labels-anadirempr">Cliente Apellido:</label>
                         </div>
                         <!--Nombre de la empresa-->
                         <div class="input-field col s12 m5 offset-m1 l4">
                             <input placeholder="Nombre de la empresa" id="empresa-empr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombreemp">
                             <label for="empresa-empr" class="labels-anadirempr">Nombre Empresa:</label>
                         </div>
                         <!--Número de contacto de la empresa-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="Número de empresa" id="numero-empr" type="tel"
-                                class="validate center-align inputs-añadirempr" maxlength="9">
+                                class="validate center-align inputs-añadirempr" maxlength="9" name="numero">
                             <label for="numero-empr" class="labels-anadirempr">Número de Contacto:</label>
                         </div>
                         <!--Correo de contacto de la empresa-->
                         <div class="input-field inline col s12 m5 offset-m1 l4">
                             <input placeholder="Correo de empresa" id="correo-empr" type="email"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="correo">
                             <label for="correo-empr" class="labels-anadirempr">Correo de Contacto:</label>
                             <span class="helper-text" data-error="correo invalido"
                                 data-success="correo aceptado"></span>
@@ -356,13 +216,13 @@
                         <!--Nit de la empresa-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="NIT de empresa" id="NIT-empr" type="text"
-                                class="validate center-align inputs-añadirempr" maxlength="17">
+                                class="validate center-align inputs-añadirempr" maxlength="17" name="nit">
                             <label for="NIT-empr" class="labels-anadirempr">NIT Empresa:</label>
                         </div>
                         <!--Dirección de la empresa-->
                         <div class="input-field col s12">
                             <textarea id="direccion-empr" placeholder="Dirección de empresa"
-                                class="materialize-textarea inputs-añadirempr"></textarea>
+                                class="materialize-textarea inputs-añadirempr" name="direccion"></textarea>
                             <label for="direccion-empr" class="labels-anadirempr">Dirección de la empresa</label>
                         </div>
                     </div>
@@ -448,7 +308,7 @@
                 </div>
                 <!--Contenido importante del modal-Boton de actualizar-->
                 <div class="center-align">
-                    <a href="index.html" class="waves-effect waves-light btn center-align"
+                    <a class="waves-effect waves-light btn center-align"
                         id="cerrarSesionModalbtn">Cerrar Sesión</a>
                 </div>
                 <!--Pie del modal-->
@@ -470,37 +330,43 @@
                 <!--Indicaciones del modal-->
                 <p class="center-align">Visualice los datos guardados de la empresa o modifiquelos</p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post">
+                <form id="formActualizar">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
+                        <!--ID de la empresa-->
+                        <div class="input-field col s12 m5 offset-m1 l4 hide">
+                            <input id="modid-empr" type="text"
+                                class="validate center-align inputs-añadirempr" name="id">
+                            <label for="nombre-clienteempr" class="labels-anadirempr">Cliente Nombre:</label>
+                        </div>
                         <!--Nombre del cliente-->
                         <div class="input-field col s12 m5 offset-m1 l4">
                             <input placeholder="Nombre del Cliente" id="modnombre-clienteempr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombrecl">
                             <label for="nombre-clienteempr" class="labels-anadirempr">Cliente Nombre:</label>
                         </div>
                         <!--Apellido del cliente-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="Apellido del Cliente" id="modapellido-clienteempr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="apellidocl">
                             <label for="apellido-clienteempr" class="labels-anadirempr">Cliente Apellido:</label>
                         </div>
                         <!--Nombre de la empresa-->
                         <div class="input-field col s12 m5 offset-m1 l4">
                             <input placeholder="Nombre de la empresa" id="modempresa-empr" type="text"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="nombreemp">
                             <label for="empresa-empr" class="labels-anadirempr">Nombre Empresa:</label>
                         </div>
                         <!--Número de contacto de la empresa-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="Número de empresa" id="modnumero-empr" type="tel"
-                                class="validate center-align inputs-añadirempr" maxlength="9">
+                                class="validate center-align inputs-añadirempr" maxlength="9" name="numero">
                             <label for="numero-empr" class="labels-anadirempr">Número de Contacto:</label>
                         </div>
                         <!--Correo de contacto de la empresa-->
                         <div class="input-field inline col s12 m5 offset-m1 l4">
                             <input placeholder="Correo de empresa" id="modcorreo-empr" type="email"
-                                class="validate center-align inputs-añadirempr">
+                                class="validate center-align inputs-añadirempr" name="correo">
                             <label for="correo-empr" class="labels-anadirempr">Correo de Contacto:</label>
                             <span class="helper-text" data-error="correo invalido"
                                 data-success="correo aceptado"></span>
@@ -508,13 +374,13 @@
                         <!--Nit de la empresa-->
                         <div class="input-field col s12 m5 l4">
                             <input placeholder="NIT de empresa" id="modNIT-empr" type="text"
-                                class="validate center-align inputs-añadirempr" maxlength="17">
+                                class="validate center-align inputs-añadirempr" maxlength="17" name="nit">
                             <label for="NIT-empr" class="labels-anadirempr">NIT Empresa:</label>
                         </div>
                         <!--Dirección de la empresa-->
                         <div class="input-field col s12">
                             <textarea id="moddireccion-empr" placeholder="Dirección de empresa"
-                                class="materialize-textarea inputs-añadirempr"></textarea>
+                                class="materialize-textarea inputs-añadirempr" name="direccion"></textarea>
                             <label for="direccion-empr" class="labels-anadirempr">Dirección de la empresa</label>
                         </div>
                     </div>
@@ -556,31 +422,32 @@
         </div>
     </main>
     <footer>
+        <!--Contenedor del menu para la páginación-->
         <div class="container">
             <div class="row">
                 <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center" id="pagnavg-atr">
                         <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
                                 class="material-icons medium">chevron_left</i></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
-                        <a><span>1</span></a>
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumeroi">1</span></a>
                     </div>
                 </div>
                 <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
-                        <a><span>2</span></a>
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumerof">2</span></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!">
                         <a><span>...</span></a>
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center">
+                    <div class="botonnavg-footer center" id="pagnavg-adl">
                         <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
                                 class="material-icons medium">chevron_right</i></a>
                     </div>
@@ -590,8 +457,11 @@
     </footer>
     <!-- Compilado y minimizado JavaScript -->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../controllers/empresas.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../controllers/online.js"></script>
+    <script type="text/javascript" src="../controllers/empresas.js"></script>
 </body>
 
 </html>
