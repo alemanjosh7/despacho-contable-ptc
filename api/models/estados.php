@@ -103,5 +103,5 @@ class Estados extends Validator
         $params = array($this->id_estado);
         return Database::executeRow($sql, $params);
     }
-    
+
 }

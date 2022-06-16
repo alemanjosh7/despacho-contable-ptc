@@ -81,11 +81,11 @@ class Folders extends Validator
     *   Metodos para consultas
     */
     //Función para consultar las empresas con limit
-    public function obtenerEmpresasLimit($limit)
+    public function obtenerFoldersLimit($limit)
     {
         $sql = 'SELECT id_folder, nombre_folder, fk_id_empresa, fk_id_estado
                 FROM folders
-                WHERE fk_id_estado = 4 AND fk_id_empresa = ? AND id_folder NOT IN (SELECT id_folder FROM folders ORDER BY id_folder DESC limit ?) ORDER BY id_folder DESC limit 6';
+                WHERE fk_id_estado = 4 AND fk_id_empresa = ?  OFFSET ? LIMIT 6';
         $params = array($this->fk_id_empresa,$limit);
         return Database::getRows($sql, $params);
     }
@@ -107,7 +107,7 @@ class Folders extends Validator
         $sql = 'SELECT id_folder, nombre_folder, fk_id_empresa, fk_id_estado
                 FROM folders
                 WHERE id_folder=? AND fk_id_estado = 4 AND fk_id_empresa = ?';
-        $params = array($this->id_folder,$this->id_empresa);
+        $params = array($this->id_folder,$this->fk_id_empresa);
         return Database::getRow($sql, $params); 
     }
 
@@ -117,9 +117,9 @@ class Folders extends Validator
     //Crear empresa
     public function crearFolder()
     {
-        $sql = 'INSERT INTO folders(nombre_folder)
-                VALUES (?);';
-        $params = array($this->nombre_folder);
+        $sql = 'INSERT INTO folders(nombre_folder,fk_id_empresa)
+                VALUES (?,?)';
+        $params = array($this->nombre_folder, $this->fk_id_empresa);
         return Database::executeRow($sql, $params);
     }
     //Actualizar empresa
@@ -141,10 +141,33 @@ class Folders extends Validator
         return Database::executeRow($sql, $params);
     }
     //Eliminar empresa NO SE USARA A MENOS QUE EL PROFESOR DIGA
-    public function eliminarEmpresa()
+    public function eliminarFolder()
     {
         $sql = 'DELETE FROM folders WHERE id_folder = ?';
         $params = array($this->id_folder);
         return Database::executeRow($sql, $params);
+    }
+
+    //Comprobar que exista un folder con el nombre actual (PARA CREAR)
+    public function checkFolderName()
+    {
+        $sql = 'SELECT id_folder FROM folders WHERE nombre_folder = ? AND fk_id_empresa = ? AND fk_id_estado = 4';
+        $params = array($this->nombre_folder,$this->fk_id_empresa);
+        if ($data = Database::getRow($sql, $params)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    //Comprobar que exista un folder con el nombre actual (PARA ACTUALIZAR)
+    public function checkFolderNameAct()
+    {
+        $sql = 'SELECT id_folder FROM folders WHERE nombre_folder = ? AND fk_id_empresa = ? AND fk_id_estado = 4 AND id_folder !=?';
+        $params = array($this->nombre_folder,$this->fk_id_empresa,$this->id_folder);
+        if ($data = Database::getRow($sql, $params)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

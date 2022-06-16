@@ -82,7 +82,7 @@ class Empresas extends Validator
     public function setDireccionEmp($value)
     {
         if ($this->validateString($value, 1, 150)) {
-            $this->correo_empresacontc = $value;
+            $this->direccion_empresa = $value;
             return true;
         } else {
             return false;
@@ -177,14 +177,13 @@ class Empresas extends Validator
                 FROM empresas AS emp
                 INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
                 INNER JOIN empresas_empleados AS epl ON epl.fk_id_empresa = emp.id_empresa
-                WHERE epl.fk_id_empleado=10 AND emp.fk_id_estado = ? OFFSET ?';
+                WHERE epl.fk_id_empleado=? AND emp.fk_id_estado = 4 OFFSET ? limit 6';
         $params = array($_SESSION['id_usuario'], $limit);
         return Database::getRows($sql, $params);
     }
 
     //Buscar empresas para el admin
 
-    //obtener el perfil del admin
     public function buscarEmpresasAdm($value)
     {
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
@@ -195,7 +194,7 @@ class Empresas extends Validator
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
-    //Editar o cambiar el perfil del admin
+    //buscar empresas para el que no es admin
     public function buscarEmpresaCl($value)
     {
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
@@ -210,7 +209,7 @@ class Empresas extends Validator
     //Buscar una empresa especifica
     public function obtenerEmpresa()
     {
-        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
+        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
         FROM empresas AS emp
         INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
         WHERE emp.fk_id_estado = 4 AND emp.id_empresa = ?';
