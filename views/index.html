@@ -24,16 +24,16 @@
             <div class="navbar-fixed">
                 <nav class="navbar-contenedorLogin z-depth-3 center-align">
                     <div class="icono-login">
-                        <img class="responsive-image " src="../resources/img/logo-login.png">
+                        <img class="responsive-image " src="../resources/img/logo-login2.png">
                     </div>
                 </nav>
             </div>
         </header>
         <main>
+            <!--Contenedor de Login-->
             <div class="container">
-                <!--Fila de la información-->
                 <div class="row login-container ">
-                    <!--Columna de información para el envio-->
+                    <!--Seccion izquierda del Login-->
                     <div class="col l6 m8 s12">
                         <div class="row login-col1 z-depth-5">
                             <div class="container-col1">
@@ -51,24 +51,28 @@
                             </div>
                         </div>
                     </div>
-                    <!--Columna de información para el envio-->
+                    <!--Seccion derecha del Login-->
                     <div class="col l6 m8 s12">
                         <div class="row login-col2 z-depth-5">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col s12 left-align Text-log">
                                     <b>Iniciar Sesión</b>
                                 </div>
-                                <!--Contenedor del apartado de los elementos de las compras-->
+                                <!--elementos del Login-->
                                 <div class="col s12" id="parte-orden">
                                     <div class="row">
                                         <div class="d-container-col1">
-                                            <form>
+                                            <form id="session-form">
+                                                <!--Inputs del nombre de usuario-->
                                                 <div class="col l10 m11 s10 input-field" id="titulo-orden">
-                                                    <input id="username" type="text" class="center-align">
+                                                    <input id="username" name="usuario" type="text"
+                                                        class="center-align">
                                                     <label for="username">Usuario</label>
                                                 </div>
+                                                <!--Inputs de la contraseña de usuario-->
                                                 <div class="input-field col l10 m11 s10">
-                                                    <input id="contraseña" type="password" class="center-align">
+                                                    <input id="contraseña" name="contrasena" type="password"
+                                                        class="center-align">
                                                     <label for="contraseña">Contraseña</label>
                                                     <i class="tooltipped material-icons prefix right-align"
                                                         data-position="top" data-tooltip="Mostrar/Ocultar"
@@ -81,11 +85,60 @@
                                 <div class="col s12 center-align">
                                     <div class="row">
                                         <div class="col l11 m6 offset-m2 s11 center-align">
-                                            <a href="./empresas.html" class="modal-trigger waves-effect waves-light btn"
-                                                id="Iniciar_btn">Continuar</a>
+                                            <!--Boton de iniciar sesión-->
+                                            <div>
+                                                <a class="modal-trigger waves-effect waves-light btn"
+                                                    id="Iniciar_btn">Continuar</a>
+                                            </div>
+                                            <!--Boton de Olvidar contraseña-->
                                             <div class="col m12 offset-m2 l12">
                                                 <a class="modal-trigger text-recuperar-contra" id="olvidarcontra_boton"
-                                                    href="#modalPIN">¿Olvidaste tu contraseña?</a>
+                                                    href="#modalAnadirFolder">¿Olvidaste tu contraseña?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Modal-->
+                                <div id="modalAnadirFolder" class="modal">
+                                    <div class="modal-content">
+                                        <!--Titulo del modal-->
+                                        <h4 class="center-align">Recuperar contraseña</h4>
+                                        <!--Indicaciones del modal-->
+                                        <p class="center-align">Antes de recuperar tu cuenta primero debes ingresar el
+                                            PIN para restablecer contraseñas mostrado al primer administrador y haber
+                                            colocado tu usuario en el formulario anterior</p>
+                                        <!--Formulario para ingresar PIN-->
+                                        <form method="post" id="pin-sesion">
+                                            <!--Fila del formulario-->
+                                            <div class="row filaform-empresa">
+                                                <!--input de PIN-->
+                                                <div class="input-field col s12 m6 offset-m3 offset-l3">
+                                                    <input placeholder="Ingrese el PIN" id="PIN-numeros" type="password"
+                                                        maxlength="6" name="pin"
+                                                        class="validate center-align inputs-añadirempr">
+                                                    <label for="nombre-clienteempr" class="labels-anadirempr">Inserte
+                                                        los 6 digitos</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="row">
+                                            <!--Campos o contenido importante del modal de actualizar contraseña-->
+                                            <div class="center">
+                                                <a class="waves-effect waves-ligth btn z-depth-2"
+                                                    id="btn-añadirFolderModal">
+                                                    <i class="material-icons left">add</i>Recuperar contraseña
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <div class="left col offset-s1 m5 l4">
+                                                    <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                                        id="cancelar-Añadirfold">
+                                                        <i class="material-icons left">keyboard_arrow_left</i>Cancelar
+                                                    </a>
+                                                </div>
+                                                <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                                    <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -95,6 +148,63 @@
                     </div>
                 </div>
             </div>
+
+             <!--Inicio del diseño del Modal de Restablecer contraseña-->
+            <div id="modalrestablecer" class="modal">
+                <div class="modal-content">
+                    <!--Titulo del modal-->
+                    <h4 class="center-align">Restablecer contraseña</h4>
+                    <!--Indicaciones del modal-->
+                    <p class="center-align">Ingresa tu nueva contraseña y confirmala para poder iniciar sesión</p>
+                    <!--Formulario para ingresar PIN-->
+                        <!--Fila del formulario-->
+                        <form class="row filaform-empresa" id="renovarcontr-form">
+                            <!--input de PIN-->
+                            <div class="input-field col s12 m6 offset-m3 offset-l3">
+                                <input placeholder="Contraseña actual" id="contraseña_nueva" type="password" class="validate center-align inputs-añadirempr"  name="contrasena" >
+                                <label for="contraseña_nueva" class="labels-anadirempr">Contraseña nueva</label>
+                            </div>
+                            <div class="input-field col s12 m6 offset-m3 offset-l3">
+                                <input placeholder="Confirma tu contraseña" id="contraseña_confirma" type="password" class="validate center-align inputs-añadirempr">
+                                <label for="contraseña_confirma" class="labels-anadirempr">Confirmación</label>
+                            </div>
+                        </form>
+                    <div class="row">
+                        <!--Campos o contenido importante del modal de actualizar contraseña-->
+                        <div class="center">
+                            <a class="waves-effect waves-ligth btn z-depth-2 btn-añadirFolderModal" id="restablecerContraseña"><i class="material-icons left">add</i>Recuperar contraseña
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="left col offset-s1 m5 l4">
+                                <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                    id="cancelar-Añadirfold">
+                                    <i class="material-icons left">keyboard_arrow_left</i>Cancelar
+                                </a>
+                            </div>
+                            <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                <h6 id="mensaje-anadirfold">El PIN no es el correcto</h6>
+                            </div>
+                            <div class="center col s12 m3 l4" id="preloader-añadirfold">
+                                <div class="preloader-wrapper active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!--No borrar del codigo-->
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large " id="hasta_arriba">
@@ -106,7 +216,9 @@
     </div>
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/index.js"></script>
 </body>
 
