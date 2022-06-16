@@ -166,12 +166,16 @@
                             <label for="empresa-empr" class="labels-anadirempr">Correo</label>
                         </div>
                         <!--Tipo del empleado-->
-                        <div class="select-tipo-empleado input-field col s12 m5 offset-m1 l6 center-align">
+                        <div class="select-tipo-empleado input-field col s12 m10 offset-m1 l6 center-align">
                             <!--Select box para escoger el tipo de empleado-->
                             <select>
                                 <option value="" disabled selected>¿Qué tipo de empleado es?</option>
                                 <option value="1">Tiempo Completo</option>
                                 <option value="2">Medio Tiempo</option>
+                                <option value="3">Pasantía</option>
+                                <option value="3">Pasantía</option>
+                                <option value="3">Pasantía</option>
+                                <option value="3">Pasantía</option>
                                 <option value="3">Pasantía</option>
                             </select>
                             <!--Label sobre tipo de empleado-->
@@ -404,10 +408,15 @@
                             <i class="large material-icons">more_horiz</i>
                         </a>
                         <ul>
-                            <li><a class="btn-floating red modal-trigger" href="#eliminar-empleadoomodal"><i
+                            <li><a class="btn-floating red modal-trigger tooltipped" data-position="bottom"
+                                    data-tooltip="Eliminar empleado" href="#eliminar-empleadoomodal"><i
                                         class="material-icons">delete</i></a></li>
-                            <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i
+                            <li><a class="btn-floating blue modal-trigger tooltipped" data-position="left"
+                                    data-tooltip="Modificar empleado" href="#editar-empleado"><i
                                         class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating green tooltipped eliminarbtn" data-position="right"
+                                    data-tooltip="Accesos a empresas" onclick="llenarEmpresas(1);"><i
+                                        class="material-icons">business</i></a></li>
                         </ul>
                     </div>
                     <!--Imagen de la Card donde muestra la foto del empleado-->
@@ -454,6 +463,9 @@
                                         class="material-icons">delete</i></a></li>
                             <li><a class="btn-floating blue modal-trigger" href="#editar-empleado"><i
                                         class="material-icons">edit</i></a></li>
+                            <li><a class="btn-floating green tooltipped eliminarbtn" data-position="right"
+                                    data-tooltip="Accesos a empresas" onclick="llenarEmpresas(2);"><i
+                                        class="material-icons">business</i></a></li>
                         </ul>
                     </div>
                     <!--Imagen de la Card donde muestra la foto del empleado-->
@@ -795,6 +807,47 @@
                 </div>
             </div>
         </div>
+        <div id="modalAnadirEmpresa" class="modal">
+            <div class="modal-content">
+                <!--Titulo del modal-->
+                <h4 class="center-align">Escoger acceso a empresas</h4>
+                <!--Indicaciones del modal-->
+                <p class="center-align indempr_j">Seleccione las empresas a las cual tendrá acceso y deshabilite a las
+                    que no
+                    tendrá acceso</p>
+                <!--Formulario para añadir una empresa-->
+                <div id="contEmpresas" class="row ">
+                    <p class="col s12 m4 l3 offset-l1">
+                        <label>
+                            <input type="checkbox" checked="checked" />
+                            <span>Vitae Erat Vel Inc.</span>
+                        </label>
+                    </p>
+                    <p class="col s12 m4 l3 offset-l1">
+                        <label>
+                            <input type="checkbox" checked="checked" />
+                            <span>Sapien Molestie Orci Corp.</span>
+                        </label>
+                    </p>
+                    <p class="col s12 m4 l3 offset-l1">
+                        <label>
+                            <input type="checkbox" checked="checked" />
+                            <span>Eu Euismod Ltd</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirempr">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <!--Contenedor del footer-->
@@ -838,9 +891,11 @@
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
+    <script type="text/javascript" src="../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../controllers/online.js"></script>
     <script src="../controllers/empleados.js"></script>
-    <script src="../controllers/validaciones.js"></script>
-    <script src="../controllers/modals.js"></script>
 </body>
 
 </html>

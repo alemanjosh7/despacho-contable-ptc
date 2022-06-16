@@ -249,8 +249,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIRFOLDERBTN.classList.add('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(elemen => 
+                        elemen.classList.add('hide')
+                        );
                 } else {
                     ANADIRFOLDERBTN.classList.remove('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.remove('hide')
+                        );
                 }
             });
         } else {
@@ -272,10 +278,10 @@ function fillTable(dataset) {
                     <div class="botones">
                         <!--Boton de modificar y eliminar-->
                         <div class="right-align botones-cardempresa">
-                            <a onclick="modFol(${row.id_folder})" class="tooltipped" data-position="left"
+                            <a onclick="modFol(${row.id_folder})" class="tooltipped eliminarbtn" data-position="left"
                                 data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
                                     src="../resources/icons/modificar-empresa.png"></a>
-                            <a onclick="delFol(${row.id_folder})" class="tooltipped" data-position="top"
+                            <a onclick="delFol(${row.id_folder})" class="tooltipped eliminarbtn" data-position="top"
                                 data-tooltip="Eliminar Folder"><img class="responsive-img"
                                     src="../resources/icons/eliminar-empresa.png"></a>
                         </div>
@@ -299,6 +305,7 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    comprobarAmin();
 }
 
 //Funciones para la páginación
