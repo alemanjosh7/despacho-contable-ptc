@@ -159,5 +159,29 @@ class archivos_subidosemp extends Validator
     }
 
     //Metodos SCRUD (Search, Create, Read, Update, Delete)
-    
+
+    public function crearArchivoEmp()
+    {
+        $sql = 'insert into archivos_subidosemp (nombre_archivo, fecha_subida, descripcion, fk_id_empleado, fk_id_empresa, fk_id_estado, tamano, nombre_original)
+        values (?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_archivo, $this->fecha_subida, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->fk_id_estado, $this->tamano, $this->nombre_original);
+        return Database::executeRow($sql, $params);
+    }
+
+
+    public function actualizarArchivoEmp()
+    {
+        $sql = 'update archivos_subidosemp set nombre_archivo = ?, fecha_subida = ?, descripcion = ?, fk_id_empleado = ?, fk_id_empresa = ?, fk_id_estado = ?, tamano = ?, nombre_original = ?
+        where id_archivos_subidosemp = ?';
+        $params = array($this->nombre_archivo, $this->fecha_subida, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->fk_id_estado, $this->tamano, $this->nombre_original, 
+        $this->id_archivos_subidosemp);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function eliminarArchivoEmp()
+    {
+        $sql = 'delete from archivos_subidosemp where id_archivos_subidosemp = ?';
+        $params = array($this->id_archivos_subidosemp);
+        return Database::executeRow($sql, $params);
+    }
 }
