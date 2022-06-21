@@ -326,8 +326,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIREMPRESABTN.classList.add('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.add('hide')
+                        );
                 } else {
                     ANADIREMPRESABTN.classList.remove('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.remove('hide')
+                        );
                 }
             });
         } else {
@@ -350,10 +356,10 @@ function fillTable(dataset) {
                     <div class="botones">
                         <!--Boton de modificar y eliminar-->
                         <div class="right-align botones-cardempresa">
-                            <a onclick="modEmp(${row.id_empresa})" class="tooltipped" data-position="left"
+                            <a onclick="modEmp(${row.id_empresa})" class="tooltipped eliminarbtn" data-position="left"
                                 data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
                                     src="../resources/icons/modificar-empresa.png"></a>
-                            <a onclick="delEmp(${row.id_empresa})"  class="tooltipped" data-position="top"
+                            <a onclick="delEmp(${row.id_empresa})"  class="tooltipped eliminarbtn" data-position="top"
                                 data-tooltip="Eliminar Empresa"><img class="responsive-img"
                                     src="../resources/icons/eliminar-empresa.png"></a>
                         </div>
@@ -377,6 +383,7 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    comprobarAmin();
 }
 
 //Funciones para la páginación
@@ -517,7 +524,7 @@ function modEmp(id) {
 }
 
 //Función para eliminar una empresa
-function delEmp(id){
+function delEmp(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
     form.append('id', id);
@@ -526,7 +533,7 @@ function delEmp(id){
 }
 
 //Función para setear el id de la empresa para el folder
-function redFold(id){
+function redFold(id) {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
@@ -543,7 +550,7 @@ function redFold(id){
                 if (response.status) {
                     location.href = 'folders.html';
                 } else {
-                    sweetAlert(3,'No se pudo redirigir a los folders de las empresas',null);
+                    sweetAlert(3, 'No se pudo redirigir a los folders de las empresas', null);
                 }
             });
         } else {
