@@ -119,6 +119,15 @@ saludoI = Variable para el saludo tras iniciar session
                     $result['exception'] = 'No se ha seleccionado una empresa, seleccione una en el menu de empresas';
                 }
                 break;
+            //Verificar si se ha seteado el id de la empresa
+            case 'getIdFolder':
+                if (isset($_SESSION['id_folder'])) {
+                    $result['status'] = 1;
+                    $result['id_folder'] = $_SESSION['id_folder'];
+                }else{
+                    $result['exception'] = 'No se ha seleccionado una empresa, seleccione una en el menu de empresas';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

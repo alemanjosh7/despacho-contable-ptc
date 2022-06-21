@@ -153,6 +153,7 @@ class Database
                 break;
             default:
                 self::$error = 'Ocurrio un error en la base de datos';
+                //self::$error = $message;
         }
     }
 

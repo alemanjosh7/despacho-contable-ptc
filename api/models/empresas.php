@@ -217,6 +217,28 @@ class Empresas extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Obtener empresas
+    public function obtenerEmpresas()
+    {
+        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
+        FROM empresas AS emp
+        INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado ORDER BY emp.id_empresa';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Obtener empresas asignadas para el checkbox
+    public function obtenerEmpresasAsignCheck($idemp)
+    {
+        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado, epl.fk_id_empleado
+                FROM empresas AS emp
+                INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
+                INNER JOIN empresas_empleados AS epl ON epl.fk_id_empresa = emp.id_empresa
+                WHERE epl.fk_id_empleado=? AND emp.fk_id_estado = 4';
+        $params = array($idemp);
+        return Database::getRows($sql, $params);
+    }
+
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
