@@ -343,9 +343,6 @@ function extensionVal(archivo) {
 function fillTable(dataset) {
     let content = '';
     PRELOADER.style.display = 'block';
-    if (extensionVal('nombrearch.mp4')) {
-
-    }
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
@@ -446,12 +443,15 @@ BOTONADELANTE.addEventListener('click', function () {
     //Volvemos a mostrár el boton de página anterior
     BOTONATRAS.style.display = 'block';
     //Ejecutamos la función para predecir si hay más páginas
+    //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
+    BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
     predecirAdelante();
     //Luego verificamos si el boton de adelante aun continua mostrandose
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
-        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+    }else{
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
 
@@ -581,4 +581,13 @@ function modArch(id) {
             console.log(request.status + ' ' + request.statusText);
         }
     });
+}
+
+//Eliminar archivo
+function delArch(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const form = new FormData();
+    form.append('id', id);
+    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js y paso el valor de 8 para recargar los clientes
+    confirmDeleteL(API_ARCHIVO, form, 0);
 }

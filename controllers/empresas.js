@@ -436,12 +436,15 @@ BOTONADELANTE.addEventListener('click', function () {
     //Volvemos a mostrár el boton de página anterior
     BOTONATRAS.style.display = 'block';
     //Ejecutamos la función para predecir si hay más páginas
+    //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
+    BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
     predecirAdelante();
     //Luego verificamos si el boton de adelante aun continua mostrandose
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
-        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+    }else{
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
 
