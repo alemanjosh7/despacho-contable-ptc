@@ -220,9 +220,9 @@ class Empresas extends Validator
     //Obtener empresas
     public function obtenerEmpresas()
     {
-        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
+        $sql = 'SELECT emp.id_empresa, emp.nombre_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
         FROM empresas AS emp
-        INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado ORDER BY emp.id_empresa';
+        INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado WHERE emp.fk_id_estado = 4 ORDER BY emp.id_empresa';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -230,7 +230,7 @@ class Empresas extends Validator
     //Obtener empresas asignadas para el checkbox
     public function obtenerEmpresasAsignCheck($idemp)
     {
-        $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado, epl.fk_id_empleado
+        $sql = 'SELECT emp.id_empresa, emp.nombre_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado, epl.fk_id_empleado
                 FROM empresas AS emp
                 INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
                 INNER JOIN empresas_empleados AS epl ON epl.fk_id_empresa = emp.id_empresa
@@ -274,5 +274,28 @@ class Empresas extends Validator
         $sql = 'DELETE FROM empresas WHERE id_empresa = ?';
         $params = array($this->id_empresa);
         return Database::executeRow($sql, $params);
+    }
+
+    //Comprobar que exista un folder con el nombre actual (PARA CREAR)
+    public function checkEmpresaName()
+    {
+        $sql = 'SELECT id_empresa FROM empresas WHERE nombre_empresa = ? AND fk_id_estado = 4';
+        $params = array($this->nombre_empresa);
+        if ($data = Database::getRow($sql, $params)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    //Comprobar que exista un folder con el nombre actual (PARA ACTUALIZAR)
+    public function checkEmpresaAct()
+    {
+        $sql = 'SELECT id_empresa FROM empresas WHERE nombre_empresa = ? AND fk_id_estado = 4 AND id_empresa !=?';
+        $params = array($this->nombre_empresa,$this->id_empresa);
+        if ($data = Database::getRow($sql, $params)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

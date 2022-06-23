@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
                 break;
-                //Obtener una empresa especifica
+                //Obtener un archivo especifico
             case 'readOne':
                 if (!$archivos->setIdFolder($_SESSION['id_folder'])) {
                     $result['exception'] = 'Folder incorrecto';
@@ -130,7 +130,7 @@ if (isset($_GET['action'])) {
                     } elseif (!$archivos->checkArchivoACT()) {
                         $result['exception'] = 'Ya hay un archivo con ese nombre en este folder';
                     } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                        if ($archivos->actualizarArchivo($data['nombre_archivo'],$data['tamano'],$data['fecha_subida'])) {
+                        if ($archivos->actualizarArchivo($data['nombre_archivo'], $data['tamano'], $data['fecha_subida'])) {
                             $result['status'] = 1;
                             $result['message'] = 'Archivo modificado correctamente';
                         } else {
@@ -143,7 +143,7 @@ if (isset($_GET['action'])) {
                         //$result['exception'] = $_FILES['archivo']['size'];
                     } elseif (!$archivos->setNombreArch($_FILES['archivo'])) {
                         $result['exception'] = $archivos->getFileError();
-                    } elseif ($archivos->actualizarArchivo($data['nombre_archivo'],$data['tamano'],$data['fecha_subida'])) {
+                    } elseif ($archivos->actualizarArchivo($data['nombre_archivo'], $data['tamano'], $data['fecha_subida'])) {
                         $result['status'] = 1;
                         if ($archivos->saveFile($_FILES['archivo'], $archivos->getRoute(), $archivos->getNombreArch())) {
                             $result['message'] = 'Archivo modificado correctamente';
@@ -156,7 +156,32 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
-
+                break;
+                //Eliminar
+            case 'delete':
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$archivos->setIdFolder($_SESSION['id_folder'])) {
+                        $result['exception'] = 'Empresa incorrecta';
+                    } elseif (!$archivos->setId($_POST['id'])) {
+                        $result['exception'] = 'Archivo incorrecto';
+                    } elseif (!$data = $archivos->obtenerArch()) {
+                        $result['exception'] = 'Folder inexistente';
+                    } elseif ($archivos->cambiarEstadoArch()) {
+                        $result['status'] = 1;
+                        $nuevaUbicacion = '../documents/archivosBorrados/'.$data['nombre_archivo'];
+                        $ubicacionActual = '../documents/archivosFolders/'.$data['nombre_archivo'];
+                        if(rename($ubicacionActual,$nuevaUbicacion)){
+                           $result['message'] = 'Archivo eliminado correctamente'; 
+                        }else{
+                            $result['message'] = 'Archivo eliminado correctamente pero no se pudo hacer respaldo'; 
+                        }
+                        
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
+                }
                 break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';

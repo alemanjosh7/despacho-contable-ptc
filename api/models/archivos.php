@@ -133,7 +133,7 @@ class Archivos extends Validator
     /*
     *   Metodos para consultas
     */
-    //Función para consultar las empresas con limit
+    //Función para consultar los archivos con limit
     public function obtenerArchivoLimit($limit)
     {
         $sql = 'SELECT id_archivo, nombre_archivo, fecha_subida, fk_id_folder, tamano, fk_id_estado, nombre_original
@@ -241,6 +241,13 @@ class Archivos extends Validator
      {
          $sql = 'DELETE FROM archivos WHERE id_archivo = ?';
          $params = array($this->id_archivo);
+         return Database::executeRow($sql, $params);
+     }
+
+     public function cambiarEstadoArch()
+     {
+         $sql = 'UPDATE archivos SET fk_id_estado = 3 WHERE id_archivo = ? and fk_id_folder = ?';
+         $params = array($this->id_archivo, $this->fk_id_folder);
          return Database::executeRow($sql, $params);
      }
 }

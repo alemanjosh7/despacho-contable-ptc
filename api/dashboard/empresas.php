@@ -87,6 +87,8 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Direccion de empresa invalido';
                     } elseif (!$empresas->setNitEmp($_POST['nit'])) {
                         $result['exception'] = 'Nit de empresa invalido';
+                    } elseif (!$empresas->checkEmpresaName()) {
+                        $result['exception'] = 'Ya hay una empresa con ese nombre';
                     } elseif ($empresas->crearEmpresa()) {
                         $result['status'] = 1;
                         $result['message'] = 'Empreza creada';
@@ -133,6 +135,8 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Direccion de empresa invalido';
                     } elseif (!$empresas->setNitEmp($_POST['nit'])) {
                         $result['exception'] = 'Nit de empresa invalido';
+                    } elseif (!$empresas->checkEmpresaAct()) {
+                        $result['exception'] = 'Ya hay una empresa con ese nombre';
                     } elseif ($empresas->actualizarEmpresa()) {
                         $result['status'] = 1;
                         $result['message'] = 'Empreza actualizada exitosamente';
@@ -182,6 +186,29 @@ if (isset($_GET['action'])) {
                 } else {
                     //Como no encontramos retornamos un dataset false
                     $result['dataset'] = false;
+                }
+                break;
+                //Obtener empresas para ambos usuario
+            case 'readEmprAllUser':
+                //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if ($result['dataset'] = $empresas->obtenerEmpresas()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empresas encontradas';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                    }
+                } else {
+                    if ($result['dataset'] = $empresas->obtenerEmpresasAsignCheck($_SESSION['id_usuario'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empresas encontradas';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                    }
                 }
                 break;
             default:
