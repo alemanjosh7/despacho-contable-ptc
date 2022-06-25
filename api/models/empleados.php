@@ -301,4 +301,15 @@ class Empleados extends Validator
         $params = array($limit);
         return Database::getRows($sql, $params);
     }
+
+    public function obtenerPerfilEmpleado()
+    {
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, correo_empleadocontc, dui_empleado, telefono_empleadocontc, usuario_empleado
+                FROM empleados
+                WHERE id_empleado = ?';
+         $params = array($_SESSION['id_usuario']);
+         return Database::getRows($sql, $params);
+    }
+
+
 }
