@@ -33,7 +33,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'nombreApellido':
-                if ($result['dataset'] = $admins->nombreApellidoEmpleado()) {
+                if ($result['dataset'] = $empleados->nombreApellidoEmpleado()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -41,6 +41,33 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
+            case 'readProfile':
+                    if ($result['dataset'] = $empleados->obtenerPerfilEmpleado()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Usuario inexistente';
+                    }
+                    break;
+             case 'actualizarContraL':
+                        $_POST = $empleados->validateForm($_POST);
+                        if (!$empleados->setId($_SESSION['id_usuario'])) {
+                            $result['exception'] = 'Empleado incorrecto';
+                        } elseif (!$empleados->checkContrasenaEmpleado($_POST['contrasena_actual'])) {
+                            $result['exception'] = 'Clave actual incorrecta';
+                            $result['message'] = $_POST['contrasena_actual'];
+                        } elseif ($_POST['contrasena_nueva'] != $_POST['contrasena_confirma']) {
+                            $result['exception'] = 'Claves nuevas diferentes';
+                        } elseif (!$empleados->setContrasena($_POST['contrasena_nueva'])) {
+                            $result['exception'] = $empleados->getPasswordError();
+                        } elseif ($empleados->cambiarContrasenaEmpleado()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Contraseña cambiada correctamente';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                 break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
