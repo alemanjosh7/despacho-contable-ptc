@@ -294,10 +294,10 @@ class Empleados extends Validator
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
     //Buscar empleados
-    public function buscarEmpleados($value)
+    public function buscarEmpleados($id, $value)
     {
-        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.nombre_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ? ORDER BY e.id_empleado';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
+        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE (e.id_empleado != ?) AND (e.nombre_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ?) ORDER BY e.id_empleado';
+        $params = array($id, "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
     //Crear empleado

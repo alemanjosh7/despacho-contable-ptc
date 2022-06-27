@@ -63,7 +63,7 @@ if (isset($_GET['action'])) {
                 $_POST = $empleados->validateForm($_POST);
                 if ($_POST['input-file'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $empleados->buscarEmpleados($_POST['input-file'])) {
+                } elseif ($result['dataset'] = $empleados->buscarEmpleados($_SESSION['id_usuario'], $_POST['input-file'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
