@@ -4,7 +4,7 @@
 *   Es clase hija de Validator.
 */
 
-class archivos_subidosemp extends Validator
+class archivosSubidos extends Validator
 
 {
     //Declaracion de atributos
@@ -21,7 +21,7 @@ class archivos_subidosemp extends Validator
 
     //Metodos para asignar valores y validar atributos
 
-    public function setIdArchSubidosEmp($value)
+    public function setIdArchivo($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id_archivos_subidosemp = $value;
@@ -113,7 +113,7 @@ class archivos_subidosemp extends Validator
 
     //Metodos para obtener valores de los atributos
 
-    public function getIdArchSubidosEmp()
+    public function getIdArchivo()
     {
         return $this->id_archivos_subidosemp;
     }
@@ -159,28 +159,45 @@ class archivos_subidosemp extends Validator
     }
 
     //Metodos SCRUD (Search, Create, Read, Update, Delete)
-
-    public function crearArchivoEmp()
+    public function searchArchivoSub()
     {
-        $sql = 'insert into archivos_subidosemp (nombre_archivo, fecha_subida, descripcion, fk_id_empleado, fk_id_empresa, fk_id_estado, tamano, nombre_original)
-        values (?, ?, ?, ?, ?, ?, ?, ?)';
+        $sql = 'SELECT id_archivos_subidosemp, nombre_archivo, fecha_subida, descripcion, "fk_id_empleado", "fk_id_empresa", tamano, nombre_original
+                FROM archivos_subidosemp INNER JOIN empresas ON archivos_subidosemp."fk_id_empresa" = empresas.id_empresa
+                WHERE nombre_archivo ILIKE ? OR nombre_empresa ILIKE ? 
+                ORDER BY nombre_archivo';
+        $params = array("%$value%", "%$value%");
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readAll()
+    {
+        $sql = 'SELECT sub.id_archivos_subidosemp, nombre_archivo, emp.nombre_empresa
+                FROM archivos_subidosemp sub
+                INNER JOIN empresas emp ON sub."fk_id_empresa" = emp.id_empresa 
+                ORDER BY nombre_archivo';
+        $params = null;
+        return Database::executeRow($sql, $params);
+    }
+
+    public function insertarArchivoSub()
+    {
+        $sql = 'INSERT INTO archivos_subidosemp (nombre_archivo, fecha_subida, descripcion, "fk_id_empleado", "fk_id_empresa", "fk_id_estado", tamano, nombre_original)
+        VALUES (?,?,?,?,?,?,?,?)';
         $params = array($this->nombre_archivo, $this->fecha_subida, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->fk_id_estado, $this->tamano, $this->nombre_original);
         return Database::executeRow($sql, $params);
     }
 
 
-    public function actualizarArchivoEmp()
+    public function actualizarArchivoSub()
     {
-        $sql = 'update archivos_subidosemp set nombre_archivo = ?, fecha_subida = ?, descripcion = ?, fk_id_empleado = ?, fk_id_empresa = ?, fk_id_estado = ?, tamano = ?, nombre_original = ?
-        where id_archivos_subidosemp = ?';
-        $params = array($this->nombre_archivo, $this->fecha_subida, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->fk_id_estado, $this->tamano, $this->nombre_original, 
-        $this->id_archivos_subidosemp);
+        $sql = '';
+        $params = array();
         return Database::executeRow($sql, $params);
     }
 
-    public function eliminarArchivoEmp()
+    public function eliminarArchivoSub()
     {
-        $sql = 'delete from archivos_subidosemp where id_archivos_subidosemp = ?';
+        $sql = 'DELETE FROM archivos_subidosemp WHERE id_archivos_subidosemp = ?';
         $params = array($this->id_archivos_subidosemp);
         return Database::executeRow($sql, $params);
     }

@@ -1,3 +1,6 @@
+// Constantes para establecer las rutas y parámetros de comunicación con la API.
+const API_ARCHIVOSUB = SERVER + 'dashboard/archivosSubidos.php?action=';
+
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
