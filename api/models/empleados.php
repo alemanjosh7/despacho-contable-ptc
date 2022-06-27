@@ -14,6 +14,7 @@ class Empleados extends Validator
     private $correo_empleadocontc = null; //correo del empleado
     private $usuario_empleado = null; //usuario del empleado
     private $contrasena_empleado = null; //contraseña del empleado
+    private $tipo_empleado = null; //tipo empleado
     private $id_tipo_empleado = null; //tipo empleado
     private $id_estado = null; //estado del empleado
 
@@ -103,6 +104,16 @@ class Empleados extends Validator
     public function setTipoEmpleado($value)
     {
         if ($this->validateNaturalNumber($value)) {
+            $this->tipo_empleado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdTipoEmpleado($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
             $this->id_tipo_empleado = $value;
             return true;
         } else {
@@ -171,6 +182,11 @@ class Empleados extends Validator
 
     public function getTipoEmpleado()
     {
+        return $this->tipo_empleado;
+    }
+
+    public function getIdTipoEmpleado()
+    {
         return $this->id_tipo_empleado;
     }
 
@@ -194,6 +210,19 @@ class Empleados extends Validator
             return false;
         }
     }
+
+    public function obtenerContra($id)
+    {
+        $sql = 'SELECT contrasena_empleado FROM empleados WHERE id_empleado = ?';
+        $params = array($id);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->contrasena_empleado = $data['contrasena_empleado'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Comprobar que el empleado exista y no este bloqueado en el 
     public function checkEmpleadosActivos()
     {
@@ -218,6 +247,7 @@ class Empleados extends Validator
             return false;
         }
     }
+
     //obtener empleado
     public function obtenerEmpleado($id)
     {
@@ -280,6 +310,7 @@ class Empleados extends Validator
     //Actualizar empleado
     public function actualizarEmpleado()
     {
+
         $sql = 'UPDATE empleados
                 SET nombre_empleado =?,apellido_empleado=?,dui_empleado=?,telefono_empleadocontc=?,correo_empleadocontc=?,usuario_empleado=?,contrasena_empleado=?,fk_id_tipo_empleado=?, fk_id_estado=?
                 WHERE id_empleado = ?';
@@ -289,16 +320,22 @@ class Empleados extends Validator
     //Eliminar empleado
     public function eliminarEmpleado()
     {
-        $sql = 'DELETE FROM empleados
-                WHERE id_empleado = ?';
+        $sql = 'UPDATE empleados SET fk_id_estado = 3 WHERE id_empleado = ?';
         $params = array($this->id_empleado);
         return Database::executeRow($sql, $params);
     }
     //Buscar empleados por limite
-    public function buscarEmpleadosLimite($limit)
+    public function buscarEmpleadosLimite($id, $limit)
     {
-        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado  WHERE id_empleado NOT IN (select id_empleado from empleados order by id_empleado limit ?) order by id_empleado limit 12';
-        $params = array($limit);
+        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.fk_id_estado != 3 and e.id_empleado != ? and id_empleado NOT IN (select id_empleado from empleados order by id_empleado limit ?) order by id_empleado limit 6';
+        $params = array($id, $limit);
+        return Database::getRows($sql, $params);
+    }
+
+    public function obtenerTipoEmpleado()
+    {
+        $sql = 'select tp.tipo_empleado, e.fk_id_tipo_empleado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado';
+        $params = null;
         return Database::getRows($sql, $params);
     }
 }

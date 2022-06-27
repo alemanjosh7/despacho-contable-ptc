@@ -41,13 +41,144 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo obtener la información necesaria para el saludo';
                 }
                 break;
+            case 'obtenerTipoEmpleado':
+                if ($result['dataset'] = $empleados->obtenerTipoEmpleado()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'readAllLimit':
+                if ($result['dataset'] = $empleados->buscarEmpleadosLimite($_SESSION['id_usuario'], $_POST['limit'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
+            case 'search':
+                $_POST = $empleados->validateForm($_POST);
+                if ($_POST['input-file'] == '') {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                } elseif ($result['dataset'] = $empleados->buscarEmpleados($_POST['input-file'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valor encontrado';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'create':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->setNombre($_POST['nombre-emp'])) {
+                    $result['exception'] = 'Nombre incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } else if (!$empleados->setApellido($_POST['apellido-emp'])) {
+                    $result['exception'] = 'Apellidoincorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setUsuario($_POST['usuario-emp'])) {
+                    $result['exception'] = 'Usuario incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
+                    $result['exception'] = 'Contraseña incorrecta';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!isset($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Seleccione un tipo de empleado';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setIdTipoEmpleado($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Tipo de empleado incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setDUI($_POST['dui-emp'])) {
+                    $result['exception'] = 'DUI incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setTelefono($_POST['telefono-emp'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
+                    $result['message'] = $_POST['telefono-emp'];
+                } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
+                    $result['exception'] = 'Correo incorrecto';
+                } elseif ($empleados->crearEmpleado()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'hi';
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'update':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->setId($_POST['id'])) {
+                    $result['exception'] = 'Empleado incorrecto';
+                    $result['message'] = $_POST['id'];
+                } elseif (!$data = $empleados->obtenerEmpleado($_POST['id'])) {
+                    $result['exception'] = 'Empleado inexistente';
+                } else if (!$empleados->setNombre($_POST['nombre-emp'])) {
+                    $result['exception'] = 'Nombre incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } else if (!$empleados->setApellido($_POST['apellido-emp'])) {
+                    $result['exception'] = 'Apellidoincorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setUsuario($_POST['usuario-emp'])) {
+                    $result['exception'] = 'Usuario incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } else if (!$data = $empleados->obtenerContra($_POST['id'])) {
+                    $result['exception'] = 'Contra inexistente';
+                } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp'])) || (!$empleados->setContrasena($empleados->getContrasena()))) {
+                    $result['exception'] = 'Contra incorrecta';
+                    $result['message'] = $data['contrasena_empleado'];
+                } elseif (!isset($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Seleccione un tipo de empleado';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setIdTipoEmpleado($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Tipo de empleado incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setDUI($_POST['dui-emp'])) {
+                    $result['exception'] = 'DUI incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setTelefono($_POST['telefono-emp'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
+                    $result['message'] = $_POST['telefono-emp'];
+                } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
+                    $result['exception'] = 'Correo incorrecto';
+                } elseif ($empleados->actualizarEmpleado()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['message'] = 'hi';
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'obtenerEmpleado':
+                if (!$empleados->setId($_POST['id'])) {
+                    $result['exception'] = 'Empleado incorrecto';
+                } elseif ($result['dataset'] = $empleados->obtenerEmpleado($_POST['id'])) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Empleado inexistente';
+                }
+                break;
+            case 'delete':
+                if (!$empleados->setId($_POST['id'])) {
+                    $result['exception'] = 'Empleado incorrecto';
+                } elseif (!$data = $empleados->obtenerEmpleado($_POST['id'])) {
+                    $result['exception'] = 'Empleado inexistente';
+                } elseif ($empleados->eliminarEmpleado($_POST['id'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Empleado eliminado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
-                $result['exception'] = 'Acción no disponible dentro de la sesión';
+                $result['exception'] = 'Acción no disponible dentro de la sesióna';
         }
     } else {
         // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
         switch ($_GET['action']) {
-            //Log in
+                //Log in
             case 'logIn':
                 $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
@@ -82,6 +213,7 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
+                $message['message'] = 'hi';
         }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

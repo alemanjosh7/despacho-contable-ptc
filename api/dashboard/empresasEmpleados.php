@@ -16,6 +16,15 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'readAll':
+                if ($result['dataset'] = $categorias->readCategories()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
+                }
+                break;
             case 'create':
                 $_POST = $empresas->validateForm($_POST);
                 //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
