@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('#modificar-empresamodal'), opcionesModalModificar);
     M.Modal.init(document.querySelectorAll('#eliminar-empresamodal'), opcionesModalEliminar);
     M.Modal.init(document.querySelectorAll('#cerrarSesionModal'));
+    AOS.init();
     //Inicializamos algunos metodos
     comprobarAmin();
     readRowsLimit(API_EMPRESAS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio

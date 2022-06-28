@@ -572,6 +572,7 @@ function crearArch() {
     INDICBTN.innerText = 'Subir Archivo';
     DESCARC.removeAttribute('disabled', null);
     SELECTEMP.removeAttribute('disabled', null);
+    archivoSubido.removeAttribute('disabled',null);
 }
 
 //Creamos función para previsualizar
@@ -632,6 +633,7 @@ function descArch(id) {
     INDICBTN.innerText = 'Descargar archivo';
     DESCARC.setAttribute('disabled', null);
     SELECTEMP.setAttribute('disabled', null);
+    archivoSubido.setAttribute('disabled',null);
     //Se muestra el cargador
     PRELOADER.style.display = 'block';
     // Se define un objeto con los datos del registro seleccionado.

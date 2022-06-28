@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('#modificar-foldermodal'), opcionesModalModificar);
     M.Modal.init(document.querySelectorAll('#eliminar-foldermodal'), opcionesModalEliminar);
     M.Modal.init(document.querySelectorAll('#cerrarSesionModal'));
+    AOS.init();
     //Inicializamos algunos metodos
     comprobarEmpresa();
     readRowsLimit(API_FOLDER, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
