@@ -167,9 +167,33 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } else if (!$data = $empleados->obtenerContra($_POST['id'])) {
                     $result['exception'] = 'Contra inexistente';
-                } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp'])) || (!$empleados->setContrasena($empleados->getContrasena()))) {
+                } elseif ($_POST['contra-emp'] == '') {
+                    if (!isset($_POST['tipo-de-empleado'])) {
+                        $result['exception'] = 'Seleccione un tipo de empleado';
+                        $result['message'] = $_POST['nombre-emp'];
+                    } elseif (!$empleados->setTipoEmpleado($_POST['tipo-de-empleado'])) {
+                        $result['exception'] = 'Tipo de empleado incorrecto';
+                        $result['message'] = $_POST['nombre-emp'];
+                    } elseif (!$empleados->setDUI($_POST['dui-emp'])) {
+                        $result['exception'] = 'DUI incorrecto';
+                        $result['message'] = $_POST['nombre-emp'];
+                    } elseif (!$empleados->setTelefono($_POST['telefono-emp'])) {
+                        $result['exception'] = 'Teléfono incorrecto';
+                        $result['message'] = $_POST['telefono-emp'];
+                    } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
+                        $result['exception'] = 'Correo incorrecto';
+                    } elseif (!$empleados->setEstado(isset($_POST['estado']) ? 4 : 5)) {
+                        $result['exception'] = 'Estado de empleado invalido';
+                    } elseif ($empleados->actualizarEmpleado()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empleado modificado excepto la contraseña';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No se pudo actualizar el empleado';
+                    }
+                } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp']))) {
                     $result['exception'] = 'Contra incorrecta';
-                    $result['message'] = $data['contrasena_empleado'];
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
                     $result['message'] = $_POST['nombre-emp'];
@@ -188,7 +212,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Estado de empleado invalido';
                 } elseif ($empleados->actualizarEmpleado()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Empleado modificado';
+                    $result['message'] = 'Empleado modificado con contraseña';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
