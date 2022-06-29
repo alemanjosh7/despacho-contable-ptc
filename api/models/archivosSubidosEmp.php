@@ -304,4 +304,12 @@ class archivosSubidosEmp extends Validator
         $params = array($this->id_archivos_subidosemp, $this->fk_id_empleado);
         return Database::executeRow($sql, $params);
     }
+
+    //Actualizar el estado del archivo a descargado
+    public function estadoDesc()
+    {
+        $sql = 'UPDATE archivos_subidosemp SET fk_id_estado = 2 WHERE id_archivos_subidosemp = ? AND fk_id_empleado = ?';
+        $params = array($this->id_archivos_subidosemp, $this->fk_id_empleado);
+        return Database::executeRow($sql, $params);
+    }
 }

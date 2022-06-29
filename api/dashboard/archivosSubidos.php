@@ -168,7 +168,7 @@ if (isset($_GET['action'])) {
                         $result['message'] = 'Archivo subido pero no se guardó el archivo en el servidor';
                     }
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = 'No se ha podido crear el archivo';
                 }
                 break;
                 //Obtener un archivo especifico
@@ -187,17 +187,34 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if (!$archivos->setIdArchSubidosEmp($_POST['id'])) {
                     $result['exception'] = 'Registro incorrecto';
+                } elseif (!$data = $archivos->setIdEmpleado($_SESSION['id_usuario'])) {
+                    $result['exception'] = 'Usuario inexistente';
                 } elseif (!$data = $archivos->obtenerArchivo()) {
                     $result['exception'] = 'Producto inexistente';
                 } elseif ($archivos->eliminarArchivoEmp()) {
                     $result['status'] = 1;
                     if ($archivos->deleteFile($archivos->getRoute(), $data['nombre_archivo'])) {
-                        $result['message'] = 'Producto eliminado correctamente';
+                        $result['message'] = 'Archivo eliminado correctamente';
                     } else {
-                        $result['message'] = 'Producto eliminado pero no se borró la imagen';
+                        $result['message'] = 'Archivo eliminado pero no se borró la imagen';
                     }
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = 'No se ha podido eliminar el archivo';
+                }
+                break;
+                //Actualizar a descargado para un archivo
+            case 'estadoDesc':
+                if (!$archivos->setIdArchSubidosEmp($_POST['id'])) {
+                    $result['exception'] = 'Registro incorrecto';
+                } elseif (!$data = $archivos->setIdEmpleado($_SESSION['id_usuario'])) {
+                    $result['exception'] = 'Usuario inexistente';
+                } elseif (!$data = $archivos->obtenerArchivo()) {
+                    $result['exception'] = 'Producto inexistente';
+                } elseif ($archivos->estadoDesc()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha cambiado su estado';
+                } else {
+                    $result['exception'] = 'No se ha podido actualizar su estado';
                 }
                 break;
             default:
