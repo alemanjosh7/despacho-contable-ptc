@@ -714,6 +714,27 @@ añadirArchivobtn.addEventListener('click', function () {
             document.body.appendChild(descabtn);
             descabtn.click();
             sweetAlert(1, 'La descarga del archivo a iniciado, si resulta un error puede reintentarlo, recuerde que puede borrar el archivo para liberar espacio y no acumular', null);
+            //Cambiamos el estado del archivo a descargado para reportes
+            let form2 = new FormData(document.getElementById('archForm'));
+            form2.append('id', IDARCH.value);
+            fetch(API_ARCHIVOS + 'estadoDesc', {
+                method: 'post',
+                body: form2
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
             break;
         case action = 'create':
             //Como es el caso para crear
