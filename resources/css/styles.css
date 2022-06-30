@@ -1877,8 +1877,6 @@ footer {
 }
 
 /*log in*/
-
-
 /*contenedor login*/
 .login-container {
   margin-top: 150px;
@@ -1916,6 +1914,12 @@ footer {
   text-transform: initial;
   text-decoration-color: black;
 }
+
+.Text-log{
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-size: 19px;
+  }  
 
 
 /*seccion izquierda login*/
@@ -1999,12 +2003,13 @@ footer {
 }
 
 /*texto login*/
-.Text-log {
-  margin-bottom: 25px;
-  margin-top: 20px;
-  font-size: 19px;
-
-
+.perfil-main  b{
+  font-size: 15px;
+  float: left;
+  color: #000;
+  margin-top: 25px;
+  margin-left: 30px;
+  margin-bottom: 26px;
 }
 
 
@@ -2731,71 +2736,162 @@ footer {
 
 /*Perfil y Info - Carlos*/
 #perfil-fondo {
-  background-image: url("../img/fondo.png");
+  background-image: url("../img/fondohd.png");
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
-/*inicio*/
-.info-img img {
-  height: 401px;
-  width: 100%;
+
+.info-img img{
+  height: 438px;
+  width: 375px;
+  margin-right: 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.info-main p {
-  font-size: 11px;
-  padding-top: 1%;
+.info-cont b{
+  font-size: 15px;
   float: left;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  color: #000;
+  margin-top: 24px;
+  margin-left: 12px;
+  margin-bottom: 24px;
+}
+
+.info-main p{
+  font-size: 14px;
+  padding-top: 0%;
+  float: left;
+  margin-left: 10%;
+  margin-bottom: 10px;
+
+}
+
+.info-main hr{
+ height: 2px;
+ background-color: black;
+ margin-top: 38px;
+ margin-bottom: 42px;
+ width: 118%;
+ margin-left: -26px;
+ position: relative;
 
 }
 
 .info-main #nombre_usuario-perfil {
   font-size: 14px;
   width: 220px;
-  margin-top: 8px;
+  margin-top: 2%;
+  margin-bottom: -4px;
+  border-bottom: none!important;
 }
 
 .info-main #apellido_usuario-perfil {
   font-size: 14px;
   width: 220px;
-  margin-top: 8px;
+  margin-top: 2%;
+  margin-bottom: -4px;
+  border-bottom: none!important;
 }
 
 .info-main #e-mail {
   font-size: 14px;
   width: 220px;
   margin-left: 7px;
-  margin-top: 8px;
+  margin-top: 2%;
+  margin-bottom: 1px;
+  border-bottom: none!important;
 }
 
 .info-main #dui_usuario-perfil {
   font-size: 14px;
   width: 150px;
   margin-left: 27px;
-  margin-bottom: -15px;
-  margin-top: 8px;
+  margin-top: 0%;
+  margin-bottom: -8px;
+  margin-left: -50px;
+  border-bottom: none!important;
 }
 
 .info-main #telefono_usuario-perfil {
   font-size: 14px;
   width: 150px;
-  margin-top: 8px;
+  margin-top: 0%;
+  margin-bottom: -4px;
+  margin-left: -85px;
+  border-bottom: none!important;
+}
+
+.perfil-todo #olvidarcontra_boton {
+  color: black;
+}
+
+.perfil-cont{
+  padding: 100%;
 }
 
 .perfil-cont #Username {
-  font-size: 14px;
-  width: 100px;
+  font-size: 18px;
+  margin-bottom: 35px;
+  margin-top: -100px;
+  width: 120px;
+  border-bottom: none!important;
 }
 
-.info-cont {
+.cambiar_btn{
+  margin-top:300px;
+}
+
+.info-cont{
+  padding: 100px;
   background-color: white;
-  height: 408px;
+  height: 438px;
+}
+
+.info-con b{
+ font-size: 100px;
+}
+
+.info-text {
+  margin-top: 100px;
 }
 
 
 .info-main {
-  padding: 2%;
+  padding: 10%;
+  padding-left: 25px;
+}
+
+.perfil-cont #Iniciar_btn {
+  background-color: #fa7479;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 500;
+  height: 55px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  width: 200px;
+  outline: none;
+  padding: 17px 14px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-transform: initial;
+  text-decoration-color: black;
+  margin-bottom: -20px;
 }
 
 
@@ -2808,23 +2904,35 @@ footer {
 
 }
 
-/*final*/
-
+#btn-2{
+  margin-top: 10px;
+}
 
 .perfil-todo {
   margin-top: 5%;
+  margin-left: -20%;
+  
 }
 
+.perfil-todo b{
+  font-size: 18px;
+ 
+}
+
+
 .perfil-cont {
+  height: 438px;
   background-color: white;
   margin-right: 2% !important;
 }
 
 .perfil-img img {
-  height: 120px;
+  height: 140px;
   width: auto;
+  margin-bottom: -15px;
+  margin-top: 80px;
+  margin-right: 75px;
 }
-
 
 .btn-volver {
   margin-top: 50px;
@@ -3021,7 +3129,6 @@ footer {
    }
 
 }
-
 
 /*Empresas - Jesus*/
 /*Preloader de carga para los elementos*/
