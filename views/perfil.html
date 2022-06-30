@@ -36,34 +36,33 @@
       <i class="material-icons right">home</i>
     </button>
     <!--Contenido principal-->
+     <!--Contenido principal-->
     <div class="container">
       <div class="row center perfil-todo">
-        <div class="col s12 offset-m2 m8 l4 z-depth-5 perfil-cont">
+        <div class="col s12 offset-m2 m8 l3 z-depth-5 perfil-cont">
           <!--Contenido de Perfil-->
           <div class="row perfil-main">
-            <h5>Perfil</h5>
+              <b>Perfil</b>
             <div class="row perfil-img">
-              <img src="../resources/icons/user-icon-sidenav.png" alt="">
+              <img src="../resources/img/iconuser.png">
             </div>
             <div>
               <!--Nombre de usuario-->
-              <p for="Username">Nombre de Usuario</p>
               <input value="Jesús" id="Username" name="Username"  type="text" class="validate center-align">
             </div>
             <div class="row btn-1">
-              <a class="waves-effect waves-light red lighten-1 btn modal-trigger" href="#cerrarSesionModal">Cerrar
-                Sesion</a>
+              <a class="waves-effect waves-light red lighten-1 btn modal-trigger"  id="Iniciar_btn" href="#cerrarSesionModal">Cerrar sesión</a>
             </div>
             <div class="row btn-2">
-              <a class="waves-effect waves-light red lighten-1 btn modal-trigger" href="#modalCambiarContraseña">Cambiar contraseña</a>
+              <a class="modal-trigger" id="olvidarcontra_boton" href="#modalCambiarContraseña">Cambiar contraseña</a>
             </div>
           </div>
         </div>
         <!--Contenido de Info de Cuenta-->
-        <div class="col s12 m8 offset-m2 l4 z-depth-5 info-cont">
-          <h5>Informacion de Cuenta</h5>
-          <hr>
+        <div class="col s12 m8 offset-m2 l4 z-depth-5 info-cont center-align">
+          <b>Información de cuenta</b>
           <div class="row info-main"  id="Text">
+            <hr>
             <div>
               <p for="nombre_usuario">Nombre:</p>
               <input value="Jesús" id="nombre_usuario-perfil" type="text" class="center-align">
@@ -83,17 +82,19 @@
            </div>
            <div class="input-field" id="inputs-datos">
             <p for="telefono_usuario">Telefono:</p>
-            <input value="7708-5832" id="telefono_usuario-perfil" type="password" class="validate center-align">
+            <input value="7708-5832" id="telefono_usuario-perfil" type="password" class="ocultar-mostrar validate center-align">
             <i class="tooltipped material-icons prefix right-align" data-position="bottom" data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_teleuser">visibility</i>
            </div>
-            
           </div>
         </div>
         <!--Side image de Info Cuenta-->
-        <div class="col s12 m8 offset-m2 l3">
-          <div class="row z-depth-5 info-img">
+        <div class="col s12 m8 offset-m2 l4">
+          <div class="row  info-img">
             <img src="../resources/img/contador.png" alt="">
           </div>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>
