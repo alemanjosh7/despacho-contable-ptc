@@ -2830,11 +2830,162 @@ footer {
   margin-top: 50px;
 }
 
+/*Otro*/
+@media screen and (min-width: 1560px) and (max-width: 1665px) {
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: -26%;
+    
+  }
+}
+
+@media screen and (min-width: 1160px) and (max-width:  1560px) {
+  .perfil-cont {
+    width: 100PX;
+    padding-bottom: -200px;
+  }
+
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: -26%;
+    
+  }
+  .perfil-img img {
+    height: 130px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 100px;
+    margin-right: 72px;
+  }
+
+  .info-main p{
+    font-size: 14px;
+    padding-top: 0%;
+    float: left;
+    margin-left: 10%;
+    margin-bottom: 1px;
+  
+  }
+
+  .info-main hr{
+    height: 2px;
+    background-color: black;
+    margin-top: 38px;
+    margin-bottom: 22px;
+    width: 118%;
+    margin-left: -26px;
+    position: relative;
+   
+   }
+
+   .perfil-cont #Username {
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: -50px;
+    width: 120px;
+    border-bottom: none!important;
+  }
+  
+}
+
+/*Otro*/
+@media screen and (min-width: 1290px) and (max-width: 1487px) {
+  .perfil-img img {
+    height: 100px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 100px;
+    margin-right: 77px;
+  }
+
+}
+
+@media screen and (min-width: 1111px) and (max-width: 1345px) {
+  .perfil-img img {
+    height: 90px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 110px;
+    margin-right: 77px;
+  }
+
+  
+  .perfil-cont #Username {
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: -50px;
+    width: 120px;
+    border-bottom: none!important;
+  }
+
+}
+
+@media screen and (min-width: 1111px) and (max-width: 1290px) {
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: -37%;
+    
+  }
+
+  .perfil-img img {
+    height: 90px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 110px;
+    margin-right: 77px;
+  }
+}
+
+
+@media screen and (min-width: 1111px) and (max-width: 1290px) {
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: -37%;
+    
+  }
+
+  .perfil-img img {
+    height: 90px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 110px;
+    margin-right: 77px;
+  }
+}
+
+
+
+
+
 /*Telefonos*/
 @media (max-width:600px) {
   .perfil-cont {
     margin-bottom: 5% !important;
   }
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: 0%;
+    
+  }
+
+  .info-img img{
+    display: none;
+   }
+
+   .perfil-img img {
+    height: 120px;
+    width: auto;
+    margin-bottom: -25px;
+    margin-top: 110px;
+    margin-right: 77px;
+  }
+
+   .info-cont{
+    padding: 100px;
+    background-color: white;
+    height: 468px;
+  }
+  
 }
 
 /*Tablets*/
@@ -2847,7 +2998,30 @@ footer {
   .perfil-cont {
     margin-bottom: 5% !important;
   }
+
+  .info-img img{
+   display: none;
+  }
+
+  .perfil-todo {
+    margin-top: 5%;
+    margin-left: 0%;
+    
+  }
+
+  .info-main hr{
+    height: 2px;
+    background-color: black;
+    margin-top: 38px;
+    margin-bottom: 22px;
+    width: 112%;
+    margin-left: -26px;
+    position: relative;
+   
+   }
+
 }
+
 
 /*Empresas - Jesus*/
 /*Preloader de carga para los elementos*/
