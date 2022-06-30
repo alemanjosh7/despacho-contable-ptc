@@ -18,6 +18,7 @@ class archivosSubidos extends Validator
     private $fk_id_estado = null;
     private $tamano = null;
     private $nombre_original;
+    private $ruta = '../documents/archivosEmpleados/';
 
     //Metodos para asignar valores y validar atributos
 
@@ -31,10 +32,10 @@ class archivosSubidos extends Validator
         }
     }
 
-    public function setNombreArchivo($value)
+    public function setNombreArchivo($file)
     {
         if ($this->validateFile($file)) {
-            $this->nombre_archivo = $value;
+            $this->nombre_archivo = $this->getFileName();
             return true;
         } else {
             return false;
@@ -53,7 +54,7 @@ class archivosSubidos extends Validator
 
     public function setDescripcion($value)
     {
-        if ($this->validateString($value)) {
+        if ($this->validateString($value, 1, 150)) {
             $this->descripcion = $value;
             return true;
         } else {
@@ -103,7 +104,7 @@ class archivosSubidos extends Validator
 
     public function setNombreOriginal($value)
     {
-        if ($this->validateString($value)) {
+        if ($this->validateString($value, 1, 200)) {
             $this->nombre_original = $value;
             return true;
         } else {
@@ -158,6 +159,11 @@ class archivosSubidos extends Validator
         return $this->nombre_original;
     }
 
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
+
     //Metodos SCRUD (Search, Create, Read, Update, Delete)
     public function searchArchivoSub()
     {
@@ -169,24 +175,38 @@ class archivosSubidos extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    public function readOne()
+    {
+        $sql = 'SELECT id_archivos_subidosemp, nombre_archivo, descripcion, "fk_id_empleado", "fk_id_empresa", nombre_original
+        FROM archivos_subidosemp WHERE id_archivos_subidosemp = ?';
+        $params = array($this->id_archivos_subidosemp);
+        return Database::getRow($sql, $params);
+    }
+
     public function readAll()
     {
-        $sql = 'SELECT sub.id_archivos_subidosemp, nombre_archivo, emp.nombre_empresa
+        $sql = 'SELECT sub.id_archivos_subidosemp, nombre_archivo, nombre_original, emp.nombre_empresa
                 FROM archivos_subidosemp sub
                 INNER JOIN empresas emp ON sub."fk_id_empresa" = emp.id_empresa 
                 ORDER BY nombre_archivo';
         $params = null;
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllEmp()
+    {
+        $sql = 'SELECT id_empresa, nombre_empresa FROM empresas';
+        $params = null;
+        return Database::getRows($sql, $params);
     }
 
     public function insertarArchivoSub()
     {
-        $sql = 'INSERT INTO archivos_subidosemp (nombre_archivo, fecha_subida, descripcion, "fk_id_empleado", "fk_id_empresa", "fk_id_estado", tamano, nombre_original)
-        VALUES (?,?,?,?,?,?,?,?)';
-        $params = array($this->nombre_archivo, $this->fecha_subida, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->fk_id_estado, $this->tamano, $this->nombre_original);
+        $sql = 'INSERT INTO archivos_subidosemp (nombre_archivo, descripcion, "fk_id_empleado", "fk_id_empresa", nombre_original)
+        VALUES (?,?,?,?,?)';
+        $params = array($this->nombre_archivo, $this->descripcion, $this->fk_id_empleado, $this->fk_id_empresa, $this->nombre_original);
         return Database::executeRow($sql, $params);
     }
-
 
     public function actualizarArchivoSub()
     {

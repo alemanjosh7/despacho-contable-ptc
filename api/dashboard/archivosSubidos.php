@@ -25,6 +25,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay archivos registrados';
                 }
                 break;
+            case 'readAllEmp':
+                if ($result['dataset'] = $archivosub->readAllEmp()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay empresas registradas';
+                }
+                break;
             case 'search':
                 $_POST = $archivosub->validateForm($_POST);
                 if ($_POST['search'] == '') {
@@ -40,54 +49,25 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $archivosub->validateForm($_POST);
-                if (!$archivosub->setNombreArchivo($_POST['nombres'])) {
-                    $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$archivosub->setFechaSubida($_POST['fecha'])) {
-                    $result['exception'] = 'Fecha incorrecta';
-                } elseif (!$archivosub->setDescripcion($_POST['descripcion'])) {
+                if (!$archivosub->setDescripcion($_POST['descripcion-arch'])) {
                     $result['exception'] = 'Descripcion incorrecta';
-                } elseif (!$archivosub->setIdEmpleado($_POST['fkEmpleado'])) {
+                } elseif (!$archivosub->setIdEmpleado($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Empleado incorrecto';
-                } elseif (!$archivosub->setIdEmpresa($_POST['fkEmpresa'])) {
+                } elseif (!$archivosub->setIdEmpresa($_POST['cmbEmpresa'])) {
                     $result['exception'] = 'Empresa incorrecto';
-                } elseif (!$archivosub->setIdEstado($_POST['fkEstado'])) {
-                    $result['exception'] = 'Estado incorrecto';
-                } elseif (!$archivosub->setTamano($_POST['tamano'])) {
-                    $result['exception'] = 'Tamaño incorrecto';
-                } elseif (!$archivosub->setNombreOriginal($_POST['nombreOriginal'])) {
+                } elseif (!$archivosub->setNombreOriginal($_POST['nombreArchivo-orgnl'])) {
                     $result['exception'] = 'Nombre original incorrecto';
+                } elseif (!is_uploaded_file($_FILES['archivosubido-arch']['tmp_name'])) {
+                    $result['exception'] = 'Seleccione un archivo';
+                } elseif (!$archivosub->setNombreArchivo($_FILES['archivosubido-arch'])) {
+                    $result['exception'] = $archivosub->getFileError();
                 } elseif ($archivosub->insertarArchivoSub()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Archivo añadido correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
-            case 'update':
-                $_POST = $archivosub->validateForm($_POST);
-                if (!$archivosub->setId($_POST['id'])) {
-                    $result['exception'] = 'Cliente incorrecto';
-                } elseif (!$archivosub->obtenerCliente()) {
-                    $result['exception'] = 'Cliente inexistente';
-                } elseif (!$archivosub->setNombre($_POST['nombre'])) {
-                    $result['exception'] = 'Nombres invalido';
-                } elseif (!$archivosub->setApellido($_POST['apellido'])) {
-                    $result['exception'] = 'Apellidos invalido';
-                } elseif (!$archivosub->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo invalido';
-                } elseif (!$archivosub->setDUI($_POST['dui'])) {
-                    $result['exception'] = 'DUI invalido';
-                } elseif (!$archivosub->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Telefono invalido';
-                } elseif (!$archivosub->setUsuario($_POST['usuario'])) {
-                    $result['exception'] = 'Usuario invalido';
-                } elseif (!$archivosub->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion invalida';
-                } elseif (!$archivosub->setEstado(isset($_POST['estado']) ? 8 : 9)) {
-                    $result['exception'] = 'DUI invalido';
-                } elseif ($archivosub->actualizarCliente()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Cliente modificado correctamente';
+                    if ($archivosub->saveFile($_FILES['archivosubido-arch'], $archivosub->getRuta(), $archivosub->getNombreArchivo())) {
+                        $result['message'] = 'Archivo añadido correctamente';
+                    } else {
+                        $result['message'] = 'Producto creado pero no se guardó la imagen';
+                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }
@@ -95,9 +75,15 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if (!$archivosub->setIdArchivo($_POST['id'])) {
                     $result['exception'] = 'Archivo incorrecto';
+                } elseif (!$data = $archivosub->readOne()) {
+                    $result['exception'] = 'Archivo inexistente';
                 } elseif ($archivosub->eliminarArchivoSub()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Archivo eliminado correctamente';
+                    if ($archivosub->deleteFile($archivosub->getRuta(), $data['nombre_archivo'])) {
+                        $result['message'] = 'Archivo eliminado correctamente';
+                    } else {
+                        $result['message'] = 'Producto eliminado pero no se borró la imagen';
+                    }
                 } else {
                     $result['exception'] = Database::getException();
                 }

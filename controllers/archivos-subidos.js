@@ -1,5 +1,6 @@
 // Constantes para establecer las rutas y parámetros de comunicación con la API.
 const API_ARCHIVOSUB = SERVER + 'dashboard/archivosSubidos.php?action=';
+const ENDPOINT_EMPRESAS = SERVER + 'dashboard/archivosSubidos.php?action=readAllEmp';
 
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'), opcionesModal);
     M.FormSelect.init(document.querySelectorAll('select'));
+    readRows(API_ARCHIVOSUB);
 });
 //Creamos las variables a utilizar
 //Nombre de la empresa
@@ -67,6 +69,8 @@ const preloaderAñadirArchivo = document.getElementById('preloader-añadirarh');
 const barraEstadoSub = document.getElementById('barraraprg-garch');
 //Constante del previsualizador del PDF
 const prevPDF = document.getElementById('prevPDF-arh');
+//Constante del contenedor de archivos subidos
+const contArchivoSub = document.getElementById('archivosub-container');
 //Preloader de confirmación de eliminación de empresa
 var preloaderEliminarempre = document.getElementById('confirmareliminarempr_preloader');
 //Boton de confirmación de eliminación del empresa
@@ -93,6 +97,30 @@ añadirArchivobtn.addEventListener('click', function () {
         mensaje.innerText = '¡No se permiten campos vacios!';
     }
 });
+
+//Funcion para preparar el formulario de añadir archivo
+function openCreate(){
+    //Se manda a llamar el modal y prepararlo para añadir un archivo
+    M.Modal.getInstance(document.getElementById('añadir-archivosub')).open();
+    //Muestra el titulo del modal
+    document.getElementById('modal-titulo').textContent = 'Añadir archivo';
+    //Se manda a llamar el archivo a subir para que se pueda insertar
+    document.getElementById('archivosubido-arch').required = true;
+    //Metodo que limpia el formulario que limpia campos despues de insertar
+    document.getElementById('save-form').reset();
+    //Cargan el select de las empresas a la que pertenece el archivo
+    fillSelect(ENDPOINT_EMPRESAS, 'cmbEmpresa', null);
+}
+
+//Funcion para borrar archivos
+function openDelete(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('id', id);
+    // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
+    confirmDelete(API_ARCHIVOSUB, data);
+}
+
 //Función al precionar el boton de regresar o cancelar añadir archivo
 cancelarArchivobtn.addEventListener('click', function () {
     let nombreArchivoInp = document.getElementById('nombreArchivo-input');
@@ -201,4 +229,50 @@ eliminarEmpresaBtn.addEventListener('click', function () {
 cancelEliminarEmprBtn.addEventListener('click', function () {
     preloaderEliminarempre.style.display = 'none';
     eliminarEmpresaBtn.classList.remove('disabled');
+});
+
+//Función para llenar el contenedor de clientes con los datos obtenidos del controlador de components
+function fillTable(dataset) {
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+            <div class="col l7 center m7">
+                <!--Contenedor del archivo-->
+                <div class="file-container">
+                    <!--Contendor donde va a estar el nombre y un ícono representativo del archivo por default-->
+                    <div class="file-name">
+                        <!--Imagen de ícono para los archivos-->
+                        <img src="../resources/icons/file-icon.png" alt="">
+                        <!--Nombre del archivo-->
+                        <p class="title-name">${row.nombre_original}</p>
+                    </div>
+                    <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
+                    <div class="file-options">
+                        <!--Boton para descargar-->
+                        <img src="../resources/icons/download.png" alt="">
+                        <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
+                        <a onclick="openDelete(${row.id_archivos_subidosemp})">
+                            <img src="../resources/icons/delete.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    contArchivoSub.innerHTML = content;
+}
+
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
+document.getElementById('save-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Se define una variable para establecer la acción a realizar en la API.
+    let action = '';
+    // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
+    (document.getElementById('id').value) ? action = 'update' : action = 'create';
+    // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
+    saveRow(API_ARCHIVOSUB, action, 'save-form', 'añadir-archivosub');
 });
