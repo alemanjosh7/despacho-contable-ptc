@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            //Leer todo pero con limite
+                //Leer todo pero con limite
             case 'readAllLimit':
                 //Comprobamos que halla seleccionado una empresa
                 if (isset($_SESSION['id_empresa'])) {
@@ -35,7 +35,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = '¡Lo sentimos! Debe seleccionar una empresa';
                 }
                 break;
-            //Buscador
+                //Buscador
             case 'search':
                 //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
                 if (isset($_SESSION['id_empresa'])) {
@@ -56,23 +56,28 @@ if (isset($_GET['action'])) {
                     $result['exception'] = '¡Lo sentimos! Debe seleccionar una empresa';
                 }
                 break;
-            //Crear
+                //Crear
             case 'create':
                 $_POST = $folders->validateForm($_POST);
-                if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
-                    $result['exception'] = 'Empresa incorrecta';
-                } elseif (!$folders->setNombreFol($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre del folder invalido';
-                } elseif (!$folders->checkFolderName()) {
-                    $result['exception'] = 'Ya hay un folder con ese nombre en esta empresa';
-                } elseif ($folders->crearFolder()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Folder creado';
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
+                        $result['exception'] = 'Empresa incorrecta';
+                    } elseif (!$folders->setNombreFol($_POST['nombre'])) {
+                        $result['exception'] = 'Nombre del folder invalido';
+                    } elseif (!$folders->checkFolderName()) {
+                        $result['exception'] = 'Ya hay un folder con ese nombre en esta empresa';
+                    } elseif ($folders->crearFolder()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Folder creado';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
                 } else {
-                    $result['exception'] = Database::getException();
+
+                    $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
                 break;
-            //Obtener una empresa especifica
+                //Obtener una empresa especifica
             case 'readOne':
                 if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
                     $result['exception'] = 'Empresa incorrecta';
@@ -86,39 +91,47 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Folder inexistente';
                 }
                 break;
-            //Actualizar
+                //Actualizar
             case 'update':
                 $_POST = $folders->validateForm($_POST);
-                if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
-                    $result['exception'] = 'Empresa incorrecta';
-                } elseif (!$folders->setId($_POST['id'])) {
-                    $result['exception'] = 'Folder incorrecto';
-                } elseif (!$folders->obtenerFolder()) {
-                    $result['exception'] = 'Folder inexistente';
-                } elseif (!$folders->setNombreFol($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre de folder invalido';
-                } elseif (!$folders->checkFolderNameAct()) {
-                    $result['exception'] = 'Ya hay un folder con ese nombre en esta empresa';
-                } elseif ($folders->actualizarFolder()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Folder actualizado exitosamente';
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
+                        $result['exception'] = 'Empresa incorrecta';
+                    } elseif (!$folders->setId($_POST['id'])) {
+                        $result['exception'] = 'Folder incorrecto';
+                    } elseif (!$folders->obtenerFolder()) {
+                        $result['exception'] = 'Folder inexistente';
+                    } elseif (!$folders->setNombreFol($_POST['nombre'])) {
+                        $result['exception'] = 'Nombre de folder invalido';
+                    } elseif (!$folders->checkFolderNameAct()) {
+                        $result['exception'] = 'Ya hay un folder con ese nombre en esta empresa';
+                    } elseif ($folders->actualizarFolder()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Folder actualizado exitosamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
                 break;
-            //Eliminar
+                //Eliminar
             case 'delete':
-                if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
-                    $result['exception'] = 'Empresa incorrecta';
-                } elseif (!$folders->setId($_POST['id'])) {
-                    $result['exception'] = 'Folder incorrecta';
-                } elseif (!$folders->obtenerFolder()) {
-                    $result['exception'] = 'Folder inexistente';
-                } elseif ($folders->cambiarEstadoFol()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Folder eliminado correctamente'; //Strawberry
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$folders->setIdEmpresa($_SESSION['id_empresa'])) {
+                        $result['exception'] = 'Empresa incorrecta';
+                    } elseif (!$folders->setId($_POST['id'])) {
+                        $result['exception'] = 'Folder incorrecta';
+                    } elseif (!$folders->obtenerFolder()) {
+                        $result['exception'] = 'Folder inexistente';
+                    } elseif ($folders->cambiarEstadoFol()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Folder eliminado correctamente'; //Strawberry
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
                 break;
             default:

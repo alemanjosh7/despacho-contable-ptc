@@ -16,13 +16,13 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            //Leer todo pero con limite
+                //Leer todo pero con limite
             case 'readAllLimit':
                 //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
                 if ($_SESSION['tipo_usuario'] == 4) {
                     if ($result['dataset'] = $empresas->obtenerEmpresasLimit($_POST['limit'])) {
                         $result['status'] = 1;
-                        $result['message'] = 'Empresas encontrados';
+                        $result['message'] = 'Empresas encontradas';
                     } elseif (Database::getException()) {
                         $result['exception'] = Database::getException();
                     } else {
@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 } else {
                     if ($result['dataset'] = $empresas->obtenerEmpresasAsignadas($_POST['limit'])) {
                         $result['status'] = 1;
-                        $result['message'] = 'Empresas encontrados';
+                        $result['message'] = 'Empresas encontradas';
                     } elseif (Database::getException()) {
                         $result['exception'] = Database::getException();
                     } else {
@@ -39,7 +39,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Buscador
+                //Buscador
             case 'search':
                 //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
                 if ($_SESSION['tipo_usuario'] == 4) {
@@ -68,31 +68,39 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Crear
+                //Crear
             case 'create':
                 $_POST = $empresas->validateForm($_POST);
-                if (!$empresas->setNombreClt($_POST['nombrecl'])) {
-                    $result['exception'] = 'Nombre de cliente invalido';
-                } elseif (!$empresas->setApellidoClt($_POST['apellidocl'])) {
-                    $result['exception'] = 'Apellido del cliente invalido';
-                } elseif (!$empresas->setNombreEmp($_POST['nombreemp'])) {
-                    $result['exception'] = 'Nombre de empresa invalido';
-                } elseif (!$empresas->setNumeroEmp($_POST['numero'])) {
-                    $result['exception'] = 'Número de empresa invalido';
-                } elseif (!$empresas->setCorreoEmp($_POST['correo'])) {
-                    $result['exception'] = 'Correo de empresa invalido';
-                } elseif (!$empresas->setDireccionEmp($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion de empresa invalido';
-                } elseif (!$empresas->setNitEmp($_POST['nit'])) {
-                    $result['exception'] = 'Nit de empresa invalido';
-                } elseif ($empresas->crearEmpresa()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Empreza creada';
+                //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$empresas->setNombreClt($_POST['nombrecl'])) {
+                        $result['exception'] = 'Nombre de cliente invalido';
+                    } elseif (!$empresas->setApellidoClt($_POST['apellidocl'])) {
+                        $result['exception'] = 'Apellido del cliente invalido';
+                    } elseif (!$empresas->setNombreEmp($_POST['nombreemp'])) {
+                        $result['exception'] = 'Nombre de empresa invalido';
+                    } elseif (!$empresas->setNumeroEmp($_POST['numero'])) {
+                        $result['exception'] = 'Número de empresa invalido';
+                    } elseif (!$empresas->setCorreoEmp($_POST['correo'])) {
+                        $result['exception'] = 'Correo de empresa invalido';
+                    } elseif (!$empresas->setDireccionEmp($_POST['direccion'])) {
+                        $result['exception'] = 'Direccion de empresa invalido';
+                    } elseif (!$empresas->setNitEmp($_POST['nit'])) {
+                        $result['exception'] = 'Nit de empresa invalido';
+                    } elseif (!$empresas->checkEmpresaName()) {
+                        $result['exception'] = 'Ya hay una empresa con ese nombre';
+                    } elseif ($empresas->crearEmpresa()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empreza creada';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = '¿Que haces?, tu usuario no puede hacer esto';
                 }
                 break;
-            //Obtener una empresa especifica
+                //Obtener una empresa especifica
             case 'readOne':
                 if (!$empresas->setId($_POST['id'])) {
                     $result['exception'] = 'Cliente incorrecto';
@@ -104,45 +112,103 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Empresa inexistente';
                 }
                 break;
-            //Actualizar
+                //Actualizar
             case 'update':
                 $_POST = $empresas->validateForm($_POST);
-                if (!$empresas->setId($_POST['id'])) {
-                    $result['exception'] = 'Empresa invalida';
-                } elseif (!$empresas->obtenerEmpresa()) {
-                    $result['exception'] = 'Empresa inexistente';
-                } elseif (!$empresas->setNombreClt($_POST['nombrecl'])) {
-                    $result['exception'] = 'Nombre de cliente invalido';
-                } elseif (!$empresas->setApellidoClt($_POST['apellidocl'])) {
-                    $result['exception'] = 'Apellido del cliente invalido';
-                } elseif (!$empresas->setNombreEmp($_POST['nombreemp'])) {
-                    $result['exception'] = 'Nombre de empresa invalido';
-                } elseif (!$empresas->setNumeroEmp($_POST['numero'])) {
-                    $result['exception'] = 'Número de empresa invalido';
-                } elseif (!$empresas->setCorreoEmp($_POST['correo'])) {
-                    $result['exception'] = 'Correo de empresa invalido';
-                } elseif (!$empresas->setDireccionEmp($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion de empresa invalido';
-                } elseif (!$empresas->setNitEmp($_POST['nit'])) {
-                    $result['exception'] = 'Nit de empresa invalido';
-                } elseif ($empresas->actualizarEmpresa()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Empreza actualizada exitosamente';
+                //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$empresas->setId($_POST['id'])) {
+                        $result['exception'] = 'Empresa invalida';
+                    } elseif (!$empresas->obtenerEmpresa()) {
+                        $result['exception'] = 'Empresa inexistente';
+                    } elseif (!$empresas->setNombreClt($_POST['nombrecl'])) {
+                        $result['exception'] = 'Nombre de cliente invalido';
+                    } elseif (!$empresas->setApellidoClt($_POST['apellidocl'])) {
+                        $result['exception'] = 'Apellido del cliente invalido';
+                    } elseif (!$empresas->setNombreEmp($_POST['nombreemp'])) {
+                        $result['exception'] = 'Nombre de empresa invalido';
+                    } elseif (!$empresas->setNumeroEmp($_POST['numero'])) {
+                        $result['exception'] = 'Número de empresa invalido';
+                    } elseif (!$empresas->setCorreoEmp($_POST['correo'])) {
+                        $result['exception'] = 'Correo de empresa invalido';
+                    } elseif (!$empresas->setDireccionEmp($_POST['direccion'])) {
+                        $result['exception'] = 'Direccion de empresa invalido';
+                    } elseif (!$empresas->setNitEmp($_POST['nit'])) {
+                        $result['exception'] = 'Nit de empresa invalido';
+                    } elseif (!$empresas->checkEmpresaAct()) {
+                        $result['exception'] = 'Ya hay una empresa con ese nombre';
+                    } elseif ($empresas->actualizarEmpresa()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empreza actualizada exitosamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
                 } else {
-                    $result['exception'] = Database::getException();
+                    $result['exception'] = '¿Que haces?, tu usuario no puede hacer esto';
+                }
+                //Eliminar
+            case 'delete':
+                //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if (!$empresas->setId($_POST['id'])) {
+                        $result['exception'] = 'Empresa incorrecta';
+                    } elseif (!$empresas->obtenerEmpresa()) {
+                        $result['exception'] = 'Empresa inexistente';
+                    } elseif ($empresas->cambiarEstadoEmp()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empresa eliminada correctamente'; //Strawberry
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = '¿Que haces?, tu usuario no puede hacer esto';
                 }
                 break;
-            //Eliminar
-            case 'delete':
-                if (!$empresas->setId($_POST['id'])) {
-                    $result['exception'] = 'Empresa incorrecta';
-                } elseif (!$empresas->obtenerEmpresa()) {
-                    $result['exception'] = 'Empresa inexistente';
-                } elseif ($empresas->cambiarEstadoEmp()) {
+                //Obtener todas las empresas
+            case 'readAll':
+                if ($result['dataset'] = $empresas->obtenerEmpresas()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Empresa eliminada correctamente'; //Strawberry
-                } else {
+                    $result['message'] = 'Empresas encontradas';
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                }
+                break;
+                //Obtener empresas asignadas
+            case 'readEmprAsg':
+                if ($result['dataset'] = $empresas->obtenerEmpresasAsignCheck($_POST['idemp'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Empresas encontradas';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    //Como no encontramos retornamos un dataset false
+                    $result['dataset'] = false;
+                }
+                break;
+                //Obtener empresas para ambos usuario
+            case 'readEmprAllUser':
+                //Comprobamos si es administrador para cargar todas las empresas o solo seleccionadas
+                if ($_SESSION['tipo_usuario'] == 4) {
+                    if ($result['dataset'] = $empresas->obtenerEmpresas()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empresas encontradas';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                    }
+                } else {
+                    if ($result['dataset'] = $empresas->obtenerEmpresasAsignCheck($_SESSION['id_usuario'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Empresas encontradas';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                    }
                 }
                 break;
             default:
