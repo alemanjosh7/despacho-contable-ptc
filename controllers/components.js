@@ -460,7 +460,7 @@ function predictLImit(api, limit) {
 function confirmDeleteL(api, data, limit) {
     Swal.fire({
         title: 'Advertencia',
-        text: '¿Desea eliminar el registro?',
+        text: '¿Desea eliminar el registro permanentemente?',
         icon: 'warning',
         showDenyButton: true,
         confirmButtonText: 'Si',
@@ -689,7 +689,7 @@ function logOut() {
 *
 *   Retorno: ninguno.
 */
-function fillSelect2(endpoint, select) {
+function fillSelect2(endpoint, select,indicacion, selected, disable) {
     fetch(endpoint, {
         method: 'get'
     }).then(function (request) {
@@ -700,16 +700,24 @@ function fillSelect2(endpoint, select) {
                 let content = '';
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se añade la opción de "Todas las categorias".
-                    content += '<option selected>Todas las categorias</option>';
+                    // Se añade la indicación pero se evalua si se desea deshabilitarla o no.
+                    if(disable){
+                      content += '<option disabled selected>'+indicacion+'</option>';  
+                    }else{
+                        content += '<option selected>'+indicacion+'</option>';
+                    } 
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
                         value = Object.values(row)[0];
                         // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
                         text = Object.values(row)[1];
-                        // Se añaden las opciones.
-                        content += `<option value="${value}">${text}</option>`;
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != selected) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
                     });
                 } else {
                     content += '<option>No hay opciones disponibles</option>';
@@ -810,7 +818,38 @@ function dynamicSearcher3Filter(api, form) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
                 } else {
-                    noDatos();
+                    sweetAlert(2,response.exception,null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros pero en caso hallan dos buscadores, este sería el secundarío.
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) 
+*   Retorno: ninguno.
+*/
+function dynamicSearcher3(api, form) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable2(response.dataset);
+                } else {
+                    // sweetAlert(1, response.message, null);
+                    noDatos2();
+                    // sweetAlert(2, response.exception, null);
                 }
             });
         } else {

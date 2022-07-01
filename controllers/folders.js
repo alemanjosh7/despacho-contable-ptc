@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('#modificar-foldermodal'), opcionesModalModificar);
     M.Modal.init(document.querySelectorAll('#eliminar-foldermodal'), opcionesModalEliminar);
     M.Modal.init(document.querySelectorAll('#cerrarSesionModal'));
+    AOS.init();
     //Inicializamos algunos metodos
     comprobarEmpresa();
     readRowsLimit(API_FOLDER, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
@@ -249,8 +250,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIRFOLDERBTN.classList.add('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(elemen => 
+                        elemen.classList.add('hide')
+                        );
                 } else {
                     ANADIRFOLDERBTN.classList.remove('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.remove('hide')
+                        );
                 }
             });
         } else {
@@ -272,10 +279,10 @@ function fillTable(dataset) {
                     <div class="botones">
                         <!--Boton de modificar y eliminar-->
                         <div class="right-align botones-cardempresa">
-                            <a onclick="modFol(${row.id_folder})" class="tooltipped" data-position="left"
+                            <a onclick="modFol(${row.id_folder})" class="tooltipped eliminarbtn" data-position="left"
                                 data-tooltip="Modificar/Visualizar Folders"><img class="responsive-img"
                                     src="../resources/icons/modificar-empresa.png"></a>
-                            <a onclick="delFol(${row.id_folder})" class="tooltipped" data-position="top"
+                            <a onclick="delFol(${row.id_folder})" class="tooltipped eliminarbtn" data-position="top"
                                 data-tooltip="Eliminar Folder"><img class="responsive-img"
                                     src="../resources/icons/eliminar-empresa.png"></a>
                         </div>
@@ -299,6 +306,7 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    comprobarAmin();
 }
 
 //Funciones para la páginación
@@ -351,12 +359,15 @@ BOTONADELANTE.addEventListener('click', function () {
     //Volvemos a mostrár el boton de página anterior
     BOTONATRAS.style.display = 'block';
     //Ejecutamos la función para predecir si hay más páginas
+    //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
+    BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
     predecirAdelante();
     //Luego verificamos si el boton de adelante aun continua mostrandose
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
-        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+    }else{
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
 

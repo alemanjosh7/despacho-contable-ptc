@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                     </a>
                                     <!--Boton de Archivos subidos-->
-                                    <a class="row waves-effect  botones-sidenav" href="archivos-subidos.html">
+                                    <a class="row waves-effect  botones-sidenav" href="archivosSubidos.html">
                                         <div class="col s6" id="icono-opcion-sidenav">
                                             <img class="responsive-img" src="../resources/icons/archivossub-icon-sidenav.png">
                                         </div>
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                     </a>
                                     <!--Boton de Archivos subidos-->
-                                    <a class="row waves-effect  botones-sidenav" href="archivos-subidos.html">
+                                    <a class="row waves-effect  botones-sidenav" href="archivosSubidos.html">
                                         <div class="col s6" id="icono-opcion-sidenav">
                                             <img class="responsive-img" src="../resources/icons/archivossub-icon-sidenav.png">
                                         </div>

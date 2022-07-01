@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" media="screen,projection" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../resources/css/styles.css" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
@@ -177,6 +178,16 @@
                 <h4 class="center-align">Añadir Empresa</h4>
                 <!--Indicaciones del modal-->
                 <p class="center-align">Ingrese los datos para añadir un empresa</p>
+                <!--Estado del cliente-->
+                <div class="switch col m7 l6 s12 switch-container redd" id="estado_check">
+                    <span><b>Guardar con DUI o NIT:&nbsp&nbsp</b></span>
+                    <label class="label_check">
+                        DUI
+                        <input type="checkbox" name="estado" class="check-color lleno" id="estadoEmp" checked="checked">
+                        <span class="lever"></span>
+                        NIT
+                    </label>
+                </div>
                 <!--Formulario para añadir una empresa-->
                 <form id="formAñadir">
                     <!--Fila del formulario-->
@@ -215,9 +226,9 @@
                         </div>
                         <!--Nit de la empresa-->
                         <div class="input-field col s12 m5 l4">
-                            <input placeholder="NIT de empresa" id="NIT-empr" type="text"
+                            <input placeholder="NIT o DUI de empresa" id="NIT-empr" type="text"
                                 class="validate center-align inputs-añadirempr" maxlength="17" name="nit">
-                            <label for="NIT-empr" class="labels-anadirempr">NIT Empresa:</label>
+                            <label for="NIT-empr" class="labels-anadirempr">NIT O DUI Empresa:</label>
                         </div>
                         <!--Dirección de la empresa-->
                         <div class="input-field col s12">
@@ -458,6 +469,7 @@
     <!-- Compilado y minimizado JavaScript -->
     <script type="text/javascript" src="../js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>

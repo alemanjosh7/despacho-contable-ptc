@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('#modificar-empresamodal'), opcionesModalModificar);
     M.Modal.init(document.querySelectorAll('#eliminar-empresamodal'), opcionesModalEliminar);
     M.Modal.init(document.querySelectorAll('#cerrarSesionModal'));
+    AOS.init();
     //Inicializamos algunos metodos
     comprobarAmin();
     readRowsLimit(API_EMPRESAS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
@@ -146,7 +147,13 @@ NITempr.addEventListener('keypress', function (e) {
 });
 //Validar guión en el número de NIT
 NITempr.addEventListener('keyup', e => {
-    guionNIT(e, NITempr);
+    if(document.getElementById('estadoEmp').checked){
+        //Desea evaluar como nit
+        guionNIT(e, NITempr);
+    }else{
+        //Desea dui
+        guionDUI(e,NITempr);
+    }
 });
 //Validar solo letras en el nombre del cliente
 nombreCliente.addEventListener('keypress', function (e) {
@@ -326,8 +333,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIREMPRESABTN.classList.add('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.add('hide')
+                        );
                 } else {
                     ANADIREMPRESABTN.classList.remove('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                        element.classList.remove('hide')
+                        );
                 }
             });
         } else {
@@ -350,10 +363,10 @@ function fillTable(dataset) {
                     <div class="botones">
                         <!--Boton de modificar y eliminar-->
                         <div class="right-align botones-cardempresa">
-                            <a onclick="modEmp(${row.id_empresa})" class="tooltipped" data-position="left"
+                            <a onclick="modEmp(${row.id_empresa})" class="tooltipped eliminarbtn" data-position="left"
                                 data-tooltip="Modificar/Visualizar Empresa"><img class="responsive-img"
                                     src="../resources/icons/modificar-empresa.png"></a>
-                            <a onclick="delEmp(${row.id_empresa})"  class="tooltipped" data-position="top"
+                            <a onclick="delEmp(${row.id_empresa})"  class="tooltipped eliminarbtn" data-position="top"
                                 data-tooltip="Eliminar Empresa"><img class="responsive-img"
                                     src="../resources/icons/eliminar-empresa.png"></a>
                         </div>
@@ -377,6 +390,7 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    comprobarAmin();
 }
 
 //Funciones para la páginación
@@ -429,12 +443,15 @@ BOTONADELANTE.addEventListener('click', function () {
     //Volvemos a mostrár el boton de página anterior
     BOTONATRAS.style.display = 'block';
     //Ejecutamos la función para predecir si hay más páginas
+    //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
+    BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
     predecirAdelante();
     //Luego verificamos si el boton de adelante aun continua mostrandose
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
-        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 2;
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
+    }else{
+        BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
 
@@ -517,7 +534,7 @@ function modEmp(id) {
 }
 
 //Función para eliminar una empresa
-function delEmp(id){
+function delEmp(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
     form.append('id', id);
@@ -526,7 +543,7 @@ function delEmp(id){
 }
 
 //Función para setear el id de la empresa para el folder
-function redFold(id){
+function redFold(id) {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
@@ -543,7 +560,7 @@ function redFold(id){
                 if (response.status) {
                     location.href = 'folders.html';
                 } else {
-                    sweetAlert(3,'No se pudo redirigir a los folders de las empresas',null);
+                    sweetAlert(3, 'No se pudo redirigir a los folders de las empresas', null);
                 }
             });
         } else {
@@ -551,3 +568,14 @@ function redFold(id){
         }
     });
 }
+
+/*Identificar si es empresa juridica o natural*/
+document.getElementById('estadoEmp').addEventListener('change',function(){
+    if(document.getElementById('estadoEmp').checked){
+        //Es empresa juridica
+        NITempr.setAttribute('maxlength',17);
+    }else{
+        //Es natural o sea que es dui
+        NITempr.setAttribute('maxlength',10);
+    }
+});

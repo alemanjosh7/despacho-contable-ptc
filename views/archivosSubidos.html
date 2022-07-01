@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" media="screen,projection" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../resources/css/styles.css" media="screen,projection" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
@@ -16,17 +15,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!--Icono del sitio web-->
     <link rel="icon" href="../resources/icons/icono-web.png">
-    <title>Folders</title>
+    <title>Archivos Subidos/Empleados</title>
 </head>
 
-<body class="jesusparte">
+<body>
+
     <header>
         <!--Navbar-->
         <div class="navbar-fixed">
             <nav class="navbar-contenedor z-depth-3">
                 <div class="nav-wrapper">
                     <!--Titulo del apartado-->
-                    <a href="#!" class="brand-logo center titulo-nav"><span>Folders</span></a>
+                    <a href="#!" class="brand-logo center titulo-nav"><span>Archivos-subidos</span></a>
                     <!--Boton para el sidenav responsive-->
                     <a href="#" data-target="side-navbarcont" class="sidenav-trigger"><i
                             class="material-icons menuicon-navbar">menu</i></a>
@@ -116,162 +116,16 @@
         </ul>
     </header>
     <main>
-        <!--Contenedor de las empresas-->
-        <div class="contenedor-empresas">
-            <!--Fila del subnav-->
-            <div class="row">
-                <!--Columna Indicadora-->
-                <div class="col s12 l6">
-                    <div class="col l2 m2 s3 left-align" id="div-regresarbotonfolders">
-                        <a href="javascript: history.go(-1)" id="regresar_btnfolders" class="tooltipped"
-                            data-tooltip="Regresar a página anterior" data-position="left">
-                            Volver |</a>
-                    </div>
-                    <!--Icono de home-->
-                    <div class="col s2 m1 l1 " id="conthomeicon-subnavfold">
-                        <a href="inicio.html" class="logout-navbar tooltipped" data-position="top"
-                            data-tooltip="Regresar a Inicio"><img class="responsive-img"
-                                src="../resources/icons/home-icon-empresas.png"></a>
-                    </div>
-                    <!--Parte que indica en que página se encuentra-->
-                    <div class="col s4 m3 l3" id="contapartado-subnavfold">
-                        <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Regresar a Empresas" href="javascript: history.go(-1)">>
-                            Empresas</a>
-                    </div>
-                    <div class="col s3 m2 l2 indicador-fold" id="contapartado-subnavfold">
-                        <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Estas en Folders">>
-                            Folders</a>
-                    </div>
-                </div>
-                <!--Columna del buscador-->
-                <div class="col s12 l6 col-buscadorfold">
-                    <form method="post" id="buscador-form">
-                        <div class="input-field col s11 m6 l7" id="contenedor-buscarfolders">
-                            <i class="material-icons prefix small buscar-empresas tooltipped" data-position="top"
-                                data-tooltip="Busca un Folder">search</i>
-                            <input id="inputbuscar-empresas" type="search" class="validate"
-                                placeholder="Buscar Folders" name="search">
-                        </div>
-                        <div class="col s12 m6 l5">
-                            <a class="waves-effect waves-ligth btn z-depth-3 modal-trigger" id="añadir-folder"
-                                href="#modalAnadirFolder">
-                                <i class="material-icons left">add</i>Añadir Folder
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!--Fila de los folders-->
-            <div class="row" id="folders-card">
-            </div>
-        </div>
-        <!--Preloader de carga-->
-        <div class="preloader-wrapper big active" id="preloader-cargarJ">
-            <div class="spinner-layer spinner-red-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
-        </div>
-        <!--No borrar del codigo-->
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large " id="hasta_arriba">
-                <i class="large material-icons">arrow_upward</i>
-            </a>
-            <ul>
-        </div>
-        <!--Diseño de logout-->
-        <div id="cerrarSesionModal" class="modal">
+        <!--Diseño de confirmación de eliminar archivos-->
+        <div id="eliminar-archivomodal" class="modal">
             <div class="fondo-modaldatos modal-content">
+                <!--Botón para confirmar si desea eliminar el archivo permanentemente-->
                 <div class="center-align">
-                    <h4>Confirmación de cerrar sesión</h4>
-                    <p>¿Desea cerrar sesión?</p>
-                </div>
-                <!--Contenido importante del modal-Boton de actualizar-->
-                <div class="center-align">
-                    <a class="waves-effect waves-light btn center-align"
-                        id="cerrarSesionModalbtn">Cerrar Sesión</a>
-                </div>
-                <!--Pie del modal-->
-                <div class="modal-footer" id="fondomodal-footer">
-                    <div class="left col offset-s1 m5 l4">
-                        <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
-                            id="cancelar-cerrarSesion">
-                            <i class="material-icons left">keyboard_arrow_left</i>Regresar
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Modal de añadir Folders-->
-        <div id="modalAnadirFolder" class="modal">
-            <div class="modal-content">
-                <!--Titulo del modal-->
-                <h4 class="center-align">Añadir Folder</h4>
-                <!--Indicaciones del modal-->
-                <p class="center-align">Ingrese el nombre del nuevo folder a añadir a la empresa</p>
-                <!--Formulario para añadir una empresa-->
-                <form method="post" id="formAnadir">
-                    <!--Fila del formulario-->
-                    <div class="row filaform-empresa">
-                        <!--Nombre del Folder-->
-                        <div class="input-field col s12 m6 offset-m3 offset-l3">
-                            <input placeholder="Nombre del Folder" id="nombre-folder" type="text"
-                                class="validate center-align inputs-añadirempr" name="nombre">
-                            <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
-                        </div>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="center">
-                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirFolderModal">
-                            <i class="material-icons left">add</i>Añadir Folder
-                        </a>
-                    </div>
-                    <div class="row">
-                        <div class="left col offset-s1 m5 l4">
-                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
-                                id="cancelar-Añadirfold">
-                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
-                            </a>
-                        </div>
-                        <div class="left col s12 m7 l4 center-align mensaje-modal">
-                            <h6 id="mensaje-anadirfold">¡Verifique que los campos no esten vacios!</h6>
-                        </div>
-                        <div class="center col s12 m3 l4" id="preloader-añadirfold">
-                            <div class="preloader-wrapper active">
-                                <div class="spinner-layer spinner-red-only">
-                                    <div class="circle-clipper left">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="gap-patch">
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="circle-clipper right">
-                                        <div class="circle"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Diseño de confirmación de eliminar Folder-->
-        <div id="eliminar-foldermodal" class="modal">
-            <div class="fondo-modaldatos modal-content">
-                <div class="center-align">
-                    <h4>Confirmar Elminación de Folder</h4>
-                    <p>¿Desea Eliminar el folder y sus archivos permanentemente?</p>
+                    <h4>Confirmar Elminación del Archivo</h4>
+                    <p>¿Desea eliminar el archivo permanentemente?</p>
                 </div>
                 <!--Preloader de la actualización de los datos del perdil-->
-                <div class="preloader-wrapper active" id="confirmareliminarfold_preloader">
+                <div class="preloader-wrapper active" id="confirmareliminarempr_preloader">
                     <div class="spinner-layer spinner-red-only">
                         <div class="circle-clipper left">
                             <div class="circle"></div>
@@ -287,61 +141,108 @@
                 <!--Contenido importante del modal-Boton de actualizar-->
                 <div class="center-align">
                     <a href="#!" class="waves-effect waves-light btn center-align"
-                        id="aceptareliminarfolder_boton">Eliminar Folder</a>
+                        id="aceptareliminarempresa_boton">Eliminar
+                        archivo</a>
                 </div>
                 <!--Pie del modal-->
                 <div class="modal-footer" id="fondomodal-footer">
                     <div class="left col offset-s1 m5 l4">
                         <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
-                            id="cancelar-eliminarfold">
+                            id="cancelar-eliminarempr">
                             <i class="material-icons left">keyboard_arrow_left</i>Regresar
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Diseño de modificar empresa-->
-        <div id="modificar-foldermodal" class="modal">
+        <!--Modal de Añadir Archivos Subidos-->
+        <!--Modal de Añadir Archivo-->
+        <div id="anadir-archivoarh" class="modal">
             <div class="modal-content">
                 <!--Titulo del modal-->
-                <h4 class="center-align">Modificar Folder</h4>
+                <h4 class="center-align" id="titulo_modal">Añadir Archivo</h4>
                 <!--Indicaciones del modal-->
-                <p class="center-align">Visualice los datos guardados del folder o modifiquelos</p>
+                <p class="center-align" id="indicacion_modal">Añada un archivo, este se guardará con el nombre que lo suba <b>¡No todos los
+                        archivos podran visualizarse!, los podrá descargar despues pero se recomienda eliminar tras
+                        descargar para no acumular</b></p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="formActualizar">
+                <form method="post" id="archForm">
                     <!--Fila del formulario-->
-                    <div class="row filaform-empresa">
-                        <!--Nombre del Folder-->
-                        <div class="input-field col s12 m6 offset-m3 offset-l3 hide">
-                            <input placeholder="Nombre del Folder" id="id-folder" type="text"
-                                class="validate center-align inputs-añadirempr" name="id">
-                            <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
+                    <div class="row filaform-archivo">
+                        <!--Seleccionar la empresa a la que posee acceso-->
+                        <div class="input-field col s12 m5 offset-m1 l5 selects-form" id="selectemp_cont">
+                            <select id="empresas_select" name="empresa">
+                                <option value="" disabled selected>¿A que empresa pertenece?</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <label class="labels-anadirempr">Selecciona empresa</label>
                         </div>
-                        <!--Nombre del Folder-->
-                        <div class="input-field col s12 m6 offset-m3 offset-l3">
-                            <input placeholder="Nombre del Folder" id="modnombre-folder" type="text"
-                                class="validate center-align inputs-añadirempr" name="nombre">
-                            <label for="nombre-clienteempr" class="labels-anadirempr">Nombre Folder:</label>
+                        <!--Nombre del empleado-->
+                        <div class="input-field col s12 m5 l4" id="nombre_empcont">
+                            <input placeholder="Nombre Empleado" id="nombre_emp" type="text"
+                                class="validate center-align inputs-añadirempr " disabled>
+                            <label for="nombre_emp" class="labels-anadirempr">Nombre del empleado:</label>
+                        </div>
+                        <!--Fecha de subida-->
+                        <div class="input-field col s12 m6 offset-m3 l3" id="fecha_cont">
+                            <input placeholder="Fecha en que se subio el archivo" id="fecha" type="text"
+                                class="validate center-align inputs-añadirempr " disabled>
+                            <label for="fecha" class="labels-anadirempr">Fecha de subida:</label>
+                        </div>
+                        <!--Nombre del empleado-->
+                        <div class="input-field col s12 m5 offset-m1 l6 hide">
+                            <input placeholder="Nombre Empleado" id="id_arch" type="text"
+                                class="validate center-align inputs-añadirempr">
+                        </div>
+                        <!--Descripción del archivo-->
+                        <div class="input-field col s12 m10 offset-m1 l12">
+                            <textarea placeholder="Descripción del archivo a subir" id="descripcion" type="text"
+                                class="materialize-textarea center-align inputs-añadirempr" name="descripcion"></textarea>
+                            <label for="descripcion" class="labels-anadirempr">Descripción:</label>
+                        </div>
+                        <!--Input de agregar archivo-->
+                        <div class="file-field input-field col s12" id="fila-agregararch">
+                            <div class="btn agregararchivoarh col s12 m3 offset-m1 l2">
+                                <i class="material-icons">insert_drive_file</i>
+                                <span>Archivo</span>
+                                <input type="file" id="archivosubido-arch" name="archivo">
+                            </div>
+                            <div class="file-path-wrapper col s12 m7 l10  inputarh-texto">
+                                <input class="file-path inputs-añadirempr" type="text" disabled id="nombreArchivo-input"
+                                    name="archivo_nombre">
+                            </div>
+                        </div>
+                        <div class="progress" id="barraraprg-garch">
+                            <div class="indeterminate"></div>
+                        </div>
+                        <!--Input de previsualizar archivo-->
+                        <div class="preview-file col" id="preview-col">
+                            <img src="../resources/img/previsualizar-img.png" alt="Previsualizar Imagen"
+                                class="responsive-image imagen-previmg" id="imagen-Preview">
+                            <span class="texto-previmg" id="texto-prevw">Previsualizador de Archivos</span>
+                            <embed src="" width="100%" height="500" id="prevPDF-arh" />
                         </div>
                     </div>
                 </form>
-                <div class="row">
+                <div class="row filabtn-añadirarh">
                     <div class="center">
-                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-modificarFolderModal">
-                            <i class="material-icons left">edit</i>Modificar Folder
+                        <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirArchivoarhModal">
+                            <i class="material-icons left">add</i><span id="titulo_guardarbtn">Subir Archivo</span>
                         </a>
                     </div>
                     <div class="row">
                         <div class="left col offset-s1 m5 l4">
                             <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
-                                id="cancelar-modificarfold">
+                                id="cancelar-Añadirempr">
                                 <i class="material-icons left">keyboard_arrow_left</i>Regresar
                             </a>
                         </div>
                         <div class="left col s12 m7 l4 center-align mensaje-modal">
-                            <h6 id="mensaje-modificarfold">¡Verifique que los campos no esten vacios!</h6>
+                            <h6 id="mensaje-anadirarh">¡Verifique que los campos no esten vacios!</h6>
                         </div>
-                        <div class="center col s12 m3 l4" id="preloader-modificarfold">
+                        <div class="center col s12 m3 l4" id="preloader-añadirarh">
                             <div class="preloader-wrapper active">
                                 <div class="spinner-layer spinner-red-only">
                                     <div class="circle-clipper left">
@@ -360,7 +261,106 @@
                 </div>
             </div>
         </div>
+        <div class="row upload-files-section">
+            <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
+            <div class="col l3 m12 s12 direction-container">
+                <div class="direction">
+                    <p>Volver | </p><img src="../resources/icons/home-icon.png" alt="">
+                    <p> > Archivos </p>
+                </div>
+            </div>
+            <!--Formulario que pregunta si desea añadir un nuevo archivo-->
+            <form action="post" class="col l7 m12 s12 frm-files" id="buscador_form">
+                <div class="row searcher-row">
+                    <div class="col l6">
+                        <!--Contenedor donde pregunta si desea buscar nuevos archivos y así hacer una busqueda dinámica de ellos-->
+                        <div class="file-searcher">
+                            <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
+                            <input id="input-file" type="text" placeholder="Buscar archivos" name="search">
+                        </div>
+                    </div>
+                    <!--Botón de añadir archivos utilizando un modal trigger de Materialize-->
+                    <div class="col l6">
+                        <a class="btn-add btn" onclick="crearArch()" id="anadir_archivo"><i
+                                class=" material-icons left">add</i>Añadir
+                            archivos</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!--Contenedor principal del buscador de empresas-->
+        <div class="row upload-files">
+            <div class="col l5 m4 search-box">
+                <div class="wrapper">
+                    <div class="search-input">
+                        <form id="buscador_empr">
+                            <div class="company-search-box">
+                                <input type="text" placeholder="Buscar empresa" name="search" id="company-searcher">
+                                <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
+                            </div>
+                        </form>
+                        <!--Empreas tomadas como ejemplo para que carguen del buscador-->
+                        <div class="autocom-box" id="cont_empresas">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Contenedor de la parte de archivos y así pueda cargarlos dependiendo de que empresa se escoja-->
+            <div class="col l7 center m7 container-files" id="archivo_cont">
+                <!--Contenedor del archivo-->
+                <div class="file-container">
+                    
+                </div>
+            </div>
+            <!--Diseño de logout-->
+            <div id="cerrarSesionModal" class="modal">
+                <div class="fondo-modaldatos modal-content">
+                    <div class="center-align">
+                        <!--Texto que muestra si desea cerrar sesión o no-->
+                        <h4>Confirmación de cerrar sesión</h4>
+                        <p>¿Desea cerrar sesión?</p>
+                    </div>
+                    <!--Contenido importante del modal-Boton de actualizar-->
+                    <div class="center-align">
+                        <a href="index.html" class="waves-effect waves-light btn center-align"
+                            id="cerrarSesionModalbtn">Cerrar Sesión</a>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer" id="fondomodal-footer">
+                        <div class="left col offset-s1 m9 l8">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                                id="cancelar-cerrarSesion">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Preloader de carga-->
+            <div class="preloader-wrapper big active" id="preloader-cargarJ">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
     </main>
+    <!--Botpin Fixed Action para poder dirigrse a la parte de arriba automáticamente-->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large" id="hasta_arriba">
+            <!--ícono sacado de google icons de una flechita para arriba-->
+            <i class="large material-icons">arrow_upward</i>
+        </a>
+        <ul>
+    </div>
+
     <footer>
         <!--Contenedor del menu para la páginación-->
         <div class="container">
@@ -395,14 +395,14 @@
             </div>
         </div>
     </footer>
+
     <!-- Compiled and minified JavaScript -->
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../controllers/components.js"></script>
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>
-    <script type="text/javascript" src="../controllers/folders.js"></script>
+    <script src="../controllers/archivosSubidos.js"></script>
 </body>
 
 </html>
