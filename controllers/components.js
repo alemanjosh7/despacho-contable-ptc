@@ -550,7 +550,39 @@ function dynamicSearcher2(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                } else {
+                } else{
+                    noDatos();
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas  pero con limit(operación search).
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y form (identificador del formulario de búsqueda).
+*
+*   Retorno: ninguno.
+*/
+function dynamicSearcherlimit(api, form, limit) {
+    let formsl = new FormData(document.getElementById(form));
+    formsl.append('limit',limit);
+    fetch(api + 'search', {
+        method: 'post',
+        body: formsl
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
+                    fillTable(response.dataset);
+                } else{
                     noDatos();
                 }
             });
@@ -850,6 +882,40 @@ function dynamicSearcher3(api, form) {
                     // sweetAlert(1, response.message, null);
                     noDatos2();
                     // sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+/*
+*   Función para obtener todos los registros con limites en los mantenimientos de tablas (operación read) y lográr predecir si
+*    habra otra página para la páginación.
+*
+*   Parámetros: api (ruta del servidor para obtener los datos) y limit (limite que no estará dentro de la consulta).
+*   El limite es necesario para poder usar la páginación
+*   Retorno: ninguno.
+*/
+function predictLImitSearch(api, form, limit) {
+    let formss = new FormData(document.getElementById(form));
+    formss.append('limit',limit);
+    fetch(api + 'search', {
+        method: 'post',
+        body: formss
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    console.log('Hay más datos en la busqueda');
+                    ocultarMostrarAdl(true);
+                } else {
+                    console.log('No hay más datos en la busqueda');
+                    ocultarMostrarAdl(false);
                 }
             });
         } else {

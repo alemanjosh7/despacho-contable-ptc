@@ -256,7 +256,7 @@ function getAbsolutePath() {
         return 'Archivos';
     }else if(pathName.includes("empleados.html")){
         return 'Empleados';
-    }else if(pathName.includes("archivos-subidos")){
+    }else if(pathName.includes("archivosSubidos")){
         return 'Archivos-subidos'
     }
 }

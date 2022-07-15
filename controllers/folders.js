@@ -109,11 +109,24 @@ var modNombreFolder = document.getElementById('modnombre-folder');
 var hastatop = document.getElementById('hasta_arriba');
 //Variable global de la empresa seleccionada
 var idEmpresa;
+var limitBuscar = 6;
 window.onscroll = function () {
     if (document.documentElement.scrollTop > 100) {
         hastatop.style.display = "block";
     } else {
         hastatop.style.display = "none";
+    }
+
+    //Para páginación del servidor
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+
+        // Se evita recargar la página web después de enviar el formulario.
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        if (BUSCADORINP.value.length > 0) {
+            limitBuscar *= 6;
+            // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+            dynamicSearcherlimit(API_FOLDER, 'buscador-form', limitBuscar);
+        }
     }
 };
 
@@ -250,14 +263,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIRFOLDERBTN.classList.add('hide');
-                    document.querySelectorAll('.eliminarbtn').forEach(elemen => 
+                    document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
-                        );
+                    );
                 } else {
                     ANADIRFOLDERBTN.classList.remove('hide');
-                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                    document.querySelectorAll('.eliminarbtn').forEach(element =>
                         element.classList.remove('hide')
-                        );
+                    );
                 }
             });
         } else {
@@ -366,7 +379,7 @@ BOTONADELANTE.addEventListener('click', function () {
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
-    }else{
+    } else {
         BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
@@ -381,6 +394,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
         let limit = (number * 6) - 6;
         //Se ejecuta la recarga de datos enviando la variable de topAct
         //Ejecutamos la función para predecir si habrá un boton de adelante
+        //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
         readRowsLimit(API_FOLDER, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     });
 });
@@ -390,8 +404,9 @@ BUSCADORINP.addEventListener('keyup', function (e) {
     if (BUSCADORINP.value == '') {
         readRowsLimit(API_FOLDER, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     } else {
+        limitBuscar = 6;
         // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-        dynamicSearcher2(API_FOLDER, 'buscador-form');
+        dynamicSearcherlimit(API_FOLDER, 'buscador-form', limitBuscar);
     }
 });
 
@@ -443,7 +458,7 @@ function modFol(id) {
 }
 
 //Función para eliminar un folder
-function delFol(id){
+function delFol(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
     form.append('id', id);
@@ -453,7 +468,7 @@ function delFol(id){
 
 
 //Función para setear el id de la empresa para el folder
-function redArc(id){
+function redArc(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
     form.append('id', id);
@@ -470,7 +485,7 @@ function redArc(id){
                     console.log(response.id_folder);
                     location.href = 'archivos.html';
                 } else {
-                    sweetAlert(3,'No se pudo redirigir a los folders de las empresas',null);
+                    sweetAlert(3, 'No se pudo redirigir a los folders de las empresas', null);
                 }
             });
         } else {

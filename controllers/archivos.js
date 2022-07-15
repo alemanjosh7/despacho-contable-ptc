@@ -68,6 +68,35 @@ document.addEventListener('DOMContentLoaded', function () {
     predecirAdelante();
 });
 
+var hastatop = document.getElementById("hasta_arriba");
+
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 200) {
+        hastatop.style.display = "block";
+    } else {
+        hastatop.style.display = "none";
+    }
+
+    //Para páginación del servidor
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+
+        // Se evita recargar la página web después de enviar el formulario.
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        if (BUSCADORINP.value.length > 0) {
+            limitBuscar *= 10;
+            // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+            dynamicSearcherlimit(API_ARCHIVO, 'buscador-form', limitBuscar);;
+        }
+    }
+};
+
+hastatop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+});
+
 //Creamos las variables a utilizar
 //Nombre de la empresa
 const nombreEmpresa = document.getElementById('nombreempr-arch');
@@ -103,6 +132,7 @@ var eliminarEmpresaBtn = document.getElementById('aceptareliminarempresa_boton')
 var cancelEliminarEmprBtn = document.getElementById('cancelar-eliminarempr');
 //Variable global de la empresa seleccionada
 var idFolder;
+var limitBuscar
 //Contenedor de los archivos 
 const ARCHCONT = document.getElementById('contenedorArch');
 //Boton de añadir archivo
@@ -474,8 +504,9 @@ BUSCADORINP.addEventListener('keyup', function (e) {
     if (BUSCADORINP.value == '') {
         readRowsLimit(API_ARCHIVO, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     } else {
+        limitBuscar = 10;
         // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-        dynamicSearcher2(API_ARCHIVO, 'buscador-form');
+        dynamicSearcherlimit(API_ARCHIVO, 'buscador-form', limitBuscar);
     }
 });
 

@@ -17,6 +17,8 @@ const APELLIDOE = document.getElementById('apellido-emp');
 const DUI = document.getElementById('dui-emp');
 const CORREO = document.getElementById('correo-emp');
 
+var limitBuscar = 6;
+
 document.addEventListener('DOMContentLoaded', function () {
   //Ocultamos el boton de atras para la páginación
   BOTONATRAS.style.display = 'none';
@@ -61,10 +63,22 @@ function changeOption(val) {
 var hastatop = document.getElementById("hasta_arriba");
 
 window.onscroll = function () {
+  //Para el boton de hasta arriba
   if (document.documentElement.scrollTop > 200) {
     hastatop.style.display = "block";
   } else {
     hastatop.style.display = "none";
+  }
+
+  //Para páginación del servidor
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+
+    // Se evita recargar la página web después de enviar el formulario.
+    // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+    if (document.getElementById('input-file').value.length >0) {
+      limitBuscar *= 6;
+      dynamicSearcherlimit(API_EMPLEADOS, 'search-form', limitBuscar);
+    }
   }
 };
 
@@ -160,9 +174,9 @@ document.getElementById('input-file').addEventListener('keyup', (event) => {
     readRowsLimit(API_EMPLEADOS, 0);
   }
   else {
-    dynamicSearcher2(API_EMPLEADOS, 'search-form');
+    limitBuscar = 6;
+    dynamicSearcherlimit(API_EMPLEADOS, 'search-form', limitBuscar);
   }
-
 });
 
 //Función cuando el buscador no encuentra los datos

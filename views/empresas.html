@@ -340,6 +340,16 @@
                 <h4 class="center-align">Modificar Empresa</h4>
                 <!--Indicaciones del modal-->
                 <p class="center-align">Visualice los datos guardados de la empresa o modifiquelos</p>
+                <!--Estado del cliente-->
+                <div class="switch col m7 l6 s12 switch-container redd" id="estado_check">
+                    <span><b>Guardar con DUI o NIT:&nbsp&nbsp</b></span>
+                    <label class="label_check">
+                        DUI
+                        <input type="checkbox" name="estado" class="check-color lleno" id="estadoEmpM" checked="checked">
+                        <span class="lever"></span>
+                        NIT
+                    </label>
+                </div>
                 <!--Formulario para añadir una empresa-->
                 <form id="formActualizar">
                     <!--Fila del formulario-->
@@ -467,7 +477,7 @@
         </div>
     </footer>
     <!-- Compilado y minimizado JavaScript -->
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../controllers/components.js"></script>

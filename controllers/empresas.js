@@ -113,11 +113,24 @@ var modNumeroContacto = document.getElementById('modnumero-empr');
 var modNITEmpr = document.getElementById('modNIT-empr');
 ///*Boton de ir hacia arrina*/
 var hastatop = document.getElementById('hasta_arriba');
+var limitBuscar = 6;
 window.onscroll = function () {
     if (document.documentElement.scrollTop > 100) {
         hastatop.style.display = "block";
     } else {
         hastatop.style.display = "none";
+    }
+
+    //Para páginación del servidor
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+
+        // Se evita recargar la página web después de enviar el formulario.
+        // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+        if (BUSCADORINP.value.length > 0) {
+            limitBuscar *= 6;
+            // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+            dynamicSearcherlimit(API_EMPRESAS, 'buscador-form', limitBuscar);
+        }
     }
 };
 
@@ -147,12 +160,12 @@ NITempr.addEventListener('keypress', function (e) {
 });
 //Validar guión en el número de NIT
 NITempr.addEventListener('keyup', e => {
-    if(document.getElementById('estadoEmp').checked){
+    if (document.getElementById('estadoEmp').checked) {
         //Desea evaluar como nit
         guionNIT(e, NITempr);
-    }else{
+    } else {
         //Desea dui
-        guionDUI(e,NITempr);
+        guionDUI(e, NITempr);
     }
 });
 //Validar solo letras en el nombre del cliente
@@ -186,7 +199,7 @@ btnAñadirEmpr.addEventListener('click', function () {
     let mensaje = document.getElementById('mensaje-anadir');
     if (nombrecl.value.length != 0 && apellidocl.value.length != 0 && empresa.value.length != 0 && direccion.value.length != 0 && numeroContacto.value.length != 0
         && NITempr.value.length != 0) {
-        if (NITempr.value.length == 17 && numeroContacto.value.length == 9) {
+        if ((NITempr.value.length == 17 || NITempr.value.length == 10) && numeroContacto.value.length == 9) {
             // Petición para obtener en nombre del usuario que ha iniciado sesión.
             saveRowL(API_EMPRESAS, 'create', 'formAñadir', 'modalAnadirEmpresa', 0);
             mensaje.style.display = 'none';
@@ -250,7 +263,7 @@ modificarEmpresaBtn.addEventListener('click', function () {
     //Creamos arreglo de componentes para enviarlos a una función que los evaluará
     let arregloVCV = [modNombreCliente, modApellidoCliente, modNombreEmpresa, modNumeroContacto, modCorreoEmpr, modNITEmpr, modDireccionEmpr];
     if (validarCamposVacios(arregloVCV) != false) {
-        if (modNITEmpr.value.length == 17 && modNumeroContacto.value.length == 9) {
+        if ((modNITEmpr.value.length == 17 || modNITEmpr.value.length == 10) && modNumeroContacto.value.length == 9) {
             // Petición para obtener en nombre del usuario que ha iniciado sesión.
             saveRowL(API_EMPRESAS, 'update', 'formActualizar', 'modificar-empresamodal', 0);
             mensaje.style.display = 'none';
@@ -299,7 +312,13 @@ modNITEmpr.addEventListener('keypress', function (e) {
 });
 //Validar el guión en el NIT modal de modificar
 modNITEmpr.addEventListener('keyup', function (e) {
-    guionNIT(e, modNITEmpr);
+    if (document.getElementById('estadoEmpM').checked) {
+        //Desea evaluar como nit
+        guionNIT(e, modNITEmpr);
+    } else {
+        //Desea dui
+        guionDUI(e, modNITEmpr);
+    }
 });
 //Validar solo letras en el nombre del cliente modal modificar
 modNombreCliente.addEventListener('keypress', function (e) {
@@ -333,14 +352,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIREMPRESABTN.classList.add('hide');
-                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                    document.querySelectorAll('.eliminarbtn').forEach(element =>
                         element.classList.add('hide')
-                        );
+                    );
                 } else {
                     ANADIREMPRESABTN.classList.remove('hide');
-                    document.querySelectorAll('.eliminarbtn').forEach(element => 
+                    document.querySelectorAll('.eliminarbtn').forEach(element =>
                         element.classList.remove('hide')
-                        );
+                    );
                 }
             });
         } else {
@@ -450,7 +469,7 @@ BOTONADELANTE.addEventListener('click', function () {
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
-    }else{
+    } else {
         BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });
@@ -474,8 +493,9 @@ BUSCADORINP.addEventListener('keyup', function (e) {
     if (BUSCADORINP.value == '') {
         readRowsLimit(API_EMPRESAS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     } else {
+        limitBuscar = 6;
         // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-        dynamicSearcher2(API_EMPRESAS, 'buscador-form');
+        dynamicSearcherlimit(API_EMPRESAS, 'buscador-form', limitBuscar);
     }
 });
 
@@ -519,6 +539,11 @@ function modEmp(id) {
                     MODANIT.value = response.dataset.nit_empresa;
                     M.updateTextFields();
                     M.textareaAutoResize(MODDIRECCION);
+                    if (MODANIT.value.length <= 10) {
+                        document.getElementById('estadoEmpM').checked = false;
+                    } else {
+                        document.getElementById('estadoEmpM').checked = true;
+                    }
                     //Se oculta el cargador
                     PRELOADER.style.display = 'none';
                 } else {
@@ -570,12 +595,23 @@ function redFold(id) {
 }
 
 /*Identificar si es empresa juridica o natural*/
-document.getElementById('estadoEmp').addEventListener('change',function(){
-    if(document.getElementById('estadoEmp').checked){
+document.getElementById('estadoEmp').addEventListener('change', function () {
+    if (document.getElementById('estadoEmp').checked) {
         //Es empresa juridica
-        NITempr.setAttribute('maxlength',17);
-    }else{
+        NITempr.setAttribute('maxlength', 17);
+    } else {
         //Es natural o sea que es dui
-        NITempr.setAttribute('maxlength',10);
+        NITempr.setAttribute('maxlength', 10);
+    }
+});
+
+/*Identificar si es empresa juridica o natural*/
+document.getElementById('estadoEmpM').addEventListener('change', function () {
+    if (document.getElementById('estadoEmpM').checked) {
+        //Es empresa juridica
+        modNITEmpr.setAttribute('maxlength', 17);
+    } else {
+        //Es natural o sea que es dui
+        modNITEmpr.setAttribute('maxlength', 10);
     }
 });
