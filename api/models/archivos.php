@@ -144,13 +144,13 @@ class Archivos extends Validator
     }
  
     //Buscar Archivo
-    public function buscarArchivos($value)
+    public function buscarArchivos($value, $limit)
     {
         $sql = 'SELECT id_archivo, nombre_archivo, fecha_subida, fk_id_folder, tamano, fk_id_estado, nombre_original
                 FROM archivos 
                 WHERE (CAST(fecha_subida as varchar) ILIKE ? OR tamano ILIKE ? OR nombre_original ILIKE ?)  
-                AND fk_id_estado = 4 AND fk_id_folder = ?';
-        $params = array("%$value%","%$value%","%$value%",$this->fk_id_folder);
+                AND fk_id_estado = 4 AND fk_id_folder = ? LIMIT ?';
+        $params = array("%$value%","%$value%","%$value%",$this->fk_id_folder, $limit);
         return Database::getRows($sql, $params);
     }
 

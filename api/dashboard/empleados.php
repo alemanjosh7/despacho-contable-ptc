@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
                 $_POST = $empleados->validateForm($_POST);
                 if ($_POST['input-file'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $empleados->buscarEmpleados($_POST['input-file'])) {
+                } elseif ($result['dataset'] = $empleados->buscarEmpleadosLimit2($_POST['input-file'],$_POST['limit'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -123,7 +123,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                     $result['message'] = $_POST['nombre-emp'];
-                }  elseif (!isset($_POST['tipo-de-empleado'])) {
+                } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
                     $result['message'] = $_POST['nombre-emp'];
                 } elseif (!$empleados->setTipoEmpleado($_POST['tipo-de-empleado'])) {
@@ -235,7 +235,7 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if ($_POST['id'] == $_SESSION['id_usuario']) {
                     $result['exception'] = 'No se puede eliminar a si mismo';
-                }elseif (!$empleados->setId($_POST['id'])) {
+                } elseif (!$empleados->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif (!$data = $empleados->obtenerEmpleado($_POST['id'])) {
                     $result['exception'] = 'Empleado inexistente';

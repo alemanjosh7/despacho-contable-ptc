@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Folder incorrecto';
                     } elseif ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $archivos->buscarArchivos($_POST['search'])) {
+                    } elseif ($result['dataset'] = $archivos->buscarArchivos($_POST['search'],$_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {

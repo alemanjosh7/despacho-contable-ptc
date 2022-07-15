@@ -282,6 +282,13 @@ class Empleados extends Validator
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
+    //Buscar empleados
+    public function buscarEmpleadosLimit2($value,$limit)
+    {
+        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.nombre_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ? ORDER BY e.id_empleado LIMIT ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%",$limit);
+        return Database::getRows($sql, $params);
+    }
     //Crear empleado
     public function crearEmpleado()
     {

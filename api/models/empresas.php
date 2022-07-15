@@ -91,7 +91,7 @@ class Empresas extends Validator
 
     public function setNitEmp($value)
     {
-        if ($this->validateNIT($value, 1, 150)) {
+        if ($this->validateNIT($value, 1, 150) || $this->validateDUI($value, 1, 150)) {
             $this->nit_empresa = $value;
             return true;
         } else {
@@ -184,26 +184,26 @@ class Empresas extends Validator
 
     //Buscar empresas para el admin
 
-    public function buscarEmpresasAdm($value)
+    public function buscarEmpresasAdm($value,$limit)
     {
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
         FROM empresas AS emp
         INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
-        WHERE emp.nombre_cliente ILIKE ? OR emp.apellido_cliente ILIKE ? OR emp.nombre_empresa ILIKE ? OR emp.numero_empresacontc ILIKE ? OR emp.correo_empresacontc ILIKE ? OR emp.direccion_empresa ILIKE ? OR emp.nit_empresa ILIKE ?
-        AND emp.fk_id_estado = 4 ';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
+        WHERE emp.nombre_cliente ILIKE ? OR emp.apellido_cliente ILIKE ? OR emp.nombre_empresa ILIKE ? OR emp.numero_empresacontc ILIKE ? OR emp.correo_empresacontc ILIKE ? OR emp.direccion_empresa ILIKE ? OR emp.nit_empresa ILIKE ? 
+        AND emp.fk_id_estado = 4 LIMIT ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $limit);
         return Database::getRows($sql, $params);
     }
     //buscar empresas para el que no es admin
-    public function buscarEmpresaCl($value)
+    public function buscarEmpresaCl($value,$limit)
     {
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
                 FROM empresas AS emp
                 INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
                 INNER JOIN empresas_empleados AS epl ON epl.fk_id_empresa = emp.id_empresa
                 WHERE (emp.nombre_cliente ILIKE ? OR emp.apellido_cliente ILIKE ? OR emp.nombre_empresa ILIKE ? OR emp.numero_empresacontc ILIKE ? OR emp.correo_empresacontc ILIKE ? OR emp.direccion_empresa ILIKE ? OR emp.nit_empresa ILIKE ?) 
-                AND epl.fk_id_empleado=? AND emp.fk_id_estado = 4';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $_SESSION['id_usuario']);
+                AND epl.fk_id_empleado=? AND emp.fk_id_estado = 4 LIMIT ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $_SESSION['id_usuario'], $limit);
         return Database::getRows($sql, $params);
     }
     //Buscar una empresa especifica

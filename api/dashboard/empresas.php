@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     $_POST = $empresas->validateForm($_POST);
                     if ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $empresas->buscarEmpresasAdm($_POST['search'])) {
+                    } elseif ($result['dataset'] = $empresas->buscarEmpresasAdm($_POST['search'],$_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {
@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                     $_POST = $empresas->validateForm($_POST);
                     if ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $empresas->buscarEmpresaCl($_POST['search'])) {
+                    } elseif ($result['dataset'] = $empresas->buscarEmpresaCl($_POST['search'],$_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {

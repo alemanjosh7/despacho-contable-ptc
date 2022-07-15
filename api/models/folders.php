@@ -90,15 +90,13 @@ class Folders extends Validator
         return Database::getRows($sql, $params);
     }
 
-    //Buscar empresas para el admin
-
-    //obtener el perfil del admin
-    public function buscarFolders($value)
+    //Buscar folders
+    public function buscarFolders($value,$limit)
     {
         $sql = 'SELECT id_folder, nombre_folder, fk_id_empresa, fk_id_estado
                 FROM folders 
-                WHERE (nombre_folder ILIKE ?) AND fk_id_estado = 4 AND fk_id_empresa = ?';
-        $params = array("%$value%",$this->fk_id_empresa);
+                WHERE (nombre_folder ILIKE ?) AND fk_id_estado = 4 AND fk_id_empresa = ?  LIMIT ?';
+        $params = array("%$value%",$this->fk_id_empresa, $limit);
         return Database::getRows($sql, $params);
     }
     //Buscar una empresa especifica
