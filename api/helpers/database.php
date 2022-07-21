@@ -138,6 +138,7 @@ class Database
                 break;
             case '42703':
                 self::$error = 'Nombre de campo desconocido';
+                //self::$error = $message;
                 break;
             case '23505':
                 self::$error = 'Dato duplicado, no se puede guardar';

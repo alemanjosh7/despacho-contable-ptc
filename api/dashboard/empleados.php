@@ -277,6 +277,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se pudo eliminar el empleado';
                 }
                 break;
+                //Obtener la cantidad de empleados de cada tipo de empleado
+            case 'cantidadTpEmp':
+                if ($result['dataset'] = $empleados->graficaCantidadTpEm()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

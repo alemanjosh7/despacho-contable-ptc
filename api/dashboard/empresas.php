@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     $_POST = $empresas->validateForm($_POST);
                     if ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $empresas->buscarEmpresasAdm($_POST['search'],$_POST['limit'])) {
+                    } elseif ($result['dataset'] = $empresas->buscarEmpresasAdm($_POST['search'], $_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {
@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                     $_POST = $empresas->validateForm($_POST);
                     if ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $empresas->buscarEmpresaCl($_POST['search'],$_POST['limit'])) {
+                    } elseif ($result['dataset'] = $empresas->buscarEmpresaCl($_POST['search'], $_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {
@@ -209,6 +209,19 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
                     }
+                }
+                break;
+                //Obtener la cantidad de folders de cada empresa
+            case 'graficaCantidadFlEm':
+                $_POST = $empresas->validateForm($_POST);
+                if(!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])){
+                    $result['exception'] = 'Verifique que los datos sean números';
+                }elseif(!($_POST['rangoi'] < $_POST['rangof'])){
+                    $result['exception'] = 'El rango final debe ser mayor al rango inicial';
+                }elseif ($result['dataset'] = $empresas->graficaCantidadFlEm($_POST['rangoi'],$_POST['rangof'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
             default:

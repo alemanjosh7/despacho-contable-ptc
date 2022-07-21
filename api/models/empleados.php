@@ -360,4 +360,19 @@ class Empleados extends Validator
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->correo_empleadocontc, $this->dui_empleado, $this->telefono_empleadocontc, $this->usuario_empleado, $this->id_empleado);
         return Database::executeRow($sql, $params);
     }
+    /*
+
+        METODOS PARA GRAFICAS
+
+    */
+    //Obtener la cantidad de empleados por el tipo al que pertenecen
+    public function graficaCantidadTpEm()
+    {
+        $sql = 'SELECT tipo_empleado, COUNT(id_empleado) cantidad
+                FROM empleados AS emp
+                RIGHT JOIN tipo_empleado AS tmp ON emp.fk_id_tipo_empleado = tmp.id_tipo_empleado AND emp.fk_id_estado !=3
+                GROUP BY tmp.tipo_empleado ORDER BY cantidad DESC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

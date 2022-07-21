@@ -298,4 +298,21 @@ class Empresas extends Validator
             return true;
         }
     }
+
+    /*
+
+        METODOS PARA GRAFICAS
+
+    */
+    //Obtener la cantidad de empleados por el tipo al que pertenecen
+    public function graficaCantidadFlEm($rangoi, $rangof)
+    {
+        $sql = 'SELECT nombre_empresa, COUNT(fk_id_empresa) as cantidad
+                FROM empresas as emp
+                LEFT JOIN folders AS fol ON emp.id_empresa = fol.fk_id_empresa
+                GROUP BY nombre_empresa 
+                HAVING COUNT(fk_id_empresa)>=? AND COUNT(fk_id_empresa)<=? ORDER BY cantidad DESC LIMIT 5';
+        $params = array($rangoi,$rangof);
+        return Database::getRows($sql, $params);
+    }
 }

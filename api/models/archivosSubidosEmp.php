@@ -183,7 +183,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empleados AS emp ON arc.fk_id_empleado = emp.id_empleado
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE emp.id_empleado = ? ORDER BY arc.id_archivos_subidosemp DESC OFFSET ? LIMIT 10';
-        $params = array($this->fk_id_empleado,$limit);
+        $params = array($this->fk_id_empleado, $limit);
         return Database::getRows($sql, $params);
     }
 
@@ -196,7 +196,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE (arc.nombre_original ILIKE ? OR CAST(fecha_subida as varchar) ILIKE ? OR emp.nombre_empleado ILIKE ? OR emp.apellido_empleado ILIKE ? OR empr.nombre_empresa ILIKE ? OR arc.tamano ILIKE ?) 
                 ORDER BY arc.id_archivos_subidosemp DESC';
-        $params = array("%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -209,7 +209,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE emp.id_empleado = ? AND (arc.nombre_original ILIKE ? OR CAST(fecha_subida as varchar) ILIKE ? OR emp.nombre_empleado ILIKE ? OR emp.apellido_empleado ILIKE ? OR empr.nombre_empresa ILIKE ? OR arc.tamano ILIKE ?) 
                 ORDER BY arc.id_archivos_subidosemp DESC';
-        $params = array($this->fk_id_empleado,"%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        $params = array($this->fk_id_empleado, "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -222,7 +222,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE empr.id_empresa = ? AND  (arc.nombre_original ILIKE ? OR CAST(fecha_subida as varchar) ILIKE ? OR emp.nombre_empleado ILIKE ? OR emp.apellido_empleado ILIKE ? OR empr.nombre_empresa ILIKE ? OR arc.tamano ILIKE ?) 
                 ORDER BY arc.id_archivos_subidosemp DESC';
-        $params = array($this->fk_id_empresa,"%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        $params = array($this->fk_id_empresa, "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -235,7 +235,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE emp.id_empleado = ? AND empr.id_empresa = ? AND (arc.nombre_original ILIKE ? OR CAST(fecha_subida as varchar) ILIKE ? OR emp.nombre_empleado ILIKE ? OR emp.apellido_empleado ILIKE ? OR empr.nombre_empresa ILIKE ? OR arc.tamano ILIKE ?) 
                 ORDER BY arc.id_archivos_subidosemp DESC';
-        $params = array($this->fk_id_empleado,$this->fk_id_empresa,"%$value%","%$value%","%$value%","%$value%","%$value%","%$value%");
+        $params = array($this->fk_id_empleado, $this->fk_id_empresa, "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 
@@ -261,7 +261,7 @@ class ArchivosSubidosEmp extends Validator
                 INNER JOIN empresas AS empr ON arc.fk_id_empresa = empr.id_empresa
                 WHERE arc.fk_id_empresa = ? AND arc.fk_id_empleado = ?
                 ORDER BY arc.id_archivos_subidosemp DESC';
-        $params = array($this->fk_id_empresa,$this->fk_id_empleado);
+        $params = array($this->fk_id_empresa, $this->fk_id_empleado);
         return Database::getRows($sql, $params);
     }
 
@@ -311,5 +311,17 @@ class ArchivosSubidosEmp extends Validator
         $sql = 'UPDATE archivos_subidosemp SET fk_id_estado = 2 WHERE id_archivos_subidosemp = ? AND fk_id_empleado = ?';
         $params = array($this->id_archivos_subidosemp, $this->fk_id_empleado);
         return Database::executeRow($sql, $params);
+    }
+    //Función para los reportes
+    public function reporteArchivosInf()
+    {
+        $punto = '.';
+        $sql = 'SELECT arc.nombre_original,arc.tamano,est.nombre_estado,emp.nombre_empresa,arc.fecha_subida,arc.descripcion,split_part(arc.nombre_archivo,?,2) AS tipo
+                FROM archivos_subidosemp as arc
+                INNER JOIN empresas AS emp ON arc.fk_id_empresa = emp.id_empresa
+                INNER JOIN estados AS est ON arc.fk_id_estado = est.id_estado
+                WHERE arc.fk_id_empleado = ? AND arc.fk_id_estado !=3';
+        $params = array($punto,$_SESSION['id_usuario']);
+        return Database::getRows($sql, $params);
     }
 }
