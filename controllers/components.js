@@ -9,6 +9,10 @@ const SERVER = 'http://localhost/despEsquivel/api/';
 const API = SERVER + 'dashboard/admins.php?action=';
 
 /*
+    VARIABLES PARA LAS GRAFICAS
+*/
+var polarChart;
+/*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
 *
 *   Parámetros: api (ruta del servidor para obtener los datos).
@@ -920,6 +924,83 @@ function predictLImitSearch(api, form, limit) {
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+function polarAreaGraph(canvas, xAxis, yAxis, legend, title) {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+    const context = document.getElementById(canvas).getContext('2d');
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    const chart = new Chart(context, {
+        type: 'polarArea',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                borderWidth: 2,
+                backgroundColor: colors,
+                borderColor: colors,
+            }]
+        },
+        options: {
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+}
+
+function polarAreaGraphP(canvas, xAxis, yAxis, legend, title) {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+    const context = document.getElementById(canvas).getContext('2d');
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    if(polarChart){
+        polarChart.destroy();
+    }
+    polarChart = new Chart(context, {
+        type: 'polarArea',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                borderWidth: 2,
+                backgroundColor: colors,
+                borderColor: colors,
+            }]
+        },
+        options: {
+            aspectRatio: 1,
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: true
+                }
+            }
         }
     });
 }

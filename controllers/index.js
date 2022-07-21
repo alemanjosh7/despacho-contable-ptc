@@ -175,7 +175,9 @@ LOGINBTN.addEventListener('click', function () {
                 LOGINBTN.classList.remove('disabled');
                 console.log(request.status + ' ' + request.statusText);
             }
-        });
+        }).catch(function(error){
+            sweetAlert(2,'Error al iniciar session',null)
+        });;
     } else {
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
     }
@@ -199,6 +201,8 @@ function comprobarAmin() {
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
+    }).catch(function(error){
+        sweetAlert(2,'Error al conectar al servidor',null)
     });
 }
 

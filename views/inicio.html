@@ -104,228 +104,100 @@
             <div class="col offset-s3 s6 center-align" id="banner-saludo">
                 <h5 id="saludo-usuario">Gráfica de ventas</h5>
             </div>
-            <!--Fila de la información-->
+            <div class="col offset-s3 s6 center-align">
+                <h5>Gráficas parametrizadas</h5>
+            </div>
             <div class="row">
-                <!--Columna de información para el envio-->
-                <div class="col l5 m6 s12" id="columna-info">
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <h6>Información para envio</h6>
-                        </div>
-                        <!--Input del correo-->
-                        <div class="input-field col s12">
-                            <input disabled class="inputs-establecidos" value="correoprueba@gmail.com" type="text"
-                                id="correo">
-                        </div>
-                        <!--Selects de los países Actualmente Solo El Salvador-->
-                        <form class="col s12" action="">
-                            <!--Contenedor del select-->
-                            <div class="selectbox">
-                                <!--Caja del select-->
-                                <div class="select" id="select">
-                                    <!--Contenedor del contenido inicial del select-->
-                                    <div class="contenido-select">
-                                        <!--Titulo inicial del select-->
-                                        <p class="titulo">Seleccione un país</p>
-                                    </div>
-                                    <!--Icono de que se debe seleccionar contenido-->
-                                    <img class="responsive-img icono-select"
-                                        src="../../resources/Icons/opciones-icon.png">
-                                </div>
-                                <!--Opciones del select-->
-                                <div class="opciones-select" id="opciones-select">
-                                    <a href="#" class="opcion-select">
-                                        <div class="contenido-opcion">
-                                            <img class="responsive-image" width="30px" height="30px"
-                                                src="../../resources/Icons/bandera-ElSalvador-icono.png">
-                                            <div class="texto-opcion">
-                                                <p class="titulo">El Salvador</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                        <!--Input del nombre del usuario-->
-                        <div class="input-field col s6">
-                            <input disabled value="Jesús Gerardo" type="text" id="nombre_usuario-confirmacion-compra">
-                        </div>
-                        <!--Input del apellido del usuario-->
-                        <div class="input-field col s6">
-                            <input disabled value="Esquivel Ramírez" type="text"
-                                id="apellido_usuario-confirmacion-compra">
-                        </div>
-                        <!--Input de la dirección-->
-                        <div class="input-field col s12">
-                            <textarea disabled
-                                id="direccion_usuario-confirmacion-compra">San Salvador El Salvador, Montecarmelo de Mariona Calle circunvalación poligonoN #24 lore</textarea>
-                        </div>
-                        <!--Input del punto de referencia-->
-                        <div class="input-field col s12">
-                            <textarea id="preferencia_usuario-confirmacion-compra"
-                                class="materialize-textarea">Tercer parqueo frente a unos chalets verdes</textarea>
-                        </div>
-                    </div>
+                <div class="col offset-s2 s12 m6 l3 tooltipped" data-tooltip="Número de folders entre un rango">
+                    <a class="waves-effect waves-ligth btn z-depth-3 modal-trigger btn_estilizado" href="#foldersRango">
+                        <i class="material-icons left">folder</i># Folders entre un rango
+                    </a>
                 </div>
-                <!--Apartado de la orden-->
-                <div class="col offset-l1 l5 m5 offset-m1 s12 center-align" id="apartado-orden">
-                    <!--Titulo del apartado-->
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <h6>Tu orden</h6>
+            </div>
+            <div class="col offset-s3 s6 center-align">
+                <h5>Gráficas informativas</h5>
+            </div>
+            <div class="row">
+                <!--Gráficas-->
+                <!--Gráfico de barras-->
+                <div class="center-align col s12 m6 l6">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <canvas id="grf_polar1"></canvas>
                         </div>
-                        <!--Contenedor del apartado de los elementos de las compras-->
-                        <div class="col s12" id="parte-orden">
-                            <div class="row">
-                                <!--Componente que da inicio al contenedor de los elementos-->
-                                <form>
-                                    <!--Titulos de los apartados de las compras-->
-                                    <div class="col s12" id="titulo-orden">
-                                        <div class="col l4 m4 s4 center-align ">
-                                            <h6>Nombre</h6>
-                                        </div>
-                                        <div class="col l4 m4 s4 center-align">
-                                            <h6>Cantidad</h6>
-                                        </div>
-                                        <div class="col l4 m4 s4 center-align">
-                                            <h6>Precio</h6>
-                                        </div>
-                                    </div>
-                                    <!--Información de las compras AQUI ERAN ROW PERO AL PONERLE ESA CLASE JUNTO AL DE "compra" EL PADDING ES MUY EXTREMO-->
-                                    <div class="col s12" id="contenedor-compras">
-                                        <div class="row compra">
-                                            <div class="col l4 m4 s4 center-align ">
-                                                <p>Brown guy</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>2</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>$19.83</p>
-                                            </div>
-                                        </div>
-                                        <div class="row compra">
-                                            <div class="col l4 m4 s4 center-align ">
-                                                <p>Harry Pother</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>2</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>$19.98</p>
-                                            </div>
-                                        </div>
-                                        <div class="row compra">
-                                            <div class="col l4 m4 s4 center-align ">
-                                                <p>Pollito</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>1</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>$9.99</p>
-                                            </div>
-                                        </div>
-                                        <div class="row compra">
-                                            <div class="col l4 m4 s4 center-align ">
-                                                <p>Monkey</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>3</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>$10.50</p>
-                                            </div>
-                                        </div>
-                                        <div class="row compra">
-                                            <div class="col l4 m4 s4 center-align ">
-                                                <p>Buho Soñero</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>5</p>
-                                            </div>
-                                            <div class="col l4 m4 s4 center-align">
-                                                <p>$10.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Parte de Totales-->
-                                    <div class="col s12" id="totales-orden">
-                                        <!--Datos-->
-                                        <!--Sub total-->
-                                        <div class="col s12">
-                                            <div class="col offset-s6 s3 right-align">
-                                                <p>Sub total:</p>
-                                            </div>
-                                            <div class="col s1 left-align">
-                                                <p id="sub_total">$171.11</p>
-                                            </div>
-                                        </div>
-                                        <!--Envío-->
-                                        <div class="col s12">
-                                            <div class="col offset-s6 s3 right-align">
-                                                <p>Envío:</p>
-                                            </div>
-                                            <div class="col s1 left-align">
-                                                <p id="envio">$5.00</p>
-                                            </div>
-                                        </div>
-                                        <!--Total-->
-                                        <div class="col s12">
-                                            <div class="col offset-s6 s3 right-align">
-                                                <p>Total:</p>
-                                            </div>
-                                            <div class="col s1 left-align">
-                                                <p id="total">$176.11</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">Número de empleados por tipo de
+                                empleado<i class="material-icons right">more_vert</i></span>
                         </div>
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="col offset-m3 m6 s12">
-                                    <a href="#confirmar-compra_modal" class="modal-trigger waves-effect waves-light btn"
-                                        id="pagar_btn">Pagar</a>
-                                </div>
-                            </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Número de empleados por tipo de empleado<i
+                                    class="material-icons right">close</i></span>
+                            <p>Gráfica de barra que muestra la cantidad de empleados que hay por tipo de empleado.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--Diseño del modal de confirmación de actualización de datos-->
-        <div id="confirmar-compra_modal" class="modal">
+        <div id="foldersRango" class="modal">
             <div class="fondo-modaldatos modal-content">
-                <div class="center-align">
-                    <h4>Confirmar compra</h4>
-                    <p>¿Desea proseguir con la compra?</p>
-                </div>
-                <!--Preloader de la actualización de los datos del perdil-->
-                <div class="preloader-wrapper active" id="confirmarcompra_preloader">
-                    <div class="spinner-layer spinner-red-only">
-                        <div class="circle-clipper left">
-                            <div class="circle"></div>
+                <form id="foldersRango" method="post" enctype="multipart/form-data">
+                    <div class="center-align">
+                        <h4>Top 5 empresas que la cantidad de folder esten en un rango</h4>
+                        <p>Indique el rango a buscar; <b>si no se muestra la gráfica esque no posee ninguna empresa con
+                                al
+                                menos un folder creado.</b></p>
+                    </div>
+                    <div class="row">
+                        <!--Fila de inputs-->
+                        <div class="row">
+                            <!--Rango inicial-->
+                            <div class="input-field col s12 m6">
+                                <input placeholder="Rango inicial" id="rangoi" type="number" min="0"
+                                    class="validate center-align inputs-añadirempr" name="rangoi">
+                                <label for="rangoi" class="labels-anadirempr">Rango inicial:</label>
+                            </div>
+                            <!--Ranfo final-->
+                            <div class="input-field col s12 m6">
+                                <input placeholder="Rango final" id="rangof" type="number" min="1"
+                                    class="validate center-align inputs-añadirempr" name="rangof">
+                                <label for="rangof" class="labels-anadirempr">Rango final:</label>
+                            </div>
                         </div>
-                        <div class="gap-patch">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                            <div class="circle"></div>
+                        <!--Fila del grafico-->
+                        <div class="row">
+                            <div class="center-align col s12">
+                                <div class="card-panel">
+                                    <canvas id="grf_polar2"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--Contenido importante del modal-Boton de actualizar-->
-                <div class="center-align">
-                    <a href="#!" class="waves-effect waves-light btn center-align"
-                        id="aceptarcompra_boton">Confirmar</a>
-                </div>
-                <!--Pie del modal-->
-                <div class="center-align" id="fondomodal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn " id="cancelacompra_boton">Cancelar</a>
-                    <div class="col s12" id="decoracion-modal"></div>
-                </div>
+                    <!--Preloader-->
+                    <div class="preloader-wrapper active hide" id="preloder_folderR">
+                        <div class="spinner-layer spinner-red-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Boton del modal-->
+                    <div class="center-align">
+                        <button type="submit" class="waves-effect waves-light btn center-align btn_estilizadoM">Generar
+                            Gráfico</button>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="left-align" id="fondomodal-footer">
+                        <a class="modal-close waves-effect waves-light btn btn_estilizado">Cancelar</a>
+                        <div class="col s12" id="decoracion-modal"></div>
+                    </div>
+                </form>
             </div>
         </div>
         <!--No borrar del codigo-->
@@ -357,6 +229,8 @@
                 </div>
             </div>
         </div>
+        <!-- Importación de librería para generar gráficos en tiempo real. Para más información https://www.chartjs.org/ -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     </main>
     <footer>
         <div class="container">
@@ -395,6 +269,7 @@
     <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../controllers/components.js"></script>
+    <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script src="../controllers/online.js"></script>
     <script type="text/javascript" src="../controllers/inicio.js"></script>
 </body>
