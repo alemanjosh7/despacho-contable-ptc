@@ -21,45 +21,73 @@ $usuario = $_SESSION['usuario'];
 $codigo =$_POST['id'];
 $total = $_POST['total'];
 $correo = $_POST['correo'];
-$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+$body = '<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
-    <title>Lolin.sv-Gracias por la compra</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<!-- Compiled and minified CSS -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+<title>Lolin.sv-Codigo de restablecer contraseña</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #eeeeee;
+    }
+
+    .encabezado {
+        width: 100%;
+        height: 100px;
+        background-color: #e65100;
+        text-align: center;
+    }
+
+    .fila1 {
+        margin-left: 34%;
+        margin-top: 1%;
+    }
+
+    .card-panel {
+        background-color: #e65100;
+        width: 500px;
+        height: 100px;
+        border-radius: 10px;
+    }
+    .card-panel h1{
+        margin-left: 35%;
+        padding-top: 25px;
+    }
+</style>
 </head>
 
 <body class=" grey lighten-3" style="margin: 0; padding:0;">
-    <div>
-        <nav class="orange darken-4 center">
-            <div class="nav-wrapper">
-                <h3 style="margin: 0;">Lolin.sv</h3>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <h1 class="center-align">¡Gracias por tu compra!</h1>
-        <p>Muchas gracias por tu reciente compra en nuestro sitio web de Lolin, esperamos llegue tu pedido pronto, en todo caso nos contactaremos contigo, tu compra ha sido de:<b> $'.$total.'</b>. Con el número de facturación de:</p>
-        <div class="row center">
-            <div class="col s12 m6  offset-l3 offset-m3">
-                <div class="card-panel orange darken-4 white-text">
-                    <h3>'.$codigo.'</h3>
-                </div>
-            </div>
+<div class="encabezado">
+    <nav class="orange darken-4 center">
+        <div class="nav-wrapper">
+            <h1 style="margin: 0; font-size: 75px;">Lolin.sv</h1>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <h1 class="center-align" style="text-align: center;  margin-top: 1%;">¡Gracias por tu compra!</h1>
+    <p  style="text-align: center;">Muchas gracias por tu reciente compra en nuestro sitio web de Lolin, esperamos llegue tu pedido pronto, en todo caso nos contactaremos contigo, tu compra ha sido de:<b> $'.$total.'</b>. Con el número de facturación de:</p>
+    <div class="fila1">
+        <div class="card-panel orange darken-4 white-text">
+            <h1>'.$codigo.'</h1>
         </div>
     </div>
-    <!--JavaScript al final para optimizar-->
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+</div>
+<!--JavaScript al final para optimizar-->
+<!-- Compiled and minified JavaScript -->
 </body>
 
 </html>';
@@ -73,7 +101,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'lolinsvoficial@gmail.com';                     //SMTP username
-    $mail->Password   = 'lolincontra';                               //SMTP password
+    $mail->Password   = 'evkhxyqlsvjoncyb';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
