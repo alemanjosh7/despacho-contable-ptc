@@ -32,7 +32,7 @@ class Report extends FPDF
             // Se establece el título del documento (true = utf-8).
             $this->setTitle('Despacho contable Esquivel - Reporte', true);
             // Se establecen los margenes del documento (izquierdo, superior y derecho).
-            $this->setMargins(1, 10, 1);
+            $this->setMargins(1.5, 10, 1.5);
             #Establecemos el margen inferior:
             $this->SetAutoPageBreak(true, 25);
             // Se añade una nueva página al documento (orientación vertical y formato carta) y se llama al método header()
