@@ -214,7 +214,9 @@ if (isset($_GET['action'])) {
                 //Obtener la cantidad de folders de cada empresa
             case 'graficaCantidadFlEm':
                 $_POST = $empresas->validateForm($_POST);
-                if(!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])){
+                if($_POST['rangoi'] == '' || $_POST['rangof'] == ''){
+                    $result['exception'] = 'No se permiten campos vacios';
+                }elseif(!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])){
                     $result['exception'] = 'Verifique que los datos sean números';
                 }elseif(!($_POST['rangoi'] < $_POST['rangof'])){
                     $result['exception'] = 'El rango final debe ser mayor al rango inicial';
