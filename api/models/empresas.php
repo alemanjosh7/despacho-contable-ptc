@@ -315,4 +315,20 @@ class Empresas extends Validator
         $params = array($rangoi,$rangof);
         return Database::getRows($sql, $params);
     }
+
+    /*
+
+        METODOS PARA REPORTES
+
+    */
+    //Obtener todas las empresas registradas
+    public function registroEmpresas()
+    {
+        $sql = 'SELECT nombre_empresa, nombre_cliente, apellido_cliente, nit_empresa, numero_empresacontc 
+                FROM empresas 
+                GROUP BY nombre_empresa, nombre_cliente, apellido_cliente, nit_empresa, numero_empresacontc 
+                ORDER BY nombre_empresa';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

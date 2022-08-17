@@ -375,4 +375,17 @@ class Empleados extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    /*
+
+        METODOS PARA REPORTES
+
+    */
+    //Obtener la cantidad de empleados que no tienen acceso a ninguna empresa
+    public function accesoEmpleadosEmp()
+    {
+        $sql = '';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

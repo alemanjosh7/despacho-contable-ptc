@@ -324,4 +324,14 @@ class ArchivosSubidosEmp extends Validator
         $params = array($punto,$_SESSION['id_usuario']);
         return Database::getRows($sql, $params);
     }
+
+    //Funcion de reporte para mostrar los empleados con mas registro de archivos
+    public function registroArchivoEmpleado()
+    {
+        $sql = 'SELECT nombre_empleado, apellido_empleado, COUNT(fk_id_empleado) AS subidas from archivos_subidosemp
+                INNER JOIN empleados ON id_empleado = "fk_id_empleado" GROUP BY nombre_empleado, apellido_empleado 
+                ORDER BY subidas DESC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }
