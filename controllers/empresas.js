@@ -474,6 +474,14 @@ BOTONADELANTE.addEventListener('click', function () {
     }
 });
 
+//Funcion para generar reporte de todas las empresas registradas
+function openReport() {
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + 'reports/registroEmpresas.php';
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);
+}
+
 //Función que realizará los botones con numero de la páginacion
 document.querySelectorAll(".contnpag").forEach(el => {
     el.addEventListener("click", e => {

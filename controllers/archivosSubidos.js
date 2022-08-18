@@ -314,6 +314,13 @@ function fillTable(dataset) {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
 }
 
+function openReport() {
+    // Se establece la ruta del reporte en el servidor.
+    let url = SERVER + 'reports/registroArchivos.php';
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(url);
+}
+
 //Función cuando el buscador no encuentra los datos
 function noDatos() {
     let h = document.createElement("h3");
