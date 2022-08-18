@@ -541,6 +541,14 @@ document.getElementById('save-form').addEventListener('submit', function (event)
   //saveRowL(API_EMPLEADOS, action, 'save-form', 'modal-template', 0);
 });
 
+//Funcion para generar reporte de empleados sin acceso a ninguna empresa
+function openReport() {
+  // Se establece la ruta del reporte en el servidor.
+  let url = SERVER + 'reports/accesoEmpleadosEmp.php';
+  // Se abre el reporte en una nueva pestaña del navegador web.
+  window.open(url);
+}
+
 function openDelete(id) {
   // Se define un objeto con los datos del registro seleccionado.
   const data = new FormData();

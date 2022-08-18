@@ -384,7 +384,9 @@ class Empleados extends Validator
     //Obtener la cantidad de empleados que no tienen acceso a ninguna empresa
     public function accesoEmpleadosEmp()
     {
-        $sql = '';
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado FROM empleados AS emp
+                WHERE NOT EXISTS (SELECT * FROM empresas_empleados AS eme WHERE emp.id_empleado = eme.fk_id_empleado)
+                ORDER BY nombre_empleado';
         $params = null;
         return Database::getRows($sql, $params);
     }
