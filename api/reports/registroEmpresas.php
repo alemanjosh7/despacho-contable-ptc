@@ -1,11 +1,11 @@
 <?php
-require('../../helpers/dashboard_report.php');
-require('../../models/empresas.php');
+require('../helpers/dashboard_report.php');
+require('../models/empresas.php');
 
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Empresas registradas');
+$pdf->startReport('Empresas registradas', 'p');
 // Se establece un color de relleno para los encabezados.
 $pdf->setFillColor(255, 139, 144, 1);
 // Se establece la fuente para los encabezados.

@@ -271,6 +271,10 @@
             </div>
             <!--Formulario que pregunta si desea añadir un nuevo archivo-->
             <form action="post" class="col l7 m12 s12 frm-files" id="buscador_form">
+                <!-- Enlace para generar un reporte en formato PDF -->
+                <a onclick="openReport()" class="btn-floating waves-effect black indigo tooltipped" data-tooltip="Reporte">
+                    <i class="material-icons">assignment</i>
+                </a>
                 <div class="row searcher-row">
                     <div class="col l6">
                         <!--Contenedor donde pregunta si desea buscar nuevos archivos y así hacer una busqueda dinámica de ellos-->
@@ -281,12 +285,8 @@
                     </div>
                     <!--Botón de añadir archivos utilizando un modal trigger de Materialize-->
                     <div class="col l6">
-                        <a class="btn-add btn" onclick="crearArch()" id="anadir_archivo"><i
-                                class=" material-icons left">add</i>Añadir
-                            archivos</a>
-                        <!-- Enlace para generar un reporte en formato PDF -->
-                        <a onclick="openReport()" class="btn-floating waves-effect black indigo tooltipped" data-tooltip="Reporte">
-                            <i class="material-icons">assignment</i>
+                        <a class="btn-add btn" onclick="crearArch()" id="anadir_archivo">
+                            <i class=" material-icons left">add</i>Añadirarchivos
                         </a>
                     </div>
                 </div>
