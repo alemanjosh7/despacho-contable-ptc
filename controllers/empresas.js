@@ -1,5 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_EMPRESAS = SERVER + 'dashboard/empresas.php?action=';
+const ENDPOINT_EMPRESAS = SERVER + 'dashboard/empresas.php?action=readEmprAllUser';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
 
 //Opciones para los modal
@@ -474,14 +475,6 @@ BOTONADELANTE.addEventListener('click', function () {
     }
 });
 
-//Funcion para generar reporte de todas las empresas registradas
-function openReport() {
-    // Se establece la ruta del reporte en el servidor.
-    let url = SERVER + 'reports/registroEmpresas.php';
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);
-}
-
 //Función que realizará los botones con numero de la páginacion
 document.querySelectorAll(".contnpag").forEach(el => {
     el.addEventListener("click", e => {
@@ -623,3 +616,50 @@ document.getElementById('estadoEmpM').addEventListener('change', function () {
         modNITEmpr.setAttribute('maxlength', 10);
     }
 });
+
+//Programación para los reportes
+document.getElementById('reporteRFN').addEventListener('click', function () {
+    obtenerEmpresaRFN();
+    fillSelectBrowser(ENDPOINT_EMPRESAS, 'swal-empresa', 'Selecciona una empresa', null, true);
+});
+
+function obtenerEmpresaRFN() {
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+            background: '#F7F0E9',
+            confirmButtonColor: 'black',
+            showDenyButton: true,
+            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
+            icon: 'info',
+            title: 'Seleccione la empresa de quien desea obtener el reporte',
+            html:
+                ` 
+                <select class="browser-default" id="swal-empresa">
+                    
+                </select>              
+            `,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="material-icons">assignment</i> Generar reporte',
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-empresa').value,
+                ]
+            }
+        })
+        if (formValues) {
+            if(formValues[0] != 'Selecciona una empresa'){
+                //Swal.fire(JSON.stringify(formValues[0]))
+                let params = '?idemp=' + formValues[0];
+                // Se establece la ruta del reporte en el servidor.
+                let url = SERVER + 'reports/reportFoldEmpX.php';
+                // Se abre el reporte en una nueva pestaña del navegador web.
+                window.open(url + params);
+            }else{
+                sweetAlert(3,'Debe seleccionar una empresa',null);
+            }
+            
+        }
+    })()
+}

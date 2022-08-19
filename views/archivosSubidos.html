@@ -271,10 +271,6 @@
             </div>
             <!--Formulario que pregunta si desea añadir un nuevo archivo-->
             <form action="post" class="col l7 m12 s12 frm-files" id="buscador_form">
-                <!-- Enlace para generar un reporte en formato PDF -->
-                <a onclick="openReport()" class="btn-floating waves-effect black indigo tooltipped" data-tooltip="Reporte">
-                    <i class="material-icons">assignment</i>
-                </a>
                 <div class="row searcher-row">
                     <div class="col l6">
                         <!--Contenedor donde pregunta si desea buscar nuevos archivos y así hacer una busqueda dinámica de ellos-->
@@ -285,24 +281,40 @@
                     </div>
                     <!--Botón de añadir archivos utilizando un modal trigger de Materialize-->
                     <div class="col l6">
-                        <a class="btn-add btn" onclick="crearArch()" id="anadir_archivo">
-                            <i class=" material-icons left">add</i>Añadirarchivos
-                        </a>
+                        <a class="btn-add btn" onclick="crearArch()" id="anadir_archivo"><i
+                                class=" material-icons left">add</i>Añadir
+                            archivos</a>
                     </div>
                 </div>
             </form>
 
         </div>
+        <!--Fila para los reportes-->
         <div class="row">
-            <div class="col s12 m6 center tooltipped" data-tooltip="Resumen de los archivos subidos por el usuario logueado">
+            <div class="col s12 m6 l6 center tooltipped" data-tooltip="Resumen de los archivos subidos por el usuario logueado">
+                <p>Resumen de tus archivos subidos</p>
                 <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/resumenArchivosS.php" target="_blank">
-                    <i class="material-icons left">assignment</i>Mi resumen de archivos subidos
+                    <i class="material-icons left">assignment</i>Abrir reporte
+                </a>
+            </div>
+            <div class="col s12 m6 l6 center tooltipped eliminarbtn" data-tooltip="Resumen de los archivos subidos por el usuario logueado">
+                <p>Resumen de los empleados que subieron archivos en x fechas</p>
+                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" id="reporteFAE">
+                    <i class="material-icons left">assignment</i>Abrir reporte
+                </a>
+            </div>
+        </div>
+        <div class="row eliminarbtn">
+            <div class="col s12 m6 center tooltipped" data-tooltip="Todos los empleados y el tipo de empleado que más archivos han registrados">
+                <p>Empleados con más registros de archivos</p>
+                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/registroArchivos.php" target="_blank">
+                    <i class="material-icons left">assignment</i>Abrir reporte
                 </a>
             </div>
         </div>
         <!--Contenedor principal del buscador de empresas-->
         <div class="row upload-files">
-            <div class="col l5 m4 search-box">
+            <div class="col l5 m10 search-box">
                 <div class="wrapper">
                     <div class="search-input">
                         <form id="buscador_empr">

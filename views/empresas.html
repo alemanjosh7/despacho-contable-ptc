@@ -143,13 +143,30 @@
                             <i class="material-icons left">add</i>Añadir Empresa
                         </a>
                     </div>
-                    <div class="col s6 m6 l4">
-                        <!-- Enlace para generar un reporte en formato PDF -->
-                        <a onclick="openReport()" class="btn-floating waves-effect black indigo tooltipped" data-tooltip="Reporte">
-                            <i class="material-icons">assignment</i>
-                        </a>
-                    </div>
                 </form>
+            </div>
+            <!--Fila de reportes-->
+            <div class="row eliminarbtn">
+                <div class="col s12 m6 center tooltipped" data-tooltip="Resumen de la cantidad de empleados que poseen acceso a las empresas">
+                    <p>Resumen de la cantidad de accesos a las empresas</p>
+                    <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado " href="../api/reports/resumenAccesoEmpresas.php" target="_blank">
+                        <i class="material-icons left">assignment</i>Abrir reporte
+                    </a>
+                </div>
+                <div class="col s12 m6 center tooltipped" data-tooltip="Todos los folders con el número de archivos totales de x empresa">
+                    <p>Todos los folders con el número de archivos totales de una empresa</p>
+                    <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" id="reporteRFN">
+                        <i class="material-icons left">assignment</i>Abrir reporte
+                    </a>
+                </div>
+            </div>
+            <div class="row eliminarbtn">
+                <div class="col s12 m6 center tooltipped" data-tooltip="Todas las empresas registradas no eliminadas">
+                    <p>Todas las empresas registradas no eliminadas</p>
+                    <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/resumenEmpresas.php" target="_blank">
+                        <i class="material-icons left">assignment</i>Abrir reporte
+                    </a>
+                </div>
             </div>
             <!--Parte de las cards para las empresas-->
             <div class="row" id="empresas-card">

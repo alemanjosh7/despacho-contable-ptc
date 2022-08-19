@@ -291,10 +291,6 @@
             </div>
             <!--Formulario para buscar empleados-->
             <form class="col xl6 l12 m12 s12 frm-employee" id="search-form">
-                <!-- Enlace para generar un reporte en formato PDF -->
-                <a onclick="openReport()" class="btn-floating waves-effect black indigo tooltipped" data-tooltip="Reporte">
-                    <i class="material-icons">assignment</i>
-                </a>
                 <div class="col offset-l2 offset-m2 offset-s1 l8 s12 m7 xl6">
                     <div class="file-searcher">
                         <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
@@ -302,12 +298,26 @@
                     </div>
                 </div>
                 <div class="col l10 s12 m7 xl6 left-align">
-                    <a class="btn-add btn modal-trigger" href="#modal-template" onclick="openCreate()"><i
+                    <a class="btn-add-emp btn modal-trigger" href="#modal-template" onclick="openCreate()"><i
                             class="material-icons left">add</i>Añadir
                         empleado</a>
                 </div>
             </form>
         </section>
+        <div class="row">
+            <div class="col s12 m6 center tooltipped" data-tooltip="Lista de los empleados que no poseen acceso a ninguna empresa">
+                <p>Todos los empleados que no posean acceso a ninguna empresa</p>
+                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/accesoEmpleadosEmp.php" target="_blank">
+                    <i class="material-icons left">assignment</i>Abrir Reporte
+                </a>
+            </div>
+            <div class="col s12 m6 center tooltipped" data-tooltip="Lista de los empleados y las empresas a las que poseen acceso">
+                <p>Todos los empleados que posean acceso a almenos una empresa</p>
+                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/accesoEmpleadosEmpF.php" target="_blank">
+                    <i class="material-icons left">assignment</i>Abrir Reporte
+                </a>
+            </div>
+        </div>
         <!--Contenedor para las cards mostrando la información de x empleado-->
         <form class="employee-cards row container" id="employee-form">
             

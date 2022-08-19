@@ -120,8 +120,14 @@ function comprobarAmin() {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
                     ANADIRARCHBTN.classList.remove('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(elemen =>
+                        elemen.classList.add('hide')
+                    );
                 } else {
                     ANADIRARCHBTN.classList.add('hide');
+                    document.querySelectorAll('.eliminarbtn').forEach(elemen =>
+                        elemen.classList.remove('hide')
+                    );
                 }
             });
         } else {
@@ -312,13 +318,6 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-}
-
-function openReport() {
-    // Se establece la ruta del reporte en el servidor.
-    let url = SERVER + 'reports/registroArchivos.php';
-    // Se abre el reporte en una nueva pestaña del navegador web.
-    window.open(url);
 }
 
 //Función cuando el buscador no encuentra los datos
@@ -815,4 +814,59 @@ function elimArch(id){
     form.append('id', id);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js y paso el valor de 8 para recargar los clientes
     confirmDeleteL(API_ARCHIVOS, form, 0);
+}
+
+//Programación para los reportes
+document.getElementById('reporteFAE').addEventListener('click', function () {
+    obtenerFechasRFAE();
+    M.updateTextFields();
+});
+
+function obtenerFechasRFAE() {
+    (async () => {
+
+        const { value: formValues } = await Swal.fire({
+            background: '#F7F0E9',
+            confirmButtonColor: 'black',
+            showDenyButton: true,
+            denyButtonText: '<i class="material-icons">cancel</i> Cancelar',
+            icon: 'info',
+            title: 'Indique las fechas para el reporte, en formato YY-M-D',
+            html:
+                `   
+                <div class="input-field">
+                    <label for="swal-input1"><b>Fecha Inicial</b></label>
+                    <input type="date" placeholder="Fecha inicial" id="swal-input1" class="center">
+                </div>
+                <div class="input-field">
+                    <label for="swal-input2"><b>Fecha Final</b></label>
+                    <input type="date" placeholder="Fecha Final" id="swal-input2" class="center">
+                </div>
+            `,
+            focusConfirm: false,
+            confirmButtonText:
+                '<i class="material-icons">assignment</i> Generar reporte',
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value,
+                    document.getElementById('swal-input2').value
+                ]
+            }
+        })
+
+        if (formValues) {
+            if(formValues[0].length>0 && formValues[1].length>0){
+                //Swal.fire(JSON.stringify(formValues[0]))
+                let params = '?fechai=' + formValues[0] + '&fechaf=' + formValues[1];
+                // Se establece la ruta del reporte en el servidor.
+                let url = SERVER + 'reports/reportArchivosESFX.php';
+                // Se abre el reporte en una nueva pestaña del navegador web.
+                window.open(url + params);
+                console.log(params);
+            }else{
+                sweetAlert(3,'Debe seleccionar un rango de fechas',null);
+            }
+            
+        }
+    })()
 }
