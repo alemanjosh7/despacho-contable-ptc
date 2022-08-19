@@ -214,16 +214,37 @@ if (isset($_GET['action'])) {
                 //Obtener la cantidad de folders de cada empresa
             case 'graficaCantidadFlEm':
                 $_POST = $empresas->validateForm($_POST);
-                if($_POST['rangoi'] == '' || $_POST['rangof'] == ''){
+                if ($_POST['rangoi'] == '' || $_POST['rangof'] == '') {
                     $result['exception'] = 'No se permiten campos vacios';
-                }elseif(!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])){
+                } elseif (!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])) {
                     $result['exception'] = 'Verifique que los datos sean números';
-                }elseif(!($_POST['rangoi'] < $_POST['rangof'])){
+                } elseif (!($_POST['rangoi'] < $_POST['rangof'])) {
                     $result['exception'] = 'El rango final debe ser mayor al rango inicial';
-                }elseif ($result['dataset'] = $empresas->graficaCantidadFlEm($_POST['rangoi'],$_POST['rangof'])) {
+                } elseif ($result['dataset'] = $empresas->graficaCantidadFlEm($_POST['rangoi'], $_POST['rangof'])) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
+                //Top 5 empresas con más archivos
+            case 'top5EmpresasArchivos':
+                if ($result['dataset'] = $empresas->top5EmpresasArchivos()) {
+                    $result['status'] = 1;
+                    $result['message'] = $empresas->top5EmpresasArchivos();
+                } else {
+                    $result['exception'] = 'No se ha podido realizar la consulta';
+                }
+                break;
+                    //Obtener empresas asignadas
+            case 'top5EmpresasAccesos':
+                if ($result['dataset'] = $empresas->graficaEmpresasAccesos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Empresas encontradas';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    //Como no encontramos retornamos un dataset false
+                    $result['exception'] = false;
                 }
                 break;
             default:

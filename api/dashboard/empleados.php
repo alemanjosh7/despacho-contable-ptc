@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
                 $_POST = $empleados->validateForm($_POST);
                 if ($_POST['input-file'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $empleados->buscarEmpleadosLimit2($_POST['input-file'],$_POST['limit'])) {
+                } elseif ($result['dataset'] = $empleados->buscarEmpleadosLimit2($_POST['input-file'], $_POST['limit'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -280,6 +280,22 @@ if (isset($_GET['action'])) {
                 //Obtener la cantidad de empleados de cada tipo de empleado
             case 'cantidadTpEmp':
                 if ($result['dataset'] = $empleados->graficaCantidadTpEm()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
+
+                //Obtener la cantidad de folders de cada empresa
+            case 'graficaEmpAcc':
+                $_POST = $empleados->validateForm($_POST);
+                if ($_POST['rangoi'] == '' || $_POST['rangof'] == '') {
+                    $result['exception'] = 'No se permiten campos vacios';
+                } elseif (!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])) {
+                    $result['exception'] = 'Verifique que los datos sean números';
+                } elseif (!($_POST['rangoi'] < $_POST['rangof'])) {
+                    $result['exception'] = 'El rango final debe ser mayor al rango inicial';
+                } elseif ($result['dataset'] = $empleados->graficaEmpAcc($_POST['rangoi'], $_POST['rangof'])) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay datos disponibles';

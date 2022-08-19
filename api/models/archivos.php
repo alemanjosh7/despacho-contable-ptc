@@ -263,4 +263,19 @@ class Archivos extends Validator
         $params = array($punto,$_SESSION['id_folder']);
         return Database::getRows($sql, $params);
     }
+
+    /*
+        FUNCIÓN PAR LAS GRÁFICAS
+    */ 
+    public function archivosEmpXF($fechai, $fechaf)
+    {
+        $sql = 'SELECT emp.nombre_empresa, COUNT(arc.fk_id_folder) as archivos
+                FROM archivos AS arc
+                INNER JOIN folders AS fol ON arc.fk_id_folder = fol.id_folder
+                INNER JOIN empresas AS emp ON fol.fk_id_empresa = emp.id_empresa
+                WHERE (arc.fecha_subida >= ? AND arc.fecha_subida <= ?) AND arc.fk_id_estado != 3
+                GROUP BY emp.nombre_empresa LIMIT 10';
+        $params = array($fechai, $fechaf);
+        return Database::getRows($sql, $params);
+    }
 }

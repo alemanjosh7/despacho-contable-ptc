@@ -168,4 +168,18 @@ class Folders extends Validator
             return true;
         }
     }
+    /*
+        METODOS PARA GRAFICAS
+    */
+
+    //Método para obtener las 5 empresas con más folders
+    public function top5EmpresasFolders()
+    {
+        $sql = 'select emp.nombre_empresa, count(f.fk_id_empresa) as folders
+                from folders as f inner join empresas as emp ON f.fk_id_empresa = emp.id_empresa 
+                where f.fk_id_estado = 4
+                group by emp.nombre_empresa order by folders desc limit 5';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }

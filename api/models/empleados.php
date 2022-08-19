@@ -376,16 +376,45 @@ class Empleados extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Empleados con un rango de accesos
+    public function graficaEmpAcc($rangoi, $rangof)
+    {
+        $sql = 'SELECT emp.nombre_empleado,emp.apellido_empleado, COUNT(eme.fk_id_empleado) AS accesos
+                FROM empresas_empleados AS eme
+                INNER JOIN empleados AS emp ON eme.fk_id_empleado = emp.id_empleado
+                WHERE emp.fk_id_estado !=3
+                GROUP BY emp.nombre_empleado, emp.apellido_empleado
+                HAVING COUNT(eme.fk_id_empleado) >= ?  AND COUNT(eme.fk_id_empleado) <= ?
+                ORDER BY accesos DESC LIMIT 10';
+        $params = array($rangoi,$rangof);
+        return Database::getRows($sql, $params);
+    }
+
     /*
 
         METODOS PARA REPORTES
 
     */
-    //Obtener la cantidad de empleados que no tienen acceso a ninguna empresa
+    //Todos los empleados que no posean acceso a ninguna empresa dentro del apartado empleados
     public function accesoEmpleadosEmp()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado FROM empleados AS emp
-                WHERE NOT EXISTS (SELECT * FROM empresas_empleados AS eme WHERE emp.id_empleado = eme.fk_id_empleado)
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, tipo_empleado, nombre_estado, dui_empleado FROM empleados AS emp
+                INNER JOIN tipo_empleado ON id_tipo_empleado = "fk_id_tipo_empleado"
+                INNER JOIN estados ON id_estado = "fk_id_estado"
+                WHERE NOT EXISTS (SELECT * FROM empresas_empleados AS eme INNER JOIN empresas AS emr ON eme.fk_id_empresa = emr.id_empresa
+                WHERE emp.id_empleado = eme.fk_id_empleado AND emr.fk_id_estado !=3 AND emp.fk_id_estado !=3) AND emp.fk_id_tipo_empleado !=4 AND emp.fk_id_estado != 3
+                ORDER BY nombre_empleado';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+    //Todos los empleados que posean acceso a ninguna empresa dentro del apartado empleados
+    public function accesoEmpleadosEEmp()
+    {
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, tipo_empleado, nombre_estado, dui_empleado FROM empleados AS emp
+                INNER JOIN tipo_empleado ON id_tipo_empleado = "fk_id_tipo_empleado"
+                INNER JOIN estados ON id_estado = "fk_id_estado"
+                WHERE EXISTS (SELECT * FROM empresas_empleados AS eme INNER JOIN empresas AS emr ON eme.fk_id_empresa = emr.id_empresa
+                WHERE emp.id_empleado = eme.fk_id_empleado AND emr.fk_id_estado !=3 AND emp.fk_id_estado !=3) AND emp.fk_id_tipo_empleado !=4 AND emp.fk_id_estado != 3
                 ORDER BY nombre_empleado';
         $params = null;
         return Database::getRows($sql, $params);

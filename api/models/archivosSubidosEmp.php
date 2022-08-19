@@ -312,7 +312,11 @@ class ArchivosSubidosEmp extends Validator
         $params = array($this->id_archivos_subidosemp, $this->fk_id_empleado);
         return Database::executeRow($sql, $params);
     }
-    //Función para los reportes
+
+    /*
+        FUNCIONES PARA LOS REPORTES
+    */
+    //Función para el resumen de los archivos subidos por el usuario que inicio session
     public function reporteArchivosInf()
     {
         $punto = '.';
@@ -324,13 +328,36 @@ class ArchivosSubidosEmp extends Validator
         $params = array($punto,$_SESSION['id_usuario']);
         return Database::getRows($sql, $params);
     }
+    
+    //Función que obtenga los empleados que subieron archivos en x fechas
+    public function reporteEmpSFX($fechai, $fechaf)
+    {
+        $sql = 'SELECT emp.nombre_empleado, COUNT(ase.fk_id_empleado) AS numeros FROM archivos_subidosemp AS ase
+                INNER JOIN empleados AS emp ON ase.fk_id_empleado = emp.id_empleado
+                WHERE ase.fecha_subida >= ? AND ase.fecha_subida <= ?
+                GROUP BY emp.nombre_empleado ORDER BY COUNT(ase.fk_id_empleado) DESC';
+        $params = array($fechai, $fechaf);
+        return Database::getRows($sql, $params);
+    }
+
+    //Función de top 3 empleados con más archivos filtrado por tipo
+    public function top3EmpleadosArchivos($value)
+    {
+        $sql = 'select emp.nombre_empleado, emp.apellido_empleado, count(archsubidos.fk_id_empleado) as cuenta
+                from archivos_subidosemp as archsubidos inner join empleados as emp ON archsubidos.fk_id_empleado = emp.id_empleado 
+                where emp.fk_id_estado !=3 AND emp.fk_id_tipo_empleado = ? 
+                group by emp.nombre_empleado, emp.apellido_empleado order by cuenta desc limit 3';
+        $params = array($value);
+        return Database::getRows($sql, $params);
+    }
 
     //Funcion de reporte para mostrar los empleados con mas registro de archivos
     public function registroArchivoEmpleado()
     {
-        $sql = 'SELECT nombre_empleado, apellido_empleado, COUNT(fk_id_empleado) AS subidas from archivos_subidosemp
-                INNER JOIN empleados ON id_empleado = "fk_id_empleado" GROUP BY nombre_empleado, apellido_empleado 
-                ORDER BY subidas DESC';
+        $sql = 'SELECT nombre_empleado, apellido_empleado, tipo_empleado, COUNT(fk_id_empleado) AS subidas from archivos_subidosemp
+                INNER JOIN empleados ON id_empleado = "fk_id_empleado" 
+                INNER JOIN tipo_empleado ON id_tipo_empleado = "fk_id_tipo_empleado"
+                GROUP BY nombre_empleado, apellido_empleado, tipo_empleado';
         $params = null;
         return Database::getRows($sql, $params);
     }

@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Folder incorrecto';
                     } elseif ($_POST['search'] == '') {
                         $result['exception'] = 'Ingrese un valor para buscar';
-                    } elseif ($result['dataset'] = $archivos->buscarArchivos($_POST['search'],$_POST['limit'])) {
+                    } elseif ($result['dataset'] = $archivos->buscarArchivos($_POST['search'], $_POST['limit'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {
@@ -168,19 +168,33 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Folder inexistente';
                     } elseif ($archivos->cambiarEstadoArch()) {
                         $result['status'] = 1;
-                        $nuevaUbicacion = '../documents/archivosBorrados/'.$data['nombre_archivo'];
-                        $ubicacionActual = '../documents/archivosFolders/'.$data['nombre_archivo'];
-                        if(rename($ubicacionActual,$nuevaUbicacion)){
-                           $result['message'] = 'Archivo eliminado correctamente'; 
-                        }else{
-                            $result['message'] = 'Archivo eliminado correctamente pero no se pudo hacer respaldo'; 
+                        $nuevaUbicacion = '../documents/archivosBorrados/' . $data['nombre_archivo'];
+                        $ubicacionActual = '../documents/archivosFolders/' . $data['nombre_archivo'];
+                        if (rename($ubicacionActual, $nuevaUbicacion)) {
+                            $result['message'] = 'Archivo eliminado correctamente';
+                        } else {
+                            $result['message'] = 'Archivo eliminado correctamente pero no se pudo hacer respaldo';
                         }
-                        
                     } else {
                         $result['exception'] = Database::getException();
                     }
                 } else {
                     $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
+                }
+                break;
+                //Obtener la cantidad de archivos subidos por empresa dentro de x fechas
+            case 'graficaArchivosEmpXF':
+                $_POST = $archivos->validateForm($_POST);
+                if ($_POST['fechai'] == '' || $_POST['fechaf'] == '') {
+                    $result['exception'] = 'No se permiten campos vacios';
+                } elseif (!$archivos->setFecha($_POST['fechai']) && !$archivos->setFecha($_POST['fechaf'])) {
+                    $result['exception'] = 'Verifique que los datos sean fechas validas en formato dd/mm/yy o yy/mm/dd';
+                } elseif (!($_POST['fechai'] < $_POST['fechaf'])) {
+                    $result['exception'] = 'La fecha final debe ser mayor a la fecha inicial';
+                } elseif ($result['dataset'] = $archivos->archivosEmpXF($_POST['fechai'], $_POST['fechaf'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
             default:

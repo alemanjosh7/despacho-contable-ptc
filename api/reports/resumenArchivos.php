@@ -1,7 +1,7 @@
 <?php
 // Se verifica si existe el parámetro id en la url, de lo contrario se direcciona a la página web de origen.
 if (1 == 1) {
-    require('../helpers/dashboard_report.php');
+    require('../helpers/dashboardReport.php');
     require('../models/archivos.php');
     // Se instancia el módelo productos para procesar los datos.
     $archivos = new Archivos;
@@ -57,7 +57,8 @@ if (1 == 1) {
             $pdf->setFillColor(245, 254, 255, 1);
             $pdf->Ln(5);
             $cont = 0; //Variable para contar
-
+            // Se establece la fuente para los encabezados.
+            $pdf->setFont('Times', '', 11); //Fuente de las letras
             //Llenamos con la info obtenida
             foreach ($rowArchivos as $rowArchivos) {
                 //Evaluamos si se debe poner el encabezado
@@ -80,6 +81,8 @@ if (1 == 1) {
                     $pdf->setFillColor(245, 254, 255, 1);
                     $pdf->Ln(5);
                     $cont = 0; //Variable para contar
+                    // Se establece la fuente para los encabezados.
+                    $pdf->setFont('Times', '', 11); //Fuente de las letras
                 }
                 //ESPACIO ENTRE CELDA
                 $pdf->cell(10, 10, ' ', 0, 0, 'C');

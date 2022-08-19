@@ -134,6 +134,16 @@ if (isset($_GET['action'])) {
                     $result['exception'] = '¿Que haces?. Tu usuario no puede hacer esto';
                 }
                 break;
+                //Top 5 empresas con más folders
+            case 'top5EmpresasFolders':
+                $_POST = $folders->validateForm($_POST);
+                if ($result['dataset'] = $folders->top5EmpresasFolders()) {
+                    $result['status'] = 1;
+                    $result['message'] = $folders->top5EmpresasFolders();
+                } else {
+                    $result['exception'] = 'No se ha podido realizar la consulta';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

@@ -217,6 +217,19 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se ha podido actualizar su estado';
                 }
                 break;
+                //Top 3 empleados con más archivo de x tipo
+            case 'top3EmpleadosArchivos':
+                if (!isset($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Seleccione un tipo de empleado';
+                    $result['message'] = $_POST['tipo-de-empleado'];
+                } else if ($result['dataset'] = $archivos->top3EmpleadosArchivos($_POST['tipo-de-empleado'])) {
+                    $result['status'] = 1;
+                    $result['message'] = $_POST['tipo-de-empleado'];
+                } else {
+                    $result['message'] = $_POST['tipo-de-empleado'];
+                    $result['exception'] = 'No hay datos disponibles';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
