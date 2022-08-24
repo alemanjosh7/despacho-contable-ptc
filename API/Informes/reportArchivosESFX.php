@@ -44,7 +44,7 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
         $pdf->setFont('Times', 'B', 11); //Fuente de las letras
         if ($dataArchivo = $archivos->reporteEmpSFX($_GET['fechai'], $_GET['fechaf'])) {
             /*
-                ENCABEZADOS 2
+                ENCABEZADO 2
             */
             //ESPACIO ENTRE CELDA
             $pdf->cell(10, 10, ' ', 0, 0, 'C');
