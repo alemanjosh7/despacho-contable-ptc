@@ -25,7 +25,7 @@ if (1 == 1) {
         // Se establece un color de relleno para los datos
         $pdf->setFillColor(245, 254, 255, 1);
         $cont = 0; //Variable contador
-        // Se establece la fuente para los encabezados.
+        // Se establece la fuente para en encabezados.
         $pdf->setFont('Times', '', 11); //Fuente de las letras
         //Llenamos con la información retornada
         foreach ($rowEmpresas as $rowEmpresas) {
