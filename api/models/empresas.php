@@ -392,3 +392,31 @@ class Empresas extends Validator
         return Database::getRows($sql, $params);
     }
 }
+
+
+//B
+    //Obtener todas las empresas registradas
+    //public function registroEmpresas()
+    //{
+        //$sql = 'SELECT nombre_empresa, nombre_cliente, apellido_cliente, nit_empresa, numero_empresacontc 
+                //FROM empresas 
+                //WHERE fk_id_estado !=3
+                //GROUP BY nombre_empresa, nombre_cliente, apellido_cliente, nit_empresa, numero_empresacontc 
+                //ORDER BY nombre_empresa';
+        //$params = null;
+        //return Database::getRows($sql, $params);
+    //}
+
+    //Función de top 5 empresas con más archivos
+    //public function top5EmpresasArchivos()
+    //{
+       // $sql = 'SELECT emp.nombre_empresa, COUNT(aremp.fk_id_folder) AS archivos
+                //FROM folders AS fol
+               // INNER JOIN empresas AS emp ON fol.fk_id_empresa = emp.id_empresa
+                //LEFT JOIN archivos AS aremp ON fol.id_folder = aremp.fk_id_folder
+               // WHERE emp.fk_id_estado != 3
+                //GROUP BY emp.nombre_empresa ORDER BY archivos DESC LIMIT 5';
+        //$params = null;
+        //return Database::getRows($sql, $params);
+    //}
+//}
