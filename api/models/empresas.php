@@ -402,6 +402,7 @@ class Empresas extends Validator
                 //FROM empresas 
                 //WHERE fk_id_estado !=3
                 //GROUP BY nombre_empresa, nombre_cliente, apellido_cliente, nit_empresa, numero_empresacontc 
+                //LEFT JOIN archivos AS aremp ON fol.id_folder = aremp.fk_id_folder
                 //ORDER BY nombre_empresa';
         //$params = null;
         //return Database::getRows($sql, $params);
