@@ -123,13 +123,14 @@ RESTABLECERCTR.addEventListener('click', function () {
                 if (request.ok) {
                     request.json().then(function (response) {
                         // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
-                        if (response.session) {
-                            console.log('Hay session');                         
+                        if (response.session && response.cambioCtr == false) {
+                            sweetAlert(3,response.cambioCtr,'inicio.html')                         
                         } else if (response.status) {
                             preloader.style.display = 'none';
                             RESTABLECERCTR.classList.remove('disabled');
                             sweetAlert(1,response.message,null)
                             restablecermodal.close();
+                            comprobarAmin();
                         } else {
                             preloader.style.display = 'none';
                             RESTABLECERCTR.classList.remove('disabled');
@@ -185,6 +186,7 @@ LOGINBTN.addEventListener('click', function () {
 
 //Metodo para verificar si hay una session
 function comprobarAmin() {
+    let restablecermodal = M.Modal.getInstance(document.querySelector('#modalrestablecer'));
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     fetch(API_GLBVAR + 'verificarAdmin', {
         method: 'get'
@@ -194,7 +196,11 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (response.session) {
+                if(response.cambioCtr){
+                    sweetAlert(3,'Es obligatorio cambiar la contraseña cada 90 días hagalo',null);
+                    USUARIOTXT.value = response.usuario;
+                    restablecermodal.open();
+                }else if (response.session && !response.cambioCtr) {
                     location.href = 'inicio.html';
                 }
             });
@@ -212,8 +218,17 @@ function contrasenasIguales() {
     if (CONTRAN.value != CONTRAC.value) {
         mensaje.innerText = 'Las contraseñas no coinciden';
         mensaje.style.display = 'block';
-    }else if(CONTRAN.value.length<6){
-        mensaje.innerText = 'Las contraseñas deben tener más de 6 caracteres';
+    }else if(CONTRAN.value.length<8){
+        mensaje.innerText = 'Las contraseñas deben tener más de 8 caracteres';
+        mensaje.style.display = 'block';
+    }else if(!validarCarateresEsp(CONTRAN.value)){
+        mensaje.innerText = 'Las contraseñas deben poseer un caracter especial como #, =, + etc';
+        mensaje.style.display = 'block';
+    }else if(/\s/.test(CONTRAN.value)){
+        mensaje.innerText = 'Las contraseñas no deben tener espacios en blanco';
+        mensaje.style.display = 'block';
+    }else if(!/[a-zA-Z]/.test(CONTRAN.value)){
+        mensaje.innerText = 'Las contraseñas debe ser alfanumerica';
         mensaje.style.display = 'block';
     }
     else {
@@ -227,3 +242,17 @@ CONTRAN.addEventListener('keyup', function () {
 CONTRAC.addEventListener('keyup', function () {
     contrasenasIguales();
 });
+
+//Función para validar caracteres especiales recibe como parametro un texto
+function validarCarateresEsp(contra){
+    let cEpeciales = ['#','°','!','#','$','%','?','¡','¿','+','*','.',',','/','=',';',':','-'];
+
+    let incluye = false;
+    
+    cEpeciales.forEach((caracter) =>{
+        if (contra.includes(caracter)) {
+            incluye = true;
+        }
+    });
+    return incluye;
+}

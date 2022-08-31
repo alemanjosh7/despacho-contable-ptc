@@ -41,7 +41,7 @@ footer {
 .botones-sidenav {
   height: 70px;
   width: 100%;
-  margin-bottom: 65px;
+  margin-bottom: 64px;
   transition: .2s ease all;
 }
 
@@ -1030,6 +1030,7 @@ footer {
   list-style: none;
   margin: 0;
   outline: none;
+  padding: 10px 16px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -1041,8 +1042,8 @@ footer {
   text-transform: initial;
 }
 
-.btn-add:hover,
-.btn-add:focus {
+.btn-add:hover,.btn-add-emp:hover,
+.btn-add:focus,.btn-add-emp:focus {
   background-color: #fa7478c7;
 }
 
@@ -1189,6 +1190,14 @@ footer {
 
 .employee-cards .card .card-image {
   width: 100px;
+}
+
+.employee-cards .card {
+  overflow: hidden !important;
+}
+
+.employee-cards .card p{
+  white-space:initial;  
 }
 
 .employee-cards {
@@ -3373,6 +3382,9 @@ input {
     margin-top: 0;
     margin-bottom: 15px;
   }
+  .btn-add-emp{
+    padding: 0;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 992px) {
@@ -3453,4 +3465,17 @@ input {
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-family: 'Poppins', sans-serif;
+}
+
+/*Estilos de la página del codigo de recuperación*/
+@media screen and (min-width: 993px){
+  .recJ main{
+    margin-top: 10vh;
+  }
+}
+
+/*Estilos para el previsualizador*/
+
+.prev-pdf main{
+  margin-left: 0;
 }

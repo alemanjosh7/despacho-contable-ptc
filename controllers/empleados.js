@@ -58,6 +58,19 @@ function changeOption(val) {
   });
 }
 
+//Colocamos limitación en inputs privados para no copiar
+TELEFONO.oncopy = function(e) {
+  e.preventDefault();
+}
+
+DUI.oncopy = function(e) {
+  e.preventDefault();
+}
+
+CORREO.oncopy = function(e) {
+  e.preventDefault();
+}
+
 /*Boton de ir hacia arriba*/
 
 var hastatop = document.getElementById("hasta_arriba");
@@ -75,7 +88,7 @@ window.onscroll = function () {
 
     // Se evita recargar la página web después de enviar el formulario.
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    if (document.getElementById('input-file').value.length >0) {
+    if (document.getElementById('input-file').value.length > 0) {
       limitBuscar *= 6;
       dynamicSearcherlimit(API_EMPLEADOS, 'search-form', limitBuscar);
     }
@@ -281,7 +294,9 @@ function comprobarAmin() {
       // Se obtiene la respuesta en formato JSON.
       request.json().then(function (response) {
         // Se comprueba si hay no hay una session para admins
-        if (!response.status) {
+        if(response.cambioCtr){
+          location.href = 'index.html';
+        }else if (!response.status) {
           location.href = 'inicio.html';
         }
       });
@@ -555,13 +570,36 @@ function contrasenasIguales() {
   if (document.getElementById('contra-emp').value != document.getElementById('contrac-emp').value) {
     mensaje.innerText = 'Las contraseñas no coinciden';
     mensaje.style.display = 'block';
-  } else if (document.getElementById('contra-emp').value.length < 6) {
-    mensaje.innerText = 'Las contraseñas deben tener más de 6 caracteres';
+  } else if (document.getElementById('contra-emp').value.length < 8) {
+    mensaje.innerText = 'Las contraseñas deben tener más de 8 caracteres';
+    mensaje.style.display = 'block';
+  } else if (!validarCarateresEsp(document.getElementById('contra-emp').value)) {
+    mensaje.innerText = 'Las contraseñas deben poseer un caracter especial como #, =, + etc';
+    mensaje.style.display = 'block';
+  } else if (/\s/.test(document.getElementById('contra-emp').value)) {
+    mensaje.innerText = 'Las contraseñas no deben tener espacios en blanco';
+    mensaje.style.display = 'block';
+  } else if (!/[a-zA-Z]/.test(document.getElementById('contra-emp').value)) {
+    mensaje.innerText = 'Las contraseñas debe ser alfanumerica';
     mensaje.style.display = 'block';
   }
   else {
     mensaje.style.display = 'none';
   }
+}
+
+//Función para validar caracteres especiales recibe como parametro un texto
+function validarCarateresEsp(contra) {
+  let cEpeciales = ['#', '°', '!', '#', '$', '%', '?', '¡', '¿', '+', '*', '.', ',', '/', '=', ';', ':', '-'];
+
+  let incluye = false;
+
+  cEpeciales.forEach((caracter) => {
+    if (contra.includes(caracter)) {
+      incluye = true;
+    }
+  });
+  return incluye;
 }
 
 //Funciónes para comprobar las contraseñas mientras estan siendo escritas

@@ -414,7 +414,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (!response.status) {
+                if(response.cambioCtr){
+                    location.href = 'index.html';
+                } else if (!response.status) {
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
                     );

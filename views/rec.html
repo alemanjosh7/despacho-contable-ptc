@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="../resources/css/styles.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <!--Importando las fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Icono del sitio web-->
+    <link rel="icon" href="../resources/icons/icono-web.png">
+</head>
+
+<body class="inicioJ recJ">
+    <header>
+
+    </header>
+    <main>
+        <div class="container">
+            <!--Fila del titulo de confirmación de compra-->
+            <div class="row">
+                <!--Fila del la bievnida del usuario-->
+                <div class="col s12 center-align" id="banner-saludo">
+                    <h5 id="saludo-usuario">¡Bienvenido jefe! Aqui cambiar la clave de recuperación</h5>
+                </div>
+            </div>
+            <!--Fila de indicaciones-->
+            <div class="row">
+                <div class="col s12">
+                    <p><span id="rec_pin"><b>Ingrese el pin</b></span> 
+                        de 6 digitos para restablecer la contraseña actual e ingrese el nuevo
+                        pin.<b>&nbsp¡OJO!</b>
+                        el pin debe poseer almenos <b><span id="rec_numero">1 número</span>, <span id="rec_letrama">1 letra mayúscula, </span> 
+                        <span id="rec_letrami">1 letra minúscula, </span>sin <span id="res_blanco">espacios en blanco </span>
+                        <span id="rec_6">y 6 caracteres</span></b>
+                    </p>
+                    <p class="center-align">En caso de olvido, puede reenviarse el PIN actual a su correo</p>
+                </div>
+                <div class="col s12 center-align">
+                    <b>Para mayor seguridad solo el primer administrador puede acceder a este apartado</b>
+                </div>
+            </div>
+            <hr> <!--Linea divisora-->
+            <!--Fila para el formulario de cambio de contraseña-->
+            <div class="row">
+                <div class="col s12">
+                    <div class="row center">
+                        <div>
+                            <i class="tooltipped material-icons center" data-position="top"
+                                data-tooltip="Mostrar/Ocultar" id="ocultarmostrar">visibility</i>
+                        </div>
+                    </div>
+                    <form autocomplete="off" nctype="multipart/form-data" id="formCodigoRc">
+                        <div class="input-field col s12 m6 ">
+                            <input placeholder="Codigo antiguo" id="codicoa" type="password"
+                                class="center-align inputs-añadirempr" maxlength="6" name="pin">
+                            <label for="codicoa" class="labels-anadirempr">Codgido de recuperación antiguo:</label>
+                        </div>
+                        <div class="input-field col s12 m6 ">
+                            <input placeholder="Codigo nuevo" id="codigon" type="password"
+                                class="center-align inputs-añadirempr" maxlength="6" name="codigo">
+                            <label for="codigon" class="labels-anadirempr">Codgido de recuperación nuevo:</label>
+                        </div>
+                        <div class="col s12 center-align">
+                            <button type="submit" class="waves-effect waves-ligth btn z-depth-3 btn_estilizadoM tooltipped"
+                                data-tooltip="Cambiar el codigo de recuperación de contraseña" data-position="left">
+                                <i class="material-icons left">autorenew</i>Hacer el cambio
+                            </button>
+                            <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado tooltipped"
+                                data-tooltip="Enviarme el codigo de recuperación de contraseña" data-position="right"
+                                id="recuperarpinbtn">
+                                <i class="material-icons left">info_outline</i>Olvide el codigo
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--No borrar del codigo-->
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large " id="hasta_arriba">
+                    <i class="large material-icons">arrow_upward</i>
+                </a>
+                <ul>
+            </div>
+            <!--Diseño de logout-->
+            <div id="cerrarSesionModal" class="modal">
+                <div class="fondo-modaldatos modal-content">
+                    <div class="center-align">
+                        <h4>Confirmación de cerrar sesión</h4>
+                        <p>¿Desea cerrar sesión?</p>
+                    </div>
+                    <!--Contenido importante del modal-Boton de actualizar-->
+                    <div class="center-align">
+                        <a class="waves-effect waves-light btn center-align" id="cerrarSesionModalbtn">Cerrar Sesión</a>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer" id="fondomodal-footer">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                                id="cancelar-cerrarSesion">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modalAnadirFolder" class="modal">
+                <div class="modal-content">
+                    <!--Titulo del modal-->
+                    <h4 class="center-align">Recuperar codigo de recuperación</h4>
+                    <!--Indicaciones del modal-->
+                    <p class="center-align">Antes de recuperar el codigo primero debes ingresar el
+                        PIN enviado a tu correo asociado a esta cuenta, recuerda que solo tu puedes modificarlo Jefe</p>
+                    <!--Formulario para ingresar PIN-->
+                    <form method="post" id="pin-sesion" autocomplete="off">
+                        <!--Fila del formulario-->
+                        <div class="row filaform-empresa">
+                            <!--input de PIN-->
+                            <div class="input-field col s12 m6 offset-m3 offset-l3">
+                                <input placeholder="Ingrese el PIN" id="PIN-numeros" type="password"
+                                    maxlength="4" name="pin"
+                                    class="validate center-align inputs-añadirempr">
+                                <label for="nombre-clienteempr" class="labels-anadirempr">Inserte
+                                    los 4 digitos</label>
+                            </div>
+                            <div class="col m1 s12">
+                                <i class="medium material-icons tooltipped " data-tooltip="Reenviar PIN"
+                                  id="reenviarPIN">settings_backup_restore</i>
+                                <p class="center-align"><span id="cronometro">120s</span></p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <!--Campos o contenido importante del modal de actualizar contraseña-->
+                        <div class="center">
+                            <a class="waves-effect waves-ligth btn z-depth-2"
+                                id="btn-añadirFolderModal">
+                                <i class="material-icons left">autorenew</i>Hacer el cambio
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="left col offset-s1 m5 l4">
+                                <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                    id="cancelar-Añadirfold">
+                                    <i class="material-icons left">keyboard_arrow_left</i>Cancelar
+                                </a>
+                            </div>
+                            <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                <h6 id="mensaje-restablecer">El PIN no es el correcto</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../controllers/components.js"></script>
+    <script type="text/javascript" src="../controllers/validaciones.js"></script>
+    <script src="../controllers/online.js"></script>
+    <script type="text/javascript" src="../controllers/rec.js"></script>
+</body>
+</html>
