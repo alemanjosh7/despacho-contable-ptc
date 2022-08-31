@@ -213,11 +213,28 @@ class Empleados extends Validator
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($contrasena, $data['contrasena_empleado'])) {
+            $this->actualizarIntentosEmp(true);
             return true;
         } else {
+            $this->actualizarIntentosEmp(false);
             return false;
         }
     }
+
+    //Comprobar los intentos de login del empleado
+    public function checkIntentosEmpleado(){
+        $sql = 'SELECT intentos FROM empleados WHERE id_empleado = ?';
+        $params = array($this->id_empleado);
+        $data = Database::getRow($sql, $params);
+        if ($data['intentos'] < 3) {
+            $this->cambiarEstadoEmp(4);
+            return true;
+        } else {
+            $this->cambiarEstadoEmp(5);
+            return false;
+        }
+    }
+
     //obtener empleado
     public function obtenerEmpleado($id)
     {
@@ -256,7 +273,7 @@ class Empleados extends Validator
     //Cambiar contraseña del empleado
     public function cambiarContrasenaEmpleado()
     {
-        $sql = 'UPDATE empleados SET contrasena_empleado = ? WHERE id_empleado = ?';
+        $sql = 'UPDATE empleados SET contrasena_empleado = ?, fecha_cambio = CURRENT_DATE WHERE id_empleado = ?';
         $params = array($this->contrasena_empleado, $this->id_empleado);
         return Database::executeRow($sql, $params);
     }
@@ -283,10 +300,10 @@ class Empleados extends Validator
         return Database::getRows($sql, $params);
     }
     //Buscar empleados
-    public function buscarEmpleadosLimit2($value,$limit)
+    public function buscarEmpleadosLimit2($value, $limit)
     {
         $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.nombre_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ? ORDER BY e.id_empleado LIMIT ?';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%",$limit);
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $limit);
         return Database::getRows($sql, $params);
     }
     //Crear empleado
@@ -299,17 +316,16 @@ class Empleados extends Validator
     //Actualizar empleado
     public function actualizarEmpleado()
     {
-        if($_SESSION['tipo_usuario'] == 4 && $_SESSION['id_usuario'] == $this->id_empleado){
+        if ($_SESSION['tipo_usuario'] == 4 && $_SESSION['id_usuario'] == $this->id_empleado) {
             $sql = 'UPDATE empleados
                 SET nombre_empleado =?,apellido_empleado=?,dui_empleado=?,telefono_empleadocontc=?,correo_empleadocontc=?,usuario_empleado=?,contrasena_empleado=?
                 WHERE id_empleado = ?';
-            $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this->usuario_empleado, $this->contrasena_empleado, $this->id_empleado);    
-        }else{
+            $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this->usuario_empleado, $this->contrasena_empleado, $this->id_empleado);
+        } else {
             $sql = 'UPDATE empleados
                 SET nombre_empleado =?,apellido_empleado=?,dui_empleado=?,telefono_empleadocontc=?,correo_empleadocontc=?,usuario_empleado=?,contrasena_empleado=?,fk_id_tipo_empleado=?, fk_id_estado=?
                 WHERE id_empleado = ?';
             $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this->usuario_empleado, $this->contrasena_empleado, $this->id_tipo_empleado, $this->id_estado, $this->id_empleado);
-
         }
         return Database::executeRow($sql, $params);
     }
@@ -343,8 +359,8 @@ class Empleados extends Validator
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, correo_empleadocontc, dui_empleado, telefono_empleadocontc, usuario_empleado
                 FROM empleados
                 WHERE id_empleado = ?';
-         $params = array($_SESSION['id_usuario']);
-         return Database::getRows($sql, $params);
+        $params = array($_SESSION['id_usuario']);
+        return Database::getRows($sql, $params);
     }
     //Obtener el tipo de empleado
     public function obtenerTipoEmpleado()
@@ -355,11 +371,32 @@ class Empleados extends Validator
     }
     //Actualizar el perfil
     public function actualizarPerfil()
-    {   
-        $sql = 'UPDATE empleados SET nombre_empleado = ?, apellido_empleado = ?, correo_empleadocontc = ?, dui_empleado = ?, telefono_empleadocontc = ?, usuario_empleado = ? WHERE id_empleado = ?';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->correo_empleadocontc, $this->dui_empleado, $this->telefono_empleadocontc, $this->usuario_empleado, $this->id_empleado);
+    {
+        $sql = 'UPDATE empleados SET nombre_empleado = ?, apellido_empleado = ?, correo_empleadocontc = ?, telefono_empleadocontc = ?, usuario_empleado = ? WHERE id_empleado = ?';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->correo_empleadocontc, $this->telefono_empleadocontc, $this->usuario_empleado, $this->id_empleado);
         return Database::executeRow($sql, $params);
     }
+
+    //Cambiar el estado del administrador
+    public function cambiarEstadoEmp($estado)
+    {
+        $sql = 'UPDATE empleados SET fk_id_estado = ? WHERE id_empleado = ?';
+        $params = array($estado, $this->id_empleado);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Actualizar intentos
+    public function actualizarIntentosEmp($intento)
+    {
+        if($intento){
+            $sql = 'UPDATE empleados SET intentos = 0 WHERE id_empleado = ?';
+        }else{
+            $sql = 'UPDATE empleados SET intentos = intentos+1 WHERE id_empleado = ?';
+        }
+        $params = array($this->id_empleado);
+        return Database::executeRow($sql, $params);
+    }
+
     /*
 
         METODOS PARA GRAFICAS
@@ -386,7 +423,7 @@ class Empleados extends Validator
                 GROUP BY emp.nombre_empleado, emp.apellido_empleado
                 HAVING COUNT(eme.fk_id_empleado) >= ?  AND COUNT(eme.fk_id_empleado) <= ?
                 ORDER BY accesos DESC LIMIT 10';
-        $params = array($rangoi,$rangof);
+        $params = array($rangoi, $rangof);
         return Database::getRows($sql, $params);
     }
 
@@ -418,5 +455,24 @@ class Empleados extends Validator
                 ORDER BY nombre_empleado';
         $params = null;
         return Database::getRows($sql, $params);
+    }
+    /*
+    
+        METODOS PARA CONSULTAS (post Reportes)
+
+    */
+    //Método para verificar si la fecha de la ultima vez que cambio la contra es menor a la fecha actual 
+    public function verificarCambioCtr()
+    {
+        $sql = 'SELECT * FROM empleados WHERE id_empleado = ? AND 
+        (SELECT extract(DAYS FROM (current_date - fecha_cambio::TIMESTAMP)) > 90)';
+        $params = array($_SESSION['id_usuario']);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['cambioCtr'] = true;
+            return true;
+        } else {
+            $_SESSION['cambioCtr'] = false;
+            return false;
+        }
     }
 }

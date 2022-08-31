@@ -10,10 +10,11 @@ if (isset($_GET['action'])) {
     // Se instancia la clase correspondiente.
     $empleados = new Empleados;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
+    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_usuario'])) {
         $result['session'] = 1;
+        $result['cambioCtr'] = $_SESSION['cambioCtr'];
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'getUser':
@@ -63,7 +64,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                //Actualizar contraseña
+                //Actualizar contraseñas uno es para cuando hay session y otro para obligar a cambiar la contraseña EN ESE ORDEN
             case 'actualizarContraL':
                 $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->setId($_SESSION['id_usuario'])) {
@@ -78,8 +79,23 @@ if (isset($_GET['action'])) {
                 } elseif ($empleados->cambiarContrasenaEmpleado()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
+                    $empleados->verificarCambioCtr();
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            case 'actualizarContra':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario inexistente';
+                } elseif (!$empleados->setContrasena($_POST['contrasena'])) {
+                    $result['exception'] = $empleados->getPasswordError();
+                } elseif ($empleados->cambiarContrasenaEmpleado()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña cambiada correctamente';
+                    $empleados->verificarCambioCtr();
+                } else {
+                    $result['exception'] = 'La contraseña no se pudo actualizar';
                 }
                 break;
                 //Leer el perfil
@@ -149,7 +165,9 @@ if (isset($_GET['action'])) {
                 //Actualizar empleado
             case 'update':
                 $_POST = $empleados->validateForm($_POST);
-                if (!$empleados->setId($_POST['id'])) {
+                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
+                    $result['exception'] = 'No puedes modificar al jefe';
+                } elseif (!$empleados->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
                     $result['message'] = $_POST['id'];
                 } elseif (!$data = $empleados->obtenerEmpleado($_POST['id'])) {
@@ -233,7 +251,9 @@ if (isset($_GET['action'])) {
                 break;
                 //Eliminar empleado
             case 'delete':
-                if ($_POST['id'] == $_SESSION['id_usuario']) {
+                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
+                    $result['exception'] = 'No puedes eliminar al jefe';
+                } elseif ($_POST['id'] == $_SESSION['id_usuario']) {
                     $result['exception'] = 'No se puede eliminar a si mismo';
                 } elseif (!$empleados->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
@@ -250,6 +270,7 @@ if (isset($_GET['action'])) {
                 break;
                 //Actualizar el perfil
             case 'updateProf':
+                $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->setId($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif (!$data = $empleados->obtenerEmpleado($_SESSION['id_usuario'])) {
@@ -301,6 +322,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos disponibles';
                 }
                 break;
+                //Obtener la verificación si la fecha es mayor a la actual
+            case 'verificarFechaCtr':
+                if ($empleados->verificarCambioCtr()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Debe cambiar su contraseña por seguridad cada 90 días, ese periodo ya paso ¡Cambiela!';
+                } else {
+                    $resul['exception'] = 'No es obligatorio cambiar la contraseña';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -314,6 +344,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre de usuario incorrecto';
                 } elseif (!$empleados->checkEmpleadosActivos()) {
                     $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
+                } elseif(!$empleados->checkIntentosEmpleado()){
+                    $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
                 } elseif ($empleados->checkContrasenaEmpleado($_POST['contrasena'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
@@ -322,6 +354,7 @@ if (isset($_GET['action'])) {
                     $_SESSION['saludoI'] = false;
                     $empleados->nombreApellidoEmpleado();
                     $empleados->tipoEmpleado();
+                    $empleados->verificarCambioCtr();
                 } else {
                     $result['exception'] = 'Contraseña incorrecta';
                 }
