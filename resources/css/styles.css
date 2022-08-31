@@ -1193,11 +1193,7 @@ footer {
 }
 
 .employee-cards .card {
-  overflow: hidden !important;
-}
-
-.employee-cards .card p{
-  white-space:initial;  
+  overflow: hidden;
 }
 
 .employee-cards {
@@ -2944,13 +2940,12 @@ footer {
 }
 
 .perfil-todo {
-  margin-top: 5%;
+  margin-top: 15%;
   margin-left: -20%;
 }
 
 .perfil-todo b{
   font-size: 18px;
- 
 }
 
 
