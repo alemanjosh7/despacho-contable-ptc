@@ -237,24 +237,24 @@
                 <p class="center-align">Guardar un archivo, este se guardará con el nombre que lo suba <b>¡No todos los
                         archivos podran visualizarse!</b></p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="archForm" enctype="multipart/form-data">
+                <form method="post" id="archForm">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
                         <!--Nombre de la empresa-->
                         <div class="input-field col s12 m5 offset-m1 l6 hide">
-                            <input placeholder="Nombre Empresa" id="id_arch" type="text"
+                            <input autocomplete ="off" placeholder="Nombre Empresa" id="id_arch" type="text"
                                 class="validate center-align inputs-añadirempr" name="idarch">
                             <label for="nombreempr-arch" class="labels-anadirempr">Nombre de la empresa:</label>
                         </div>
                         <!--Nombre de la empresa-->
                         <div class="input-field col s12 m5 offset-m1 l6">
-                            <input placeholder="Nombre Empresa" id="nombreempr-arch" type="text"
+                            <input autocomplete ="off" placeholder="Nombre Empresa" id="nombreempr-arch" type="text"
                                 class="validate center-align inputs-añadirempr " disabled value="Lolin">
                             <label for="nombreempr-arch" class="labels-anadirempr">Nombre de la empresa:</label>
                         </div>
                         <!--Nombre del folder-->
                         <div class="input-field col s12 m5 l6">
-                            <input placeholder="Nombre Folder" id="nombrefold-arch" type="text"
+                            <input autocomplete ="off" placeholder="Nombre Folder" id="nombrefold-arch" type="text"
                                 class="validate center-align inputs-añadirempr" disabled value="Lolin Folder">
                             <label for="nombrefold-arch" class="labels-anadirempr">Nombre del folder:</label>
                         </div>
@@ -266,7 +266,7 @@
                                 <input type="file" id="archivosubido-arch" name="archivo">
                             </div>
                             <div class="file-path-wrapper col s12 m7 l10  inputarh-texto">
-                                <input class="file-path inputs-añadirempr" type="text" disabled id="nombreArchivo-input"
+                                <input autocomplete ="off" class="file-path inputs-añadirempr" type="text" disabled id="nombreArchivo-input"
                                     name="archivo_nombre">
                             </div>
                         </div>

@@ -166,7 +166,7 @@
                         archivos podran visualizarse!, los podrá descargar despues pero se recomienda eliminar tras
                         descargar para no acumular</b></p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="archForm" enctype="multipart/form-data">
+                <form method="post" id="archForm">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
                         <!--Seleccionar la empresa a la que posee acceso-->
@@ -181,19 +181,19 @@
                         </div>
                         <!--Nombre del empleado-->
                         <div class="input-field col s12 m5 l4" id="nombre_empcont">
-                            <input placeholder="Nombre Empleado" id="nombre_emp" type="text"
+                            <input autocomplete ="off" placeholder="Nombre Empleado" id="nombre_emp" type="text"
                                 class="validate center-align inputs-añadirempr " disabled>
                             <label for="nombre_emp" class="labels-anadirempr">Nombre del empleado:</label>
                         </div>
                         <!--Fecha de subida-->
                         <div class="input-field col s12 m6 offset-m3 l3" id="fecha_cont">
-                            <input placeholder="Fecha en que se subio el archivo" id="fecha" type="text"
+                            <input autocomplete ="off" placeholder="Fecha en que se subio el archivo" id="fecha" type="text"
                                 class="validate center-align inputs-añadirempr " disabled>
                             <label for="fecha" class="labels-anadirempr">Fecha de subida:</label>
                         </div>
                         <!--Nombre del empleado-->
                         <div class="input-field col s12 m5 offset-m1 l6 hide">
-                            <input placeholder="Nombre Empleado" id="id_arch" type="text"
+                            <input autocomplete ="off" placeholder="Nombre Empleado" id="id_arch" type="text"
                                 class="validate center-align inputs-añadirempr">
                         </div>
                         <!--Descripción del archivo-->
@@ -207,10 +207,10 @@
                             <div class="btn agregararchivoarh col s12 m3 offset-m1 l2">
                                 <i class="material-icons">insert_drive_file</i>
                                 <span>Archivo</span>
-                                <input type="file" id="archivosubido-arch" name="archivo">
+                                <input autocomplete ="off" type="file" id="archivosubido-arch" name="archivo">
                             </div>
                             <div class="file-path-wrapper col s12 m7 l10  inputarh-texto">
-                                <input class="file-path inputs-añadirempr" type="text" disabled id="nombreArchivo-input"
+                                <input autocomplete ="off" class="file-path inputs-añadirempr" type="text" disabled id="nombreArchivo-input"
                                     name="archivo_nombre">
                             </div>
                         </div>
