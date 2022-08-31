@@ -213,20 +213,23 @@ class Empleados extends Validator
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($contrasena, $data['contrasena_empleado'])) {
+            //Comprobamos que no sea el jefe
             $this->actualizarIntentosEmp(true);
             return true;
         } else {
-            $this->actualizarIntentosEmp(false);
+            if($this->id_empleado != 1){
+                $this->actualizarIntentosEmp(false);
+            }
             return false;
         }
     }
 
     //Comprobar los intentos de login del empleado
     public function checkIntentosEmpleado(){
-        $sql = 'SELECT intentos FROM empleados WHERE id_empleado = ?';
+        $sql = 'SELECT intentos FROM empleados WHERE intentos < 3 AND id_empleado = ?';
         $params = array($this->id_empleado);
         $data = Database::getRow($sql, $params);
-        if ($data['intentos'] < 3) {
+        if ($data) {
             $this->cambiarEstadoEmp(4);
             return true;
         } else {
@@ -327,6 +330,7 @@ class Empleados extends Validator
                 WHERE id_empleado = ?';
             $params = array($this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this->usuario_empleado, $this->contrasena_empleado, $this->id_tipo_empleado, $this->id_estado, $this->id_empleado);
         }
+        $this->actualizarIntentosEmp(true);
         return Database::executeRow($sql, $params);
     }
     //Eliminar empleado
