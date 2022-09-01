@@ -1,4 +1,5 @@
 <?php
+require '../enviarcorreoCorreoI.php';
 /*
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
@@ -16,6 +17,7 @@ class Empleados extends Validator
     private $contrasena_empleado = null; //contraseña del empleado
     private $id_tipo_empleado = null; //tipo empleado
     private $id_estado = null; //estado del empleado
+    
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -233,6 +235,8 @@ class Empleados extends Validator
             $this->cambiarEstadoEmp(4);
             return true;
         } else {
+            $enviarC = new EnvioC;
+            $enviarC->enviarEmailI($this->id_empleado, $this->usuario_empleado);
             $this->cambiarEstadoEmp(5);
             return false;
         }

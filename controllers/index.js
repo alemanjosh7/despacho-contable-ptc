@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Modal.init(document.querySelectorAll('.modal'));
     //Ejecutamos algunos metodos inciales
     comprobarAmin();//Verificamos si hay una session
+    primerUso();//Verificamos si hay empleados para validar el primer uso
 });
 //Inputs
 const LOGINBTN = document.getElementById('Iniciar_btn');//Boton de inicio de sesión
@@ -255,4 +256,26 @@ function validarCarateresEsp(contra){
         }
     });
     return incluye;
+}
+
+//Función para comprobar si hay empleados creados para el primero uso
+
+function primerUso(){
+    fetch(API_EMPLEADOS + 'readAllLimit', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (response.status) {
+                    alert('Si hay')
+                } else {
+                    alert('No hay');
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }

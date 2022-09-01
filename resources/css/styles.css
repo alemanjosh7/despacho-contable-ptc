@@ -3378,7 +3378,7 @@ input {
     margin-bottom: 15px;
   }
   .btn-add-emp{
-    padding: 0;
+    padding: 10px 16px;
   }
 }
 
@@ -3388,6 +3388,10 @@ input {
     margin-bottom: 15px;
     position: relative;
     left: 50px !important;
+  }
+
+  .btn-add-emp{
+    padding: 0;
   }
 }
 /*Perfil*/
