@@ -70,13 +70,13 @@ body{
     <div class="encabezado">
         <nav class="orange darken-4 center">
             <div class="nav-wrapper">
-                <h1 style="margin: 0; font-size: 75px;">Smart Book</h1>
+                <h1 style="margin: 0; font-size: 75px;">Smart Bookkeeping</h1>
             </div>
         </nav>
     </div>
     <div class="container">
         <h1 class="center-align">Recuperar contraseña</h1>
-        <p style="color: black;">En Smart Bookkeeping nos preocupamos por ti, a continuación veras un codigo de 6 digitos que deberás de colocar en el formulario de tu pantalla <b>'.$cliente.'</b>, no
+        <p>En Smart Bookkeeping nos preocupamos por ti, a continuación veras un codigo de 6 digitos que deberás de colocar en el formulario de tu pantalla <b>'.$cliente.'</b>, no
             olvides que este solo dura 1h y es distinto conforme tu continues generando más codigos <b>¡Apresurate '.$usuario.' ! codigo: </b></p>
             <div class="fila1">
             <div class="card-panel orange darken-4 white-text">
