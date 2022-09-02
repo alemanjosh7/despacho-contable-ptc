@@ -16,17 +16,13 @@ $result = array('message' => null, 'exception' => null, 'status' => null);
 
 
 //Declaramos algunas variables
-$cliente =  $_SESSION['nombreUsuario'].''. $_SESSION['apellidoUsuario'];
-$usuario = $_SESSION['usuario'];
+$usuario = $_POST['usuario'];
 $pin = $_SESSION['PIN'];
 $correo = $_POST['correo'];
 $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
-
-
-
-
 <head>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -138,9 +134,8 @@ body{
                 </nav>
             </div>
         <div class="container">
-            <h1 class="center-align">Recuperar contraseña</h1>
-            <p>En Smart Bookkeeping nos preocupamos por ti, a continuación veras un codigo de 6 digitos que deberás de colocar en el formulario de tu pantalla <b>'.$cliente.'</b>, no
-                olvides que este solo dura 1h y es distinto conforme tu continues generando más codigos <b>¡Apresurate '.$usuario.' ! codigo: </b></p>
+            <h1 class="center-align">verificación en dos pasosa</h1>
+            <p>El pin que se muestra a continuación tiene la función de verificar si el<b>'.$usuario.'<b> es usted. <b>Por favor ingrese el siguiente código en la pantalla emergente:</b></p>
                 <div class="fila1">
                 <div class="card-panel orange darken-4 white-text">
                     <h1>'.$pin.'</h1>
