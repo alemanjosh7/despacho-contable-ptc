@@ -16,6 +16,14 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'cerrarInactivo':
+                if (session_destroy()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión eliminada por inactividad';
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+                }
+                break;
             case 'getUser':
                 if (isset($_SESSION['alias_empleado'])) {
                     $result['status'] = 1;

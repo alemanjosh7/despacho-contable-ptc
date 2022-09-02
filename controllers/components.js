@@ -5,8 +5,8 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/despEsquivel/api/';
-const API = SERVER + 'dashboard/admins.php?action=';
+const SERVER = 'http://localhost/despacho-contable-ptc/api/';
+const API = SERVER + 'dashboard/empleados.php?action=';
 
 /*
     VARIABLES PARA LAS GRAFICAS
@@ -1294,3 +1294,69 @@ function doughnutGraphP(canvas, legends, values, title) {
         }
     });
 }
+
+//Metodo para cerrar sesion por inactividad (5 segundos)
+let timer, currSeconds = 0;
+function resetTimer() {
+  
+    document.querySelector(".timertext")
+    .style.display = 'none';
+
+    clearInterval(timer);
+    currSeconds = 0;
+    timer = setInterval(startIdleTimer, 1000);
+}
+
+window.onload = resetTimer;
+window.onmousemove = resetTimer;
+window.onmousedown = resetTimer;
+window.ontouchstart = resetTimer;
+window.onclick = resetTimer;
+window.onkeypress = resetTimer;
+
+function startIdleTimer() {
+      
+
+    currSeconds++;
+
+  
+    document.querySelector(".secs")
+        .textContent = currSeconds;
+
+    document.querySelector(".timertext")
+        .style.display = 'block';
+
+
+        if(currSeconds==5)
+        {
+            clearInterval(timer);
+            fetch(API + 'cerrarInactivo', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    // Se obtiene la respuesta en formato JSON.
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(3, response.message, 'index.html');
+                            swal({
+                                title: 'Aviso',
+                                text: response.message,
+                                icon: 'warning',
+                                button: 'Aceptar',
+                                closeOnClickOutside: false,
+                                closeOnEsc: false
+                            }).then(function () {
+                                location.href = 'index.html';
+                            });
+                        } else {
+                            
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
+        }
+    }
