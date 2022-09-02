@@ -573,7 +573,7 @@ function crearArch() {
     M.Modal.getInstance(MODALARCH).open();
     document.getElementById('titulo_modal').innerText = 'Añadir Archivo';
     document.getElementById('indicacion_modal').innerHTML = 'Añada un archivo, este se guardará con el nombre que lo suba <b>¡No todos los archivos podran visualizarse!, los podrá descargar despues pero se recomienda eliminar tras descargar para no acumular</b>';
-    fillSelect2(ENDPOINT_EMPRESAS, 'empresas_select', '¿A que empresa pertenece?', null, true);
+    fillSelect2(ENDPOINT_EMPRESAS, 'empresas_select', 'Seleccionar empresa', null, true);
     FECHACONT.classList.add('hide');
     NOMBREEMPCONT.classList.replace('l4', 'l6');
     SELECTEMPCONT.classList.replace('l5', 'l6');
