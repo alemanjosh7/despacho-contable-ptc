@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
                 //Actualizar empleado
             case 'update':
                 $_POST = $empleados->validateForm($_POST);
-                if ($_SESSION['id_usuario'] != 1 && $_POST['id'] == 1) {
+                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
                     $result['exception'] = 'No puedes modificar al jefe';
                 } elseif (!$empleados->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
@@ -251,7 +251,7 @@ if (isset($_GET['action'])) {
                 break;
                 //Eliminar empleado
             case 'delete':
-                if ($_SESSION['id_usuario'] != 1 && $_POST['id'] == 1) {
+                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
                     $result['exception'] = 'No puedes eliminar al jefe';
                 } elseif ($_POST['id'] == $_SESSION['id_usuario']) {
                     $result['exception'] = 'No se puede eliminar a si mismo';
@@ -344,7 +344,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre de usuario incorrecto';
                 } elseif (!$empleados->checkEmpleadosActivos()) {
                     $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
-                } elseif (!$empleados->checkIntentosEmpleado()) {
+                } elseif(!$empleados->checkIntentosEmpleado()){
                     $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
                 } elseif ($empleados->checkContrasenaEmpleado($_POST['contrasena'])) {
                     $result['status'] = 1;
@@ -371,16 +371,6 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
                     $result['exception'] = 'La contraseña no se pudo actualizar';
-                }
-                break;
-                //Obtener todos los empleados con limite
-            case 'readAllLimit':
-                if ($result['dataset'] = $empleados->buscarEmpleadosLimite(0)) {
-                    $result['status'] = 1;
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay datos registrados';
                 }
                 break;
             default:

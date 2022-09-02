@@ -1,9 +1,9 @@
 <?php
-require '../enviarcorreoCorreoI.php';
 /*
 *	Clase para manejar la tabla usuarios de la base de datos.
 *   Es clase hija de Validator.
 */
+require '../enviarCorreoI.php';
 class Empleados extends Validator
 {
     // Declaración de atributos (propiedades).
@@ -17,7 +17,6 @@ class Empleados extends Validator
     private $contrasena_empleado = null; //contraseña del empleado
     private $id_tipo_empleado = null; //tipo empleado
     private $id_estado = null; //estado del empleado
-    
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
