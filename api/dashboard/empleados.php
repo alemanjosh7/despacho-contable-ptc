@@ -145,7 +145,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
                     $result['exception'] = $empleados->getPasswordError();
                     $result['message'] = $_POST['nombre-emp'];
-                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], true)) {
+                } elseif ($empleados->verificarContraDat($_POST, $_POST['contra-emp'], true)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
@@ -220,7 +220,7 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp']))) {
                     $result['exception'] = $empleados->getPasswordError();
-                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], false)) {
+                } elseif ($empleados->verificarContraDat($_POST, $_POST['contra-emp'], true)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';

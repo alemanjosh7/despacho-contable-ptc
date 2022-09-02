@@ -16,7 +16,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'prueba';
+        $database = 'dbdespcontesquivel';
         $username = 'postgres';
         $password = 'admin';
 
@@ -141,7 +141,8 @@ class Database
                 //self::$error = $message;
                 break;
             case '23505':
-                self::$error = 'Dato duplicado, no se puede guardar';
+                //self::$error = 'Dato duplicado, no se puede guardar';
+                self::$error = $message;
                 break;
             case '42P01':
                 self::$error = 'Nombre de tabla desconocido';
