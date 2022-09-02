@@ -143,7 +143,7 @@ if (isset($_GET['action'])) {
                 } elseif ($_POST['contra-emp'] != $_POST['contrac-emp']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
-                    $result['exception'] = 'Contraseña incorrecta';
+                    $result['exception'] = $empleados->getPasswordError();
                     $result['message'] = $_POST['nombre-emp'];
                 } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], true)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
@@ -219,7 +219,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'No se pudo actualizar el empleado';
                     }
                 } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp']))) {
-                    $result['exception'] = 'Contra incorrecta';
+                    $result['exception'] = $empleados->getPasswordError();
                 } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], false)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
@@ -410,13 +410,10 @@ if (isset($_GET['action'])) {
                 } elseif ($_POST['contra-emp'] != $_POST['contrac-emp']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
-                    $result['exception'] = 'Contraseña incorrecta';
+                    $result['exception'] = $empleados->getPasswordError();
                     $result['message'] = $_POST['nombre-emp'];
-                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], true)) {
+                } elseif ($empleados->verificarContraDat($_POST, $_POST['contra-emp'], true)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
-                } elseif (!isset($_POST['tipo-de-empleado'])) {
-                    $result['exception'] = 'Seleccione un tipo de empleado';
-                    $result['message'] = $_POST['nombre-emp'];
                 } elseif (!$empleados->setDUI($_POST['dui-emp'])) {
                     $result['exception'] = 'DUI incorrecto';
                     $result['message'] = $_POST['nombre-emp'];
@@ -425,9 +422,16 @@ if (isset($_GET['action'])) {
                     $result['message'] = $_POST['telefono-emp'];
                 } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
                     $result['exception'] = 'Correo incorrecto';
+                } elseif(!$rec->setCodigo($_POST['pinRecP'])){
+                    $result['exception'] = $rec->getPasswordError();
                 } elseif ($empleados->primerUsuario()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Jefe creado';
+                    if($rec->crearCodigoRec()){
+                        $result['status'] = 1;
+                        $result['message'] = 'Jefe creado con exito ¡Bienvenido a Smart Bookkeeping!';
+                    }else{
+                        $empleados->rte();
+                        $result['exception'] = 'Hubo un error al crear al jefe';
+                    }
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {

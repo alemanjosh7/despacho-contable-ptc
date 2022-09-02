@@ -22,6 +22,14 @@ const CONTRAC = document.getElementById('contraseña_confirma');//input de la co
 const preloader = document.getElementById('preloader-añadirfold');//preloader de la actualización de contraseña
 const RESTABLECERCTR = document.getElementById('restablecerContraseña');//boton de restablecer contraseña
 
+const TELEFONO = document.getElementById('telefono-emp');
+const CONTRA = document.getElementById('contra-emp');
+const CONTRACP = document.getElementById('contrac-emp');
+const NOMBREE = document.getElementById('nombre-emp');
+const APELLIDOE = document.getElementById('apellido-emp');
+const DUI = document.getElementById('dui-emp');
+const CORREO = document.getElementById('correo-emp');
+
 /*Validar el PIN de restablecer contraseñas*/
 var comprobarPIN = document.getElementById('btn-añadirFolderModal');
 comprobarPIN.addEventListener('click', function () {
@@ -269,7 +277,7 @@ function validarPrimerUso(){
         if (request.ok) {
             request.json().then(function (response) {
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
-                if (!response.status) {
+                if (response.status) {
                 } else {
                     M.Modal.init(document.querySelectorAll('#modal-template'),options);
                     M.Modal.getInstance(document.querySelector('#modal-template')).open();
@@ -281,3 +289,98 @@ function validarPrimerUso(){
         }
     });
 }
+
+//Método para guardar el primer usuario
+document.getElementById('save-form').addEventListener('submit', function (event) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    fetch(API_EMPLEADOS + 'primerUsuario', {
+        method: 'post',
+        body: new FormData(document.getElementById('save-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    sweetAlert(1,response.message,'inicio.html');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+    // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
+    //saveRowL(API_EMPLEADOS, action, 'save-form', 'modal-template', 0);
+});
+
+//Función para comprobar si las contraseñas son iguales
+function contrasenasIguales2() {
+    let mensaje = document.getElementById('mensaje-anadirarh');//mensaje
+    if (document.getElementById('contra-emp').value != document.getElementById('contrac-emp').value) {
+        mensaje.innerText = 'Las contraseñas no coinciden';
+        mensaje.style.display = 'block';
+    } else if (document.getElementById('contra-emp').value.length < 8) {
+        mensaje.innerText = 'Las contraseñas deben tener más de 8 caracteres';
+        mensaje.style.display = 'block';
+    } else if (!validarCarateresEsp(document.getElementById('contra-emp').value)) {
+        mensaje.innerText = 'Las contraseñas deben poseer un caracter especial como #, =, + etc';
+        mensaje.style.display = 'block';
+    } else if (/\s/.test(document.getElementById('contra-emp').value)) {
+        mensaje.innerText = 'Las contraseñas no deben tener espacios en blanco';
+        mensaje.style.display = 'block';
+    } else if (!/[a-zA-Z]/.test(document.getElementById('contra-emp').value)) {
+        mensaje.innerText = 'Las contraseñas debe ser alfanumerica';
+        mensaje.style.display = 'block';
+    }
+    else {
+        mensaje.style.display = 'none';
+    }
+}
+
+//Funciónes para comprobar las contraseñas mientras estan siendo escritas
+document.getElementById('contra-emp').addEventListener('keyup', function () {
+    contrasenasIguales2();
+});
+document.getElementById('contrac-emp').addEventListener('keyup', function () {
+    contrasenasIguales2();
+});
+
+//Validar solo número en el input
+TELEFONO.addEventListener('keypress', function (e) {
+    if (!soloNumeros(event, 1)) {
+        e.preventDefault();
+    }
+});
+
+DUI.addEventListener('keypress', function (e) {
+    if (!soloNumeros(event, 1)) {
+        e.preventDefault();
+    }
+});
+//Validar solo letras
+//Validar solo número en el input del telefono
+NOMBREE.addEventListener('keypress', function (e) {
+    if (!soloLetras(event, 1)) {
+        e.preventDefault();
+    }
+});
+
+APELLIDOE.addEventListener('keypress', function (e) {
+    if (!soloLetras(event, 1)) {
+        e.preventDefault();
+    }
+});
+
+//Guion en el número de telfono y dui
+//Validar guión en el número de NIT
+TELEFONO.addEventListener('keyup', e => {
+    guionTelefono(e, TELEFONO);
+});
+
+DUI.addEventListener('keyup', e => {
+    guionDUI(e, DUI);
+});

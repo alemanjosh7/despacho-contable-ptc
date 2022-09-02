@@ -54,7 +54,7 @@ class Validator
     public function searchContra($form, $contra)
     {
         foreach ($form as $index => $value) {
-            if (strpos($form[$index], $contra)) {
+            if (strpos($form[$index], $contra) && $form[$index] != $contra) {
                 true;
             } else {
                 false;
@@ -437,17 +437,17 @@ class Validator
     {
         // Se verifica la longitud mínima.
         if (!strlen($value) == 6) {
-            $this->passwordError = 'Clave menor a 6 caracteres';
+            $this->passwordError = 'El pin de recuperación es menor a 6 caracteres';
         } elseif (preg_match('/\s/', $value)) {
-            $this->passwordError = 'La clave no debe tener espacios en blanco';
+            $this->passwordError = 'El pin de recuperación no debe tener espacios en blanco';
         } elseif (!preg_match('/[0-9]/', $value)) {
-            $this->passwordError = 'La clave debe contener al menos un digito';
+            $this->passwordError = 'El pin de recuperación debe contener al menos un digito';
             return false;
         } elseif (!preg_match('/[a-z]/', $value)) {
-            $this->passwordError = 'La clave debe contener almenos una letra minuscula';
+            $this->passwordError = 'El pin de recuperación no debe contener almenos una letra minuscula';
             return false;
         } elseif (!preg_match('/[A-Z]/', $value)) {
-            $this->passwordError = 'La clave debe contener almenos una letra mayuscula';
+            $this->passwordError = 'El pin de recuperación debe contener almenos una letra mayuscula';
             return false;
         } else {
             return true;

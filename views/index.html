@@ -231,13 +231,9 @@
                         <!--Fila del formulario-->
                         <div class="row filaform-archivo">
                             <!--Nombre del usuario-->
-                            <div class="input-field col s12 m10 offset-m1 l6 hide" id="input-id">
-                                <input name="id" id="id" type="text" class="validate  inputs-añadirempr">
-                                <label for="id" class="labels-anadirempr">Id del empleado</label>
-                            </div>
                             <div class="input-field col s12 m10 offset-m1 l6">
                                 <input placeholder="Usuario" name="usuario-emp" id="usuario-emp" type="text"
-                                    class="validate  inputs-añadirempr" required>
+                                    class="validate  inputs-añadirempr" required autocomplete="off">
                                 <label for="usuario-emp" class="labels-anadirempr">Usuario</label>
                             </div>
                             <!--Telefono del empleado-->
@@ -249,7 +245,7 @@
                             <!--Contraseña del usuario-->
                             <div class="input-field col s12 m10 offset-m1 l6">
                                 <input placeholder="Contraseña" name="contra-emp" id="contra-emp" type="password"
-                                    class="validate  inputs-añadirempr" required>
+                                    class="validate  inputs-añadirempr" required autocomplete="off">
                                 <label for="contra-emp" class="labels-anadirempr">Contraseña</label>
                             </div>
                             <!--Contraseña del usuario-->
@@ -284,8 +280,8 @@
                             </div>
                             <!--PIN de recuperación-->
                             <div class="input-field col s12 offset-m3 m6">
-                                <input placeholder="Pin para restablecer contraseñas" type="password" id="pinRecP" name="pinRecP" class="inputs-añadirempr" required>
-                                <label for="pinRec" class="labels-anadirempr">Ingrese el PIN para restablecer las contraseñas</label>
+                                <input placeholder="Pin para restablecer contraseñas" type="password" id="pinRecP" name="pinRecP" class="inputs-añadirempr" required autocomplete="off">
+                                <label for="pinRec" class="labels-anadirempr">PIN para restablecer contraseñas</label>
                             </div>
                             <!--Barra de carga-->
                             <div class="progress" id="barraraprg-garch">
@@ -334,6 +330,7 @@
     <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../controllers/components.js"></script>
+    <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/index.js"></script>
 </body>
 

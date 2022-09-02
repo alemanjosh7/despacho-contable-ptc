@@ -503,7 +503,14 @@ class Empleados extends Validator
     {
         $sql = 'INSERT INTO empleados (id_empleado, nombre_empleado, apellido_empleado, dui_empleado, telefono_empleadocontc, correo_empleadocontc, usuario_empleado, contrasena_empleado, fk_id_tipo_empleado)
                 VALUES (?,?,?,?,?,?,?,?,?)';
-        $params = array(1, $this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this-> usuario_empleado, $this->contrasena_empleado);
+        $params = array(1, $this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this-> usuario_empleado, $this->contrasena_empleado,4);
+        return Database::executeRow($sql, $params);
+    }
+    //Método para resetear la tabla de empleado en caso no halla creado bien el jefe
+    public function rte()
+    {
+        $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
+        $params = null;
         return Database::executeRow($sql, $params);
     }
 }
