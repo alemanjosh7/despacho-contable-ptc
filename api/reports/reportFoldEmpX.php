@@ -5,7 +5,9 @@ if (isset($_GET['idemp'])) {
     require('../models/empresas.php');
     // Se instancia el módelo pedidos personalizado para procesar los datos.
     $empresas = new Empresas;
-
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     // Se verifica si el parámetro es un valor correcto, de lo contrario se direcciona a la página web de origen.
     if ($empresas->setId($_GET['idemp'])) {
         // Se instancia la clase para crear el reporte.

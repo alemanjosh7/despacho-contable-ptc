@@ -29,6 +29,10 @@ if (1 == 1) {
     $pdf->Ln(5);
     $cont = 0;
     //Obtenemos los datos
+    //Validando que halla una session
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     if ($dataEmpresas  = $empresas->obtenerEmpresas()) {
         // Se recorren los registros ($dataProductos) fila por fila ($rowEmpresas).
         foreach ($dataEmpresas as $rowEmpresas) {

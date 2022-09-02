@@ -482,4 +482,28 @@ class Empleados extends Validator
             return false;
         }
     }
+
+    //Método para verificar que la contraseña no sea igual a algun dato del empleado
+    /*Lo parametros son, el formulario, la contraseña y verify que verifica si comparar con form [true] o con la base de datos [false]*/ 
+    public function verificarContraDat($form,$contra,$verify)
+    {
+        $sql = 'SELECT nombre_empleado ,apellido_empleado, dui_empleado, telefono_empleadocontc, correo_empleadocontc, usuario_empleado FROM empleados WHERE id_empleado = ?';
+        $params = array($this->id_empleado);
+        $data = Database::getRow($sql, $params);
+        if($verify){//Verificamos por form
+            $test =  $this->searchContra($form, $contra);
+        }else{
+            $test = $this->searchContra($data,$contra);
+        }
+        return $test;
+    }
+
+    //Método pare registrar al primer usuario
+    public function primerUsuario()
+    {
+        $sql = 'INSERT INTO empleados (id_empleado, nombre_empleado, apellido_empleado, dui_empleado, telefono_empleadocontc, correo_empleadocontc, usuario_empleado, contrasena_empleado, fk_id_tipo_empleado)
+                VALUES (?,?,?,?,?,?,?,?,?)';
+        $params = array(1, $this->nombre_empleado, $this->apellido_empleado, $this->dui_empleado, $this->telefono_empleadocontc, $this->correo_empleadocontc, $this-> usuario_empleado, $this->contrasena_empleado);
+        return Database::executeRow($sql, $params);
+    }
 }

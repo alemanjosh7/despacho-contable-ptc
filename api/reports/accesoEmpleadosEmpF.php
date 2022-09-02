@@ -9,6 +9,9 @@ $pdf = new Report;
 $pdf->startReport('Empleados con acceso a empresas', 'p');
 $empleado = new Empleados;
 $empresa = new Empresas;
+if(!isset($_SESSION['id_usuario'])){
+    header('location: ../../views/index.html');
+}
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleado = $empleado->accesoEmpleadosEEmp()) {
     // Se recorren los registros ($dataProductos) fila por fila ($rowArchivos).

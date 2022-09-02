@@ -2,6 +2,7 @@
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/empleados.php');
+require_once('../models/rec.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -9,6 +10,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $empleados = new Empleados;
+    $rec = new Rec;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -61,7 +63,7 @@ if (isset($_GET['action'])) {
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay datos registrados';
+                    $result['exception'] = 'No hay empleados registrados';
                 }
                 break;
                 //Actualizar contraseñas uno es para cuando hay session y otro para obligar a cambiar la contraseña EN ESE ORDEN
@@ -76,6 +78,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves nuevas diferentes';
                 } elseif (!$empleados->setContrasena($_POST['contrasena_nueva'])) {
                     $result['exception'] = $empleados->getPasswordError();
+                } elseif ($empleados->verificarContraDat(null, $_POST['contrasena_nueva'], false)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif ($empleados->cambiarContrasenaEmpleado()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
@@ -90,6 +94,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 } elseif (!$empleados->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $empleados->getPasswordError();
+                } elseif ($empleados->verificarContraDat(null, $_POST['contrasena'], false)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif ($empleados->cambiarContrasenaEmpleado()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
@@ -139,6 +145,8 @@ if (isset($_GET['action'])) {
                 } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
                     $result['exception'] = 'Contraseña incorrecta';
                     $result['message'] = $_POST['nombre-emp'];
+                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], true)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
                     $result['message'] = $_POST['nombre-emp'];
@@ -165,7 +173,7 @@ if (isset($_GET['action'])) {
                 //Actualizar empleado
             case 'update':
                 $_POST = $empleados->validateForm($_POST);
-                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
+                if ($_SESSION['id_usuario'] != 1 && $_POST['id'] == 1) {
                     $result['exception'] = 'No puedes modificar al jefe';
                 } elseif (!$empleados->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
@@ -179,7 +187,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Apellidoincorrecto';
                     $result['message'] = $_POST['nombre-emp'];
                 } elseif (!$empleados->setUsuario($_POST['usuario-emp'])) {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Nombre de usuario invalido';
                     $result['message'] = $_POST['nombre-emp'];
                 } elseif ($_POST['contra-emp'] != $_POST['contrac-emp']) {
                     $result['exception'] = 'Claves diferentes';
@@ -212,6 +220,8 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (($_POST['contra-emp'] != '' && !$empleados->setContrasena($_POST['contra-emp']))) {
                     $result['exception'] = 'Contra incorrecta';
+                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], false)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif (!isset($_POST['tipo-de-empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
                     $result['message'] = $_POST['nombre-emp'];
@@ -251,7 +261,7 @@ if (isset($_GET['action'])) {
                 break;
                 //Eliminar empleado
             case 'delete':
-                if($_SESSION['id_usuario'] !=1 && $_POST['id'] == 1){
+                if ($_SESSION['id_usuario'] != 1 && $_POST['id'] == 1) {
                     $result['exception'] = 'No puedes eliminar al jefe';
                 } elseif ($_POST['id'] == $_SESSION['id_usuario']) {
                     $result['exception'] = 'No se puede eliminar a si mismo';
@@ -341,10 +351,10 @@ if (isset($_GET['action'])) {
             case 'logIn':
                 $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
-                    $result['exception'] = 'Nombre de usuario incorrecto';
+                    $result['exception'] = 'Usuario o contraseña incorrecto';
                 } elseif (!$empleados->checkEmpleadosActivos()) {
                     $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
-                } elseif(!$empleados->checkIntentosEmpleado()){
+                } elseif (!$empleados->checkIntentosEmpleado()) {
                     $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
                 } elseif ($empleados->checkContrasenaEmpleado($_POST['contrasena'])) {
                     $result['status'] = 1;
@@ -356,7 +366,7 @@ if (isset($_GET['action'])) {
                     $empleados->tipoEmpleado();
                     $empleados->verificarCambioCtr();
                 } else {
-                    $result['exception'] = 'Contraseña incorrecta';
+                    $result['exception'] = 'Usuario o contraseña incorrecto';
                 }
                 break;
                 //Actualizar la contraseña
@@ -366,11 +376,62 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 } elseif (!$empleados->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $empleados->getPasswordError();
+                } elseif ($empleados->verificarContraDat(null, $_POST['contrasena'], false)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif ($empleados->cambiarContrasenaEmpleado()) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
                     $result['exception'] = 'La contraseña no se pudo actualizar';
+                }
+                break;
+                //Obetener los empleados para comprobar el primer uso
+            case 'checkPUsuario':
+                if ($result['dataset'] = $empleados->buscarEmpleadosLimite(0)) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay empleados registrados';
+                }
+                break;
+                //Crear al primer administrador y por lo tanto el jefe
+            case 'primerUsuario':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->setNombre($_POST['nombre-emp'])) {
+                    $result['exception'] = 'Nombre incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } else if (!$empleados->setApellido($_POST['apellido-emp'])) {
+                    $result['exception'] = 'Apellidoincorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setUsuario($_POST['usuario-emp'])) {
+                    $result['exception'] = 'Usuario incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif ($_POST['contra-emp'] != $_POST['contrac-emp']) {
+                    $result['exception'] = 'Claves diferentes';
+                } elseif (!$empleados->setContrasena($_POST['contra-emp'])) {
+                    $result['exception'] = 'Contraseña incorrecta';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif ($empleados->verificarContraDat(null, $_POST['contra-emp'], true)) {
+                    $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
+                } elseif (!isset($_POST['tipo-de-empleado'])) {
+                    $result['exception'] = 'Seleccione un tipo de empleado';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setDUI($_POST['dui-emp'])) {
+                    $result['exception'] = 'DUI incorrecto';
+                    $result['message'] = $_POST['nombre-emp'];
+                } elseif (!$empleados->setTelefono($_POST['telefono-emp'])) {
+                    $result['exception'] = 'Teléfono incorrecto';
+                    $result['message'] = $_POST['telefono-emp'];
+                } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
+                    $result['exception'] = 'Correo incorrecto';
+                } elseif ($empleados->primerUsuario()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Jefe creado';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No se pudo crear el empleado';
                 }
                 break;
             default:

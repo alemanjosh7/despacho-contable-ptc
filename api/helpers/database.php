@@ -18,7 +18,7 @@ class Database
         $server = 'localhost';
         $database = 'dbdespcontesquivel';
         $username = 'postgres';
-        $password = '1303';
+        $password = '1234';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);
@@ -152,6 +152,25 @@ class Database
             case '23502':
                 self::$error = 'No se permite el registro de un dato nulo, verifique que todos los campos se llenen';
                 break;
+            case '42883':
+                self::$error = 'Columna desconocida en la base de datos, comuniquese con soporte';
+                break;
+            case '42P02':
+                self::$error = 'Parametro desconocido en la base de datos, comuniquese con soporte';
+                break;
+            case '42701':
+                self::$error = 'Columna duplicada en la base de datos, comuniquese con soporte';
+                break;
+            case '42P04':
+                self::$error = 'Base de datos duplicada, comuniquese con soporte inmediatamente';
+                break;
+            case '53000':
+                self::$error = 'Recursos insuficientes, añada más almacenamiento';
+                break;
+            case '53100':
+                self::$error = 'Recursos insuficientes, añada más almacenamiento';
+                break;
+
             default:
                 self::$error = 'Ocurrio un error en la base de datos';
                 //self::$error = $message;

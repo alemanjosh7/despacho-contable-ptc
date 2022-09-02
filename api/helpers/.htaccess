@@ -1,0 +1,9 @@
+<Files database.php>
+order allow, deny
+allow from all
+</Files>
+
+<Files validate.php>
+order allow, deny
+allow from all
+</Files>

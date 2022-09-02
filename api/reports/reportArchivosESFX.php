@@ -6,6 +6,10 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
     // Se instancia el módelo pedidos personalizado para procesar los datos.
     $archivos = new ArchivosSubidosEmp;
 
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
+
     // Se verifica si el parámetro es un valor correcto, de lo contrario se direcciona a la página web de origen.
     if ($archivos->setFechaSubida($_GET['fechai']) && $archivos->setFechaSubida($_GET['fechaf'])) {
         // Se instancia la clase para crear el reporte.

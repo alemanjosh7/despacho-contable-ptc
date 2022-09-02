@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'));
     //Ejecutamos algunos metodos inciales
+    validarPrimerUso();//Validamos el primer usuario
     comprobarAmin();//Verificamos si hay una session
 });
 //Inputs
@@ -245,8 +246,7 @@ CONTRAC.addEventListener('keyup', function () {
 
 //Función para validar caracteres especiales recibe como parametro un texto
 function validarCarateresEsp(contra){
-    let cEpeciales = ['#','°','!','#','$','%','?','¡','¿','+','*','.',',','/','=',';',':','-'];
-
+    let cEpeciales = ['#','°','!','#','$','%','?','¡','¿','+','*','.',',','/','=',';',':','-','+'];
     let incluye = false;
     
     cEpeciales.forEach((caracter) =>{
@@ -255,4 +255,29 @@ function validarCarateresEsp(contra){
         }
     });
     return incluye;
+}
+
+//Función para validar el primer uso de usuario
+function validarPrimerUso(){
+    let options = {
+        dismissible: false,
+    }
+    fetch(API_EMPLEADOS + 'checkPUsuario', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
+                if (!response.status) {
+                } else {
+                    M.Modal.init(document.querySelectorAll('#modal-template'),options);
+                    M.Modal.getInstance(document.querySelector('#modal-template')).open();
+                }
+            });
+        } else {
+            RESTABLECERCTR.classList.remove('disabled');
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 }

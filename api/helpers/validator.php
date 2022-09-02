@@ -50,6 +50,17 @@ class Validator
         return $fields;
     }
 
+    /*Validar si la contraseña se encuentra en un arreglo, este será un formulario o los datos de la base de datos retornando true en caso sea así*/
+    public function searchContra($form, $contra)
+    {
+        foreach ($form as $index => $value) {
+            if (strpos($form[$index], $contra)) {
+                true;
+            } else {
+                false;
+            }
+        }
+    }
     /*
     *   Método para validar un número natural como por ejemplo llave primaria, llave foránea, entre otros.
     *
@@ -251,7 +262,7 @@ class Validator
         } elseif (!preg_match('/[a-zA-Z]/', $value)) {
             $this->passwordError = 'La clave debe ser alfanumerica';
             return false;
-        } elseif (!preg_match('/[\-\*\?\!\@\#\$\(\)\.\,]/', $value)) {
+        } elseif (!preg_match('/[\-\*\?\!\@\#\$\(\)\.\,\+\°\%\?\¡\¿\/\=\;\:]/', $value)) {
             $this->passwordError = 'La clave debe contener al menos un caracter especial';
             return false;
         } else {
@@ -427,7 +438,7 @@ class Validator
         // Se verifica la longitud mínima.
         if (!strlen($value) == 6) {
             $this->passwordError = 'Clave menor a 6 caracteres';
-        } elseif(preg_match('/\s/', $value)){
+        } elseif (preg_match('/\s/', $value)) {
             $this->passwordError = 'La clave no debe tener espacios en blanco';
         } elseif (!preg_match('/[0-9]/', $value)) {
             $this->passwordError = 'La clave debe contener al menos un digito';

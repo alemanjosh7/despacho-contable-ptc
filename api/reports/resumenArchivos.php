@@ -8,6 +8,10 @@ if (1 == 1) {
     // Se instancia la clase para crear el reporte.
     $pdf = new Report;
     $pdf->startReport('Reporte resumen de archivos dentro de folder', 'p');
+    //Validando que halla una session
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     //Obtenemos el nombre de la empresa y el archivo
     if ($rowInfo = $archivos->nombreEmpFol()) {
         //ESPACIO ENTRE CELDA

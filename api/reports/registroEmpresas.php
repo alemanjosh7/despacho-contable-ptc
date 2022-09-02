@@ -16,7 +16,9 @@ $pdf->cell(45, 10, utf8_decode('Nombre cliente'), 1, 0, 'C', 1);
 $pdf->cell(45, 10, utf8_decode('Apellido cliente'), 1, 0, 'C', 1);
 $pdf->cell(45, 10, utf8_decode('NIT empresa'), 1, 1, 'C', 1);
 $pdf->cell(45, 10, utf8_decode('Num. contacto empresa'), 1, 1, 'C', 1);
-
+if(!isset($_SESSION['id_usuario'])){
+    header('location: ../../views/index.html');
+}
 // Se establece un color de relleno para mostrar el nombre de la categoría.
 $pdf->setFillColor(255, 139, 144, 1);
 // Se establece la fuente para los datos de los productos.
