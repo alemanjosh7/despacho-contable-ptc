@@ -3474,3 +3474,216 @@ input {
 .prev-pdf main{
   margin-left: 0;
 }
+
+
+/*404 style*/
+#notFound404 {
+  overflow:hidden;
+  background-color: #F1F5F9;
+}
+ 
+#notFound404 .container{
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  left:0vmin;
+  text-align: center;
+}
+
+#notFound404 .cog-wheel1, .cog-wheel2{
+  transform:scale(0.6);
+  margin-left: -10px;
+  margin-right: -50px;
+}
+
+#notFound404 .cog1, .cog2{
+  width:40vmin;
+  height:40vmin;
+  border-radius:50%;
+  border:6vmin solid #EDA375;
+  position: relative;
+}
+
+
+#notFound404 .cog2{
+  border:6vmin solid #EDA375;
+}
+
+#notFound404 .top, .down, .left, .right, .left-top, .left-down, .right-top, .right-down{
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound404 .cog2 .top,.cog2  .down,.cog2  .left,.cog2  .right,.cog2  .left-top,.cog2  .left-down,.cog2  .right-top,.cog2  .right-down{
+  background-color: #EDA375;
+}
+
+#notFound404 .top{
+  top:-14vmin;
+  left:9vmin;
+}
+
+#notFound404 .down{
+  bottom:-14vmin;
+  left:9vmin;
+}
+
+#notFound404 .left{
+  left:-14vmin;
+  top:9vmin;
+}
+
+#notFound404 .right{
+  right:-14vmin;
+  top:9vmin;
+}
+
+#notFound404 .left-top{
+  transform:rotateZ(-45deg);
+  left:-8vmin;
+  top:-8vmin;
+}
+
+#notFound404 .left-down{
+  transform:rotateZ(45deg);
+  left:-8vmin;
+  top:25vmin;
+}
+
+#notFound404 .right-top{
+  transform:rotateZ(45deg);
+  right:-8vmin;
+  top:-8vmin;
+}
+
+#notFound404 .right-down{
+  transform:rotateZ(-45deg);
+  right:-8vmin;
+  top:25vmin;
+}
+
+#notFound404 .cog2{
+  position: relative;
+  left:-10.2vmin;
+  bottom:10vmin;
+}
+
+#notFound404 h1{
+  color:#142833;
+}
+
+#notFound404 .first-four{
+  position: relative;
+  left:10vmin;
+  font-size:40vmin;
+}
+
+#notFound404 .second-four{
+  position: relative;
+  right:15vmin;
+  z-index: -1;
+  font-size:40vmin;
+  color: #142833;
+}
+
+#notFound404 .wrong-para{
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  bottom:15vmin;
+  padding:3vmin 12vmin 3vmin 3vmin;
+  font-weight:600;
+  color:#092532;
+}
+
+@media screen and (min-width: 100px) and (max-width: 992px) {
+
+  #notFound404 .cog-wheel1, .cog-wheel2{
+    transform:scale(0.7);
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  #notFound404 .second-four{
+    position: relative;
+    right:22vmin;
+    z-index: -1;
+    font-size:40vmin;
+    color: #142833;
+  }
+
+  #notFound404 .first-four{
+    position: relative;
+    left:10vmin;
+    font-size:40vmin;
+  }
+  
+
+  #notFound404 .container{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+    left:6vmin;
+    text-align: center;
+  }
+
+}
+
+
+/*error 403 style*/
+
+/* Wrapper for inline SVG elements and responsiveness (thanks, IE11) */
+
+ 
+#notFound403 {
+   padding: 60px 30px;
+   background-color: #F1F5F9;
+ }
+
+ #notFound403 .intro {
+   position: relative;
+   width: 100%;
+   text-align: center;
+   transition: 0.6s ease-in-out;
+ }
+
+ #notFound403 .subhead {
+  position: relative;
+}
+
+#notFound403 body .oh-no {
+  transform: rotate(12deg);
+}
+
+
+#notFound403 body.oh-no  {
+    content: ' y u do dis :\'(';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    color: #F1F5F9;
+    font-weight: bold;
+    text-align: center;
+}
+
+ 
+#notFound403.lemmehaveit {
+   width: 100%;
+ }
+ 
+ #notFound403 .cupcake-canvas {
+   width: 100%;
+   max-width: 300px;
+   margin: 0 auto;
+ }
+ 
