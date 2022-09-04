@@ -3455,6 +3455,7 @@ input {
   font-family: 'Poppins', sans-serif;
 }
 
+
 /*error 403 style*/
 
 #notFound403 {
@@ -3463,8 +3464,30 @@ input {
 }
 
 #notFound403 .intro {
+  text-align: center;
+  transition: 0.6s ease-in-out;
+  width:95vw;
+  height:100vh;
+  margin-top: -350px;
+  margin-bottom: -350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  left:0vmin;
+  text-align: center;
+}
+
+#notFound403 .intro__headline{
+  font-size: 160px;
+}
+
+#notFound403 .intro2 {
   position: relative;
   width: 100%;
+  margin-top: 5px;
+  margin-bottom: 0px;
   text-align: center;
   transition: 0.6s ease-in-out;
 }
@@ -3501,6 +3524,120 @@ input {
 }
 
 
+#notFound403 #Regresar{
+  font-family: 'Poppins', sans-serif;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 170px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+}
+
+#notFound403 .cog-wheel1{
+  transform:scale(0.2);
+  margin-left: -50px;
+  margin-right: -70px;
+}
+
+#notFound403 .cog1{
+  width:40vmin;
+  height:40vmin;
+  border-radius:50%;
+  border:6vmin solid #EDA375;
+  position: relative;
+}
+
+#notFound403 .top{
+  top:-14vmin;
+  left:9vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .down{
+  bottom:-14vmin;
+  left:9vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .left{
+  left:-14vmin;
+  top:9vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .right{
+  right:-14vmin;
+  top:9vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .left-top{
+  transform:rotateZ(-45deg);
+  left:-8vmin;
+  top:-8vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .left-down{
+  transform:rotateZ(45deg);
+  left:-8vmin;
+  top:25vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .right-top{
+  transform:rotateZ(45deg);
+  right:-8vmin;
+  top:-8vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .right-down{
+  transform:rotateZ(-45deg);
+  right:-8vmin;
+  top:25vmin;
+  width:10vmin;
+  height:10vmin;
+  background-color: #EDA375;
+  position: absolute;
+}
+
+#notFound403 .four{
+  position: relative;
+  left:10vmin;
+  font-size:15vmin;
+}
+
+#notFound403 .three{
+  position: relative;
+  right:8vmin;
+  z-index: -1;
+  font-size:15vmin;
+}
+
+/**/
 
 /*404 style*/
 #notFound404 {
@@ -3511,6 +3648,7 @@ input {
 #notFound404 .container{
   width:100vw;
   height:100vh;
+  margin-top: -80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3659,13 +3797,36 @@ input {
 #notFound404 .wrong-para{
   font-family: "Montserrat", sans-serif;
   position: absolute;
-  bottom:15vmin;
+  bottom:17vmin;
   padding:3vmin 12vmin 3vmin 3vmin;
   font-weight:600;
   color:#092532;
+  margin-left: 85px;
 }
 
-@media screen and (min-width: 100px) and (max-width: 992px) {
+#notFound404 .wrong-para2{
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  bottom:14vmin;
+  padding:3vmin 12vmin 3vmin 3vmin;
+  font-weight:600;
+  color:#092532;
+  margin-left: 85px;
+}
+
+#notFound404 #Regresar{
+  font-family: 'Poppins', sans-serif;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: -250px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+}
+
+
+
+@media screen and (min-width: 601px) and (max-width: 992px) {
 
   #notFound404 .cog-wheel1{
     transform:scale(0.7);
@@ -3706,7 +3867,101 @@ input {
     text-align: center;
   }
 
+  #notFound404 .wrong-para{
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    bottom:23vmin;
+    padding:3vmin 12vmin 3vmin 3vmin;
+    font-weight:600;
+    color:#092532;
+    margin-left: -15px;
+  }
+  
+  #notFound404 .wrong-para2{
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    bottom:19vmin;
+    padding:3vmin 12vmin 3vmin 3vmin;
+    font-weight:600;
+    color:#092532;
+    margin-left: -15px;
+  }
+
 }
 
+@media screen and (min-width: 100px) and (max-width: 600px) {
 
+
+  #notFound404 .cog-wheel1{
+    transform:scale(0.7);
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  #notFound404 .cog-wheel2{
+    transform:scale(0.7);
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  #notFound404 .second-four{
+    position: relative;
+    right:22vmin;
+    z-index: -1;
+    font-size:40vmin;
+    color: #142833;
+  }
+
+  #notFound404 .first-four{
+    position: relative;
+    left:10vmin;
+    font-size:40vmin;
+  }
+  
+
+  #notFound404 .container{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+    left:6vmin;
+    text-align: center;
+  }
+
+  #notFound404 .wrong-para{
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    bottom:45vmin;
+    padding:3vmin 12vmin 3vmin 3vmin;
+    font-weight:600;
+    color:#092532;
+    margin-left: 10px;
+  }
+  
+  #notFound404 .wrong-para2{
+    font-family: "Montserrat", sans-serif;
+    position: absolute;
+    bottom:38vmin;
+    padding:3vmin 12vmin 3vmin 3vmin;
+    font-weight:600;
+    color:#092532;
+    margin-left: 10px;
+  }
+
+  #notFound404 #Regresar{
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4A172;
+    color: white;
+    border-radius: 5px;
+    margin-top: -240px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    margin-left: 15px;
+  }
+  
+
+}
 
