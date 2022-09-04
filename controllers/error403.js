@@ -1,8 +1,50 @@
 let mX, mY, distance;
+let t1 = gsap.timeline();
+let t2 = gsap.timeline();
+let t3 = gsap.timeline();
+
 const cupcakeCanvas = document.getElementById('cupcake-canvas');
 const cupcakeBox = document.getElementById('cupcake-box');
 const cupcakeSVG = document.getElementById('cupcake-svg');
 const cupcakeCupcakeCupcake = document.getElementById('cupcake-cupcake-cupcake');
+
+
+t1.fromTo(".intro__subhead",
+{
+  opacity:0
+},
+{
+  opacity:1,
+  duration:3,
+  stagger:{
+    repeat:-1,
+    yoyo:true
+  }
+});
+
+t2.fromTo(".RegresarFx",
+{
+  opacity:0
+},
+{
+  opacity:1,
+  duration:7,
+  stagger:{
+    repeat:0,
+    yoyo:true
+  }
+});
+
+t3.to(".cog1",
+{
+  transformOrigin:"50% 50%",
+  rotation:"+=360",
+  repeat:-1,
+  ease:Linear.easeNone,
+  duration:30
+});
+
+
 
 // Set rotation origin.
 TweenMax.set(cupcakeBox, {
