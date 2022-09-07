@@ -71,7 +71,7 @@ if (isset($_GET['action'])) {
                 $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->setId($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Empleado incorrecto';
-                } elseif (!$empleados->checkContrasenaEmpleado($_POST['contrasena_actual'])) {
+                } elseif (!$empleados->checkContrasenaEmpleado2($_POST['contrasena_actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
                     $result['message'] = $_POST['contrasena_actual'];
                 } elseif ($_POST['contrasena_nueva'] != $_POST['contrasena_confirma']) {
@@ -94,6 +94,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 } elseif (!$empleados->setContrasena($_POST['contrasena'])) {
                     $result['exception'] = $empleados->getPasswordError();
+                } elseif ($empleados->checkContrasenaEmpleado2($_POST['contrasena'])) {
+                    $result['exception'] = 'La contraseña nueva no puede ser igual a la actual';
                 } elseif ($empleados->verificarContraDat(null, $_POST['contrasena'], false)) {
                     $result['exception'] = 'La contraseña no debe ser igual a algun dato del empleado';
                 } elseif ($empleados->cambiarContrasenaEmpleado()) {
@@ -341,6 +343,16 @@ if (isset($_GET['action'])) {
                     $resul['exception'] = 'No es obligatorio cambiar la contraseña';
                 }
                 break;
+                //Obetener los empleados para comprobar el primer uso
+            case 'checkPUsuario':
+                if ($result['dataset'] = $empleados->buscarEmpleadosLimite(0)) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay empleados registrados';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -396,7 +408,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Crear al primer administrador y por lo tanto el jefe
-            case 'primerUsuario':
+            case 'crearPrimerUsuario':
                 $_POST = $empleados->validateForm($_POST);
                 if (!$empleados->setNombre($_POST['nombre-emp'])) {
                     $result['exception'] = 'Nombre incorrecto';
@@ -422,13 +434,13 @@ if (isset($_GET['action'])) {
                     $result['message'] = $_POST['telefono-emp'];
                 } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif(!$rec->setCodigo($_POST['pinRecP'])){
+                } elseif (!$rec->setCodigo($_POST['pinRecP'])) {
                     $result['exception'] = $rec->getPasswordError();
                 } elseif ($empleados->primerUsuario()) {
-                    if($rec->crearCodigoRec()){
+                    if ($rec->crearCodigoRec()) {
                         $result['status'] = 1;
                         $result['message'] = 'Jefe creado con exito ¡Bienvenido a Smart Bookkeeping!';
-                    }else{
+                    } else {
                         $empleados->rte();
                         $result['exception'] = 'Hubo un error al crear al jefe';
                     }

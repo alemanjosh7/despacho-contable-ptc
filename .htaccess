@@ -4,6 +4,7 @@
 
 ErrorDocument 403 /despEsquivel/resources/error/403.html
 ErrorDocument 404 /despEsquivel/resources/error/404.html
+ErrorDocument 500 /despEsquivel/resources/error/500.html
 
 # ----------------------------------------------------------------------
 # | Character encodings                                                |
@@ -59,7 +60,7 @@ AddDefaultCharset utf-8
     # Options +SymLinksIfOwnerMatch
 
     # (4)
-    # RewriteBase /
+    #RewriteBase /
 
     # (5)
     # RewriteOptions <options>

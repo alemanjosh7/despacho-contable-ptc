@@ -279,6 +279,7 @@ function validarPrimerUso(){
                 // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                 if (response.status) {
                 } else {
+                    sweetAlert(3, 'Debe registrarse primero para poder loguearse', '');
                     M.Modal.init(document.querySelectorAll('#modal-template'),options);
                     M.Modal.getInstance(document.querySelector('#modal-template')).open();
                 }
@@ -294,7 +295,7 @@ function validarPrimerUso(){
 document.getElementById('save-form').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    fetch(API_EMPLEADOS + 'primerUsuario', {
+    fetch(API_EMPLEADOS + 'crearPrimerUsuario', {
         method: 'post',
         body: new FormData(document.getElementById('save-form'))
     }).then(function (request) {

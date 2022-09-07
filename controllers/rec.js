@@ -258,6 +258,7 @@ function enviarPINCorreo() {
                     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
                         correo = response.dataset.correo_empleadocontc;
+                        document.getElementById('correo-format').innerHTML = response.correoF;
                         form.append('correo', correo);
                         //Una vez seteado ejecutamos el metodo para enviar el correo
                         fetch(url, {

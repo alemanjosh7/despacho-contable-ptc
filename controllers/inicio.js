@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     pieGraphFoldersEmpresas();//Gráfico de pie de empresas con más folders
     lineaGraphEmpresasAccess();//Empresas a la cual más empleados poseen acceso
     fillSelectBugMtz(API_TIPO_EMPLEADO, 'tipo-de-empleado', null);
-    
 });
 //Declaramos algunos componentes
 const saludoUsuario = document.getElementById('saludo-usuario');

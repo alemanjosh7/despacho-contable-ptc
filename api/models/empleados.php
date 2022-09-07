@@ -214,13 +214,26 @@ class Empleados extends Validator
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($contrasena, $data['contrasena_empleado'])) {
-            //Comprobamos que no sea el jefe
             $this->actualizarIntentosEmp(true);
             return true;
         } else {
             if($this->id_empleado != 1){
                 $this->actualizarIntentosEmp(false);
             }
+            return false;
+        }
+    }
+
+    //Comprobar la contraseña del empleado para verificar si es la misma que se coloca
+    public function checkContrasenaEmpleado2($contrasena)
+    {
+        $sql = 'SELECT contrasena_empleado FROM empleados WHERE id_empleado = ?';
+        $params = array($this->id_empleado);
+        $data = Database::getRow($sql, $params);
+        // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
+        if (password_verify($contrasena, $data['contrasena_empleado'])) {
+            return true;
+        } else {
             return false;
         }
     }

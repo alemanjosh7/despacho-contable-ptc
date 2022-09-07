@@ -30,6 +30,20 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
             'status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,
             'nombre' => null, 'apellido' => null, 'id_empresa' => null, 'id_folder' => null, 'tipo_usuario' => null, 'cambioCtr' => null
         );
+
+        function formatEmail($correo) {
+            //Se recorta las primeras 3 líneas del correo
+            $comienzo = substr($correo, 0, strlen($correo) - (strlen($correo) - 3));
+            //Se extraen el dominio del correo
+            $final = substr($correo, strripos($correo, '@') - strlen($correo));
+            //Se obtiene el sobrante del correo para saber su longitud
+            $restante = substr($correo, (strlen($correo) - (strlen($correo) - 3)), (strripos($correo, '@') - strlen($correo)));
+            //Se le agregan asteríscos según la longitud del correo restante
+            $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
+            //Se une el todo para generar el nuevo formato de correo
+            return $total.$final;
+        }
+
         switch ($_GET['action']) {
             case 'getIdUsuario':
                 if (isset($_SESSION['id_usuario'])) {
@@ -176,6 +190,7 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
                 } elseif ($result['dataset'] = $rec->obtenerCorreoJ()) {
                     $result['status'] = 1;
                     $result['message'] = 'Correo encontrado';
+                    $result['correoF'] = formatEmail($result['dataset']['correo_empleadocontc']);
                 } else {
                     $result['exception'] = 'El codigo de recuperación de contraseñas no se pudo cambiar';
                 }
