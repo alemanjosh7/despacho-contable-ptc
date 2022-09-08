@@ -166,7 +166,9 @@ RESTABLECERCTR.addEventListener('click', function () {
 
 //Función de log in
 LOGINBTN.addEventListener('click', function () {
+    LOGINBTN.classList.add("disabled");
     generarPIN();
+    
 });
 
 //Función para el login 
@@ -477,6 +479,8 @@ const enviarPINCorreo = () =>{
     } else {
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
     }
+
+    LOGINBTN.classList.remove("disabled");
 }
 
 //Funciones para reenviar PIN

@@ -19,133 +19,139 @@ $result = array('message' => null, 'exception' => null, 'status' => null);
 $usuario = $_POST['usuario'];
 $pin = $_SESSION['PIN'];
 $correo = $_POST['correo'];
-$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+$body = '<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<!--Import materialize.css-->
+<!-- Compiled and minified CSS -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+<title>Smart Bookkeeping-Codigo de restablecer contraseña</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: white;/*cambiar a predeterminado(blanco)*/
+}
+.fondo-0{
+    padding: 20px;
+    background-color: #dee8f1;
+    text-align: center;
+    /*margin: 100px;*//*borrar linea*/
+}
+.fondo {
+    padding: 40px;
+    background-color: #F1F5F9;
+    text-align: center;
+    box-shadow: 3px 3px 4px 2px rgb(138, 136, 136);
+}
+.encabezado{
+    width: 100%;
+    height: 100px;
+    background-color: #F4A172;
+    text-align: center;
+    border-radius: 5px;
+    font-family: '.'Poppins'.', sans-serif;
+    padding-top: 10px;
+    
+}
+.fila1 {
+    margin-left: 5%;
+    margin-top: 1%;
+}
+.card-panel {
+    background-color: #FA7479;
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.card-panel h1{
+    text-align: center;
+    padding-top: 20px;
+    font-family: '.'Poppins'.', sans-serif;
+}
+.container h1{
+    padding-top: 10px;
+    font-family: '.'Poppins'.', sans-serif;
+}
+.container p{
+    margin-top: 20px;
+    font-family: '.'Poppins'.', sans-serif;
+}
 
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
-    <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <!--Import materialize.css-->
-    <!-- Compiled and minified CSS -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
-    <title>Smart Bookkeeping-Codigo de restablecer contraseña</title>
-    <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        background-color: white;/*cambiar a predeterminado(blanco)*/
-    }
-    .fondo-0{
-        padding: 20px;
-        background-color: #dee8f1;
-        text-align: center;
-        /*margin: 100px;*//*borrar linea*/
-    }
-    .fondo {
-        padding: 40px;
-        background-color: #F1F5F9;
-        text-align: center;
-        box-shadow: 3px 3px 4px 2px rgb(138, 136, 136);
-    }
+.fila1 {
+
+    margin-left: 0%;
+
+    margin-top: 1%;
+
+}
+
+@media screen and (min-width: 200px) and (max-width: 433px)  {
     .encabezado{
-        width: 100%;
-        height: 100px;
-        background-color: #F4A172;
-        text-align: center;
-        border-radius: 5px;
-        font-family: '.'Poppins'.', sans-serif;
-        padding-top: 10px;
-    }
-    .fila1 {
-        margin-left: 0%;
-        margin-top: 1%;
-    }
-    .card-panel {
-        background-color: #FA7479;
-        width: 250px;
-        height: 60px;
-        border-radius: 10px;
-        margin-top: 30px;
-        display: flex;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        text-align: center;
-    }
-    .card-panel h1{
-        text-align: center;
-        padding-top: 20px;
-        font-family: '.'Poppins'.', sans-serif;
-    }
-    .container h1{
-        padding-top: 10px;
-        font-family: '.'Poppins'.', sans-serif;
-    }
-    .container p{
-        margin-top: 20px;
-        font-family: '.'Poppins'.', sans-serif;
-    }
-    @media screen and (min-width: 200px) and (max-width: 433px)  {
-        .encabezado{
-        width: 100%;
-        height: 180px;
-        background-color: #F4A172;
-        text-align: center;
-        border-radius: 5px;
-        font-family: '.'Poppins'.', sans-serif;
-        padding-top: 10px;
-    }
-    .card-panel {
-        background-color: #FA7479;
-        width: 180px;
-        height: 60px;
-        border-radius: 10px;
-        margin-top: 30px;
-        margin-left: 0%;
-        margin-right: 0%;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-    }
-    </style>
-    </head>
-    <body class=" grey lighten-3" style="margin: 0; padding:0;">
-    <div class="fondo-0">
-        <div class="edge">
-            <div class="fondo">
-                <div class="encabezado">
-                    <nav class="orange darken-4 center">
-                        <div class="nav-wrapper">
-                            <h1 style="margin: 0; font-size: 55px;">Smart Book</h1>
-                        </div>
-                    </nav>
-                </div>
-            <div class="container">
-                <h1 class="center-align">verificación en dos pasosa</h1>
-                <p>El pin que se muestra a continuación tiene la función de verificar si el usuario <b>'.$usuario.'<b> es usted, ya que esta actualmente intentando iniciar sessión. <b>Por favor ingrese el siguiente código en la pantalla emergente:</b></p>
-                    <div class="fila1">
-                    <div class="card-panel orange darken-4">
-                        <h1>'.$pin.'</h1>
+    width: 100%;
+    height: 180px;
+    background-color: #F4A172;
+    text-align: center;
+    border-radius: 5px;
+    font-family: '.'Poppins'.', sans-serif;
+    padding-top: 10px;
+    
+}
+
+
+.card-panel {
+    background-color: #FA7479;
+    width: 280px;
+    height: 60px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: 39%;
+    margin-right: auto;
+}
+}
+
+
+</style>
+</head>
+<body class=" grey lighten-3" style="margin: 0; padding:0;">
+<div class="fondo-0">
+    <div class="edge">
+        <div class="fondo">
+            <div class="encabezado">
+                <nav class="orange darken-4 center">
+                    <div class="nav-wrapper">
+                        <h1 style="margin: 0; font-size: 55px;">Smart Book</h1>
                     </div>
+                </nav>
+            </div>
+        <div class="container">
+            <h1 class="center-align">verificación en dos pasos</h1>
+            <p>El pin que se muestra a continuación tiene la función de verificar si el<b>'.$usuario.'<b> es usted. <b>Por favor ingrese el siguiente código en la pantalla emergente:</b></p>
+                <div class="fila1">
+                <div class="card-panel orange darken-4 white-text">
+                    <h1>'.$pin.'</h1>
                 </div>
             </div>
-        </div>  
         </div>
-    </div>    
-        <!--JavaScript al final para optimizar-->
-        <!-- Compiled and minified JavaScript -->
-    </body>
-    </html>';
+    </div>  
+    </div>
+</div>    
+    <!--JavaScript al final para optimizar-->
+    <!-- Compiled and minified JavaScript -->
+</body>
+</html>
+';
 
 $mensaje = wordwrap($body, 70, "\r\n");
 
