@@ -126,7 +126,7 @@
                                             <div class="center">
                                                 <a class="waves-effect waves-ligth btn z-depth-2"
                                                     id="btn-añadirFolderModal">
-                                                    <i class="material-icons left">add</i>Recuperar contraseña
+                                                    <i class="material-icons left">autorenew</i>Recuperar contraseña
                                                 </a>
                                             </div>
                                             <div class="row">
@@ -321,6 +321,55 @@
                     </form>
                     <!--Añadir empleado-->
     
+                </div>
+            </div>
+            <!--Modal para comprobar PIN del inicio de sessión-->
+            <div id="modalVerificación" class="modal">
+                <div class="modal-content">
+                    <!--Titulo del modal-->
+                    <h4 class="center-align">Confirma que eres tú</h4>
+                    <!--Indicaciones del modal-->
+                    <p class="center-align">Se te ha enviado un correo con un código de verificación a tu correo, por favor colocarlo en el siguiente apartado:</p>
+                    <p class="center-align truncate "><b>Correo enviado a:</b><span id="correo-format"></span></p>
+                    <!--Formulario para ingresar PIN-->
+                    <form method="post" id="pin-inicio" autocomplete="off">
+                        <!--Fila del formulario-->
+                        <div class="row filaform-empresa">
+                            <!--input de PIN-->
+                            <div class="input-field col s12 m6 offset-m3 offset-l3">
+                                <input placeholder="Ingrese el PIN" id="PIN-numerosI" type="password"
+                                    maxlength="4" name="pin"
+                                    class="validate center-align inputs-añadirempr">
+                                <label for="PIN-numerosI" class="labels-anadirempr">Inserte
+                                    los 4 digitos</label>
+                            </div>
+                            <div class="col m1 s12 center">
+                                <i class="medium material-icons tooltipped " data-tooltip="Reenviar PIN"
+                                  id="reenviarPIN">settings_backup_restore</i>
+                                <p class="center-align"><span id="cronometro">120s</span></p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <!--Campos o contenido importante de verificación de segundo factor-->
+                        <div class="center">
+                            <a class="waves-effect waves-ligth btn z-depth-2"
+                                id="btn-PINL">
+                                <i class="material-icons left">enhanced_encryption</i>Verificar pin 
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="left col offset-s1 m5 l4">
+                                <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                    id="cancelarPINL">
+                                    <i class="material-icons left">keyboard_arrow_left</i>Cancelar
+                                </a>
+                            </div>
+                            <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                <h6 id="mensaje-restablecerL">El PIN no es el correcto</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

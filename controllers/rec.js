@@ -398,9 +398,3 @@ document.getElementById('btn-añadirFolderModal').addEventListener('click', func
         mensaje.style.display = 'block';
     }
 });
-
-document.getElementById('PIN-numeros').addEventListener('keypress', function (e) {
-    if (!soloNumeros(event, 1)) {
-        e.preventDefault();
-    }
-});

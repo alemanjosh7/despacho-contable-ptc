@@ -81,6 +81,7 @@ body{
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 .card-panel h1{
     text-align: center;
@@ -94,6 +95,14 @@ body{
 .container p{
     margin-top: 20px;
     font-family: '.'Poppins'.', sans-serif;
+}
+
+.fila1 {
+
+    margin-left: 0%;
+
+    margin-top: 1%;
+
 }
 
 @media screen and (min-width: 200px) and (max-width: 433px)  {
@@ -111,14 +120,11 @@ body{
 
 .card-panel {
     background-color: #FA7479;
-    width: 180px;
+    width: 280px;
     height: 60px;
     border-radius: 10px;
     margin-top: 30px;
-    margin-left: 0%;
-    margin-right: 0%;
-    margin-top: 20px;
-    margin-left: auto;
+    margin-left: 39%;
     margin-right: auto;
 }
 }
@@ -174,9 +180,9 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Codigo para restablecer contraseña';
+    $mail->Subject = 'Código para restablecer contraseña';
     $mail->Body    = $mensaje;
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->AltBody = 'Código para restablecer la contraseña: '.$pin;
     $mail->CharSet  = 'utf-8';
     $mail->send();
     $result['status'] = 1;

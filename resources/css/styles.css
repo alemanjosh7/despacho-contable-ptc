@@ -4043,3 +4043,13 @@ input {
   background-blend-mode: soft-light;
   transform: scale(1.0);
 }
+
+#btn-PINL {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F4A172;
+  color: white;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-transform: capitalize;
+  margin-bottom: 25px;
+}

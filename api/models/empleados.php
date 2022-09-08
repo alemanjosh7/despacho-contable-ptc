@@ -262,7 +262,6 @@ class Empleados extends Validator
         return Database::getRow($sql, $params);
     }
 
-
     //Colocamos las variables de sesión del nombre del usuario y su apellido
     public function nombreApellidoEmpleado()
     {

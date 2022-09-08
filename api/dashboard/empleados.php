@@ -8,11 +8,28 @@ require_once('../models/rec.php');
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
+    
+    //Función para retornar el correo censurado
+
+    function formatEmail($correo) 
+    {
+        //Se recorta las primeras 3 líneas del correo
+        $comienzo = substr($correo, 0, strlen($correo) - (strlen($correo) - 3));
+        //Se extraen el dominio del correo
+        $final = substr($correo, strripos($correo, '@') - strlen($correo));
+        //Se obtiene el sobrante del correo para saber su longitud
+        $restante = substr($correo, (strlen($correo) - (strlen($correo) - 3)), (strripos($correo, '@') - strlen($correo)));
+        //Se le agregan asteríscos según la longitud del correo restante
+        $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
+        //Se une el todo para generar el nuevo formato de correo
+        return $total.$final;
+    }
+    
     // Se instancia la clase correspondiente.
     $empleados = new Empleados;
     $rec = new Rec;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null);
+    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null, 'correo' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_usuario'])) {
         $result['session'] = 1;
@@ -448,6 +465,27 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No se pudo crear el empleado';
+                }
+                break;
+            //Obtener el correo del empleado
+            case 'obtenerCorreoEmp':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
+                    $result['exception'] = 'Hubo un error al obtener el correo del empleado';
+                } elseif (!$empleados->checkEmpleadosActivos()) {
+                    $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
+                } elseif (!$empleados->checkIntentosEmpleado()) {
+                    $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
+                } elseif (!$empleados->checkContrasenaEmpleado($_POST['contrasena'])) {
+                    $result['exception'] = 'Usuario o contraseña incorrecto';
+                } elseif ($result['dataset'] = $empleados->obtenerEmpleado($empleados->getId())) {
+                    $result['status'] = 1;
+                    $result['correoF'] = formatEmail($result['dataset']['correo_empleadocontc']);
+                    $result['correo'] = $result['dataset']['correo_empleadocontc'];
+                }elseif(Database::getException()){
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Hubo un error al obtener el correo del empleado';
                 }
                 break;
             default:

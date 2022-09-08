@@ -30,6 +30,9 @@ const APELLIDOE = document.getElementById('apellido-emp');
 const DUI = document.getElementById('dui-emp');
 const CORREO = document.getElementById('correo-emp');
 
+const MODALPINL = document.getElementById('modalVerificación');
+const reenviarPIN = document.getElementById('reenviarPIN');//Boton de reenviar PIN
+
 /*Validar el PIN de restablecer contraseñas*/
 var comprobarPIN = document.getElementById('btn-añadirFolderModal');
 comprobarPIN.addEventListener('click', function () {
@@ -163,6 +166,11 @@ RESTABLECERCTR.addEventListener('click', function () {
 
 //Función de log in
 LOGINBTN.addEventListener('click', function () {
+    generarPIN();
+});
+
+//Función para el login 
+function loginF() {
     if (USUARIOTXT.value.length > 0 && CONTRAINPUT.value.length > 0) {
         LOGINBTN.classList.add('disabled');
         fetch(API_EMPLEADOS + 'logIn', {
@@ -191,7 +199,8 @@ LOGINBTN.addEventListener('click', function () {
     } else {
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
     }
-});
+}
+
 
 //Metodo para verificar si hay una session
 function comprobarAmin() {
@@ -384,4 +393,176 @@ TELEFONO.addEventListener('keyup', e => {
 
 DUI.addEventListener('keyup', e => {
     guionDUI(e, DUI);
+});
+
+
+//Función para establecer el pin
+const generarPIN = () => {
+    //Generamos la hora en que se creo el pin
+    let hora = new Date().getHours();
+    //Añadimos ese pin a la variable de sessión de PIN
+    //Creamos un formulario y añadimos el pin al formulario
+    let form = new FormData();
+    form.append('hora', hora);
+    fetch(API_GLBVAR + 'setPINCTRR', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //console.log('El pin se ha seteado' + ' ' + response.PIN);
+                    //Enviamos el mensaje
+                    enviarPINCorreo();
+                } else {
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
+}
+
+const enviarPINCorreo = () =>{
+    //Primero obtenemos el correo del usuario
+    //Creamos un formulario y añadimos el nombre del usuario y realizamos la petición
+    let form = new FormData();
+    let url = SERVER + 'enviarSegundoFactor.php';
+    if (USUARIOTXT.value.length > 0 && CONTRAINPUT.value.length > 0) {
+        fetch(API_EMPLEADOS + 'obtenerCorreoEmp', {
+            method: 'post',
+            body: new FormData(document.getElementById('session-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        let correo = response.correo;
+                        let usuario = USUARIOTXT.value;
+                        document.getElementById('correo-format').innerHTML = response.correoF;
+                        form.append('correo', correo);//Coloco el correo a ser enviado
+                        form.append('usuario',usuario);
+                        //Una vez seteado ejecutamos el metodo para enviar el correo
+                        fetch(url, {
+                            method: 'post',
+                            body: form
+                        }).then(function (request) {
+                            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                            if (request.ok) {
+                                request.json().then(function (response) {
+                                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                    if (response.status) {
+                                        M.Modal.getInstance(MODALPINL).open();
+                                        console.log("Se envio el correo con exito");
+                                    } else {
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                });
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        });
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                LOGINBTN.classList.remove('disabled');
+                console.log(request.status + ' ' + request.statusText);
+            }
+        });
+    } else {
+        sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
+    }
+}
+
+//Funciones para reenviar PIN
+//Función para comprobar que halla pasado una hora
+function comprobarHora(hora) {
+    let horaact = new Date().getHours();
+    console.log(horaact)
+    if (horaact == hora) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+var contador = document.getElementById('cronometro');
+let seg = 0;
+var cronometro;
+reenviarPIN.addEventListener('click', function () {
+    if (seg == 0) {
+        cronometro = setInterval(function () {
+            if (seg >= 0) {
+                if (seg == 31) {
+                    reenviarPIN.style.opacity = '1';
+                    contador.style.display = "none";
+                    clearInterval(cronometro);
+                    seg = 0;
+                } else {
+                    contador.style.display = "block";
+                    reenviarPIN.style.opacity = "0.8";
+                    contador.innerHTML = seg + "s";
+                    seg++;
+                }
+            } else {
+
+            }
+        }, 1000);
+        //Ejecutamos el metodo de generar pin para reenviarlo
+        generarPIN();
+    }
+});
+const btncancelr = document.getElementById('cancelarPINL');
+btncancelr.addEventListener('click', function () {
+    reenviarPIN.style.opacity = 1;
+    contador.style.display = "none";
+    clearInterval(cronometro);
+    seg = 0;
+});
+
+
+document.getElementById('btn-PINL').addEventListener('click', function () {
+    //Validamos que halla colocado un usuario en el formulario anterior
+    let pinintro = document.getElementById('PIN-numerosI');
+    let mensaje = document.getElementById('mensaje-restablecerL');
+    let modal = M.Modal.getInstance(MODALPINL);
+    let form = new FormData();
+    form.append('pin', pinintro.value);
+    if (USUARIOTXT.value.length > 0 && CONTRAINPUT.value.length > 0) {
+        if (pinintro.value.length != 0) {
+            fetch(API_GLBVAR + 'comprobarPINRCR', {
+                method: 'post',
+                body: form
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status && comprobarHora(response.hora)) {
+                            modal.close();
+                            mensaje.style.display = 'none';
+                            pinintro.value = '';
+                            loginF();//Ejecutamos el método de login
+                        } else {
+                            mensaje.innerText = 'El pin no coincide o ha caducado, por favor reenviar uno nuevo ';
+                            mensaje.style.display = 'block';
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            });
+        } else {
+            mensaje.style.display = 'block';
+            mensaje.innerText = 'No se permiten espacios vacios';
+        }
+    } else {
+        sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
+        mensaje.style.display = 'block';
+    }
 });

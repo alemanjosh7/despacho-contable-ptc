@@ -31,7 +31,10 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
             'nombre' => null, 'apellido' => null, 'id_empresa' => null, 'id_folder' => null, 'tipo_usuario' => null, 'cambioCtr' => null
         );
 
-        function formatEmail($correo) {
+        //Función para retornar el correo censurado
+
+        function formatEmail($correo) 
+        {
             //Se recorta las primeras 3 líneas del correo
             $comienzo = substr($correo, 0, strlen($correo) - (strlen($correo) - 3));
             //Se extraen el dominio del correo
@@ -42,6 +45,16 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
             $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
             //Se une el todo para generar el nuevo formato de correo
             return $total.$final;
+        }
+
+        //Función para generar un PIN alfanumerico
+        function generarPINR($length=25)
+        {
+            $characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength=strlen($characters);
+            $randomString='';
+            for($i=0;$i<$length;$i++)$randomString.=$characters[rand(0,$charactersLength-1)];
+            return$randomString;//usage $myRandomString=generateRandomString(5);
         }
 
         switch ($_GET['action']) {
@@ -176,7 +189,7 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
                 break;
                 //Colocar un pin a la contraseña
             case 'setPINCTRR':
-                if ($_SESSION['PIN'] = strval(rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9))) {
+                if ($_SESSION['PIN'] = strval(generarPINR(4))) {
                     $result['status'] = 1;
                     $_SESSION['horaPIN'] = $_POST['hora'];
                 } else {

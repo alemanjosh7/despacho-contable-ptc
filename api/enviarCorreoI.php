@@ -51,6 +51,16 @@ class EnvioC
                 background-color: #F1F5F9;
             }
 
+            .card-panel {
+                background-color: #FA7479;
+                width: 280px;
+                height: 60px;
+                border-radius: 10px;
+                margin-top: 30px;
+                margin-left: 39%;
+                margin-right: auto;
+            }
+
             .fondo-0{
             padding: 20px;
             background-color: #dee8f1;
@@ -151,7 +161,7 @@ class EnvioC
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Intento de usuario bloqueado';
             $mail->Body    = $mensaje;
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->AltBody = 'El usuario : '.$usuario.' perteneciente al empleado: '.$nombreCE.' ¡Ha sido bloqueado!';
             $mail->CharSet  = 'utf-8';
             $mail->send();
             $result['status'] = 1;
