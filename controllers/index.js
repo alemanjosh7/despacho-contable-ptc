@@ -168,7 +168,6 @@ RESTABLECERCTR.addEventListener('click', function () {
 LOGINBTN.addEventListener('click', function () {
     LOGINBTN.classList.add("disabled");
     generarPIN();
-    
 });
 
 //Función para el login 

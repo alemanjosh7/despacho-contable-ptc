@@ -9,6 +9,7 @@ id_empresa = El id de la empresa seleccionada
 id_folder = El id de la empresa seleccionada
 saludoI = Variable para el saludo tras iniciar session
 cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defecto es false a menos que sea necesario cambiarla
+verifyP2 = Variable que verifica si paso el método P2
 */
     require_once('helpers/database.php');
     require_once('helpers/validator.php');
@@ -213,9 +214,11 @@ cambioCtr = Variable que indica si es necesario cambiar la contraseña, por defe
                 $var = $_POST['pin'];
                 $pin = $_SESSION['PIN'];
                 if ($var == $pin) {
+                    $_SESSION['verifyP2'] = true;
                     $result['hora'] = $_SESSION['horaPIN'];
                     $result['status'] = 1;
                 } else {
+                    $_SESSION['verifyP2'] = false;
                     $result['exception'] = 'El pin no coincide';
                 }
                 break;
