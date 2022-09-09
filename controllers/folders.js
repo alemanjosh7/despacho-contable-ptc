@@ -234,7 +234,9 @@ function comprobarEmpresa() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (response.status) {
+                if(response.cambioCtr){
+                    location.href = 'index.html';
+                }else if (response.status) {
                     //Seteamos la variable global de empresa
                     idEmpresa = response.id_empresa;
                     console.log(idEmpresa);

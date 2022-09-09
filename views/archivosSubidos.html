@@ -166,7 +166,7 @@
                         archivos podran visualizarse!, los podrá descargar despues pero se recomienda eliminar tras
                         descargar para no acumular</b></p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="archForm">
+                <form method="post" id="archForm" enctype="multipart/form-data">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
                         <!--Seleccionar la empresa a la que posee acceso-->
@@ -426,10 +426,6 @@
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>
     <script src="../controllers/archivosSubidos.js"></script>
-    <!-- Contador oculto que cuenta el tiempo trancurrido y cierra la sesion -->
-    <p class="timertext" hidden style="font-size: 1.5rem;">
-    <span class="secs"></span> seconds.
-    </p>
 </body>
 
 </html>

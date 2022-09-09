@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     pieGraphFoldersEmpresas();//Gráfico de pie de empresas con más folders
     lineaGraphEmpresasAccess();//Empresas a la cual más empleados poseen acceso
     fillSelectBugMtz(API_TIPO_EMPLEADO, 'tipo-de-empleado', null);
-    
 });
 //Declaramos algunos componentes
 const saludoUsuario = document.getElementById('saludo-usuario');
@@ -414,7 +413,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (!response.status) {
+                if(response.cambioCtr){
+                    location.href = 'index.html';
+                } else if (!response.status) {
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
                     );

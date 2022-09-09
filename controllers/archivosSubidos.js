@@ -118,7 +118,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (!response.status) {
+                if(response.cambioCtr){
+                    location.href = 'index.html';
+                }else if (!response.status) {
                     ANADIRARCHBTN.classList.remove('hide');
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
@@ -271,11 +273,11 @@ function fillTable(dataset) {
                     <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
                         <!--Boton para visualizar-->
-                        <a href="../api/documents/archivosEmpleados/${row.nombre_archivo}" class="tooltipped hide-on-med-only" data-position="top" data-tooltip="Visualizar archivo" target="_blank">
+                        <a href="../api/documents/archivosEmpleados/${row.nombre_archivo}" class="tooltipped " data-position="top" data-tooltip="Visualizar archivo" target="_blank">
                             <img src="../resources/icons/ver-archivo.png" alt="">
                         </a>
                         <!--Boton para descargar-->
-                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped" data-position="top" data-tooltip="Descargar archivo">
+                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-med-and-down" data-position="top" data-tooltip="Descargar archivo">
                             <img src="../resources/icons/download.png" alt="">
                         </a>
                         <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
@@ -300,7 +302,7 @@ function fillTable(dataset) {
                     <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
                         <!--Boton para descargar-->
-                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped" data-position="top" data-tooltip="Descargar archivo">
+                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-med-and-down" data-position="top" data-tooltip="Descargar archivo">
                             <img src="../resources/icons/download.png" alt="">
                         </a>
                         <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
@@ -571,7 +573,7 @@ function crearArch() {
     M.Modal.getInstance(MODALARCH).open();
     document.getElementById('titulo_modal').innerText = 'Añadir Archivo';
     document.getElementById('indicacion_modal').innerHTML = 'Añada un archivo, este se guardará con el nombre que lo suba <b>¡No todos los archivos podran visualizarse!, los podrá descargar despues pero se recomienda eliminar tras descargar para no acumular</b>';
-    fillSelect2(ENDPOINT_EMPRESAS, 'empresas_select', '¿A que empresa pertenece?', null, true);
+    fillSelect2(ENDPOINT_EMPRESAS, 'empresas_select', 'Seleccionar empresa', null, true);
     FECHACONT.classList.add('hide');
     NOMBREEMPCONT.classList.replace('l4', 'l6');
     SELECTEMPCONT.classList.replace('l5', 'l6');
@@ -745,7 +747,7 @@ añadirArchivobtn.addEventListener('click', function () {
         case action = 'create':
             //Como es el caso para crear
             if (validarCamposVacios(arregloVCV) != false && SELECTEMP.value != '¿A que empresa pertenece?') {
-                if (archivoSubido.value.length != 0) {
+                if (archivoSubido.value.length != 0 && nombreArchivoInp.value.length <=15) {
                     mensaje.style.display = 'none';
                     preloaderAñadirArchivo.style.display = 'block';
                     añadirArchivobtn.classList.add("disabled");
@@ -796,7 +798,7 @@ añadirArchivobtn.addEventListener('click', function () {
                     });
                 } else {
                     mensaje.style.display = 'block';
-                    mensaje.innerText = '¡No olvides añadir un archivo!';
+                    mensaje.innerText = '¡No olvides añadir un archivo con un nombre menor a 15 caracteres!';
                 }
             } else {
                 mensaje.style.display = 'block';

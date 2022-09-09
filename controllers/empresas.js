@@ -141,6 +141,22 @@ hastatop.addEventListener('click', function () {
         behavior: "smooth"
     })
 });
+
+//Colocamos limitación en inputs privados para no copiar
+modNITEmpr.oncopy = function (e) {
+    e.preventDefault();
+}
+
+modNumeroContacto.oncopy = function (e) {
+    e.preventDefault();
+}
+
+MODCORREO.oncopy = function (e) {
+    e.preventDefault();
+}
+
+
+
 //Solo números en el input de número de contacto
 var numeroContacto = document.getElementById('numero-empr');
 numeroContacto.addEventListener('keypress', function (e) {
@@ -351,7 +367,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (!response.status) {
+                if (response.cambioCtr) {
+                    location.href = 'index.html';
+                } else if (!response.status) {
                     ANADIREMPRESABTN.classList.add('hide');
                     document.querySelectorAll('.eliminarbtn').forEach(element =>
                         element.classList.add('hide')
@@ -649,17 +667,17 @@ function obtenerEmpresaRFN() {
             }
         })
         if (formValues) {
-            if(formValues[0] != 'Selecciona una empresa'){
+            if (formValues[0] != 'Selecciona una empresa') {
                 //Swal.fire(JSON.stringify(formValues[0]))
                 let params = '?idemp=' + formValues[0];
                 // Se establece la ruta del reporte en el servidor.
                 let url = SERVER + 'reports/reportFoldEmpX.php';
                 // Se abre el reporte en una nueva pestaña del navegador web.
                 window.open(url + params);
-            }else{
-                sweetAlert(3,'Debe seleccionar una empresa',null);
+            } else {
+                sweetAlert(3, 'Debe seleccionar una empresa', null);
             }
-            
+
         }
     })()
 }

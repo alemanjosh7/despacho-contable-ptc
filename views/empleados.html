@@ -121,7 +121,7 @@
                 <!--Titulo del modal-->
                 <h4 class="center-align" id="modal-title"></h4>
                 <!--Formulario para añadir una empresa-->
-                <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                <form class="row" method="post" id="save-form" enctype="multipart/form-data" autocomplete="off">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
                         <!--Nombre del usuario-->
@@ -435,10 +435,6 @@
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script src="../controllers/empleados.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>
-    <!-- Contador oculto que cuenta el tiempo trancurrido y cierra la sesion -->
-    <p class="timertext" hidden style="font-size: 1.5rem;">
-    <span class="secs"></span> seconds.
-    </p>
 </body>
 
 </html>

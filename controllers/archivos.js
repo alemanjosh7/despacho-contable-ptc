@@ -342,7 +342,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if (!response.status) {
+                if(response.cambioCtr){
+                    location.href = 'index.html';
+                }else if (!response.status) {
                     ANADIRARCHBTN.classList.add('hide');
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
@@ -391,7 +393,7 @@ function fillTable(dataset) {
                     <a onclick="modArch(${row.id_archivo})" class="tooltipped eliminarbtn" data-position="top"
                     data-tooltip="Modificar archivo"><img class="icono-modificar"
                     src="../resources/icons/modificar-archivo.png"></a>
-                    <a href="../api/documents/archivosFolders/${row.nombre_archivo}" class="tooltipped" data-position="top"
+                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-med-and-down" data-position="top"
                     data-tooltip="Descargar archivo" download="${row.nombre_original}"><img class="icono-descarga"
                     src="../resources/icons/descarga.png"></a>
                     <a href="../api/documents/archivosFolders/${row.nombre_archivo}" class="tooltipped" data-position="top"
@@ -407,7 +409,7 @@ function fillTable(dataset) {
                     <a onclick="modArch(${row.id_archivo})" class="tooltipped eliminarbtn" data-position="top"
                     data-tooltip="Modificar archivo"><img class="icono-modificar"
                     src="../resources/icons/modificar-archivo.png"></a>
-                    <a href="../api/documents/archivosFolders/${row.nombre_archivo}" class="tooltipped" data-position="top"
+                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-med-and-down" data-position="top"
                     data-tooltip="Descargar archivo" download="${row.nombre_original}"><img class="icono-descarga"
                     src="../resources/icons/descarga.png"></a>
                 </td>

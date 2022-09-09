@@ -1,10 +1,8 @@
-
 let t1 = gsap.timeline();
 let t2 = gsap.timeline();
 let t3 = gsap.timeline();
 let t4 = gsap.timeline();
 let t5 = gsap.timeline();
-
 
 t1.to(".cog1",
 {

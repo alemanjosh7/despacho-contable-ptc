@@ -137,7 +137,7 @@
                             data-tooltip="Busca una empresa">search</i>
                         <input id="inputbuscar-empresas" type="search" class="validate" placeholder="Buscar Empresa" name="search">
                     </div>
-                    <div class="col s9 m6 l4">
+                    <div class="col s9 m6 l4 center">
                         <a class="waves-effect waves-ligth btn z-depth-3 modal-trigger" id="añadir-empresa"
                             href="#modalAnadirEmpresa">
                             <i class="material-icons left">add</i>Añadir Empresa
@@ -212,7 +212,7 @@
                     </label>
                 </div>
                 <!--Formulario para añadir una empresa-->
-                <form id="formAñadir">
+                <form id="formAñadir" autocomplete="off">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
                         <!--Nombre del cliente-->
@@ -256,7 +256,7 @@
                         <!--Dirección de la empresa-->
                         <div class="input-field col s12">
                             <textarea id="direccion-empr" placeholder="Dirección de empresa"
-                                class="materialize-textarea inputs-añadirempr" name="direccion"></textarea>
+                                class="materialize-textarea inputs-añadirempr center-align" name="direccion"></textarea>
                             <label for="direccion-empr" class="labels-anadirempr">Dirección de la empresa</label>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
                     </label>
                 </div>
                 <!--Formulario para añadir una empresa-->
-                <form id="formActualizar">
+                <form id="formActualizar" autocomplete="off">
                     <!--Fila del formulario-->
                     <div class="row filaform-empresa">
                         <!--ID de la empresa-->
@@ -424,7 +424,7 @@
                         <!--Dirección de la empresa-->
                         <div class="input-field col s12">
                             <textarea id="moddireccion-empr" placeholder="Dirección de empresa"
-                                class="materialize-textarea inputs-añadirempr" name="direccion"></textarea>
+                                class="materialize-textarea inputs-añadirempr center-align" name="direccion"></textarea>
                             <label for="direccion-empr" class="labels-anadirempr">Dirección de la empresa</label>
                         </div>
                     </div>
@@ -507,10 +507,6 @@
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>
     <script type="text/javascript" src="../controllers/empresas.js"></script>
-    <!-- Contador oculto que cuenta el tiempo trancurrido y cierra la sesion -->
-    <p class="timertext" hidden style="font-size: 1.5rem;">
-    <span class="secs"></span> seconds.
-    </p>
 </body>
 
 </html>

@@ -237,7 +237,7 @@
                 <p class="center-align">Guardar un archivo, este se guardará con el nombre que lo suba <b>¡No todos los
                         archivos podran visualizarse!</b></p>
                 <!--Formulario para añadir una empresa-->
-                <form method="post" id="archForm">
+                <form method="post" id="archForm" enctype="multipart/form-data">
                     <!--Fila del formulario-->
                     <div class="row filaform-archivo">
                         <!--Nombre de la empresa-->
@@ -406,10 +406,6 @@
     <script type="text/javascript" src="../controllers/validaciones.js"></script>
     <script type="text/javascript" src="../controllers/online.js"></script>
     <script type="text/javascript" src="../controllers/archivos.js"></script>
-    <!-- Contador oculto que cuenta el tiempo trancurrido y cierra la sesion -->
-    <p class="timertext" hidden style="font-size: 1.5rem;">
-    <span class="secs"></span> seconds.
-    </p>
 </body>
 
 </html>
