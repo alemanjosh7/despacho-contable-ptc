@@ -50,6 +50,17 @@ class Validator
         return $fields;
     }
 
+    /*Validar si la contraseña se encuentra en un arreglo, este será un formulario o los datos de la base de datos retornando true en caso sea así*/
+    public function searchContra($form, $contra)
+    {
+        foreach ($form as $index => $value) {
+            if (strpos($form[$index], $contra) && $form[$index] != $contra) {
+                true;
+            } else {
+                false;
+            }
+        }
+    }
     /*
     *   Método para validar un número natural como por ejemplo llave primaria, llave foránea, entre otros.
     *
@@ -240,17 +251,22 @@ class Validator
     public function validatePassword($value)
     {
         // Se verifica la longitud mínima.
-        if (strlen($value) >= 6) {
-            // Se verifica la longitud máxima.
-            if (strlen($value) <= 72) {
-                return true;
-            } else {
-                $this->passwordError = 'Clave mayor a 72 caracteres';
-                return false;
-            }
-        } else {
-            $this->passwordError = 'Clave menor a 6 caracteres';
+        if (!strlen($value) >= 8) {
+            $this->passwordError = 'Clave menor a 8 caracteres';
+        } elseif (!strlen($value) > 90) {
+            $this->passwordError = 'Clave mayor a 90 caracteres';
             return false;
+        } elseif (!preg_match('/[0-9]/', $value)) {
+            $this->passwordError = 'La clave debe contener al menos un digito';
+            return false;
+        } elseif (!preg_match('/[a-zA-Z]/', $value)) {
+            $this->passwordError = 'La clave debe ser alfanumerica';
+            return false;
+        } elseif (!preg_match('/[\-\*\?\!\@\#\$\(\)\.\,\+\°\%\?\¡\¿\/\=\;\:]/', $value)) {
+            $this->passwordError = 'La clave debe contener al menos un caracter especial';
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -403,9 +419,38 @@ class Validator
     /*
         Metodo para obtener el tamaño del archivo seleccionado legible para los humanos
     */
-    function validateSize($bytes, $decimals = 2) {
+    function validateSize($bytes, $decimals = 2)
+    {
         $factor = floor((strlen($bytes) - 1) / 3);
         if ($factor > 0) $sz = 'KMGT';
         return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor - 1] . 'B';
+    }
+
+    /*
+    *   Método para validar el pin de recuperación.
+    *
+    *   Parámetros: $value (dato a validar).
+    *   
+    *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
+    */
+    public function validatePinRec($value)
+    {
+        // Se verifica la longitud mínima.
+        if (!strlen($value) == 6) {
+            $this->passwordError = 'El pin de recuperación es menor a 6 caracteres';
+        } elseif (preg_match('/\s/', $value)) {
+            $this->passwordError = 'El pin de recuperación no debe tener espacios en blanco';
+        } elseif (!preg_match('/[0-9]/', $value)) {
+            $this->passwordError = 'El pin de recuperación debe contener al menos un digito';
+            return false;
+        } elseif (!preg_match('/[a-z]/', $value)) {
+            $this->passwordError = 'El pin de recuperación no debe contener almenos una letra minuscula';
+            return false;
+        } elseif (!preg_match('/[A-Z]/', $value)) {
+            $this->passwordError = 'El pin de recuperación debe contener almenos una letra mayuscula';
+            return false;
+        } else {
+            return true;
+        }
     }
 }
