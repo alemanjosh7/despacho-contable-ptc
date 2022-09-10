@@ -31,7 +31,84 @@ $body = '<head>
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
 <title>Smart Bookkeeping-Codigo de restablecer contraseña</title>
-s
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: white;/*cambiar a predeterminado(blanco)*/
+}
+.fondo-0{
+    padding: 20px;
+    background-color: #dee8f1;
+    text-align: center;
+    /*margin: 100px;*//*borrar linea*/
+}
+.fondo {
+    padding: 40px;
+    background-color: #F1F5F9;
+    text-align: center;
+    box-shadow: 3px 3px 4px 2px rgb(138, 136, 136);
+}
+.encabezado{
+    width: 100%;
+    height: 100px;
+    background-color: #F4A172;
+    text-align: center;
+    border-radius: 5px;
+    font-family: '.'Poppins'.', sans-serif;
+    padding-top: 10px;
+}
+
+.card-panel {
+    background-color: #FA7479;
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.card-panel h1{
+    text-align: center;
+    padding-top: 20px;
+    font-family: '.'Poppins'.', sans-serif;
+}
+.container h1{
+    padding-top: 10px;
+    font-family: '.'Poppins'.', sans-serif;
+}
+.container p{
+    margin-top: 20px;
+    font-family: '.'Poppins'.', sans-serif;
+}
+.fila1 {
+    margin-left: 0%;
+    margin-top: 1%;
+}
+@media screen and (min-width: 200px) and (max-width: 433px)  {
+    .encabezado{
+    width: 100%;
+    height: 140px;
+    background-color: #F4A172;
+    text-align: center;
+    border-radius: 5px;
+    font-family: '.'Poppins'.', sans-serif;
+    padding-top: 10px;
+}
+.card-panel {
+    background-color: #FA7479;
+    width: 180px;
+    height: 60px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+</style>
 </head>
 <body class=" grey lighten-3" style="margin: 0; padding:0;">
 <div class="fondo-0">
