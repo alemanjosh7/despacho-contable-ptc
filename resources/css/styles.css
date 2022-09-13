@@ -4059,23 +4059,71 @@ input {
 /*FAQ*/
 
 
-.contenedorFAQ{
- background-color: white;
- margin-left: 100px;
+.contenedorFAQ {
+  background-color: white;
+  margin-left: 25%;
+  margin-right: 10%;
+  margin-bottom: 5%;
 }
 
+.FAQqU{
+  background-color: white;
+  margin-top: 0%;
+  margin-bottom: 3%;
+  margin-left: 6%;
+  margin-right: 10%;
+  padding: 2%;
+  padding-left: 5%;
+  padding-right: 4%;
+}
 
-.contenedorFAQmenu{
-  margin-right: 45px;
+.TitularFAQinner{
+ margin-top: 5%;
+}
+
+.innerMenuFAQB{
+  font-size: 20px;
+  margin-left: 12%;
+}
+
+.contenedorFAQmenu {
   font-size: 15px;
+  margin-left: 6%;
+  margin-top: 1%;
   border-style: none solid none none;
+  position: fixed;
 }
 
-.contenedorFAQinner{
-  margin-bottom: 20px;
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-right: 20px;
+.contenedorFAQinner {
+ padding-left: 10%;
+ padding-right: 10%;
+ padding-top: 4%;
+ padding-bottom: 2%;
+}
+
+
+.contenedorFAQinnerTe{
+  margin-bottom: 8%;
+}
+
+.contenedorFAQinnerTa{
+  margin-top: 2%;
+}
+
+.contenedorFAQinnerTi{
+  padding-top: 7%;
+  text-align: center;
+}
+
+.contenedorFAQinnerTl{
+ width: 300px;
+ color: #000;
+ background-color: #000;
+ height: 1.5px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 2%;
+
 }
 
 
@@ -4094,7 +4142,7 @@ input {
   list-style: none;
   margin: 0;
   outline: none;
-  padding: 4px 9px;
+  padding: 4px 12px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -4105,38 +4153,112 @@ input {
   touch-action: manipulation;
   text-transform: initial;
   margin-top: 12px;
-  padding-top: 10px;
 }
-
 .frm-FAQ {
   display: flex;
   justify-content: flex-end;
-  
 }
 
-
-.table-of-contents{
+.table-of-contents {
   text-align: center;
 }
-.innerMenuFAQ{
+.innerMenuFAQ {
   margin-top: 4px;
   margin-right: -120px;
 }
 
 @media screen and (min-width: 601px) and (max-width: 992px) {
-  .contenedorFAQmenu{
-    background-color: white;
-    margin-right: 20px;
-    margin-left: 25%;
-    margin-bottom: 15px;
-  
+  .contenedorFAQmenu {
+    display: flex;
+    flex-direction: column;
+    border-style: none none none none;
+    position: absolute;
   }
 
-  .table-of-contents{
-    margin-top: 10px;
-    margin-bottom: 10px;
+  .innerMenuFAQ {
+
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contenedorFAQ {
+    background-color: white;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    margin-top: 18%;
+  }
+
+  .FAQqU{
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 3%;
+  }
+
+  .innerMenuFAQB{
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+
+  
+
+  .contenedorFAQmenu {
+    border-style: none none none none;
+    position: absolute;
+
+  }
+
+  .innerMenuFAQ {
+    font-size: 14px;
+    column-count: 3;
+    column-rule: 1px solid lightblue;
+    column-gap: 10px;
+  } 
+
+  
+  .innerMenuFAQB{
+    display: none;
+  }
+
+  .contenedorFAQ {
+    background-color: white;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    margin-top: 30%;
+  }
+
+
+  
+
+  .FAQqU{
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 6%;
+  }
+
+  .contenedorFAQinnerTa{
+    margin-top: 2%;
     text-align: center;
   }
 
-  
+
+  .innerMenuFAQIn{
+    margin-left: -10%;
+
+
+  }
+ 
 }
+
