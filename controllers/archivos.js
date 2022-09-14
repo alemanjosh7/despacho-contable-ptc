@@ -153,51 +153,56 @@ añadirArchivobtn.addEventListener('click', function () {
     //Creamos arreglo de componentes para enviarlos a una función que los evaluará
     let arregloVCV = [nombreEmpresa, nombreFolder];
     if (validarCamposVacios(arregloVCV) != false) {
-        if (archivoSubido.value.length != 0 || IDARCH.value.length !=0) {
-            mensaje.style.display = 'none';
-            preloaderAñadirArchivo.style.display = 'block';
-            añadirArchivobtn.classList.add("disabled");
-            // Se define una variable para establecer la acción a realizar en la API.
-            let action = '';
-            // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
-            (IDARCH.value) ? action = 'update' : action = 'create';
-            // Petición para obtener en nombre del usuario que ha iniciado sesión.
-            let form = new FormData(document.getElementById('archForm'));
-            form.append('nombre', nombreArchivoInp.value);
-            let date = new Date();
-            let fecha = date.toISOString().split('T')[0];
-            form.append('fecha', fecha);
-            form.append('id', IDARCH.value);
-            console.log(form.get('nombre'))
-            fetch(API_ARCHIVO + action, {
-                method: 'post',
-                body: form
-            }).then(function (request) {
-                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-                if (request.ok) {
-                    // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function (response) {
-                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                        if (response.status) {
-                            // Se cierra la caja de dialogo (modal) del formulario.
-                            M.Modal.getInstance(MODALARCH).close();
-                            // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                            readRowsLimit(API_ARCHIVO, 0);
-                            sweetAlert(1, response.message, null);
-                        } else {
-                            //Ocultamos el preloader
-                            preloaderAñadirArchivo.style.display = 'none';
-                            //Habilitamos el boton de añadir
-                            añadirArchivobtn.classList.remove("disabled");
-                            //Ocultamos el mensaje
-                            mensaje.style.display = 'none';
-                            sweetAlert(2, response.exception, null);
-                        }
-                    });
-                } else {
-                    console.log(request.status + ' ' + request.statusText);
-                }
-            });
+        if (archivoSubido.value.length != 0 || IDARCH.value.length != 0) {
+            if (nombreArchivoInp.value.length <= 15) {
+                mensaje.style.display = 'none';
+                preloaderAñadirArchivo.style.display = 'block';
+                añadirArchivobtn.classList.add("disabled");
+                // Se define una variable para establecer la acción a realizar en la API.
+                let action = '';
+                // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.
+                (IDARCH.value) ? action = 'update' : action = 'create';
+                // Petición para obtener en nombre del usuario que ha iniciado sesión.
+                let form = new FormData(document.getElementById('archForm'));
+                form.append('nombre', nombreArchivoInp.value);
+                let date = new Date();
+                let fecha = date.toISOString().split('T')[0];
+                form.append('fecha', fecha);
+                form.append('id', IDARCH.value);
+                console.log(form.get('nombre'))
+                fetch(API_ARCHIVO + action, {
+                    method: 'post',
+                    body: form
+                }).then(function (request) {
+                    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                    if (request.ok) {
+                        // Se obtiene la respuesta en formato JSON.
+                        request.json().then(function (response) {
+                            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                            if (response.status) {
+                                // Se cierra la caja de dialogo (modal) del formulario.
+                                M.Modal.getInstance(MODALARCH).close();
+                                // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+                                readRowsLimit(API_ARCHIVO, 0);
+                                sweetAlert(1, response.message, null);
+                            } else {
+                                //Ocultamos el preloader
+                                preloaderAñadirArchivo.style.display = 'none';
+                                //Habilitamos el boton de añadir
+                                añadirArchivobtn.classList.remove("disabled");
+                                //Ocultamos el mensaje
+                                mensaje.style.display = 'none';
+                                sweetAlert(2, response.exception, null);
+                            }
+                        });
+                    } else {
+                        console.log(request.status + ' ' + request.statusText);
+                    }
+                });
+            } else{
+                mensaje.style.display = 'block';
+                mensaje.innerText = '¡No olvides añadir un archivo con un nombre menor a 15 caracteres!';
+            }
         } else {
             mensaje.style.display = 'block';
             mensaje.innerText = '¡No olvides añadir un archivo!';
@@ -342,9 +347,9 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if(response.cambioCtr){
+                if (response.cambioCtr) {
                     location.href = 'index.html';
-                }else if (!response.status) {
+                } else if (!response.status) {
                     ANADIRARCHBTN.classList.add('hide');
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.add('hide')
@@ -482,7 +487,7 @@ BOTONADELANTE.addEventListener('click', function () {
     if (BOTONADELANTE.style.display = 'block') {
         //Sumamos la cantidad de página que queramos que avance, en este caso decidi 2 para el botoni y 3 para el botonf
         BOTONNUMEROPAGF.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) + 1;
-    }else{
+    } else {
         BOTONNUMEROPAGI.innerHTML = Number(BOTONNUMEROPAGI.innerHTML) - 2;
     }
 });

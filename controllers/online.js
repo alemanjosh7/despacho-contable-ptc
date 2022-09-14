@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="navbar-fixed">
                             <nav class="navbar-contenedor z-depth-3">
                                 <div class="nav-wrapper">
+                                    <!--Icono del FAQ-->
+                                    <a class="logout-navbar tooltipped faqIcon hide-on-med-and-down" data-position="bottom"
+                                    data-tooltip="Preguntas frecuentes" href="faq.html"><img class="responsive-img"
+                                    src="../resources/icons/faqIcon.png" height="50px" width="40"></a>
                                     <!--Titulo del apartado-->
                                     <a class="brand-logo center titulo-nav"><span>${getAbsolutePath()}</span></a>
                                     <!--Boton para el sidenav responsive-->
@@ -113,6 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                             Cerrar Sesión
                                         </div>
                                     </a>
+                                    <!--Boton de FAQ solo para tablets y telefonos-->
+                                    <a href="faq.html" class="row waves-effect botones-sidenavE center hide-on-large-only">
+                                        <img class="responsive-img" src="../resources/icons/faqIcon.png" height="50px" width="50px">
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -126,6 +134,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="navbar-fixed">
                             <nav class="navbar-contenedor z-depth-3">
                                 <div class="nav-wrapper">
+                                    <!--Icono del FAQ-->
+                                    <a href="faq.html" class="logout-navbar tooltipped faqIcon hide-on-med-and-down" data-position="bottom"
+                                    data-tooltip="Preguntas frecuentes"><img class="responsive-img"
+                                    src="../resources/icons/faqIcon.png" height="50px" width="40"></a>
                                     <!--Titulo del apartado-->
                                     <a class="brand-logo center titulo-nav"><span>${getAbsolutePath()}</span></a>
                                     <!--Boton para el sidenav responsive-->
@@ -203,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                             Cerrar Sesión
                                         </div>
                                     </a>
+                                    <!--Boton de FAQ solo para tablets y telefonos-->
+                                    <a href="faq.html" class="row waves-effect botones-sidenavE center hide-on-large-only">
+                                        <img class="responsive-img" src="../resources/icons/faqIcon.png" height="50px" width="50px">
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -210,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.querySelector('header').innerHTML = header;
                         M.Sidenav.init(document.querySelectorAll(".sidenav"));
                     }
+                    M.Tooltip.init(document.querySelectorAll('.tooltipped'));
                 } else {
                     //Como no hay una sessión, reenviamos al 
                     location.href = 'index.html';
@@ -260,6 +277,8 @@ function getAbsolutePath() {
         return 'Archivos-subidos'
     } else if (pathName.includes('rec')) {
         return ''
+    }else if(pathName.includes('faq.html')){
+        return 'FAQ'
     }
 }
 
@@ -300,6 +319,7 @@ var inactivityTime = function () {
 
     //Función para cerrar session
     function activityLogOut() {
+        console.log('ya lo tiene que cerrar')
         fetch(API_HEADER + 'logOut', {
             method: 'get'
         }).then(function (request) {
@@ -321,6 +341,7 @@ var inactivityTime = function () {
     }
 
     function logAlert() {
+        console.log('ya lo tiene que abrir')
         Swal.fire({
             background: '#F7F0E9',
             confirmButtonColor: 'black',

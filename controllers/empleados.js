@@ -59,15 +59,15 @@ function changeOption(val) {
 }
 
 //Colocamos limitación en inputs privados para no copiar
-TELEFONO.oncopy = function(e) {
+TELEFONO.oncopy = function (e) {
   e.preventDefault();
 }
 
-DUI.oncopy = function(e) {
+DUI.oncopy = function (e) {
   e.preventDefault();
 }
 
-CORREO.oncopy = function(e) {
+CORREO.oncopy = function (e) {
   e.preventDefault();
 }
 
@@ -294,9 +294,9 @@ function comprobarAmin() {
       // Se obtiene la respuesta en formato JSON.
       request.json().then(function (response) {
         // Se comprueba si hay no hay una session para admins
-        if(response.cambioCtr){
+        if (response.cambioCtr) {
           location.href = 'index.html';
-        }else if (!response.status) {
+        } else if (!response.status) {
           location.href = 'inicio.html';
         }
       });
@@ -357,8 +357,15 @@ function fillTable(dataset) {
                                         class="material-icons">edit</i></a></li>
                             <li><a class="btn-floating green tooltipped eliminarbtn" data-position="right"
                                     data-tooltip="Accesos a empresas" onclick="llenarEmpresas(${row.id_empleado});"><i
-                                        class="material-icons">business</i></a></li>
-                        </ul>
+                                        class="material-icons">business</i></a></li>`
+                            if (row.secret_auth) {
+                              content +=`
+                              <li><a class="btn-floating black tooltipped" data-tooltip="Eliminar factor 3P" data-position="right"
+                                onclick="deleteGAuth(${row.id_empleado})"><i
+                              class="material-icons">enhanced_encryption</i></a></li>`
+                            }
+                    content +=`
+                          </ul>
                     </div>
                     <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
@@ -645,3 +652,45 @@ TELEFONO.addEventListener('keyup', e => {
 DUI.addEventListener('keyup', e => {
   guionDUI(e, DUI);
 });
+
+/*Función para eliminar el codigo de Google Authenticator*/
+function deleteGAuth(id) {
+  Swal.fire({
+    title: 'Advertencia',
+    text: '¿Desea eliminar el tercer paso de verificación de este empleado?',
+    icon: 'warning',
+    showDenyButton: true,
+    confirmButtonText: 'Si',
+    denyButtonText: 'Cancelar',
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    background: '#F7F0E9',
+    confirmButtonColor: 'green',
+  }).then(function (value) {
+    if (value.isConfirmed) {
+      let form = new FormData();
+      form.append('id', id);
+      fetch(API_EMPLEADOS + 'eliminarQRAUTH', {
+        method: 'post',
+        body: form
+      }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+          // Se obtiene la respuesta en formato JSON.
+          request.json().then(function (response) {
+            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            if (response.status) {
+              //Se obtiene la respuesta y reinicia los empleado
+              // cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+              readRowsLimit(API_EMPLEADOS, 0);
+            } else {
+              sweetAlert(2, response.exception, null);
+            }
+          });
+        } else {
+          console.log(request.status + ' ' + request.statusText);
+        }
+      });
+    }
+  });
+}

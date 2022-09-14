@@ -2,11 +2,18 @@
 const API_EMPLEADOS = SERVER + 'dashboard/empleados.php?action=';
 const API_GLBVAR = SERVER + 'variablesgb.php?action=';
 
+optionsM = {
+    onCloseEnd: function () {
+        LOGINBTN.classList.remove("disabled");
+    },
+    dismissible: false,
+}
+
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-    M.Modal.init(document.querySelectorAll('.modal'));
+    M.Modal.init(document.querySelectorAll('.modal'),optionsM);
     //Ejecutamos algunos metodos inciales
     validarPrimerUso();//Validamos el primer usuario
     comprobarAmin();//Verificamos si hay una session
@@ -40,7 +47,7 @@ comprobarPIN.addEventListener('click', function () {
     let mensaje = document.getElementById('mensaje-restablecer');
     let modal = M.Modal.getInstance(document.querySelector('#modalAnadirFolder'));
     let restablecermodal = M.Modal.getInstance(document.querySelector('#modalrestablecer'));
-    if(USUARIOTXT.value.length!=0){
+    if (USUARIOTXT.value.length != 0) {
         mensaje.style.display = 'none';
         if (pinintro.value.length != 0) {
             fetch(API_GLBVAR + 'comprobarPINLog', {
@@ -56,7 +63,7 @@ comprobarPIN.addEventListener('click', function () {
                             modal.close();
                             restablecermodal.open();
                         } else {
-                            sweetAlert(2,response.exception,null)
+                            sweetAlert(2, response.exception, null)
                         }
                     });
                 } else {
@@ -67,7 +74,7 @@ comprobarPIN.addEventListener('click', function () {
             mensaje.style.display = 'block';
             mensaje.innerText = 'No se permiten espacios vacios';
         }
-    }else{
+    } else {
         mensaje.style.display = 'block';
         mensaje.innerText = 'Por favor coloque su usuario en el formulario anterior antes de continuar';
     }
@@ -75,22 +82,22 @@ comprobarPIN.addEventListener('click', function () {
 
 ///*Boton de ir hacia arrina*/
 var hastatop = document.getElementById('hasta_arriba');
-window.onscroll = function(){
-    if(document.documentElement.scrollTop >100){
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 100) {
         hastatop.style.display = "block";
-    }else{
+    } else {
         hastatop.style.display = "none";
     }
 };
 
-hastatop.addEventListener('click', function(){
+hastatop.addEventListener('click', function () {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     })
 });
 //Visualizar u ocultar contraseña
-OJOICON.addEventListener('click',function(){
+OJOICON.addEventListener('click', function () {
     if (CONTRAINPUT.type == "password") {
         CONTRAINPUT.type = "text"
         OJOICON.innerText = "visibility_off"
@@ -101,7 +108,7 @@ OJOICON.addEventListener('click',function(){
 });
 
 //Visualizar u ocultar contraseña para restablecerla
-OJOICON2.addEventListener('click',function(){
+OJOICON2.addEventListener('click', function () {
     if (CONTRAC.type == "password") {
         CONTRAC.type = "text"
         CONTRAN.type = "text"
@@ -120,7 +127,7 @@ RESTABLECERCTR.addEventListener('click', function () {
     let restablecermodal = M.Modal.getInstance(document.querySelector('#modalrestablecer'));//modal
     //creamos el form para añadir el usuario
     let form = new FormData(document.getElementById('renovarcontr-form'));
-    form.append('usuario',USUARIOTXT.value);
+    form.append('usuario', USUARIOTXT.value);
     if (CONTRAN.value.length != 0 || CONTRAC.value.length != 0) {
         contrasenasIguales();
         if (mensaje.style.display != 'block') {
@@ -136,17 +143,17 @@ RESTABLECERCTR.addEventListener('click', function () {
                     request.json().then(function (response) {
                         // Se comprueba si existe una sesión, de lo contrario se revisa si la respuesta es satisfactoria.
                         if (response.session && response.cambioCtr == false) {
-                            sweetAlert(3,response.cambioCtr,'inicio.html')                         
+                            sweetAlert(3, response.cambioCtr, 'inicio.html')
                         } else if (response.status) {
                             preloader.style.display = 'none';
                             RESTABLECERCTR.classList.remove('disabled');
-                            sweetAlert(1,response.message,null)
+                            sweetAlert(1, response.message, null)
                             restablecermodal.close();
                             comprobarAmin();
                         } else {
                             preloader.style.display = 'none';
                             RESTABLECERCTR.classList.remove('disabled');
-                            sweetAlert(2,response.exception,null)
+                            sweetAlert(2, response.exception, null)
                         }
                     });
                 } else {
@@ -166,8 +173,10 @@ RESTABLECERCTR.addEventListener('click', function () {
 
 //Función de log in
 LOGINBTN.addEventListener('click', function () {
-    LOGINBTN.classList.add("disabled");
-    generarPIN();
+    //Para presentar el proyecto descomentar las dos comentarios siguientes y comentar la función loginF();
+    //LOGINBTN.classList.add("disabled");
+    //generarPIN();
+    loginF();
 });
 
 //Función para el login 
@@ -194,8 +203,8 @@ function loginF() {
                 LOGINBTN.classList.remove('disabled');
                 console.log(request.status + ' ' + request.statusText);
             }
-        }).catch(function(error){
-            sweetAlert(2,'Error al iniciar session',null)
+        }).catch(function (error) {
+            sweetAlert(2, 'Error al iniciar session', null)
         });;
     } else {
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
@@ -215,19 +224,20 @@ function comprobarAmin() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
-                if(response.cambioCtr){
-                    sweetAlert(3,'Es obligatorio cambiar la contraseña cada 90 días hagalo',null);
+                if (response.cambioCtr) {
+                    sweetAlert(3, 'Es obligatorio cambiar la contraseña cada 90 días hagalo', null);
                     USUARIOTXT.value = response.usuario;
+                    document.getElementById('cancelarRC').classList.add('hide');
                     restablecermodal.open();
-                }else if (response.session && !response.cambioCtr) {
+                } else if (response.session && !response.cambioCtr) {
                     location.href = 'inicio.html';
                 }
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
-    }).catch(function(error){
-        sweetAlert(2,'Error al conectar al servidor',null)
+    }).catch(function (error) {
+        sweetAlert(2, 'Error al conectar al servidor', null)
     });
 }
 
@@ -237,16 +247,16 @@ function contrasenasIguales() {
     if (CONTRAN.value != CONTRAC.value) {
         mensaje.innerText = 'Las contraseñas no coinciden';
         mensaje.style.display = 'block';
-    }else if(CONTRAN.value.length<8){
+    } else if (CONTRAN.value.length < 8) {
         mensaje.innerText = 'Las contraseñas deben tener más de 8 caracteres';
         mensaje.style.display = 'block';
-    }else if(!validarCarateresEsp(CONTRAN.value)){
+    } else if (!validarCarateresEsp(CONTRAN.value)) {
         mensaje.innerText = 'Las contraseñas deben poseer un caracter especial como #, =, + etc';
         mensaje.style.display = 'block';
-    }else if(/\s/.test(CONTRAN.value)){
+    } else if (/\s/.test(CONTRAN.value)) {
         mensaje.innerText = 'Las contraseñas no deben tener espacios en blanco';
         mensaje.style.display = 'block';
-    }else if(!/[a-zA-Z]/.test(CONTRAN.value)){
+    } else if (!/[a-zA-Z]/.test(CONTRAN.value)) {
         mensaje.innerText = 'Las contraseñas debe ser alfanumerica';
         mensaje.style.display = 'block';
     }
@@ -263,11 +273,11 @@ CONTRAC.addEventListener('keyup', function () {
 });
 
 //Función para validar caracteres especiales recibe como parametro un texto
-function validarCarateresEsp(contra){
-    let cEpeciales = ['#','°','!','#','$','%','?','¡','¿','+','*','.',',','/','=',';',':','-','+'];
+function validarCarateresEsp(contra) {
+    let cEpeciales = ['#', '°', '!', '#', '$', '%', '?', '¡', '¿', '+', '*', '.', ',', '/', '=', ';', ':', '-', '+'];
     let incluye = false;
-    
-    cEpeciales.forEach((caracter) =>{
+
+    cEpeciales.forEach((caracter) => {
         if (contra.includes(caracter)) {
             incluye = true;
         }
@@ -276,7 +286,7 @@ function validarCarateresEsp(contra){
 }
 
 //Función para validar el primer uso de usuario
-function validarPrimerUso(){
+function validarPrimerUso() {
     let options = {
         dismissible: false,
     }
@@ -290,7 +300,7 @@ function validarPrimerUso(){
                 if (response.status) {
                 } else {
                     sweetAlert(3, 'Debe registrarse primero para poder loguearse', '');
-                    M.Modal.init(document.querySelectorAll('#modal-template'),options);
+                    M.Modal.init(document.querySelectorAll('#modal-template'), options);
                     M.Modal.getInstance(document.querySelector('#modal-template')).open();
                 }
             });
@@ -315,7 +325,7 @@ document.getElementById('save-form').addEventListener('submit', function (event)
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    sweetAlert(1,response.message,'inicio.html');
+                    sweetAlert(1, response.message, 'inicio.html');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -414,7 +424,8 @@ const generarPIN = () => {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    //console.log('El pin se ha seteado' + ' ' + response.PIN);
+                    //console.log('El pin se ha seteado' + ' ' + response.pinr);
+                    M.Modal.getInstance(MODALPINL).open();
                     //Enviamos el mensaje
                     enviarPINCorreo();
                 } else {
@@ -426,7 +437,7 @@ const generarPIN = () => {
     });
 }
 
-const enviarPINCorreo = () =>{
+const enviarPINCorreo = () => {
     //Primero obtenemos el correo del usuario
     //Creamos un formulario y añadimos el nombre del usuario y realizamos la petición
     let form = new FormData();
@@ -445,7 +456,7 @@ const enviarPINCorreo = () =>{
                         let usuario = USUARIOTXT.value;
                         document.getElementById('correo-format').innerHTML = response.correoF;
                         form.append('correo', correo);//Coloco el correo a ser enviado
-                        form.append('usuario',usuario);
+                        form.append('usuario', usuario);//Coloco el usuario a ser enviado
                         //Una vez seteado ejecutamos el metodo para enviar el correo
                         fetch(url, {
                             method: 'post',
@@ -547,10 +558,38 @@ document.getElementById('btn-PINL').addEventListener('click', function () {
                     request.json().then(function (response) {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status && comprobarHora(response.hora)) {
-                            modal.close();
-                            mensaje.style.display = 'none';
-                            pinintro.value = '';
-                            loginF();//Ejecutamos el método de login
+                            //Comprobamos que no posea el tercer factor de autenticación
+                            LOGINBTN.classList.add('disabled');
+                            fetch(API_EMPLEADOS + 'checkCodigoGAuth', {
+                                method: 'post',
+                                body: new FormData(document.getElementById('session-form'))
+                            }).then(function (request) {
+                                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+                                if (request.ok) {
+                                    request.json().then(function (response) {
+                                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                        if (response.dataset) {
+                                            modal.close();
+                                            mensaje.style.display = 'none';
+                                            pinintro.value = '';
+                                            verificarGAuth();
+                                        } else {
+                                            modal.close();
+                                            mensaje.style.display = 'none';
+                                            pinintro.value = '';
+                                            loginF();//Ejecutamos el método de login
+                                        }
+                                    });
+                                } else {
+                                    LOGINBTN.classList.remove('disabled');
+                                    console.log(request.status + ' ' + request.statusText);
+                                }
+                            }).catch(function (error) {
+                                modal.close();
+                                mensaje.style.display = 'none';
+                                pinintro.value = '';
+                                loginF();//Ejecutamos el método de login
+                            });
                         } else {
                             mensaje.innerText = 'El pin no coincide o ha caducado, por favor reenviar uno nuevo ';
                             mensaje.style.display = 'block';
@@ -568,4 +607,34 @@ document.getElementById('btn-PINL').addEventListener('click', function () {
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
         mensaje.style.display = 'block';
     }
+});
+
+const verificarGAuth = () => {
+    M.Modal.getInstance(document.getElementById('gAuth_modal')).open();
+}
+
+document.getElementById('generarQR_Auth').addEventListener('click', () => {
+    let form = new FormData(document.getElementById('session-form'));
+    form.append('codigo',document.getElementById('contraEmp_Auth').value);
+    fetch(API_EMPLEADOS + 'verificarCGA', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Como el código es el correcto se inicia el método de login y se oculta el modal
+                    M.Modal.getInstance(document.getElementById('gAuth_modal')).close();
+                    loginF();
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    });
 });
