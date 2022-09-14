@@ -3,6 +3,7 @@ require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/empleados.php');
 require_once('../models/rec.php');
+require_once('../libraries/googleAUTH/PHPGangsta/googleAUTHC.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -27,9 +28,10 @@ if (isset($_GET['action'])) {
     
     // Se instancia la clase correspondiente.
     $empleados = new Empleados;
+    $gAuth = new Autentificador;
     $rec = new Rec;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null, 'correo' => null);
+    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null, 'correo' => null,'gQAuth' => null );
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_usuario'])  && $_SESSION['verifyP2']) {
         $result['session'] = 1;
@@ -91,6 +93,8 @@ if (isset($_GET['action'])) {
                 } elseif (!$empleados->checkContrasenaEmpleado2($_POST['contrasena_actual'])) {
                     $result['exception'] = 'Clave actual incorrecta';
                     $result['message'] = $_POST['contrasena_actual'];
+                } elseif ($empleados->checkContrasenaEmpleado2($_POST['contrasena_confirma'])) {
+                    $result['exception'] = 'La contraseña nueva no debe ser igual a la anterior';
                 } elseif ($_POST['contrasena_nueva'] != $_POST['contrasena_confirma']) {
                     $result['exception'] = 'Claves nuevas diferentes';
                 } elseif (!$empleados->setContrasena($_POST['contrasena_nueva'])) {
@@ -370,6 +374,60 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay empleados registrados';
                 }
                 break;
+                //Generamos codigo QR
+            case 'generarQRGAUTH':
+                $_POST = $empleados->validateForm($_POST);
+                if(!$empleados->setId($_SESSION['id_usuario'])){
+                    $result['exception'] = 'No pudo reconocerse el usuario logueado';
+                }elseif(!$empleados->checkContrasenaEmpleado2($_POST['contrasena'])){
+                    $result['exception'] = 'La contraseña no coincide con la del usuario';
+                }elseif($empleados->cheackGAUTH()){
+                    $result['exception'] = 'Ya posee un codigo de autenticación, eliminelo para poder generar otro';
+                }elseif($result['dataset'] =  $gAuth->generarSecreto($_SESSION['usuario'])){
+                    if($empleados->setearGAUTH(true,$result['dataset'][0])){
+                        $result['status'] = 1;
+                    }elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    }
+                }else{
+                    $result['exception'] = 'No se pudo generar generar el codigo de Google Authenticator';
+                    $empleados->setearGAUTH(false);
+                }
+                break;
+                //Eliminamos el codigo QR
+            case 'quitarQRAUTH':
+                $_POST = $empleados->validateForm($_POST);
+                if(!$empleados->setId($_SESSION['id_usuario'])){
+                    $result['exception'] = 'No pudo reconocerse el usuario logueado';
+                } elseif(!$empleados->cheackGAUTH()){
+                    $result['exception'] = 'No posee un codigo de autenticación, genere uno si lo desea';
+                } elseif(!$gAuth->verificarCodigo($empleados->cheackGAUTH(),$_POST['codigo'])){
+                    $result['exception'] = 'El codigo no coincide con el de la aplicación';
+                }elseif($empleados->setearGAUTH(false)){
+                    $result['status'] = 1;
+                    $result['message'] = 'Se logro eliminar el codigo QR de eliminar';
+                }elseif(Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+                //Eliminar el codigo QR de un empleado
+            case 'eliminarQRAUTH':
+                $_POST = $empleados->validateForm($_POST);
+                if ($_SESSION['id_usuario'] != 1 && $_POST['id'] == 1) {
+                    $result['exception'] = 'No puedes modificar al jefe';
+                } elseif($_SESSION['id_usuario'] != 1){
+                    $result['exception'] = 'Solo el jefe puede eliminar el tripe factor de un empleado';
+                } elseif(!$empleados->setId($_POST['id'])){
+                    $result['exception'] = 'No pudo reconocerse el usuario logueado';
+                } elseif(!$empleados->cheackGAUTH()){
+                    $result['exception'] = 'No posee un codigo de autenticación con google authenticator';
+                } elseif($empleados->setearGAUTH(false)){
+                    $result['status'] = 1;
+                    $result['message'] = 'Se logro eliminar el codigo QR de eliminar';
+                } elseif(Database::getException()) {
+                    $result['exception'] = Database::getException();
+                }
+
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
@@ -486,6 +544,37 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'Hubo un error al obtener el correo del empleado';
+                }
+                break;
+                //Comprobar si hay un codigo de google Authenticator vinculado a la cuenta
+            case 'checkCodigoGAuth':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario o contraseña incorrecto';
+                } elseif (!$empleados->checkEmpleadosActivos()) {
+                    $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
+                } elseif (!$empleados->checkIntentosEmpleado()) {
+                    $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
+                } elseif(!$empleados->cheackGAUTH()){
+                    $result['dataset'] = false;
+                }else{
+                    $result['dataset'] = true;
+                }
+                break;
+                //Comprobar que el codigo de verificación enviado sea el correcto
+            case 'verificarCGA':
+                $_POST = $empleados->validateForm($_POST);
+                if (!$empleados->checkUsuarioEmpleado($_POST['usuario'])) {
+                    $result['exception'] = 'Usuario o contraseña incorrecto';
+                } elseif (!$empleados->checkEmpleadosActivos()) {
+                    $result['exception'] = 'Nombre de usuario eliminado o bloqueado, comunicate con tu administrador';
+                } elseif (!$empleados->checkIntentosEmpleado()) {
+                    $result['exception'] = 'Ha ingresado mal la contraseña 3 veces con anterioridad, por ende su cuenta se ha bloqueado. Busque un administrador para desbloquearla';
+                } if($gAuth->verificarCodigo($empleados->cheackGAUTH(),$_POST['codigo'])){
+                    $result['status'] = 1;
+                    $result['message'] = 'El codigo coincide con el de la aplicación';
+                }else{
+                    $result['exception'] = 'El codigo no coincide con el de la aplicación';
                 }
                 break;
             default:

@@ -26,6 +26,7 @@ verifyP2 = Variable que verifica si paso el método P2
         $_SESSION['tipo_usuario'] = 4;
         $_SESSION['nombreUsuario'] = 'Jesus';
         $_SESSION['apellidoUsuario'] = 'Apellido';*/
+        $_SESSION['verifyP2'] = true;
         // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
         $result = array(
             'status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,
@@ -34,7 +35,7 @@ verifyP2 = Variable que verifica si paso el método P2
 
         //Función para retornar el correo censurado
 
-        function formatEmail($correo) 
+        function formatEmail($correo)
         {
             //Se recorta las primeras 3 líneas del correo
             $comienzo = substr($correo, 0, strlen($correo) - (strlen($correo) - 3));
@@ -45,17 +46,24 @@ verifyP2 = Variable que verifica si paso el método P2
             //Se le agregan asteríscos según la longitud del correo restante
             $total = str_pad($comienzo, strlen($restante), "*", STR_PAD_RIGHT);
             //Se une el todo para generar el nuevo formato de correo
-            return $total.$final;
+            return $total . $final;
         }
 
         //Función para generar un PIN alfanumerico
-        function generarPINR($length=25)
+        function generarPINR($length = 25)
         {
-            $characters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength=strlen($characters);
-            $randomString='';
-            for($i=0;$i<$length;$i++)$randomString.=$characters[rand(0,$charactersLength-1)];
-            return$randomString;//usage $myRandomString=generateRandomString(5);
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) $randomString .= $characters[rand(0, $charactersLength - 1)];
+            return $randomString; //usage $myRandomString=generateRandomString(5);
+        }
+
+        //Se verifica que el estado del empleado siga estando activo
+        if(isset($_SESSION['id_usuario'])){
+            if (!$rec->checkEmpleadosActivos($_SESSION['id_usuario'])) {
+                session_destroy();
+            }
         }
 
         switch ($_GET['action']) {
@@ -192,6 +200,7 @@ verifyP2 = Variable que verifica si paso el método P2
             case 'setPINCTRR':
                 if ($_SESSION['PIN'] = strval(generarPINR(4))) {
                     $result['status'] = 1;
+                    $result['pinr'] = $_SESSION['PIN'];
                     $_SESSION['horaPIN'] = $_POST['hora'];
                 } else {
                     $result['exception'] = 'El pin no se establecio';

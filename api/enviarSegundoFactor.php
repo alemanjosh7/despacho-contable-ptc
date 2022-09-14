@@ -1,10 +1,15 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+//Definimos los métodos de php a usar
 require 'libraries/PHPMailer/src/Exception.php';
 require 'libraries/PHPMailer/src/PHPMailer.php';
 require 'libraries/PHPMailer/src/SMTP.php';
+define('METHOD', 'AES-256-CBC');
+define('SECRET_KEY', '$CARLOS@2016');
+define('SECRET_IV', '101712');
 
 // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
 session_start();
@@ -14,12 +19,32 @@ $mail = new PHPMailer(true);
 
 $result = array('message' => null, 'exception' => null, 'status' => null);
 
+//Función para desencriptar
+function encryption($string)
+{
+    $output = FALSE;
+    $key = hash('sha256', SECRET_KEY);
+    $iv = substr(hash('sha256', SECRET_IV), 0, 16);
+    $output = openssl_encrypt($string, METHOD, $key, 0, $iv);
+    $output = base64_encode($output);
+    return $output;
+}
 
 //Declaramos algunas variables
 $usuario = $_POST['usuario'];
+$usuarioC = encryption($usuario);
+$dia = encryption(date('Y-m-d'));
 $pin = $_SESSION['PIN'];
 $correo = $_POST['correo'];
 $body = '<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+
+
+
+
+<head>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,10 +82,9 @@ body{
     background-color: #F4A172;
     text-align: center;
     border-radius: 5px;
-    font-family: '.'Poppins'.', sans-serif;
+    font-family: ' . 'Poppins' . ', sans-serif;
     padding-top: 10px;
 }
-
 .card-panel {
     background-color: #FA7479;
     width: 300px;
@@ -74,15 +98,15 @@ body{
 .card-panel h1{
     text-align: center;
     padding-top: 20px;
-    font-family: '.'Poppins'.', sans-serif;
+    font-family: ' . 'Poppins' . ', sans-serif;
 }
 .container h1{
     padding-top: 10px;
-    font-family: '.'Poppins'.', sans-serif;
+    font-family: ' . 'Poppins' . ', sans-serif;
 }
 .container p{
     margin-top: 20px;
-    font-family: '.'Poppins'.', sans-serif;
+    font-family: ' . 'Poppins' . ', sans-serif;
 }
 .fila1 {
     margin-left: 0%;
@@ -91,11 +115,11 @@ body{
 @media screen and (min-width: 200px) and (max-width: 433px)  {
     .encabezado{
     width: 100%;
-    height: 140px;
+    height: 40%;
     background-color: #F4A172;
     text-align: center;
     border-radius: 5px;
-    font-family: '.'Poppins'.', sans-serif;
+    font-family: ' . 'Poppins' . ', sans-serif;
     padding-top: 10px;
 }
 .card-panel {
@@ -122,11 +146,17 @@ body{
                 </nav>
             </div>
         <div class="container">
-            <h1 class="center-align">verificación en dos pasos</h1>
-            <p>El pin que se muestra a continuación tiene la función de verificar si el<b>'.$usuario.'<b> es usted. <b>Por favor ingrese el siguiente código en la pantalla emergente:</b></p>
-                <div class="fila1">
+            <h1 class="center-align">Verificación en dos pasos</h1>
+            <p>El pin que se muestra a continuación tiene la función de verificar si el<b>' . $usuario . '<b> es usted. <b>Por favor ingrese el siguiente código en la pantalla emergente:</b></p>
+            <p>Si no esta intentado iniciar sessión, por favor comunicarse lo más rápido con el administrador más cercano y 
+                        poder bloquear el empleado, cambiar el correo, cambiar contraseña o eliminar el empleado.
+                        <b>Si no hay un administrador cercano, puede bloquear su usuario y luego pedir que lo desbloqueen</b>
+                        <a href="http://localhost/despEsquivel/api/prevenirRobo.php?emp=' . $usuarioC . '&day=' . $dia . '" target="_blank">Bloquear mi usuario</a>
+                        <p>¡El enlace lo redigira al login una vez se halla bloqueado su usuario, inicie sesión para comprobar!</p>
+                    </p>    
+            <div class="fila1">
                 <div class="card-panel orange darken-4 white-text">
-                    <h1>'.$pin.'</h1>
+                    <h1>' . $pin . '</h1>
                 </div>
             </div>
         </div>
@@ -147,8 +177,8 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'despcontableesquivel@gmail.com';                     //SMTP username
-    $mail->Password   = 'iodowbuuzcrmrrua';                               //SMTP password
+    $mail->Username   = 'despcontable3@gmail.com';                     //SMTP username
+    $mail->Password   = 'nihtvfkguqdsstdi';                                      //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -160,7 +190,7 @@ try {
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Código de verificación';
     $mail->Body    = $mensaje;
-    $mail->AltBody = 'Código para verificar el inicio de sesión: '.$pin;
+    $mail->AltBody = 'Código para verificar el inicio de sesión: ' . $pin;
     $mail->CharSet  = 'utf-8';
     $mail->send();
     $result['status'] = 1;
@@ -170,7 +200,6 @@ try {
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result)); 
 } catch (Exception $e) {
-    $result['exception'] = $mail->ErrorInfo.' '.$correo;
-    print(json_encode($result)); 
+    $result['exception'] = $mail->ErrorInfo . ' ' . $correo;
+    print(json_encode($result));
 }
-?>
