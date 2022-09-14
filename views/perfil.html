@@ -57,6 +57,9 @@
               <div class="row btn-2">
                 <a class="modal-trigger" id="olvidarcontra_boton" href="#modalCambiarContraseña">Cambiar contraseña</a>
               </div>
+              <div class="row btn-2">
+                <a class="tooltipped" data-tooltip="Proteger con google authenticator" id="gauth_btn">Configurar cuenta con factor 3</a>
+              </div>
             </div>
           </div>
           <!--Contenido de Info de Cuenta-->
@@ -230,6 +233,60 @@
           <a href="#!" class="modal-close waves-effect waves-light btn cancelarEliminarempre"
             id="cancelactdatosperfil_boton">Cancelar</a>
           <div class="col s12" id="decoracion-modal"></div>
+        </div>
+      </div>
+    </div>
+    <!--Diseño del modal de creación de googleAthenticator-->
+    <div id="gAuth_modal" class="modal">
+      <div class="fondo-modaldatos modal-content">
+        <div class="center-align">
+          <h4>Configuración del código de Google Authenticator</h4>
+          <p>Descargar la aplicación de <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=es&gl=US" target="blak">
+            Google Authenticator</a> en su teléfono y escanear el código que aparece abajo. Primero de confirmar que es usted colocando su contraseña</p>
+          <p><b>Recordar guardar el codigo o QR ya que solo se mostrará esta vez.</b> Puede desvincular su cuenta apretando en el mismo botón que apreto
+          para llegar aqui, no cierres esta ventana hasta estar seguro de haberlo copiado bien.</p>
+        </div>
+        <!--Contenido del modal-->
+        <div class="row"></div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="row"><b>Coloque su contraseña</b></div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Contraseña actual" id="contraEmp_Auth" type="password"
+                  class="validate center-align inputs-añadirempr" name="contraEmp_Auth" autocomplete="off">
+                <label for="contraEmp_Auth" class="labels-anadirempr">Contraseña actual</label>
+              </div>
+              <div class="col s12 center">
+                <i class="tooltipped material-icons center" data-position="bottom" data-tooltip="Mostrar/Ocultar"
+                  id="ocultarmostrar_Auth">visibility</i>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 center">
+            <div class="row">
+              <img id="QR_Auth" src="" class="responsive-img">
+            </div>
+          </div>
+          <div class="row center">
+            <div class="col s12 truncate" id="QRC_Auth"></div>
+            <div class="col s12 tooltipped" data-position="bottom" data-tooltip="Copiar QR"><i id="copyQRC" class="material-icons">content_copy</i></div>
+          </div>
+          <div class="row">
+            <div class="col s12 center">
+                <a class="waves-effect waves-ligth btn z-depth-2 btn-añadirFolderModal" id="generarQR_Auth"><i
+                    class="material-icons left">security</i>Generar QR
+                </a>
+            </div>
+          </div>
+        </div>
+        <!--Pie del modal-->
+        <div class="modal-footer center-align" id="fondomodal-footer">
+          <div class="left col offset-s1 m5 l4">
+            <a class="waves-effect waves-ligth btn z-depth-2 cerrarModalEmpresa" id="cancelar-Añadirfold" onclick="cerrarAuthM()">
+              <i class="material-icons left">keyboard_arrow_left</i>Cerrar
+            </a>
+          </div>
         </div>
       </div>
     </div>
