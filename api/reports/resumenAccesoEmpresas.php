@@ -65,6 +65,7 @@ if (1 == 1) {
         $pdf->cell(10, 10, ' ', 0, 0, 'C');
         $pdf->cell(195, 10, utf8_decode('No hay empresas almacenadas'), 1, 0, 'C', 1); //Nombre de la empresa
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen del acceso a las empresas', true);
 } else {
     header('location: ../../views/empresas.html');

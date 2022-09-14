@@ -38,6 +38,6 @@ if ($dataEmpresas = $empresa->registroEmpresas()) {
 } else {
     $pdf->cell(0, 10, utf8_decode('No hay registros disponibles'), 1, 1);
 }
-
+header('Content-type: application/pdf');
 // Se envía el documento al navegador y se llama al método footer()
 $pdf->output('I', 'registroEmpresas.pdf');

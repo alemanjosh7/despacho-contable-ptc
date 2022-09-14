@@ -67,11 +67,6 @@ body{
     border-radius: 5px;
     font-family: '.'Poppins'.', sans-serif;
     padding-top: 10px;
-    
-}
-.fila1 {
-    margin-left: 5%;
-    margin-top: 1%;
 }
 .card-panel {
     background-color: #FA7479;
@@ -96,40 +91,30 @@ body{
     margin-top: 20px;
     font-family: '.'Poppins'.', sans-serif;
 }
-
 .fila1 {
-
     margin-left: 0%;
-
     margin-top: 1%;
-
 }
-
 @media screen and (min-width: 200px) and (max-width: 433px)  {
     .encabezado{
     width: 100%;
-    height: 180px;
+    height: 40%;
     background-color: #F4A172;
     text-align: center;
     border-radius: 5px;
     font-family: '.'Poppins'.', sans-serif;
     padding-top: 10px;
-    
 }
-
-
 .card-panel {
     background-color: #FA7479;
-    width: 280px;
+    width: 180px;
     height: 60px;
     border-radius: 10px;
     margin-top: 30px;
-    margin-left: 39%;
+    margin-left: auto;
     margin-right: auto;
 }
 }
-
-
 </style>
 </head>
 <body class=" grey lighten-3" style="margin: 0; padding:0;">
@@ -169,8 +154,8 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'despcontableesquivel@gmail.com';                     //SMTP username
-    $mail->Password   = 'iodowbuuzcrmrrua';                               //SMTP password
+    $mail->Username   = 'despcontable3@gmail.com';                     //SMTP username
+    $mail->Password   = 'nihtvfkguqdsstdi';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 

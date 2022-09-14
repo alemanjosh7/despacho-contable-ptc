@@ -65,8 +65,8 @@
                                             <form id="session-form">
                                                 <!--Inputs del nombre de usuario-->
                                                 <div class="col l10 m11 s10 input-field" id="titulo-orden">
-                                                    <input id="username" name="usuario" type="text"
-                                                        class="center-align" autocomplete="off">
+                                                    <input id="username" name="usuario" type="text" class="center-align"
+                                                        autocomplete="off">
                                                     <label for="username">Usuario</label>
                                                 </div>
                                                 <!--Inputs de la contraseña de usuario-->
@@ -87,8 +87,7 @@
                                         <div class="col l11 m6 offset-m2 s11 center-align">
                                             <!--Boton de iniciar sesión-->
                                             <div>
-                                                <a class="waves-effect waves-light btn"
-                                                    id="Iniciar_btn">Continuar</a>
+                                                <a class="waves-effect waves-light btn" id="Iniciar_btn">Continuar</a>
                                             </div>
                                             <!--Boton de Olvidar contraseña-->
                                             <div class="col m12 offset-m2 l12">
@@ -184,7 +183,7 @@
                             </a>
                         </div>
                         <div class="row">
-                            <div class="left col offset-s1 m5 l4">
+                            <div class="left col offset-s1 m5 l4" id="cancelarRC">
                                 <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
                                     id="cancelar-Añadirfold">
                                     <i class="material-icons left">keyboard_arrow_left</i>Cancelar
@@ -225,7 +224,8 @@
                 <div class="modal-content">
                     <!--Titulo del modal-->
                     <h4 class="center-align" id="modal-title">Primer usuario</h4>
-                    <p class="center-align">Ingrese el primer usuario de Smart Bookkeeping, este estará por defecto como administrador</p>
+                    <p class="center-align">Ingrese el primer usuario de Smart Bookkeeping, este estará por defecto como
+                        administrador</p>
                     <!--Formulario para añadir una empresa-->
                     <form class="row" method="post" id="save-form" enctype="multipart/form-data" autocomplete="off">
                         <!--Fila del formulario-->
@@ -250,8 +250,8 @@
                             </div>
                             <!--Contraseña del usuario-->
                             <div class="input-field col s12 m10 offset-m1 l6">
-                                <input placeholder="Confirme contraseña" name="contrac-emp" id="contrac-emp" type="password"
-                                    class="validate  inputs-añadirempr" required>
+                                <input placeholder="Confirme contraseña" name="contrac-emp" id="contrac-emp"
+                                    type="password" class="validate  inputs-añadirempr" required>
                                 <label for="ccontrac-emp" class="labels-anadirempr">Confirmar contraseña</label>
                             </div>
                             <!--Nombre del empleado-->
@@ -280,7 +280,8 @@
                             </div>
                             <!--PIN de recuperación-->
                             <div class="input-field col s12 offset-m3 m6">
-                                <input placeholder="Pin para restablecer contraseñas" type="password" id="pinRecP" name="pinRecP" class="inputs-añadirempr" required autocomplete="off">
+                                <input placeholder="Pin para restablecer contraseñas" type="password" id="pinRecP"
+                                    name="pinRecP" class="inputs-añadirempr" required autocomplete="off">
                                 <label for="pinRec" class="labels-anadirempr">PIN para restablecer contraseñas</label>
                             </div>
                             <!--Barra de carga-->
@@ -292,7 +293,8 @@
                             <div class="center">
                                 <button type="submit" class="waves-effect waves-ligth btn z-depth-2"
                                     id="btn-añadirArchivoarhModal">
-                                    <i class="material-icons left">add</i><span id="texto_guardar">Registrate ¡Jefe!</span>
+                                    <i class="material-icons left">add</i><span id="texto_guardar">Registrate
+                                        ¡Jefe!</span>
                                 </button>
                             </div>
                             <div class="row">
@@ -320,7 +322,7 @@
                         </div>
                     </form>
                     <!--Añadir empleado-->
-    
+
                 </div>
             </div>
             <!--Modal para comprobar PIN del inicio de sessión-->
@@ -329,23 +331,23 @@
                     <!--Titulo del modal-->
                     <h4 class="center-align">Confirma que eres tú</h4>
                     <!--Indicaciones del modal-->
-                    <p class="center-align">Se te ha enviado un correo con un código de verificación a tu correo, por favor colocarlo en el siguiente apartado:</p>
+                    <p class="center-align">Se te ha enviado un correo con un código de verificación a tu correo, por
+                        favor colocarlo en el siguiente apartado:</p>
                     <p class="center-align truncate "><b>Correo enviado a:</b><span id="correo-format"></span></p>
                     <!--Formulario para ingresar PIN-->
-                    <form method="post" id="pin-inicio" autocomplete="off">
+                    <form id="pin-inicio" autocomplete="off">
                         <!--Fila del formulario-->
                         <div class="row filaform-empresa">
                             <!--input de PIN-->
                             <div class="input-field col s12 m6 offset-m3 offset-l3">
-                                <input placeholder="Ingrese el PIN" id="PIN-numerosI" type="password"
-                                    maxlength="4" name="pin"
-                                    class="validate center-align inputs-añadirempr">
+                                <input placeholder="Ingrese el PIN" id="PIN-numerosI" type="password" maxlength="4"
+                                    name="pin" class="validate center-align inputs-añadirempr">
                                 <label for="PIN-numerosI" class="labels-anadirempr">Inserte
                                     los 4 digitos</label>
                             </div>
                             <div class="col m1 s12 center">
                                 <i class="medium material-icons tooltipped " data-tooltip="Reenviar PIN"
-                                  id="reenviarPIN">settings_backup_restore</i>
+                                    id="reenviarPIN">settings_backup_restore</i>
                                 <p class="center-align"><span id="cronometro">120s</span></p>
                             </div>
                         </div>
@@ -353,9 +355,8 @@
                     <div class="row">
                         <!--Campos o contenido importante de verificación de segundo factor-->
                         <div class="center">
-                            <a class="waves-effect waves-ligth btn z-depth-2"
-                                id="btn-PINL">
-                                <i class="material-icons left">enhanced_encryption</i>Verificar pin 
+                            <a class="waves-effect waves-ligth btn z-depth-2" id="btn-PINL">
+                                <i class="material-icons left">enhanced_encryption</i>Verificar pin
                             </a>
                         </div>
                         <div class="row">
@@ -368,6 +369,53 @@
                             <div class="left col s12 m7 l4 center-align mensaje-modal">
                                 <h6 id="mensaje-restablecerL">El PIN no es el correcto</h6>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal para verificar el PIN de google Authenticator-->
+            <!--Diseño del modal de creación de googleAthenticator-->
+            <div id="gAuth_modal" class="modal">
+                <div class="fondo-modaldatos modal-content">
+                    <div class="center-align">
+                        <h4>Tercer factor de verificación</h4>
+                        <p>Porque lo has decidido, ingresa el codigo que esta en tu aplicación de google authenticator,
+                            para verificar tu
+                            identidad, recuerda que si te molesta, puedes desproteger tu cuenta deshabilitando este
+                            factor de verificación
+                            desde tu perfil una vez ingresado.
+                        </p>
+                    </div>
+                    <!--Contenido del modal-->
+                    <div class="row"></div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row"><b>Coloque el pin de google Authenticator</b></div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Código de autenticación" id="contraEmp_Auth" type="text"
+                                        class="validate center-align inputs-añadirempr" name="contraEmp_Auth"
+                                        maxlength="6" autocomplete="off">
+                                    <label for="contraEmp_Auth" class="labels-anadirempr">Código del autenticador de Google</label>
+                                </div>
+                                <div class="col s12 center">
+                                    <a class="waves-effect waves-ligth btn z-depth-2 btn-añadirFolderModal"
+                                        id="generarQR_Auth"><i class="material-icons left">lock_open</i>Comprobar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row center">
+                                <div class="col s12 truncate" id="QRC_Auth"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer center-align" id="fondomodal-footer">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                id="cancelar-Añadirfold">
+                                <i class="material-icons left">keyboard_arrow_left</i>Cerrar
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -84,4 +84,46 @@ class Rec extends Validator
         $params = null;
         return Database::getRow($sql, $params);
     }
+
+    //Comprobar que el empleado exista y no este bloqueado
+    public function checkEmpleadosActivos($id)
+    {
+        $sql = 'SELECT id_empleado FROM empleados WHERE id_empleado = ? AND fk_id_estado = 4';
+        $params = array($id);
+        if ($data = Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Comprobar que el empleado exista
+    public function checkUsuarioEmpleado($usuario)
+    {
+        $sql = 'SELECT id_empleado FROM empleados WHERE usuario_empleado = ?';
+        $params = array($usuario);
+        if ($data = Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Cambiar el estado del empleado
+    public function cambiarEstadoEmp($estado,$usuario)
+    {
+        $sql = 'UPDATE empleados SET fk_id_estado = ? WHERE usuario_empleado = ?';
+        $params = array($estado,$usuario);
+        return Database::executeRow($sql, $params);
+    }
+    //Comprobar que el empleado no sea el administrador
+    public function checkBoss($usuario)
+    {
+        $sql = 'SELECT id_empleado FROM empleados WHERE usuario_empleado = ?';
+        $params = array($usuario);
+        $data = Database::getRow($sql, $params);
+        if ($data['id_empleado'] != 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

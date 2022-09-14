@@ -78,6 +78,7 @@ if (1 == 1) {
         $pdf->cell(10, 10, ' ', 0, 0, 'C');
         $pdf->cell(195, 10, utf8_decode('No hay ninguna empresa registrada'), 1, 0, 'C', 1); //Nombre de la empresa
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen de las empresas registradas no eliminadas', true);
 } else {
     header('location: ../../views/empresas.html');

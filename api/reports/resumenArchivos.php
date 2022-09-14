@@ -98,6 +98,7 @@ if (1 == 1) {
         } else {
             $pdf->cell(0, 10, utf8_decode('No hay archivos registrados en este folder'), 1, 1);
         }
+        header('Content-type: application/pdf');
         $pdf->output('I', 'Reporte resumen de los archivos del folder: ' . $rowInfo['nombre_folder'], true);
     } else {
         header('location: ../../views/archivos.html');

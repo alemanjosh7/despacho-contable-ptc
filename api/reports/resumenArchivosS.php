@@ -72,6 +72,7 @@ if (1 == 1) {
     } else {
         $pdf->cell(0, 10, utf8_decode('No hay archivos subidos por ti porque eres administrador'), 1, 1);
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen de los archivos del empleado: ' . $_SESSION['nombreUsuario'] . $_SESSION['apellidoUsuario'], true);
 } else {
     header('location: ../../views/archivosSubidos.html');

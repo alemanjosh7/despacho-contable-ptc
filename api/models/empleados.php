@@ -366,7 +366,7 @@ class Empleados extends Validator
     //Buscar empleados por limite
     public function buscarEmpleadosLimite($limit)
     {
-        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_tipo_empleado, e.fk_id_estado 
+        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_tipo_empleado, e.fk_id_estado, e.secret_auth 
                 FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado 
                 WHERE e.fk_id_estado != 3  order by id_empleado OFFSET ?  limit 6';
         $params = array($limit);
@@ -375,7 +375,7 @@ class Empleados extends Validator
     //Obtener el perfil del empleado
     public function obtenerPerfilEmpleado()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, correo_empleadocontc, dui_empleado, telefono_empleadocontc, usuario_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, correo_empleadocontc, dui_empleado, telefono_empleadocontc, usuario_empleado, secret_auth
                 FROM empleados
                 WHERE id_empleado = ?';
         $params = array($_SESSION['id_usuario']);
@@ -396,7 +396,7 @@ class Empleados extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    //Cambiar el estado del administrador
+    //Cambiar el estado del empleado
     public function cambiarEstadoEmp($estado)
     {
         $sql = 'UPDATE empleados SET fk_id_estado = ? WHERE id_empleado = ?';
@@ -524,5 +524,33 @@ class Empleados extends Validator
         $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
         $params = null;
         return Database::executeRow($sql, $params);
+    }
+    //Método para actualizar el estado del campo, recibe dos parametros
+    /*
+        La "g" representa el campo boolean para saber si esta seteado el codigo de google
+        El "codigo" representa la llave secreta del codigo de authentication
+    */ 
+    public function setearGAUTH($g, $codigo = null){
+        if ($g) {
+            $sql = "UPDATE empleados SET secret_auth = ? WHERE id_empleado = ?";
+            $params = array($codigo, $this->id_empleado);
+        }else{
+            $sql = "UPDATE empleados SET secret_auth = ? WHERE id_empleado = ?";
+            $params = array($codigo, $this->id_empleado);
+        }
+        return Database::executeRow($sql, $params);
+    }
+    /*
+        Método para comprobar que hay un codigo QR
+    */
+    public function cheackGAUTH(){
+        $sql = 'SELECT secret_auth FROM empleados WHERE id_empleado = ?';
+        $params = array($this->id_empleado);
+        $data = Database::getRow($sql, $params); 
+        if ($data) {
+            return $data['secret_auth'];
+        }else{
+            return false;
+        }
     }
 }

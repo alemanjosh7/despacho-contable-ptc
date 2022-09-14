@@ -93,6 +93,7 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
             $pdf->cell(10, 10, ' ', 0, 0, 'C');
             $pdf->cell(195, 10, utf8_decode('Ningun empleado subio archivos durante esas fechas'), 1, 0, 'C', 1); //Nombre de la empresa
         }
+        header('Content-type: application/pdf');
         // Se envía el documento al navegador y se llama al método footer()
         $pdf->output('I', 'Empleados que subieron archivos entre fechas.pdf');
     } else {

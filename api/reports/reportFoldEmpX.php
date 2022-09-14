@@ -183,7 +183,7 @@ if (isset($_GET['idemp'])) {
                 $pdf->cell(160, 10, utf8_decode('No hay folders registrados en esta empresa'), 1, 1, 'C', 1);
             }
 
-
+            header('Content-type: application/pdf');
             $pdf->output('I', 'Reporte sobre el número de folders y los archivos de la empresa: ' . $dataEmpresa[0]['nombre_empresa'], true);
         } else {
             header('location: ../../views/empresas.html');
