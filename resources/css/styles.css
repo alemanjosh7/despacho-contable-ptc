@@ -4055,10 +4055,9 @@ input {
 }
 
 
+
 /*FAQ*/
 /*FAQ*/
-
-
 .contenedorFAQ {
   background-color: white;
   margin-left: 25%;
@@ -4083,14 +4082,15 @@ input {
 
 .innerMenuFAQB{
   font-size: 20px;
-  margin-left: 12%;
+  margin-left: 10%;
 }
 
 .contenedorFAQmenu {
   font-size: 15px;
-  margin-left: 6%;
-  margin-top: 1%;
-  border-style: none solid none none;
+  margin-left: 5%;
+  margin-top: 0%;
+  margin-bottom: 10%;
+  border-style: none none none solid;
   position: fixed;
 }
 
@@ -4100,7 +4100,6 @@ input {
  padding-top: 4%;
  padding-bottom: 2%;
 }
-
 
 .contenedorFAQinnerTe{
   margin-bottom: 8%;
@@ -4125,7 +4124,6 @@ input {
  margin-bottom: 2%;
 
 }
-
 
 .btn-add-empFAQ {
   background-color: #fa7479;
@@ -4154,6 +4152,7 @@ input {
   text-transform: initial;
   margin-top: 12px;
 }
+
 .frm-FAQ {
   display: flex;
   justify-content: flex-end;
@@ -4162,9 +4161,13 @@ input {
 .table-of-contents {
   text-align: center;
 }
+
 .innerMenuFAQ {
   margin-top: 4px;
-  margin-right: -120px;
+  column-count: 2;
+  margin-left: -10px;
+  column-gap: 2px;
+
 }
 
 @media screen and (min-width: 601px) and (max-width: 992px) {
@@ -4201,15 +4204,10 @@ input {
   .innerMenuFAQB{
     display: none;
   }
-
 }
 
 
 @media (max-width: 600px) {
-
-
-  
-
   .contenedorFAQmenu {
     border-style: none none none none;
     position: absolute;
@@ -4223,7 +4221,6 @@ input {
     column-gap: 10px;
   } 
 
-  
   .innerMenuFAQB{
     display: none;
   }
@@ -4235,9 +4232,6 @@ input {
     margin-bottom: 3%;
     margin-top: 30%;
   }
-
-
-  
 
   .FAQqU{
     background-color: white;
@@ -4253,12 +4247,7 @@ input {
     text-align: center;
   }
 
-
   .innerMenuFAQIn{
     margin-left: -10%;
-
-
   }
- 
 }
-
