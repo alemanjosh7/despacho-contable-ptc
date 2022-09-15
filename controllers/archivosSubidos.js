@@ -277,7 +277,7 @@ function fillTable(dataset) {
                             <img src="../resources/icons/ver-archivo.png" alt="">
                         </a>
                         <!--Boton para descargar-->
-                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-med-and-down" data-position="top" data-tooltip="Descargar archivo">
+                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-small-only" data-position="top" data-tooltip="Descargar archivo">
                             <img src="../resources/icons/download.png" alt="">
                         </a>
                         <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
@@ -302,7 +302,7 @@ function fillTable(dataset) {
                     <!--Contenedor para mostrar las opciones que tiene para poder hacer en el archivo-->
                     <div class="file-options">
                         <!--Boton para descargar-->
-                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-med-and-down" data-position="top" data-tooltip="Descargar archivo">
+                        <a onclick="descArch(${row.id_archivos_subidosemp})" class="tooltipped hide-on-small-only" data-position="top" data-tooltip="Descargar archivo">
                             <img src="../resources/icons/download.png" alt="">
                         </a>
                         <!--Boton para eliminar archivo incluyendo un modal que se abre cuando se hace click en este-->
