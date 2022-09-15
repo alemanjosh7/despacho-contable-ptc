@@ -521,9 +521,15 @@ class Empleados extends Validator
     //Método para resetear la tabla de empleado en caso no halla creado bien el jefe
     public function rte()
     {
-        $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
+        //Verificamos que no halla más de dos usuarios
+        $sql = 'SELECT id_empleado FROM empleados WHERE id_empleado != 1';
         $params = null;
-        return Database::executeRow($sql, $params);
+        if (Database::getRows($sql, $params)) {
+            
+        }else{
+            $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
+            return Database::executeRow($sql, $params);
+        }
     }
     //Método para actualizar el estado del campo, recibe dos parametros
     /*
