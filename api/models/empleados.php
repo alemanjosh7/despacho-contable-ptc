@@ -320,8 +320,8 @@ class Empleados extends Validator
     //Buscar empleados
     public function buscarEmpleadosLimit2($value, $limit)
     {
-        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.nombre_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ? ORDER BY e.id_empleado LIMIT ?';
-        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $limit);
+        $sql = 'select e.id_empleado, e.nombre_empleado, e.apellido_empleado, e.dui_empleado, e.telefono_empleadocontc, e.correo_empleadocontc, e.usuario_empleado, tp.tipo_empleado, e.fk_id_estado FROM empleados as e INNER JOIN tipo_empleado AS tp ON tp.id_tipo_empleado = e.fk_id_tipo_empleado WHERE e.nombre_empleado ILIKE ? OR e.usuario_empleado ILIKE ? OR e.apellido_empleado ILIKE ? OR e.dui_empleado ILIKE ? OR e.telefono_empleadocontc ILIKE ? OR e.correo_empleadocontc ILIKE ? ORDER BY e.id_empleado LIMIT ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $limit);
         return Database::getRows($sql, $params);
     }
     //Crear empleado
@@ -521,9 +521,15 @@ class Empleados extends Validator
     //Método para resetear la tabla de empleado en caso no halla creado bien el jefe
     public function rte()
     {
-        $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
+        //Verificamos que no halla más de dos usuarios
+        $sql = 'SELECT id_empleado FROM empleados WHERE id_empleado != 1';
         $params = null;
-        return Database::executeRow($sql, $params);
+        if (Database::getRows($sql, $params)) {
+            
+        }else{
+            $sql = 'truncate table empleados RESTART IDENTITY cascade;--Reiniciando id en caso sea necesario--';
+            return Database::executeRow($sql, $params);
+        }
     }
     //Método para actualizar el estado del campo, recibe dos parametros
     /*

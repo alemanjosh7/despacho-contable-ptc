@@ -154,8 +154,8 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'despcontable3@gmail.com';                     //SMTP username
-    $mail->Password   = 'nihtvfkguqdsstdi';                               //SMTP password
+    $mail->Username   = 'despcontableesquivel@gmail.com';                     //SMTP username
+    $mail->Password   = 'uzviadjrgvklbecp';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -177,7 +177,7 @@ try {
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result)); 
 } catch (Exception $e) {
-    $result['exception'] = 'El correo no se pudo enviar';
+    $result['exception'] = $mail->ErrorInfo . ' ' . $correo;
     print(json_encode($result)); 
 }
 ?>
