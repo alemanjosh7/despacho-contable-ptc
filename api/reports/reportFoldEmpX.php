@@ -5,15 +5,15 @@ if (isset($_GET['idemp'])) {
     require('../models/empresas.php');
     // Se instancia el módelo pedidos personalizado para procesar los datos.
     $empresas = new Empresas;
-    if(!isset($_SESSION['id_usuario'])){
-        header('location: ../../views/index.html');
-    }
     // Se verifica si el parámetro es un valor correcto, de lo contrario se direcciona a la página web de origen.
     if ($empresas->setId($_GET['idemp'])) {
         // Se instancia la clase para crear el reporte.
         $pdf = new Report;
         // Se inicia el reporte con el encabezado del documento.
         $pdf->startReport('Folders y el número de archivos que poseen', 'p');
+        if(!isset($_SESSION['id_usuario'])){
+            header('location: ../../views/index.html');
+        }
         //Se verifica que la empresa existe
         if ($dataEmpresa = $empresas->checkReportEmp($_GET['idemp'])) {
             /*
