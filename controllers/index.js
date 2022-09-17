@@ -425,7 +425,6 @@ const generarPIN = () => {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     //console.log('El pin se ha seteado' + ' ' + response.pinr);
-                    M.Modal.getInstance(MODALPINL).open();
                     //Enviamos el mensaje
                     enviarPINCorreo();
                 } else {

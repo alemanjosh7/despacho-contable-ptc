@@ -398,7 +398,7 @@ function fillTable(dataset) {
                     <a onclick="modArch(${row.id_archivo})" class="tooltipped eliminarbtn" data-position="top"
                     data-tooltip="Modificar archivo"><img class="icono-modificar"
                     src="../resources/icons/modificar-archivo.png"></a>
-                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-med-and-down" data-position="top"
+                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-small-only" data-position="top"
                     data-tooltip="Descargar archivo" download="${row.nombre_original}"><img class="icono-descarga"
                     src="../resources/icons/descarga.png"></a>
                     <a href="../api/documents/archivosFolders/${row.nombre_archivo}" class="tooltipped" data-position="top"
@@ -414,7 +414,7 @@ function fillTable(dataset) {
                     <a onclick="modArch(${row.id_archivo})" class="tooltipped eliminarbtn" data-position="top"
                     data-tooltip="Modificar archivo"><img class="icono-modificar"
                     src="../resources/icons/modificar-archivo.png"></a>
-                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-med-and-down" data-position="top"
+                    <a href="${SERVER}documents/archivosFolders/${row.nombre_archivo}" class="tooltipped hide-on-small-only" data-position="top"
                     data-tooltip="Descargar archivo" download="${row.nombre_original}"><img class="icono-descarga"
                     src="../resources/icons/descarga.png"></a>
                 </td>
