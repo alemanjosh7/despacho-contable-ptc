@@ -483,7 +483,7 @@ function predecirAdelante() {
   //Colocamos el boton con un display block para futuras operaciones
   BOTONADELANTE.style.display = 'block';
   //Obtenemos el número de página que seguiría al actual
-  let paginaFinal = (Number(BOTONNUMEROPAGF.innerHTML)) + 2;
+  let paginaFinal = (Number(BOTONNUMEROPAGI.innerHTML)) + 2;
   console.log("pagina maxima " + paginaFinal);
   //Calculamos el limite que tendria el filtro de la consulta dependiendo de la cantidad de Clientes a mostrar
   let limit = (paginaFinal * 6) - 6;
