@@ -4406,3 +4406,17 @@ input {
 #manualFAQ{
   padding-top: 10px;
 }
+/*Estilos de los reportes de titulo*/
+.reporte_title{
+  font-family: 'Verdana', sans-serif;
+  background-color: #FA7479;
+  color: black;
+  height: 30px;
+  margin-left: 10% !important;
+  border-radius: 3px;  
+  font-size: large;
+}
+
+.faq-return{
+  color: black;
+}
