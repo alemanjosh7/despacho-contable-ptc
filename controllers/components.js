@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/despEsquivel/api/';
+const SERVER = 'http://192.168.18.210/despacho-contable-ptc/api/';
 const API = SERVER + 'dashboard/admins.php?action=';
 
 /*
@@ -557,7 +557,7 @@ function dynamicSearcher2(api, form) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                } else{
+                } else {
                     noDatos();
                 }
             });
@@ -576,7 +576,7 @@ function dynamicSearcher2(api, form) {
 */
 function dynamicSearcherlimit(api, form, limit) {
     let formsl = new FormData(document.getElementById(form));
-    formsl.append('limit',limit);
+    formsl.append('limit', limit);
     fetch(api + 'search', {
         method: 'post',
         body: formsl
@@ -589,7 +589,7 @@ function dynamicSearcherlimit(api, form, limit) {
                 if (response.status) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
-                } else{
+                } else {
                     noDatos();
                 }
             });
@@ -728,7 +728,7 @@ function logOut() {
 *
 *   Retorno: ninguno.
 */
-function fillSelect2(endpoint, select,indicacion, selected, disable) {
+function fillSelect2(endpoint, select, indicacion, selected, disable) {
     fetch(endpoint, {
         method: 'get'
     }).then(function (request) {
@@ -740,11 +740,11 @@ function fillSelect2(endpoint, select,indicacion, selected, disable) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se añade la indicación pero se evalua si se desea deshabilitarla o no.
-                    if(disable){
-                      content += '<option disabled selected>'+indicacion+'</option>';  
-                    }else{
-                        content += '<option selected>'+indicacion+'</option>';
-                    } 
+                    if (disable) {
+                        content += '<option disabled selected>' + indicacion + '</option>';
+                    } else {
+                        content += '<option selected>' + indicacion + '</option>';
+                    }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
@@ -857,7 +857,7 @@ function dynamicSearcher3Filter(api, form) {
                     // Se envían los datos a la función del controlador para que llene la tabla en la vista y se muestra un mensaje de éxito.
                     fillTable(response.dataset);
                 } else {
-                    sweetAlert(2,response.exception,null);
+                    sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -907,7 +907,7 @@ function dynamicSearcher3(api, form) {
 */
 function predictLImitSearch(api, form, limit) {
     let formss = new FormData(document.getElementById(form));
-    formss.append('limit',limit);
+    formss.append('limit', limit);
     fetch(api + 'search', {
         method: 'post',
         body: formss
@@ -978,7 +978,7 @@ function polarAreaGraphP(canvas, xAxis, yAxis, legend, title) {
     // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
     const context = document.getElementById(canvas).getContext('2d');
     // Se crea una instancia para generar el gráfico con los datos recibidos.
-    if(polarChart){
+    if (polarChart) {
         polarChart.destroy();
     }
     polarChart = new Chart(context, {
@@ -1010,7 +1010,7 @@ function polarAreaGraphP(canvas, xAxis, yAxis, legend, title) {
 
 /*FILL SELECT para select no de materialize*/
 
-function fillSelectBrowser(endpoint, select,indicacion, selected, disable) {
+function fillSelectBrowser(endpoint, select, indicacion, selected, disable) {
     fetch(endpoint, {
         method: 'get'
     }).then(function (request) {
@@ -1022,11 +1022,11 @@ function fillSelectBrowser(endpoint, select,indicacion, selected, disable) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se añade la indicación pero se evalua si se desea deshabilitarla o no.
-                    if(disable){
-                      content += '<option disabled selected>'+indicacion+'</option>';  
-                    }else{
-                        content += '<option selected>'+indicacion+'</option>';
-                    } 
+                    if (disable) {
+                        content += '<option disabled selected>' + indicacion + '</option>';
+                    } else {
+                        content += '<option selected>' + indicacion + '</option>';
+                    }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {
                         // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
@@ -1136,7 +1136,7 @@ function fillSelectBugMtz(endpoint, select, selected) {
                 // Se agregan las opciones a la etiqueta select mediante su id.
                 document.getElementById(select).innerHTML = content;
                 // Se inicializa el componente Select del formulario para que muestre las opciones.
-                M.FormSelect.init(document.querySelectorAll('#'+select));
+                M.FormSelect.init(document.querySelectorAll('#' + select));
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
