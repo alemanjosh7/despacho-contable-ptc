@@ -5,13 +5,15 @@ if (isset($_GET['idemp'])) {
     require('../models/empresas.php');
     // Se instancia el módelo pedidos personalizado para procesar los datos.
     $empresas = new Empresas;
-
     // Se verifica si el parámetro es un valor correcto, de lo contrario se direcciona a la página web de origen.
     if ($empresas->setId($_GET['idemp'])) {
         // Se instancia la clase para crear el reporte.
         $pdf = new Report;
         // Se inicia el reporte con el encabezado del documento.
         $pdf->startReport('Folders y el número de archivos que poseen', 'p');
+        if(!isset($_SESSION['id_usuario'])){
+            header('location: ../../views/index.html');
+        }
         //Se verifica que la empresa existe
         if ($dataEmpresa = $empresas->checkReportEmp($_GET['idemp'])) {
             /*
@@ -181,7 +183,7 @@ if (isset($_GET['idemp'])) {
                 $pdf->cell(160, 10, utf8_decode('No hay folders registrados en esta empresa'), 1, 1, 'C', 1);
             }
 
-
+            header('Content-type: application/pdf');
             $pdf->output('I', 'Reporte sobre el número de folders y los archivos de la empresa: ' . $dataEmpresa[0]['nombre_empresa'], true);
         } else {
             header('location: ../../views/empresas.html');

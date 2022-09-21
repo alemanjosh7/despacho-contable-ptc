@@ -172,7 +172,8 @@ class Database
             case '53100':
                 self::$error = 'Recursos insuficientes, añada más almacenamiento';
                 break;
-
+            case '23505':
+                self::$error = 'Campo duplicado, verifique no halla un campo usado actualmente';
             default:
                 self::$error = 'Ocurrio un error en la base de datos';
                 //self::$error = $message;

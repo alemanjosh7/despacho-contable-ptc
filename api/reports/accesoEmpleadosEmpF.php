@@ -9,6 +9,9 @@ $pdf = new Report;
 $pdf->startReport('Empleados con acceso a empresas', 'p');
 $empleado = new Empleados;
 $empresa = new Empresas;
+if(!isset($_SESSION['id_usuario'])){
+    header('location: ../../views/index.html');
+}
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleado = $empleado->accesoEmpleadosEEmp()) {
     // Se recorren los registros ($dataProductos) fila por fila ($rowArchivos).
@@ -81,6 +84,6 @@ if ($dataEmpleado = $empleado->accesoEmpleadosEEmp()) {
     $pdf->setFont('Times', 'B', 11);
     $pdf->cell(0, 10, utf8_decode('No hay registros disponibles'), 1, 1);
 }
-
+header('Content-type: application/pdf');
 // Se envía el documento al navegador y se llama al método footer()
 $pdf->output('I', 'accesoEmpleados.pdf');

@@ -9,6 +9,9 @@ if (1 == 1) {
     $pdf = new Report;
     $pdf->startReport('Reporte resumen del acceso a las empresas', 'p');
     //Obtenemos la información de los reportes
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     if ($rowEmpresas = $empresas->reportCantidadEmpAcc()) {
         /*
             ENCABEZADOS
@@ -25,7 +28,7 @@ if (1 == 1) {
         // Se establece un color de relleno para los datos
         $pdf->setFillColor(245, 254, 255, 1);
         $cont = 0; //Variable contador
-        // Se establece la fuente para en encabezados.
+        // Se establece la fuente para los encabezados.
         $pdf->setFont('Times', '', 11); //Fuente de las letras
         //Llenamos con la información retornada
         foreach ($rowEmpresas as $rowEmpresas) {
@@ -62,6 +65,7 @@ if (1 == 1) {
         $pdf->cell(10, 10, ' ', 0, 0, 'C');
         $pdf->cell(195, 10, utf8_decode('No hay empresas almacenadas'), 1, 0, 'C', 1); //Nombre de la empresa
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen del acceso a las empresas', true);
 } else {
     header('location: ../../views/empresas.html');

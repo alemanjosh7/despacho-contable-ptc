@@ -8,6 +8,10 @@ if (1 == 1) {
     // Se instancia la clase para crear el reporte.
     $pdf = new Report;
     $pdf->startReport('Reporte resumen de archivos dentro de folder', 'p');
+    //Validando que halla una session
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     //Obtenemos el nombre de la empresa y el archivo
     if ($rowInfo = $archivos->nombreEmpFol()) {
         //ESPACIO ENTRE CELDA
@@ -94,6 +98,7 @@ if (1 == 1) {
         } else {
             $pdf->cell(0, 10, utf8_decode('No hay archivos registrados en este folder'), 1, 1);
         }
+        header('Content-type: application/pdf');
         $pdf->output('I', 'Reporte resumen de los archivos del folder: ' . $rowInfo['nombre_folder'], true);
     } else {
         header('location: ../../views/archivos.html');

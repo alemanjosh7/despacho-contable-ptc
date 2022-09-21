@@ -8,6 +8,10 @@ if (1 == 1) {
     // Se instancia la clase para crear el reporte.
     $pdf = new Report;
     $pdf->startReport('Reporte resumen de archivos que he subido', 'l');
+    //Validando que halla una session
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     //Comprobamos que sea un empleado 
     if ($_SESSION['tipo_usuario'] != 4) {
         //Obtenemos los datos
@@ -68,6 +72,7 @@ if (1 == 1) {
     } else {
         $pdf->cell(0, 10, utf8_decode('No hay archivos subidos por ti porque eres administrador'), 1, 1);
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen de los archivos del empleado: ' . $_SESSION['nombreUsuario'] . $_SESSION['apellidoUsuario'], true);
 } else {
     header('location: ../../views/archivosSubidos.html');

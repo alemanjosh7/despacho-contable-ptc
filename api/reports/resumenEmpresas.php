@@ -29,6 +29,10 @@ if (1 == 1) {
     $pdf->Ln(5);
     $cont = 0;
     //Obtenemos los datos
+    //Validando que halla una session
+    if(!isset($_SESSION['id_usuario'])){
+        header('location: ../../views/index.html');
+    }
     if ($dataEmpresas  = $empresas->obtenerEmpresas()) {
         // Se recorren los registros ($dataProductos) fila por fila ($rowEmpresas).
         foreach ($dataEmpresas as $rowEmpresas) {
@@ -74,6 +78,7 @@ if (1 == 1) {
         $pdf->cell(10, 10, ' ', 0, 0, 'C');
         $pdf->cell(195, 10, utf8_decode('No hay ninguna empresa registrada'), 1, 0, 'C', 1); //Nombre de la empresa
     }
+    header('Content-type: application/pdf');
     $pdf->output('I', 'Reporte resumen de las empresas registradas no eliminadas', true);
 } else {
     header('location: ../../views/empresas.html');

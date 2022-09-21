@@ -1,7 +1,6 @@
 <?php
 require('../helpers/dashboardReport.php');
 require('../models/empleados.php');
-
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
@@ -24,6 +23,9 @@ $pdf->setFillColor(245, 254, 255, 1);
 $pdf->setFont('Times', '', 11);
 $cont = 0;
 $empleado = new Empleados;
+if(!isset($_SESSION['id_usuario'])){
+    header('location: ../../views/index.html');
+}
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataEmpleado = $empleado->accesoEmpleadosEmp()) {
     // Se recorren los registros ($dataProductos) fila por fila ($rowArchivos).
@@ -52,6 +54,7 @@ if ($dataEmpleado = $empleado->accesoEmpleadosEmp()) {
 
         //ESPACIO ENTRE CELDA
         $pdf->cell(13, 10, ' ', 0, 0, 'C');
+        
         // Se imprimen las celdas con los datos de los productos.
         $pdf->cell(47, 10, utf8_decode($rowEmpleado['tipo_empleado']), 1, 0, 'C', 1);
         $pdf->cell(70, 10, utf8_decode($rowEmpleado['nombre_empleado'] . ' ' . $rowEmpleado['apellido_empleado']), 1, 0, 'C', 1);
@@ -62,6 +65,6 @@ if ($dataEmpleado = $empleado->accesoEmpleadosEmp()) {
 } else {
     $pdf->cell(0, 10, utf8_decode('No hay registros disponibles'), 1, 1);
 }
-
+header('Content-type: application/pdf');
 // Se envía el documento al navegador y se llama al método footer()
 $pdf->output('I', 'accesoEmpleados.pdf');
