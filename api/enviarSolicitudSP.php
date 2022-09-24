@@ -174,5 +174,5 @@ if (isset($_POST['descripcion']) && isset($_FILES['archivo'])) {
         print(json_encode($result));
     }
 } else {
-    echo ('hola 2');
+    
 }

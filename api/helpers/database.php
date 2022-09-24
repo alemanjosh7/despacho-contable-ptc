@@ -15,10 +15,10 @@ class Database
     private static function connect()
     {
         // Credenciales para establecer la conexión con la base de datos.
-        $server = 'ec2-52-73-184-24.compute-1.amazonaws.com';
-        $database = 'dfarkk69cu8ll0';
-        $username = 'pwopunmztkmvxc';
-        $password = 'a4bad0d6f7a8e675af834eef4150ec1e4f863510a1f8a4cc4fd9b3668ff6de8f';
+        $server = 'ec2-3-93-206-109.compute-1.amazonaws.com';
+        $database = 'dcrrufqfql2ack';
+        $username = 'brpmvdiltvokld';
+        $password = '8210bf8d04a72fe4d10b1f2ff54c7df41a17fad24dfe475e4febe94ac065eaa6';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);

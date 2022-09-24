@@ -290,7 +290,7 @@
 
         </div>
         <!--Fila para los reportes-->
-        <div class="row">
+        <div class="row hide-on-small-and-down">
             <div class="col s12 m6 l6 center tooltipped" data-tooltip="Resumen de los archivos subidos por el usuario logueado">
                 <p>Resumen de tus archivos subidos</p>
                 <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/resumenArchivosS.php" target="_blank">
@@ -304,7 +304,7 @@
                 </a>
             </div>
         </div>
-        <div class="row eliminarbtn">
+        <div class="row eliminarbtn hide-on-small-and-down">
             <div class="col s12 m6 center tooltipped" data-tooltip="Todos los empleados y el tipo de empleado que más archivos han registrados">
                 <p>Empleados con más registros de archivos</p>
                 <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/registroArchivos.php" target="_blank">
@@ -320,6 +320,7 @@
                         <form id="buscador_empr">
                             <div class="company-search-box">
                                 <input type="text" placeholder="Buscar empresa" name="search" id="company-searcher">
+                                <input value="100" name="limit" class="hide">
                                 <img class="responsive-img" src="../resources/icons/search-icon.png" alt="">
                             </div>
                         </form>

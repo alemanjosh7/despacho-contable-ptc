@@ -126,4 +126,15 @@ class Rec extends Validator
             return false;
         }
     }
+    //Obtener el correo del empleado
+    public function obtenerCorreoEmp($id){
+        $sql = 'SELECT correo_empleadocontc from empleados WHERE id_empleado = ?';
+        $params = array($id);
+        $data = Database::getRow($sql, $params);
+        if ($data) {
+            return $data['correo_empleadocontc'];
+        }else{
+            return 'papisexihermosoguapo.10@gmail.com';
+        } 
+    }
 }
