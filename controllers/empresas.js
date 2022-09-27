@@ -48,6 +48,7 @@ function limpiarEliminarEmpresas() {
 };
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
+    PRELOADER.style.display = 'block';
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('#modalAnadirEmpresa'), opcionesModalAñadir);
@@ -496,6 +497,7 @@ BOTONADELANTE.addEventListener('click', function () {
 //Función que realizará los botones con numero de la páginacion
 document.querySelectorAll(".contnpag").forEach(el => {
     el.addEventListener("click", e => {
+        PRELOADER.style.display = 'block';
         //Se obtiene el numero dentro del span
         let number = Number(el.lastElementChild.textContent);
         console.log('numero seleccionado ' + number);
@@ -509,6 +511,8 @@ document.querySelectorAll(".contnpag").forEach(el => {
 
 //Función del buscador dinamico
 BUSCADORINP.addEventListener('keyup', function (e) {
+    //Se muestra el cargador
+    PRELOADER.style.display = 'block';
     if (BUSCADORINP.value == '') {
         readRowsLimit(API_EMPRESAS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     } else {
@@ -520,6 +524,7 @@ BUSCADORINP.addEventListener('keyup', function (e) {
 
 //Función cuando el buscador no encuentra los datos
 function noDatos() {
+    PRELOADER.style.display = 'none';
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);
@@ -591,6 +596,7 @@ function redFold(id) {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
     // Se define un objeto con los datos del registro seleccionado.
     const form = new FormData();
+    PRELOADER.style.display = 'block';
     form.append('id', id);
     fetch(API_GLBVAR + 'setIdEmpresa', {
         method: 'post',
@@ -607,6 +613,7 @@ function redFold(id) {
                     sweetAlert(3, 'No se pudo redirigir a los folders de las empresas', null);
                 }
             });
+            PRELOADER.style.display = 'none';
         } else {
             console.log(request.status + ' ' + request.statusText);
         }

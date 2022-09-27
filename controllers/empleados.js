@@ -22,6 +22,8 @@ var limitBuscar = 6;
 document.addEventListener('DOMContentLoaded', function () {
   //Ocultamos el boton de atras para la páginación
   BOTONATRAS.style.display = 'none';
+  //Inciando el saludo
+  PRELOADER.style.display = 'block';
   comprobarAmin();
   readRowsLimit(API_EMPLEADOS, 0);
   //Ejecutamos la función para predecir si habrá un boton de adelante
@@ -46,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //Declaramos algunas constantes
 const EMPRESASMODAL = document.getElementById('modalAnadirEmpresa');
 const EMPRESASCHEKCONT = document.getElementById('contEmpresas');
-
+const PRELOADER = document.getElementById('preloader-cargarJ');//Preloader de carga para los elementos
 function changeOption(val) {
   var cnt = 0;
   instances.map(function (elem) {
@@ -127,6 +129,7 @@ function openCreate() {
 
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id) {
+  PRELOADER.style.display = 'block';
   // Se abre la caja de diálogo (modal) que contiene el formulario.
   // Se establece el campo de archivo como opcional.
   //Ocultamos el estado
@@ -170,6 +173,7 @@ function openUpdate(id) {
           }
           // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
           M.updateTextFields();
+          PRELOADER.style.display = 'none';
         } else {
           sweetAlert(2, response.exception, null);
         }
@@ -183,6 +187,8 @@ function openUpdate(id) {
 document.getElementById('input-file').addEventListener('keyup', (event) => {
   // Se evita recargar la página web después de enviar el formulario.
   // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
+  //Inciando el saludo
+  PRELOADER.style.display = 'block';
   if (document.getElementById('input-file').value === "") {
     readRowsLimit(API_EMPLEADOS, 0);
   }
@@ -194,6 +200,7 @@ document.getElementById('input-file').addEventListener('keyup', (event) => {
 
 //Función cuando el buscador no encuentra los datos
 function noDatos() {
+  PRELOADER.style.display = 'none';
   let h = document.createElement("h3");
   let text = document.createTextNode("0 resultados");
   h.appendChild(text);
@@ -203,6 +210,8 @@ function noDatos() {
 
 /*Metodo para llenar los checkbox con las empresas*/
 function llenarEmpresas(idemp) {
+  //Inciando el saludo
+  PRELOADER.style.display = 'block';
   let content = '';
   fetch(API_EMPRESAS + 'readAll', {
     method: 'get'
@@ -276,6 +285,7 @@ function checarCheckBoxsEmpr(idemp) {
             element.setAttribute("checked", "checked");
           }
         });
+        PRELOADER.style.display = 'none';
       });
     } else {
       console.log(request.status + ' ' + request.statusText);
@@ -422,6 +432,8 @@ function fillTable(dataset) {
   M.Materialbox.init(document.querySelectorAll('.materialboxed'));
   // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
   M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+  //Inciando el saludo
+  PRELOADER.style.display = 'none';
 }
 
 //Declaramos algunos componentes
@@ -494,6 +506,7 @@ function predecirAdelante() {
 
 document.querySelectorAll(".contnpag").forEach(el => {
   el.addEventListener("click", e => {
+    PRELOADER.style.display = 'block';
     //Se obtiene el numero dentro del span
     let number = Number(el.lastElementChild.textContent);
     console.log('numero seleccionado ' + number);
@@ -508,6 +521,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
 document.getElementById('save-form').addEventListener('submit', function (event) {
   // Se evita recargar la página web después de enviar el formulario.
   event.preventDefault();
+  PRELOADER.style.display = 'block';
   // Se define una variable para establecer la acción a realizar en la API.
   let action = '';
   // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.

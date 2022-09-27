@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://192.168.1.5/despEsquivel/api/';
+const SERVER = 'http://localhost/despEsquivel/api/';
 const API = SERVER + 'dashboard/admins.php?action=';
 
 /*

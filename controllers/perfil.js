@@ -103,6 +103,7 @@ var optionsAuth = {
 
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
+    PRELOADER.style.display = 'block';
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'));
@@ -132,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                     M.updateTextFields();
+                    PRELOADER.style.display = 'none';
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -144,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //Declarando algunas constantes
 const CONTRAN = document.getElementById('contrasena_nueva');//input de la contraseña nueva en restablecer contraseña
 const CONTRAC = document.getElementById('contrasena_confirma');//input de la confirmación de la contraseña en restablecer contraseña
+const PRELOADER = document.getElementById('preloader-cargarJ');//Preloader de carga para los elementos
 
 var botonRestablecer = document.getElementById('restablecerContraseña');
 botonRestablecer.addEventListener('click', () => {
@@ -308,6 +311,7 @@ hastatop.addEventListener("click", function () {
 
 //Actualizar los datos del perfil
 document.getElementById('aceptaractdatosperfil_boton').addEventListener("click", function () {
+    PRELOADER.style.display = 'block';
     fetch(API_EMPLEADOS + 'updateProf', {
         method: 'post',
         body: new FormData(document.getElementById('perfil-form'))
@@ -324,6 +328,7 @@ document.getElementById('aceptaractdatosperfil_boton').addEventListener("click",
                     sweetAlert(2, response.exception, null);
                 }
             });
+            PRELOADER.style.display = 'none';
         } else {
             console.log(request.status + ' ' + request.statusText);
         }

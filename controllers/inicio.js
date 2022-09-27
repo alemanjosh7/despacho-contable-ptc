@@ -10,6 +10,7 @@ const API_ARCHIVO = SERVER + 'dashboard/archivos.php?action=';
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     //Inciando el saludo
+    PRELOADER.style.display = 'block';
     saludo();
     comprobarAmin();
     //Iniciar componenetes de Materialize
@@ -29,7 +30,7 @@ const foldersRangoI = document.getElementById('rangoi');//Rango inicial folders 
 const foldersRangoF = document.getElementById('rangof');//Rango final folders empresas
 const accesosRangoI = document.getElementById('rangoia');//Rango inicial folders empresas
 const accesosRangoF = document.getElementById('rangofa');//Rango final folders empresas
-
+const PRELOADER = document.getElementById('preloader-cargarJ');//Preloader de carga para los elementos
 //Creando función para el saludo
 function saludo() {
     // Se define un objeto con la fecha y hora actual.
@@ -303,6 +304,7 @@ function lineaGraphEmpresasAccess(){
                     });
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     lineGraph('accesos_empresas_linea', nombre, accesos, 'Número de accesos', '');
+                    PRELOADER.style.display = 'none';
                 } else {
                     document.getElementById('accesos_empresas_linea').remove();
                     console.log(response.exception);

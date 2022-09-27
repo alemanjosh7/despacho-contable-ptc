@@ -74,6 +74,7 @@ var opcionesModal = {
 }
 //Inicializando componentes de Materialize
 document.addEventListener('DOMContentLoaded', function () {
+    PRELOADER.style.display = 'block';
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     M.Modal.init(document.querySelectorAll('.modal'), opcionesModal);
@@ -152,7 +153,6 @@ function cargarEmpresas() {
                 if (response.status) {
                     //Se ejecuta el metodo de llenado
                     let content = '';
-                    PRELOADER.style.display = 'block';
                     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
                     content += `
                             <li class='empresa_in select_emprarc' id="0">Todas las empresas</li>
@@ -166,7 +166,6 @@ function cargarEmpresas() {
 
                     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
                     EMPRESASCONT.innerHTML = content;
-                    PRELOADER.style.display = 'none';
                     document.querySelectorAll('.empresa_in').forEach(element => {
                         element.addEventListener("click", e => {
                             const id = Number(e.target.getAttribute("id"));
@@ -188,8 +187,10 @@ function cargarEmpresas() {
 
 //Función del buscador dinamico para las empresas
 EMPRESAINP.addEventListener('keyup', function (e) {
+    PRELOADER.style.display = 'block';
     if (EMPRESAINP.value == '') {
         cargarEmpresas();
+        PRELOADER.style.display = 'none';
     } else {
         // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
         dynamicSearcher3(API_EMPRESAS, 'buscador_empr');
@@ -198,6 +199,7 @@ EMPRESAINP.addEventListener('keyup', function (e) {
 
 //Función cuando el buscador no encuentra los datos
 function noDatos2() {
+    PRELOADER.style.display = 'none';
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);
@@ -209,7 +211,6 @@ function noDatos2() {
 //solo se mostrarán las empresas a las que el tenga acceso pero este depende del buscador
 function fillTable2(dataset) {
     let content = '';
-    PRELOADER.style.display = 'block';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     content += `
         <li class='empresa_in select_emprarc' id="0">Todas las empresas</li>
@@ -324,6 +325,7 @@ function fillTable(dataset) {
 
 //Función cuando el buscador no encuentra los datos
 function noDatos() {
+    PRELOADER.style.display = 'none';
     let h = document.createElement("h3");
     let text = document.createTextNode("0 resultados");
     h.appendChild(text);
@@ -338,6 +340,7 @@ BUSCADORARCH.addEventListener('keyup', function (e) {
 
 //Función para el buscador y seleccion de las empresas y filtro
 function filtrosBAE() {
+    PRELOADER.style.display = 'block';
     if (BUSCADORARCH.value == '' && document.getElementById('0').classList.contains('select_emprarc')) {
         readRowsLimit(API_ARCHIVOS, 0);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
     } else {

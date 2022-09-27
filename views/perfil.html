@@ -58,7 +58,8 @@
                 <a class="modal-trigger" id="olvidarcontra_boton" href="#modalCambiarContraseña">Cambiar contraseña</a>
               </div>
               <div class="row btn-2">
-                <a class="tooltipped" data-tooltip="Proteger con google authenticator" id="gauth_btn">Configurar cuenta con factor 3</a>
+                <a class="tooltipped" data-tooltip="Proteger con google authenticator" id="gauth_btn">Configurar cuenta
+                  con factor 3</a>
               </div>
             </div>
           </div>
@@ -83,14 +84,15 @@
               </div>
               <div class="input-field" id="inputs-datos">
                 <p for="dui_usuario">DUI:</p>
-                <input value="" id="dui_usuario-perfil" type="password" name="dui" class="ocultar-mostrar center-align" maxlength="10">
+                <input value="" id="dui_usuario-perfil" type="password" name="dui" class="ocultar-mostrar center-align"
+                  maxlength="10">
                 <i class="tooltipped material-icons prefix right-align" data-position="top"
                   data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_duiuser">visibility</i>
               </div>
               <div class="input-field" id="inputs-datos">
                 <p for="telefono_usuario">Telefono:</p>
-                <input value="" id="telefono_usuario-perfil" type="password"
-                  class="ocultar-mostrar center-align" name="telefono" maxlength="9">
+                <input value="" id="telefono_usuario-perfil" type="password" class="ocultar-mostrar center-align"
+                  name="telefono" maxlength="9">
                 <i class="tooltipped material-icons prefix right-align" data-position="bottom"
                   data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_teleuser">visibility</i>
               </div>
@@ -241,10 +243,14 @@
       <div class="fondo-modaldatos modal-content">
         <div class="center-align">
           <h4>Configuración del código de Google Authenticator</h4>
-          <p>Descargar la aplicación de <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=es&gl=US" target="blak">
-            Google Authenticator</a> en su teléfono y escanear el código que aparece abajo. Primero de confirmar que es usted colocando su contraseña</p>
-          <p><b>Recordar guardar el codigo o QR ya que solo se mostrará esta vez.</b> Puede desvincular su cuenta apretando en el mismo botón que apreto
-          para llegar aqui, no cierres esta ventana hasta estar seguro de haberlo copiado bien.</p>
+          <p>Descargar la aplicación de <a
+              href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=es&gl=US"
+              target="blak">
+              Google Authenticator</a> en su teléfono y escanear el código que aparece abajo. Primero de confirmar que
+            es usted colocando su contraseña</p>
+          <p><b>Recordar guardar el codigo o QR ya que solo se mostrará esta vez.</b> Puede desvincular su cuenta
+            apretando en el mismo botón que apreto
+            para llegar aqui, no cierres esta ventana hasta estar seguro de haberlo copiado bien.</p>
         </div>
         <!--Contenido del modal-->
         <div class="row"></div>
@@ -270,23 +276,39 @@
           </div>
           <div class="row center">
             <div class="col s12 truncate" id="QRC_Auth"></div>
-            <div class="col s12 tooltipped" data-position="bottom" data-tooltip="Copiar QR"><i id="copyQRC" class="material-icons">content_copy</i></div>
+            <div class="col s12 tooltipped" data-position="bottom" data-tooltip="Copiar QR"><i id="copyQRC"
+                class="material-icons">content_copy</i></div>
           </div>
           <div class="row">
             <div class="col s12 center">
-                <a class="waves-effect waves-ligth btn z-depth-2 btn-añadirFolderModal" id="generarQR_Auth"><i
-                    class="material-icons left">security</i>Generar QR
-                </a>
+              <a class="waves-effect waves-ligth btn z-depth-2 btn-añadirFolderModal" id="generarQR_Auth"><i
+                  class="material-icons left">security</i>Generar QR
+              </a>
             </div>
           </div>
         </div>
         <!--Pie del modal-->
         <div class="modal-footer center-align" id="fondomodal-footer">
           <div class="left col offset-s1 m5 l4">
-            <a class="waves-effect waves-ligth btn z-depth-2 cerrarModalEmpresa" id="cancelar-Añadirfold" onclick="cerrarAuthM()">
+            <a class="waves-effect waves-ligth btn z-depth-2 cerrarModalEmpresa" id="cancelar-Añadirfold"
+              onclick="cerrarAuthM()">
               <i class="material-icons left">keyboard_arrow_left</i>Cerrar
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+    <!--Preloader de carga-->
+    <div class="preloader-wrapper big active" id="preloader-cargarJ">
+      <div class="spinner-layer spinner-red-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
         </div>
       </div>
     </div>

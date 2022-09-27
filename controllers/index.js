@@ -28,7 +28,7 @@ const CONTRAN = document.getElementById('contraseña_nueva');//input de la contr
 const CONTRAC = document.getElementById('contraseña_confirma');//input de la confirmación de la contraseña en restablecer contraseña
 const preloader = document.getElementById('preloader-añadirfold');//preloader de la actualización de contraseña
 const RESTABLECERCTR = document.getElementById('restablecerContraseña');//boton de restablecer contraseña
-
+const PRELOADER = document.getElementById('preloader-cargarJ');//Preloader de carga para los elementos
 const TELEFONO = document.getElementById('telefono-emp');
 const CONTRA = document.getElementById('contra-emp');
 const CONTRACP = document.getElementById('contrac-emp');
@@ -173,6 +173,7 @@ RESTABLECERCTR.addEventListener('click', function () {
 
 //Función de log in
 LOGINBTN.addEventListener('click', function () {
+    PRELOADER.style.display = 'block';
     //Para presentar el proyecto descomentar las dos comentarios siguientes y comentar la función loginF();
     //LOGINBTN.classList.add("disabled");
     //generarPIN();
@@ -183,6 +184,7 @@ LOGINBTN.addEventListener('click', function () {
 function loginF() {
     if (USUARIOTXT.value.length > 0 && CONTRAINPUT.value.length > 0) {
         LOGINBTN.classList.add('disabled');
+        PRELOADER.style.display = 'block';
         fetch(API_EMPLEADOS + 'logIn', {
             method: 'post',
             body: new FormData(document.getElementById('session-form'))
@@ -198,6 +200,7 @@ function loginF() {
                         LOGINBTN.classList.remove('disabled');
                         sweetAlert(2, response.exception, null);
                     }
+                    PRELOADER.style.display = 'none';
                 });
             } else {
                 LOGINBTN.classList.remove('disabled');
@@ -207,6 +210,7 @@ function loginF() {
             sweetAlert(2, 'Error al iniciar session', null)
         });;
     } else {
+        PRELOADER.style.display = 'none';
         sweetAlert(3, 'Debe de completar el formulario para iniciar sesion', null);
     }
 }
@@ -468,6 +472,7 @@ const enviarPINCorreo = () => {
                                     if (response.status) {
                                         M.Modal.getInstance(MODALPINL).open();
                                         console.log("Se envio el correo con exito");
+                                        PRELOADER.style.display = 'none';
                                     } else {
                                         sweetAlert(2, response.exception, null);
                                     }
@@ -540,6 +545,7 @@ btncancelr.addEventListener('click', function () {
 
 
 document.getElementById('btn-PINL').addEventListener('click', function () {
+    PRELOADER.style.display = 'block';
     //Validamos que halla colocado un usuario en el formulario anterior
     let pinintro = document.getElementById('PIN-numerosI');
     let mensaje = document.getElementById('mensaje-restablecerL');
@@ -583,6 +589,7 @@ document.getElementById('btn-PINL').addEventListener('click', function () {
                                     LOGINBTN.classList.remove('disabled');
                                     console.log(request.status + ' ' + request.statusText);
                                 }
+                                PRELOADER.style.display = 'none';
                             }).catch(function (error) {
                                 modal.close();
                                 mensaje.style.display = 'none';
@@ -613,6 +620,7 @@ const verificarGAuth = () => {
 }
 
 document.getElementById('generarQR_Auth').addEventListener('click', () => {
+    PRELOADER.style.display = 'block';
     let form = new FormData(document.getElementById('session-form'));
     form.append('codigo',document.getElementById('contraEmp_Auth').value);
     fetch(API_EMPLEADOS + 'verificarCGA', {
@@ -631,6 +639,7 @@ document.getElementById('generarQR_Auth').addEventListener('click', () => {
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
+                PRELOADER.style.display = 'none';
             });
         } else {
             console.log(request.status + ' ' + request.statusText);

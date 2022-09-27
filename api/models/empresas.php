@@ -166,7 +166,7 @@ class Empresas extends Validator
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
                 FROM empresas AS emp
                 INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
-                WHERE emp.fk_id_estado = 4 AND emp.id_empresa NOT IN(SELECT id_empresa FROM empresas ORDER BY id_empresa DESC LIMIT ?) ORDER BY emp.id_empresa DESC LIMIT 6';
+                WHERE emp.fk_id_estado = 4 ORDER BY emp.id_empresa DESC OFFSET ? LIMIT 6';
         $params = array($limit);
         return Database::getRows($sql, $params);
     }
@@ -189,7 +189,7 @@ class Empresas extends Validator
         $sql = 'SELECT emp.id_empresa, emp.nombre_cliente, emp.apellido_cliente, emp.nombre_empresa, emp.numero_empresacontc, emp.correo_empresacontc, emp.direccion_empresa, emp.nit_empresa, est.nombre_estado
         FROM empresas AS emp
         INNER JOIN estados AS est ON emp.fk_id_estado = est.id_estado
-        WHERE emp.nombre_cliente ILIKE ? OR emp.apellido_cliente ILIKE ? OR emp.nombre_empresa ILIKE ? OR emp.numero_empresacontc ILIKE ? OR emp.correo_empresacontc ILIKE ? OR emp.direccion_empresa ILIKE ? OR emp.nit_empresa ILIKE ? 
+        WHERE (emp.nombre_cliente ILIKE ? OR emp.apellido_cliente ILIKE ? OR emp.nombre_empresa ILIKE ? OR emp.numero_empresacontc ILIKE ? OR emp.correo_empresacontc ILIKE ? OR emp.direccion_empresa ILIKE ? OR emp.nit_empresa ILIKE ?) 
         AND emp.fk_id_estado = 4 LIMIT ?';
         $params = array("%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", "%$value%", $limit);
         return Database::getRows($sql, $params);
