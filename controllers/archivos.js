@@ -445,6 +445,26 @@ function predecirAdelante() {
     console.log("El limite sería: " + limit);
     //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
     predictLImit(API_ARCHIVO, limit);
+    let limit2 = ( (Number(BOTONNUMEROPAGI.innerHTML)+1) * 5) - 5;
+    predictButton(API_ARCHIVO, limit2);
+}
+
+function ocultarButton2(cases) {
+    switch (cases) {
+        case 1:
+            BOTONNUMEROPAGF.parentNode.parentNode.classList.add('hide');
+            document.getElementById('pagpoints').parentNode.classList.add('hide');
+            break;
+        case 2:
+            document.getElementById('contenedor_pags').classList.add('hide');
+            let h = document.createElement("h3");
+            let text = document.createTextNode("Folder vacio");
+            h.appendChild(text);
+            ARCHCONT.innerHTML = "";
+            ARCHCONT.append(h);
+        default:
+            break;
+    }
 }
 
 function ocultarMostrarAdl(result) {
@@ -460,6 +480,8 @@ function ocultarMostrarAdl(result) {
 
 //Boton de atras
 BOTONATRAS.addEventListener('click', function () {
+    BOTONNUMEROPAGF.parentNode.parentNode.classList.remove('hide');
+    document.getElementById('pagpoints').parentNode.classList.remove('hide');
     //Volvemos a mostrár el boton de página adelante
     BOTONADELANTE.style.display = 'block';
     //Obtenemos el número de la página inicial

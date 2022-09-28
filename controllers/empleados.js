@@ -458,6 +458,8 @@ function ocultarMostrarAdl(result) {
 
 //Boton de atras
 BOTONATRAS.addEventListener('click', function () {
+  BOTONNUMEROPAGF.parentNode.parentNode.classList.remove('hide');
+  document.getElementById('pagpoints').parentNode.classList.remove('hide');
   //Volvemos a mostrár el boton de página adelante
   BOTONADELANTE.style.display = 'block';
   //Obtenemos el número de la página inicial
@@ -502,6 +504,26 @@ function predecirAdelante() {
   console.log("El limite sería: " + limit);
   //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
   predictLImit(API_EMPLEADOS, limit);
+  let limit2 = ((Number(BOTONNUMEROPAGI.innerHTML) + 1) * 5) - 5;
+  predictButton(API_EMPLEADOS, limit2);
+}
+
+function ocultarButton2(cases) {
+  switch (cases) {
+    case 1:
+      BOTONNUMEROPAGF.parentNode.parentNode.classList.add('hide');
+      document.getElementById('pagpoints').parentNode.classList.add('hide');
+      break;
+    case 2:
+      document.getElementById('contenedor_pags').classList.add('hide');
+      let h = document.createElement("h3");
+      let text = document.createTextNode("No hay empleados registrados");
+      h.appendChild(text);
+      document.getElementById('employee-form').innerHTML = "";
+      document.getElementById('employee-form').append(h);
+    default:
+      break;
+  }
 }
 
 document.querySelectorAll(".contnpag").forEach(el => {
@@ -766,7 +788,7 @@ function abrirReporte(tipo) {
       break;
     default:
       window.open('../api/reports/accesoEmpleadosEmp.php');
-      sweetAlert(2,'Se redirigio a un pdf, pero no se reconocio el dispositivo. Si no lo ve esque no se reconce que esta en smarthPone');
+      sweetAlert(2, 'Se redirigio a un pdf, pero no se reconocio el dispositivo. Si no lo ve esque no se reconce que esta en smarthPone');
       break;
   }
 }

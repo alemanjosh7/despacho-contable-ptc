@@ -164,10 +164,10 @@
                 </div>
             </div>
         </div>
-        <div class="row hide-on-small-and-down">
+        <div class="row hide-on-small-and-down eliminarbtn">
             <div class="col s12 m6 center tooltipped" data-tooltip="Resumen de los archivos dentro del folder seleccionado">
                 <p>Resumen de los archivos dentro de este folder</p>
-                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado eliminarbtn" href="../api/reports/resumenArchivos.php" target="_blank">
+                <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" href="../api/reports/resumenArchivos.php" target="_blank">
                     <i class="material-icons left">assignment</i>Abrir reporte
                 </a>
             </div>
@@ -192,7 +192,7 @@
                         </tbody>
                     </table>
                     <!--Contenedor del menu para la páginación-->
-                    <div class="container">
+                    <div class="container" id="contenedor_pags">
                         <div class="row">
                             <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
                                 <div class="botonnavg-footer center" id="pagnavg-atr">
@@ -213,7 +213,7 @@
                             </div>
                             <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
                                 <div class="botonnavg-footer center tooltipped" data-position="top"
-                                    data-tooltip="¡Más muy pronto!">
+                                    data-tooltip="¡Más muy pronto!" id="pagpoints">
                                     <a><span>...</span></a>
                                 </div>
                             </div>

@@ -415,6 +415,15 @@ function readRowsLimit(api, limit) {
                     fillTable(response.dataset);
                 } else {
                     sweetAlert(4, response.exception, null);
+                    if (limit == 0) {
+                        ocultarButton2(2);
+                    }
+                    try{
+                        PRELOADER.style.display = 'none';
+                    }catch(e){
+
+                    }
+                    
                 }
             });
         } else {
@@ -888,7 +897,12 @@ function dynamicSearcher3(api, form) {
                 } else {
                     // sweetAlert(1, response.message, null);
                     noDatos2();
-                    // sweetAlert(2, response.exception, null);
+                    // Ocultamos el bloqueado si es que esta
+                    try{
+                        PRELOADER.style.display = 'none';
+                    }catch(e){
+
+                    }
                 }
             });
         } else {
@@ -1291,6 +1305,31 @@ function doughnutGraphP(canvas, legends, values, title) {
                     text: title
                 }
             }
+        }
+    });
+}
+
+/*Función general de verificar si hay datos, para poder reconocer si hay o no hay datos*/
+function predictButton(api, limit) {
+    console.log(limit);
+    let form = new FormData();
+    form.append('limit', limit);
+    fetch(api + 'readAllLimit', {
+        method: 'post',
+        body: form
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+        if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria para obtener los datos, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                } else {
+                    ocultarButton2(1);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
         }
     });
 }
