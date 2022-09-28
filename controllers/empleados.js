@@ -379,7 +379,7 @@ function fillTable(dataset) {
                     </div>
                     <!--Imagen de la Card donde muestra la foto del empleado-->
                     <div class="card-image">
-                        <img src="../resources/img/employee-example.png">
+                        <img src="../resources/img/employeeIcon.png">
                     </div>
                     <!--Contenedor de la informacion del empleado-->
                     <div class="card-content center">
@@ -504,7 +504,7 @@ function predecirAdelante() {
   console.log("El limite sería: " + limit);
   //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
   predictLImit(API_EMPLEADOS, limit);
-  let limit2 = ((Number(BOTONNUMEROPAGI.innerHTML) + 1) * 5) - 5;
+  let limit2 = ((Number(BOTONNUMEROPAGI.innerHTML) + 1) * 6) - 6;
   predictButton(API_EMPLEADOS, limit2);
 }
 

@@ -354,7 +354,7 @@ function pieGraph(canvas, legends, values, title) {
 function logOut() {
     Swall.fire({
         title: 'Advertencia',
-        text: '¿Desea cerrar sesion?',
+        text: '¿Desea cerrar sesión?',
         icon: 'warning',
         showDenyButton: true,
         confirmButtonText: 'Si',

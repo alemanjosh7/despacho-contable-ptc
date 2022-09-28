@@ -15,10 +15,10 @@ class Database
     private static function connect()
     {
         // Credenciales para establecer la conexión con la base de datos.
-        $server = 'localhost';
-        $database = 'dbdespcontesquivel';
-        $username = 'postgres';
-        $password = '1303';
+        $server = 'ec2-3-93-206-109.compute-1.amazonaws.com';
+        $database = 'dcrrufqfql2ack';
+        $username = 'brpmvdiltvokld';
+        $password = '8210bf8d04a72fe4d10b1f2ff54c7df41a17fad24dfe475e4febe94ac065eaa6';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);

@@ -70,7 +70,7 @@ class Report extends FPDF
             $this->setFont('Arial', 'B', 10);
             $this->cell(115, 10, 'Nombre del empleado :', 0, 0, 'C');
             $this->setFont('Arial', '', 10);
-            $this->cell(-50, 10, utf8_decode($_SESSION['nombreUsuario'] . ' ' . $_SESSION['apellidoUsuario']), 0, 1, 'C');
+            $this->cell(-21, 10, utf8_decode($_SESSION['nombreUsuario'] . ' ' . $_SESSION['apellidoUsuario']), 0, 1, 'C');
             // Se ubica la fecha y hora del servidor.
             $this->cell(20);
             $this->setFont('Arial', 'B', 10);

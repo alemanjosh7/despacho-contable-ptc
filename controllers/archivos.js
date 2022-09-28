@@ -444,9 +444,10 @@ function predecirAdelante() {
     let limit = (paginaFinal * 5) - 5;
     console.log("El limite sería: " + limit);
     //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
-    predictLImit(API_ARCHIVO, limit);
     let limit2 = ( (Number(BOTONNUMEROPAGI.innerHTML)+1) * 5) - 5;
     predictButton(API_ARCHIVO, limit2);
+    predictLImit(API_ARCHIVO, limit);
+    
 }
 
 function ocultarButton2(cases) {

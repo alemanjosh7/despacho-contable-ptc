@@ -329,7 +329,7 @@ var inactivityTime = function () {
                 request.json().then(function (response) {
                     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
-                        sweetAlert(1, 'Se ha cerrado session por tu inactividad', 'index.html');
+                        sweetAlert(1, 'Se ha cerrado la sesión por tu inactividad', 'index.html');
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
@@ -346,7 +346,7 @@ var inactivityTime = function () {
             background: '#F7F0E9',
             confirmButtonColor: 'black',
             icon: 'info',
-            title: 'La session esta a punto de caducar da',
+            title: 'La sesión esta a punto de caducar da',
             showConfirmButton: true,
             html:
                 ` 
