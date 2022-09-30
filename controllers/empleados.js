@@ -795,3 +795,22 @@ function abrirReporte(tipo) {
 
 //href="../api/reports/accesoEmpleadosEmpF.php"
 //href="../api/reports/accesoEmpleadosEmp.php" target="_blank"
+
+
+
+document.getElementById('ocultarmostrar_contraseñas').addEventListener("click", function () {
+  if (CONTRA.type == "password") {
+    CONTRA.type = "text"
+    CONTRAC.type = "text"
+    document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility_off"
+  } else {
+    CONTRA.type = "text".type = "password"
+    CONTRAC.type = "text".type = "password"
+    document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility"
+  }
+});
+/*
+const CONTRA = document.getElementById('contra-emp');
+const CONTRAC = document.getElementById('contrac-emp');
+
+*/

@@ -140,6 +140,10 @@
                                 class="validate inputs-añadirempr" required maxlength="9">
                             <label for="telefono-emp" class="labels-anadirempr">Teléfono:</label>
                         </div>
+                        <div class="center-align">
+                            <i class="tooltipped material-icons center" data-position="top"
+                                data-tooltip="Mostrar/Ocultar" id="ocultarmostrar_contraseñas">visibility</i>
+                        </div>
                         <!--Contraseña del usuario-->
                         <div class="input-field col s12 m10 offset-m1 l6">
                             <input placeholder="Contraseña" name="contra-emp" id="contra-emp" type="password"
@@ -285,7 +289,8 @@
             <!-- Parte de arriba donde muestra la parte de volver a la página de atrás y el buscador -->
             <div class="col l12 m12 s12 xl6 pull-xl1">
                 <div class=" direction">
-                    <a class="tooltipped" data-tooltip="Regresar a Inicio" href="inicio.html"><img src="../resources/icons/home-icon.png" alt=""></a>
+                    <a class="tooltipped" data-tooltip="Regresar a Inicio" href="inicio.html"><img
+                            src="../resources/icons/home-icon.png" alt=""></a>
                     <p> > Empleados</p>
                 </div>
             </div>
@@ -305,13 +310,15 @@
             </form>
         </section>
         <div class="row">
-            <div class="col s12 m6 center tooltipped" data-tooltip="Lista de los empleados que no poseen acceso a ninguna empresa">
+            <div class="col s12 m6 center tooltipped"
+                data-tooltip="Lista de los empleados que no poseen acceso a ninguna empresa">
                 <p>Todos los empleados que no posean acceso a ninguna empresa</p>
                 <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" onclick="abrirReporte(1)">
                     <i class="material-icons left">assignment</i>Abrir Reporte
                 </a>
             </div>
-            <div class="col s12 m6 center tooltipped" data-tooltip="Lista de los empleados y las empresas a las que poseen acceso">
+            <div class="col s12 m6 center tooltipped"
+                data-tooltip="Lista de los empleados y las empresas a las que poseen acceso">
                 <p>Todos los empleados que posean acceso a almenos una empresa</p>
                 <a class="waves-effect waves-ligth btn z-depth-3 btn_estilizado" onclick="abrirReporte(2)">
                     <i class="material-icons left">assignment</i>Abrir Reporte
@@ -320,7 +327,7 @@
         </div>
         <!--Contenedor para las cards mostrando la información de x empleado-->
         <form class="employee-cards row container" id="employee-form">
-            
+
         </form>
         <!--No borrar del codigo-->
         <div class="fixed-action-btn">
@@ -414,8 +421,7 @@
             <div class="row">
                 <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
                     <div class="botonnavg-footer center" id="pagnavg-atr">
-                        <a class="tooltipped" data-position="left"
-                            data-tooltip="Regresar página anterior"><i
+                        <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
                                 class="material-icons medium">chevron_left</i></a>
                     </div>
                 </div>
@@ -430,8 +436,8 @@
                     </div>
                 </div>
                 <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
-                    <div class="botonnavg-footer center tooltipped" data-position="top"
-                        data-tooltip="¡Más muy pronto!" id="pagpoints">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!"
+                        id="pagpoints">
                         <a><span>...</span></a>
                     </div>
                 </div>
