@@ -10,11 +10,11 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
     if ($archivos->setFechaSubida($_GET['fechai']) && $archivos->setFechaSubida($_GET['fechaf'])) {
         // Se instancia la clase para crear el reporte.
         $pdf = new Report;
+        // Se inicia el reporte con el encabezado del documento.
+        $pdf->startReport('Empleados que subieron archivos en un rango de fechas', 'p');
         if(!isset($_SESSION['id_usuario'])){
             header('location: ../../views/index.html');
         }
-        // Se inicia el reporte con el encabezado del documento.
-        $pdf->startReport('Empleados que subieron archivos en un rango de fechas', 'p');
         // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
         /*
             ENCABEZADOS

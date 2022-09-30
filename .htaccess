@@ -4,9 +4,9 @@
 
 # ----------------------------------------------------------------------
 
-ErrorDocument 403 /despacho-contable-ptc/resources/error/403.html
-ErrorDocument 404 /despacho-contable-ptc/resources/error/404.html
-ErrorDocument 500 /despacho-contable-ptc/resources/error/500.html
+ErrorDocument 403 /despEsquivel/resources/error/403.html
+ErrorDocument 404 /despEsquivel/resources/error/404.html
+ErrorDocument 500 /despEsquivel/resources/error/500.html
 
 # ----------------------------------------------------------------------
 
