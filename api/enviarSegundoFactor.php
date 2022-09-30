@@ -151,7 +151,7 @@ body{
             <p>Si no esta intentado iniciar sessión, por favor comunicarse lo más rápido con el administrador más cercano y 
                         poder bloquear el empleado, cambiar el correo, cambiar contraseña o eliminar el empleado.
                         <b>Si no hay un administrador cercano, puede bloquear su usuario y luego pedir que lo desbloqueen</b>
-                        <a href="http://192.168.18.210/despacho-contable-ptc/api/prevenirRobo.php?emp=' . $usuarioC . '&day=' . $dia . '" target="_blank">Bloquear mi usuario</a>
+                        <a href="http://localhost/despEsquivel/api/prevenirRobo.php?emp=' . $usuarioC . '&day=' . $dia . '" target="_blank">Bloquear mi usuario</a>
                         <p>¡El enlace lo redigira al login una vez se halla bloqueado su usuario, inicie sesión para comprobar!</p>
                     </p>    
             <div class="fila1">
