@@ -6,6 +6,13 @@ function validarCamposVacios(arreglo){
         }
     }
 }
+
+//Reiniciar inputs Materializar
+function reiniciarInputsM(arreglo) {
+    for(let i=0;i<arreglo.length;i++){
+        arreglo[i].value = ''
+    }
+}
 //Función de borrar todos los campos
 function borrarCampos(arreglo){
     for(let i=0;i<arreglo.length;i++){

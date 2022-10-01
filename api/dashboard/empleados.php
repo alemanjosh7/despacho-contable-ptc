@@ -346,7 +346,7 @@ if (isset($_GET['action'])) {
             case 'graficaEmpAcc':
                 $_POST = $empleados->validateForm($_POST);
                 if ($_POST['rangoi'] == '' || $_POST['rangof'] == '') {
-                    $result['exception'] = 'No se permiten campos vacios';
+                    $result['exception'] = 'No se permiten campos vacíos';
                 } elseif (!is_numeric($_POST['rangoi']) && !is_numeric($_POST['rangof'])) {
                     $result['exception'] = 'Verifique que los datos sean números';
                 } elseif (!($_POST['rangoi'] < $_POST['rangof'])) {

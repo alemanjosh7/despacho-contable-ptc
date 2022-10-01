@@ -430,6 +430,7 @@ function fillTable(dataset) {
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     comprobarAmin();
+    predecirAdelante();
 }
 
 //Funciones para la páginación

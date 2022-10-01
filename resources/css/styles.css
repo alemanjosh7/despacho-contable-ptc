@@ -3306,6 +3306,7 @@ footer {
 /*Estilo del banner de inicio*/
 .inicioJ #banner-saludo {
   font-family: 'Verdana', sans-serif;
+  border-radius: 15px !important;
   background-color: #FA7479;
   color: black;
   padding: 3px;
@@ -4446,4 +4447,8 @@ input {
 .numbe_paginc{
   color: black;
   font-weight: bold;
+}
+
+.icono-modificar, .icono-descarga, .icono-eliminar, .icono-ver{
+  margin-top: 10.5px;
 }

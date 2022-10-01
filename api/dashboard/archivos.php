@@ -161,11 +161,11 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if ($_SESSION['tipo_usuario'] == 4) {
                     if (!$archivos->setIdFolder($_SESSION['id_folder'])) {
-                        $result['exception'] = 'Empresa incorrecta';
+                        $result['exception'] = 'Folder incorrecta';
                     } elseif (!$archivos->setId($_POST['id'])) {
                         $result['exception'] = 'Archivo incorrecto';
                     } elseif (!$data = $archivos->obtenerArch()) {
-                        $result['exception'] = 'Folder inexistente';
+                        $result['exception'] = 'Archivo inexistente';
                     } elseif ($archivos->cambiarEstadoArch()) {
                         $result['status'] = 1;
                         $nuevaUbicacion = '../documents/archivosBorrados/' . $data['nombre_archivo'];
@@ -186,7 +186,7 @@ if (isset($_GET['action'])) {
             case 'graficaArchivosEmpXF':
                 $_POST = $archivos->validateForm($_POST);
                 if ($_POST['fechai'] == '' || $_POST['fechaf'] == '') {
-                    $result['exception'] = 'No se permiten campos vacios';
+                    $result['exception'] = 'No se permiten campos vacíos';
                 } elseif (!$archivos->setFecha($_POST['fechai']) && !$archivos->setFecha($_POST['fechaf'])) {
                     $result['exception'] = 'Verifique que los datos sean fechas validas en formato dd/mm/yy o yy/mm/dd';
                 } elseif (!($_POST['fechai'] < $_POST['fechaf'])) {

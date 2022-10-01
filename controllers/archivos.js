@@ -429,6 +429,7 @@ function fillTable(dataset) {
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
     comprobarAmin();
+    predecirAdelante();
 }
 
 //Funciones para la páginación
@@ -459,7 +460,7 @@ function ocultarButton2(cases) {
         case 2:
             document.getElementById('contenedor_pags').classList.add('hide');
             let h = document.createElement("h3");
-            let text = document.createTextNode("Folder vacio");
+            let text = document.createTextNode("Folder vacío");
             h.appendChild(text);
             ARCHCONT.innerHTML = "";
             ARCHCONT.append(h);

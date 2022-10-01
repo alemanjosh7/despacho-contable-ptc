@@ -195,8 +195,9 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     if ($archivos->deleteFile($archivos->getRoute(), $data['nombre_archivo'])) {
                         $result['message'] = 'Archivo eliminado correctamente';
+                        $archivos->actualizarEstadoDEL();
                     } else {
-                        $result['message'] = 'Archivo eliminado pero no se borró la imagen';
+                        $result['message'] = 'Archivo eliminado pero no se borró el archivo';
                     }
                 } else {
                     $result['exception'] = 'No se ha podido eliminar el archivo';
@@ -209,7 +210,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$data = $archivos->setIdEmpleado($_SESSION['id_usuario'])) {
                     $result['exception'] = 'Usuario inexistente';
                 } elseif (!$data = $archivos->obtenerArchivo()) {
-                    $result['exception'] = 'Producto inexistente';
+                    $result['exception'] = 'Archivo inexistente';
                 } elseif ($archivos->estadoDesc()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se ha cambiado su estado';

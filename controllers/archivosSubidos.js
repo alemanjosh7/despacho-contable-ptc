@@ -321,6 +321,7 @@ function fillTable(dataset) {
     PRELOADER.style.display = 'none';
     // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
+    predecirAdelante();
 }
 
 //Función cuando el buscador no encuentra los datos

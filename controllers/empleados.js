@@ -118,13 +118,14 @@ function openCreate() {
   M.FormSelect.init(document.querySelectorAll('select'));
   document.getElementById('modal-title').textContent = 'Crear empleado';
   // Se llama a la función que llena el select del formulario. Se encuentra en el archivo components.js
-  fillSelect(API_TIPO_EMPLEADO, 'tipo-de-empleado', null);
+  fillSelectBugMtz(API_TIPO_EMPLEADO, 'tipo-de-empleado', null);
   //Ocultamos el estado
   document.getElementById('estado_check').classList.add('hide');
   document.getElementById('texto_guardar').innerText = 'Añadir empleado';
   // Se establece el campo de archivo como opcional.
   document.getElementById('contra-emp').required = true;
   document.getElementById('contrac-emp').required = true;
+  reiniciarInputsM([document.getElementById('usuario-emp'), document.getElementById('telefono-emp'), document.getElementById('contra-emp'), document.getElementById('contrac-emp'), document.getElementById('nombre-emp'), document.getElementById('dui-emp'), document.getElementById('apellido-emp'), document.getElementById('correo-emp')]);
 }
 
 // Función para preparar el formulario al momento de modificar un registro.
@@ -164,7 +165,7 @@ function openUpdate(id) {
           document.getElementById('dui-emp').value = response.dataset.dui_empleado;
           document.getElementById('correo-emp').value = response.dataset.correo_empleadocontc;
           document.getElementById('telefono-emp').value = response.dataset.telefono_empleadocontc;
-          fillSelect(API_TIPO_EMPLEADO, 'tipo-de-empleado', response.dataset.fk_id_tipo_empleado);
+          fillSelectBugMtz(API_TIPO_EMPLEADO, 'tipo-de-empleado', response.dataset.fk_id_tipo_empleado);
           //Analizamos si el estado es Activo o Bloqueado
           if (response.dataset.fk_id_estado == 4) {
             document.getElementById('estadoEmp').checked = true;
@@ -434,6 +435,7 @@ function fillTable(dataset) {
   M.Tooltip.init(document.querySelectorAll('.tooltipped'));
   //Inciando el saludo
   PRELOADER.style.display = 'none';
+  predecirAdelante();
 }
 
 //Declaramos algunos componentes
@@ -604,8 +606,52 @@ function openDelete(id) {
   // Se define un objeto con los datos del registro seleccionado.
   const data = new FormData();
   data.append('id', id);
-  // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-  confirmDeleteL(API_EMPLEADOS, data, 0);
+  fetch(API_EMPLEADOS + 'delete', {
+    method: 'post',
+    body: data
+  }).then(function (request) {
+    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+    if (request.ok) {
+      // Se obtiene la respuesta en formato JSON.
+      request.json().then(function (response) {
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (response.status) {
+          Swal.fire({
+            title: 'Éxito',
+            text: response.message,
+            icon: 'success',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonText: 'Aceptar',
+            background: '#F7F0E9',
+            confirmButtonColor: 'green',
+          }).then(function (value) {
+            // Se comprueba si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value.isConfirmed) {
+              // Se cierra la caja de dialogo (modal) del formulario.
+              M.Modal.getInstance(document.getElementById('modal-template')).close();
+              //Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
+              readRowsLimit(API_EMPLEADOS, 0);
+            }
+          });
+
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: response.exception,
+            icon: 'error',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            confirmButtonText: 'Aceptar',
+            background: '#F7F0E9',
+            confirmButtonColor: 'green',
+          });
+        }
+      });
+    } else {
+      console.log(request.status + ' ' + request.statusText);
+    }
+  });
 }
 
 //Función para comprobar si las contraseñas son iguales

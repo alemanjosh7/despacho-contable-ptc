@@ -313,6 +313,14 @@ class ArchivosSubidosEmp extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Actualizar estado a eliminado del archivo
+    public function actualizarEstadoDEL()
+    {
+        $sql = 'UPDATE archivos_subidosemp SET fk_id_estado = 3 WHERE id_archivos_subidosemp = ? AND fk_id_empleado = ?';
+        $params = array($this->id_archivos_subidosemp, $this->fk_id_empleado);
+        return Database::executeRow($sql, $params);
+    }
+
     /*
         FUNCIONES PARA LOS REPORTES
     */
