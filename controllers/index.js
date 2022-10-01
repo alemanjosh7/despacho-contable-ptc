@@ -13,7 +13,7 @@ optionsM = {
 document.addEventListener('DOMContentLoaded', function () {
     M.Sidenav.init(document.querySelectorAll('.sidenav'));
     M.Tooltip.init(document.querySelectorAll('.tooltipped'));
-    M.Modal.init(document.querySelectorAll('.modal'),optionsM);
+    M.Modal.init(document.querySelectorAll('.modal'), optionsM);
     //Ejecutamos algunos metodos inciales
     validarPrimerUso();//Validamos el primer usuario
     comprobarAmin();//Verificamos si hay una session
@@ -622,7 +622,7 @@ const verificarGAuth = () => {
 document.getElementById('generarQR_Auth').addEventListener('click', () => {
     PRELOADER.style.display = 'block';
     let form = new FormData(document.getElementById('session-form'));
-    form.append('codigo',document.getElementById('contraEmp_Auth').value);
+    form.append('codigo', document.getElementById('contraEmp_Auth').value);
     fetch(API_EMPLEADOS + 'verificarCGA', {
         method: 'post',
         body: form
@@ -645,4 +645,19 @@ document.getElementById('generarQR_Auth').addEventListener('click', () => {
             console.log(request.status + ' ' + request.statusText);
         }
     });
+});
+
+const CONTRAPU = document.getElementById('contra-emp');
+const CONTRACPU = document.getElementById('contrac-emp');
+
+document.getElementById('pu_ojocontras').addEventListener("click", function () {
+    if (CONTRA.type == "password") {
+        CONTRAPU.type = "text"
+        CONTRACPU.type = "text"
+        document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility_off"
+    } else {
+        CONTRAPU.type = "text".type = "text".type = "password"
+        CONTRACPU.type = "text".type = "password"
+        document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility"
+    }
 });
