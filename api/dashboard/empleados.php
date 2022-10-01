@@ -4,6 +4,7 @@ require_once('../helpers/validator.php');
 require_once('../models/empleados.php');
 require_once('../models/rec.php');
 require_once('../libraries/googleAUTH/PHPGangsta/googleAUTHC.php');
+require_once('../comprobarCorreo.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -30,6 +31,7 @@ if (isset($_GET['action'])) {
     $empleados = new Empleados;
     $gAuth = new Autentificador;
     $rec = new Rec;
+    $cCorreo = new comprobarCorreo;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null, 'cambioCtr' => null, 'correo' => null,'gQAuth' => null );
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -511,19 +513,23 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Correo incorrecto';
                 } elseif (!$rec->setCodigo($_POST['pinRecP'])) {
                     $result['exception'] = $rec->getPasswordError();
-                } elseif ($empleados->primerUsuario()) {
-                    if ($rec->crearCodigoRec()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Jefe creado con exito ¡Bienvenido a Smart Bookkeeping!';
+                } elseif($cCorreo->checkEmail($_POST['correo-emp'])){  
+                    if ($empleados->primerUsuario()) {
+                        if ($rec->crearCodigoRec()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Jefe creado con exito ¡Bienvenido a Smart Bookkeeping!';
+                        } else {
+                            $empleados->rte();
+                            $result['exception'] = 'Hubo un error al crear al jefe';
+                        }
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
                     } else {
-                        $empleados->rte();
-                        $result['exception'] = 'Hubo un error al crear al jefe';
+                        $result['exception'] = 'No se pudo crear el empleado';
                     }
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No se pudo crear el empleado';
-                }
+                }else{ 
+                    $result['exception'] = 'No se ha podido verificar que el correo exista.¡Intente otro!';
+                } 
                 break;
             //Obtener el correo del empleado
             case 'obtenerCorreoEmp':

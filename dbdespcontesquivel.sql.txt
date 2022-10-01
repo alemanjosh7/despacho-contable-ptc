@@ -43,6 +43,7 @@ alter table empleados add column intentos int;--Añadiendo campo de intentos par
 alter table empleados alter column intentos set default 0;--Añadiendo default al campo de intentos
 alter table empleados add column fecha_cambio date; --Añadiendo campo de fecha para el cambio de contraseña 
 alter table empleados alter column fecha_cambio set default current_date; --Añadiendo default para el campo de fecha para el cambio de contraseña
+alter table empleados add column secret_auth varchar(100);--Añadiendo campo de google auth
 
 alter table empleados drop constraint nombre_empleado_unq;--Eliminando unique nombre
 alter table empleados drop constraint apellido_empleado_unq;--Eliminando unique apellido
