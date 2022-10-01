@@ -422,6 +422,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
         //Ejecutamos la función para predecir si habrá un boton de adelante
         //Ejecutamos el metodo de la API para saber si hay productos y esta ejecutará una función que oculte o muestre el boton de adelante
         readRowsLimit(API_FOLDER, limit);//Enviamos el metodo a buscar los datos y como limite 0 por ser el inicio
+        document.getElementById('numbe_paginc').innerText = number;
     });
 });
 

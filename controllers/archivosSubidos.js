@@ -479,6 +479,7 @@ document.querySelectorAll(".contnpag").forEach(el => {
                 element.classList.add('select_emprarc');
             }
         });
+        document.getElementById('numbe_paginc').innerText = number;
     });
 });
 

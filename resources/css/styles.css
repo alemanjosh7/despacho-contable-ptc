@@ -4431,3 +4431,19 @@ input {
 #usotFAQ{
   padding-top: 10px;
 }
+
+.indic_pagination{
+  font-family: 'Verdana', sans-serif;
+  background-color: #FA7479;
+  color: black;
+  padding: 10px 10px 10px 15px!important;
+  width: fit-content !important;
+  border-radius: 3px;
+  margin-bottom: 0px;
+  color: white;
+}
+
+.numbe_paginc{
+  color: black;
+  font-weight: bold;
+}

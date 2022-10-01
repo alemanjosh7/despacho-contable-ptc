@@ -84,7 +84,7 @@ function soloLetras(e,caso){
             return true;
         }
         // Patron de entrada, en este caso solo acepta numeros y letras
-        const patron = new RegExp("^[a-zA-ZñÑ ]+$");
+        const patron = new RegExp("^[a-zA-ZñÑ\u00E0-\u00FC ]+$");
         tecla_final = String.fromCharCode(tecla);
         return patron.test(tecla_final);
         break;
