@@ -588,7 +588,11 @@ function modEmp(id) {
                     M.textareaAutoResize(MODDIRECCION);
                     if (MODANIT.value.length <= 10) {
                         document.getElementById('estadoEmpM').checked = false;
+                        //Es empresa juridica
+                        modNITEmpr.setAttribute('maxlength', 10);
                     } else {
+                        //Es empresa juridica
+                        modNITEmpr.setAttribute('maxlength', 17);
                         document.getElementById('estadoEmpM').checked = true;
                     }
                     //Se oculta el cargador

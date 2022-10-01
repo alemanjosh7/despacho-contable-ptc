@@ -741,32 +741,11 @@ function abrirReporte(tipo) {
   switch (tipo) {
     case 1:
       if (!rpm) {
-        window.open('../api/reports/accesoEmpleadosEmpF.php');
-      } else {
-        fetch(SERVER + 'reports/accesoEmpleadosEmpF.php', {
-          method: 'get'
-        }).then(function (request) {
-          // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-          if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-              // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-              if (response.status) {
-                sweetAlert(1, response.message, null);
-              } else {
-                sweetAlert(2, response.exception, null);
-              }
-            });
-          } else {
-            console.log(request.status + ' ' + request.statusText);
-          }
-        });
-      }
-      break;
-    case 2:
-      if (!rpm) {
         window.open('../api/reports/accesoEmpleadosEmp.php');
       } else {
+        PRELOADER.style.display = 'block';
+        document.getElementById('reporteNA').classList.toggle('disabled');
+        document.getElementById('reporteFM').classList.toggle('disabled');
         fetch(SERVER + 'reports/accesoEmpleadosEmpM.php', {
           method: 'get'
         }).then(function (request) {
@@ -780,6 +759,39 @@ function abrirReporte(tipo) {
               } else {
                 sweetAlert(2, response.exception, null);
               }
+              PRELOADER.style.display = 'none';
+              document.getElementById('reporteNA').classList.toggle('disabled');
+              document.getElementById('reporteFM').classList.toggle('disabled');
+            });
+          } else {
+            console.log(request.status + ' ' + request.statusText);
+          }
+        });
+      }
+      break;
+    case 2:
+      if (!rpm) {
+        window.open('../api/reports/accesoEmpleadosEmpF.php');
+      } else {
+        PRELOADER.style.display = 'block';
+        document.getElementById('reporteNA').classList.toggle('disabled');
+        document.getElementById('reporteFM').classList.toggle('disabled');
+        fetch(SERVER + 'reports/accesoEmpleadosFM.php', {
+          method: 'get'
+        }).then(function (request) {
+          // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
+          if (request.ok) {
+            // Se obtiene la respuesta en formato JSON.
+            request.json().then(function (response) {
+              // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+              if (response.status) {
+                sweetAlert(1, response.message, null);
+              } else {
+                sweetAlert(2, response.exception, null);
+              }
+              PRELOADER.style.display = 'none';
+              document.getElementById('reporteNA').classList.toggle('disabled');
+              document.getElementById('reporteFM').classList.toggle('disabled');
             });
           } else {
             console.log(request.status + ' ' + request.statusText);
@@ -796,3 +808,14 @@ function abrirReporte(tipo) {
 
 //href="../api/reports/accesoEmpleadosEmpF.php"
 //href="../api/reports/accesoEmpleadosEmp.php" target="_blank"
+document.getElementById('ocultarmostrar_contraseñas').addEventListener("click", function () {
+  if (CONTRA.type == "password") {
+    CONTRA.type = "text"
+    CONTRAC.type = "text"
+    document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility_off"
+  } else {
+    CONTRA.type = "text".type = "password"
+    CONTRAC.type = "text".type = "password"
+    document.getElementById('ocultarmostrar_contraseñas').innerText = "visibility"
+  }
+});
