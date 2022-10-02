@@ -15,13 +15,13 @@ function setEmpleado() {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
+                if (response.status && (FECHACONT.classList.contains('hide'))) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     NOMBREEMP.value = response.nombre + ' ' + response.apellido;
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                     M.updateTextFields();
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    //sweetAlert(2, response.exception, null);
                 }
             });
         } else {
@@ -695,6 +695,7 @@ function descArch(id) {
                     DESCARC.value = response.dataset.descripcion;
                     FECHAINP.value = response.dataset.fecha_subida;
                     nombreArchivoDesc = response.dataset.nombre_archivo;
+                    NOMBREEMP.value = response.dataset.nombre_empleado + ''+ response.dataset.apellido_empleado;
                     fillSelect2(ENDPOINT_EMPRESAS, 'empresas_select', '¿A que empresa pertenece?', response.dataset.fk_id_empresa, true);
                     //Cargamos la imagen en caso se puedea
                     prevArchivoMod(response.dataset.nombre_archivo);

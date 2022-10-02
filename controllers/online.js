@@ -390,6 +390,6 @@ var inactivityTime = function () {
 
 
 
-window.onload = function () {
+/*window.onload = function () {
     inactivityTime();
-}
+}*/
