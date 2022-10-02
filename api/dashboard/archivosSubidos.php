@@ -193,9 +193,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto inexistente';
                 } elseif ($archivos->eliminarArchivoEmp()) {
                     $result['status'] = 1;
+                    $archivos->actualizarEstadoDEL();
                     if ($archivos->deleteFile($archivos->getRoute(), $data['nombre_archivo'])) {
                         $result['message'] = 'Archivo eliminado correctamente';
-                        $archivos->actualizarEstadoDEL();
                     } else {
                         $result['message'] = 'Archivo eliminado pero no se borró el archivo';
                     }
