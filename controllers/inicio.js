@@ -88,10 +88,11 @@ function graficoPolaTpEm() {
                         tipoEmp.push(row.tipo_empleado);
                         cantidades.push(row.cantidad);
                     });
+                    document.getElementById('grf_polar1').classList.remove('hide')
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     polarAreaGraph('grf_polar1', tipoEmp, cantidades, 'Cantidad de empleados', '');
                 } else {
-                    document.getElementById('grf_polar1').remove();
+                    document.getElementById('grf_polar1').classList.add('hide')
                     console.log(response.exception);
                 }
             });
@@ -156,10 +157,12 @@ document.getElementById('foldersRango').addEventListener('submit', function (eve
                         empresas.push(row.nombre_empresa);
                         cantidades.push(row.cantidad);
                     });
+                    document.getElementById('empleado_archivo_bar').classList.remove('hide')
                     document.getElementById('grf_polar2').width = document.getElementById('grf_polar2').width;
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     polarAreaGraphP('grf_polar2', empresas, cantidades, 'Cantidad de folders', '');
                 } else {
+                    document.getElementById('empleado_archivo_bar').classList.add('hide')
                     sweetAlert(2, response.exception, null);
                 }
             });
@@ -197,12 +200,13 @@ document.getElementById('empleadoMasArchivos').addEventListener('submit', functi
                             nombres.push(row.nombre_empleado);
                             total.push(row.cuenta);
                         });
-
+                        document.getElementById('empleado_archivo_bar').classList.remove('hide')
                         // fillSelect(API_TIPO_EMPLEADO, 'tipo-de-empleado', response.dataset.fk_id_tipo_empleado);
                         document.getElementById('empleado_archivo_bar').width = document.getElementById('empleado_archivo_bar').width;
                         // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                         barGraphParametrizado('empleado_archivo_bar', nombres, total, 'Top 3 empleados con más archivos', '');
                     } else {
+                        document.getElementById('empleado_archivo_bar').classList.add('hide')
                         sweetAlert(2, response.exception, null);
                     }
                 });
@@ -236,10 +240,11 @@ function barGraphEmpresas() {
                         arch.push(row.archivos);
                         nombre.push(row.nombre_empresa);
                     });
+                    document.getElementById('empresas_bar').classList.remove('hide')
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     barGraph('empresas_bar', nombre, arch, 'Número de archivos', '');
                 } else {
-                    document.getElementById('empresas_bar').remove();
+                    document.getElementById('empresas_bar').classList.add('hide')
                     console.log(response.exception);
                 }
             });
@@ -269,10 +274,11 @@ function pieGraphFoldersEmpresas() {
                         nombre.push(row.nombre_empresa);
                         folder.push(row.folders);
                     });
+                    document.getElementById('folders_empresas_pie').classList.remove('hide')
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     pieGraph('folders_empresas_pie', nombre, folder, '');
                 } else {
-                    document.getElementById('folders_empresas_pie').remove();
+                    document.getElementById('folders_empresas_pie').classList.add('hide')
                     console.log(response.exception);
                 }
             });
@@ -302,11 +308,12 @@ function lineaGraphEmpresasAccess(){
                         nombre.push(row.nombre_empresa);
                         accesos.push(row.accesos);
                     });
+                    document.getElementById('accesos_empresas_linea').classList.remove('hide')
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     lineGraph('accesos_empresas_linea', nombre, accesos, 'Número de accesos', '');
                     PRELOADER.style.display = 'none';
                 } else {
-                    document.getElementById('accesos_empresas_linea').remove();
+                    document.getElementById('accesos_empresas_linea').classList.add('hide')
                     console.log(response.exception);
                 }
             });
@@ -348,10 +355,12 @@ document.getElementById('empleadoMAForm').addEventListener('submit', function (e
                         });
 
                         // fillSelect(API_TIPO_EMPLEADO, 'tipo-de-empleado', response.dataset.fk_id_tipo_empleado);
+                        document.getElementById('grf_linear2').classList.remove('hide')
                         document.getElementById('grf_linear2').width = document.getElementById('grf_linear2').width;
                         // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                         lineGraphP('grf_linear2', nombres, total, 'Número de archivos por empresa', '');
                     } else {
+                        document.getElementById('grf_linear2').classList.add('hide')
                         sweetAlert(2, response.exception, null);
                     }
                 });
@@ -392,9 +401,11 @@ document.getElementById('numeroAccEmpForm').addEventListener('submit', function 
                         accesos.push(row.accesos);
                     });
                     document.getElementById('grf_donut1').width = document.getElementById('grf_donut1').width;
+                    document.getElementById('grf_donut1').classList.remove('hide')
                     // Se llama a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
                     doughnutGraphP('grf_donut1', nombrec, accesos, 'Cantidad de accesos', '');
                 } else {
+                    document.getElementById('grf_donut1').classList.add('hide')
                     sweetAlert(2, response.exception, null);
                 }
             });

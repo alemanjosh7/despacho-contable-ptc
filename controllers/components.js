@@ -422,8 +422,7 @@ function readRowsLimit(api, limit) {
                         PRELOADER.style.display = 'none';
                     }catch(e){
 
-                    }
-                    
+                    }                   
                 }
             });
         } else {
@@ -867,6 +866,7 @@ function dynamicSearcher3Filter(api, form) {
                     fillTable(response.dataset);
                 } else {
                     sweetAlert(2, response.exception, null);
+                    noDatos();
                 }
             });
         } else {
