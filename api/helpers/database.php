@@ -141,8 +141,8 @@ class Database
                 //self::$error = $message;
                 break;
             case '23505':
-                //self::$error = 'Dato duplicado, no se puede guardar';
-                self::$error = $message;
+                self::$error = 'Dato duplicado, no se puede guardar';
+                //self::$error = $message;
                 break;
             case '42P01':
                 self::$error = 'Nombre de tabla desconocido';

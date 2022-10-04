@@ -53,8 +53,9 @@ class Validator
     /*Validar si la contraseña se encuentra en un arreglo, este será un formulario o los datos de la base de datos retornando true en caso sea así*/
     public function searchContra($form, $contra)
     {
-        foreach ($form as $index => $value) {
-            if (strpos($form[$index], $contra) && $form[$index] != $contra) {
+        $keyArray = array_keys($form);
+        for ($i=0; $i < count($keyArray); $i++) { 
+            if (strpos($form[$keyArray[$i]], $contra) && $form[$keyArray[$i]] != $contra) {
                 true;
             } else {
                 false;
