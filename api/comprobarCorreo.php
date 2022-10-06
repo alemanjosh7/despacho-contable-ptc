@@ -25,7 +25,7 @@ class comprobarCorreo
         $arreglo = json_decode($data, true);//Decodificamos el JSON y lo volvemos un arreglo
         $desechable = ($arreglo['is_disposable_email']['text']);//Obtenemos el valor si es desechable
         $disponible = ($arreglo['is_smtp_valid']['text']);//Obtenemos el valor si esta disponible para enviar
-        if ($desechable == 'FALSE' && $disponible == 'FALSE') {
+        if ($desechable == 'FALSE' || $disponible == 'FALSE') {
             return false;
         }else{
             return true;
