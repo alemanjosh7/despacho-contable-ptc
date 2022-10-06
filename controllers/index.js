@@ -175,9 +175,9 @@ RESTABLECERCTR.addEventListener('click', function () {
 LOGINBTN.addEventListener('click', function () {
     PRELOADER.style.display = 'block';
     //Para presentar el proyecto descomentar las dos comentarios siguientes y comentar la función loginF();
-    //LOGINBTN.classList.add("disabled");
-    //generarPIN();
-    loginF();
+    LOGINBTN.classList.add("disabled");
+    generarPIN();
+    //loginF();
 });
 
 //Función para el login 
