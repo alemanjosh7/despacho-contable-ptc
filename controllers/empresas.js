@@ -373,7 +373,7 @@ function comprobarAmin() {
                 } else if (!response.status) {
                     ANADIREMPRESABTN.remove();
                     document.querySelectorAll('.eliminarbtn').forEach(element =>
-                        elemen.parentNode.removeChild(elemen)
+                        element.parentNode.removeChild(element)
                     );
                 } else {
                     ANADIREMPRESABTN.classList.remove('hide');

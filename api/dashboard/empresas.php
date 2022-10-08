@@ -91,7 +91,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Ya hay una empresa con ese nombre';
                     } elseif ($empresas->crearEmpresa()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Empreza creada';
+                        $result['message'] = 'Empresa creada';
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -139,7 +139,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Ya hay una empresa con ese nombre';
                     } elseif ($empresas->actualizarEmpresa()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Empreza actualizada exitosamente';
+                        $result['message'] = 'Empresa actualizada exitosamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }

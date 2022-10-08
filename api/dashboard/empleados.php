@@ -186,13 +186,18 @@ if (isset($_GET['action'])) {
                     $result['message'] = $_POST['telefono-emp'];
                 } elseif (!$empleados->setCorreo($_POST['correo-emp'])) {
                     $result['exception'] = 'Correo incorrecto';
-                } elseif ($empleados->crearEmpleado()) {
+                } elseif ($cCorreo->checkEmail($_POST['correo-emp'])) {
+                    if ($empleados->crearEmpleado()) {
                     $result['status'] = 1;
                     $result['message'] = 'Empleado creado';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No se pudo crear el empleado';
+                }
+                break;
+                } else {
+                    $result['exception'] = 'No se ha podido verificar que el correo exista.¡Intente otro!';
                 }
                 break;
                 //Actualizar empleado
