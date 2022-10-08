@@ -265,9 +265,9 @@ function comprobarAmin() {
             request.json().then(function (response) {
                 // Se comprueba si hay no hay una session para admins
                 if (!response.status) {
-                    ANADIRFOLDERBTN.classList.add('hide');
+                    ANADIRFOLDERBTN.remove();
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
-                        elemen.classList.add('hide')
+                        elemen.parentNode.removeChild(elemen)
                     );
                 } else {
                     ANADIRFOLDERBTN.classList.remove('hide');

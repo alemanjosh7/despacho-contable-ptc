@@ -26,7 +26,7 @@ verifyP2 = Variable que verifica si paso el método P2
         $_SESSION['tipo_usuario'] = 4;
         $_SESSION['nombreUsuario'] = 'Jesus';
         $_SESSION['apellidoUsuario'] = 'Apellido';*/
-        //$_SESSION['verifyP2'] = true;
+        $_SESSION['verifyP2'] = true;
         // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
         $result = array(
             'status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'idusuario' => null, 'usuario' => null,

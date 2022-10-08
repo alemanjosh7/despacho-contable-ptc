@@ -124,10 +124,10 @@ function comprobarAmin() {
                 }else if (!response.status) {
                     ANADIRARCHBTN.classList.remove('hide');
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
-                        elemen.classList.add('hide')
+                        elemen.parentNode.removeChild(elemen)
                     );
                 } else {
-                    ANADIRARCHBTN.classList.add('hide');
+                    ANADIRARCHBTN.remove();
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
                         elemen.classList.remove('hide')
                     );

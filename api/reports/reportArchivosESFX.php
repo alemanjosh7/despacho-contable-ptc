@@ -12,7 +12,7 @@ if (isset($_GET['fechai']) && isset($_GET['fechaf'])) {
         $pdf = new Report;
         // Se inicia el reporte con el encabezado del documento.
         $pdf->startReport('Empleados que subieron archivos en un rango de fechas', 'p');
-        if(!isset($_SESSION['id_usuario'])){
+        if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
             header('location: ../../views/index.html');
         }
         // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.

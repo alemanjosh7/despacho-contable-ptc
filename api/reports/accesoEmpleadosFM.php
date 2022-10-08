@@ -10,7 +10,7 @@ $pdf = new Report;
 $pdf->startReport('Empleados con acceso a empresas', 'p');
 $empleado = new Empleados;
 $empresa = new Empresas;
-if(!isset($_SESSION['id_usuario'])){
+if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
     header('location: ../../views/index.html');
 }
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.

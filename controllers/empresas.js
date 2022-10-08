@@ -371,9 +371,9 @@ function comprobarAmin() {
                 if (response.cambioCtr) {
                     location.href = 'index.html';
                 } else if (!response.status) {
-                    ANADIREMPRESABTN.classList.add('hide');
+                    ANADIREMPRESABTN.remove();
                     document.querySelectorAll('.eliminarbtn').forEach(element =>
-                        element.classList.add('hide')
+                        elemen.parentNode.removeChild(elemen)
                     );
                 } else {
                     ANADIREMPRESABTN.classList.remove('hide');

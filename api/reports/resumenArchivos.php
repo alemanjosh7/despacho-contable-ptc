@@ -9,7 +9,7 @@ if (1 == 1) {
     $pdf = new Report;
     $pdf->startReport('Reporte resumen de archivos dentro de folder', 'p');
     //Validando que halla una session
-    if(!isset($_SESSION['id_usuario'])){
+    if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
         header('location: ../../views/index.html');
     }
     //Obtenemos el nombre de la empresa y el archivo

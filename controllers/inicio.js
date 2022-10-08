@@ -430,7 +430,7 @@ function comprobarAmin() {
                     location.href = 'index.html';
                 } else if (!response.status) {
                     document.querySelectorAll('.eliminarbtn').forEach(elemen =>
-                        elemen.classList.add('hide')
+                        elemen.parentNode.removeChild(elemen)
                     );
                 } else {
                     document.querySelectorAll('.eliminarbtn').forEach(element =>

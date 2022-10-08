@@ -23,7 +23,7 @@ $pdf->setFillColor(245, 254, 255, 1);
 $pdf->setFont('Times', '', 11);
 $cont = 0;
 $empleado = new Empleados;
-if(!isset($_SESSION['id_usuario'])){
+if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
     header('location: ../../views/index.html');
 }
 // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.

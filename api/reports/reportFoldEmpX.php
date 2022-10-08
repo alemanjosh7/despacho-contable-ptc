@@ -11,7 +11,7 @@ if (isset($_GET['idemp'])) {
         $pdf = new Report;
         // Se inicia el reporte con el encabezado del documento.
         $pdf->startReport('Folders y el número de archivos que poseen', 'p');
-        if(!isset($_SESSION['id_usuario'])){
+        if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
             header('location: ../../views/index.html');
         }
         //Se verifica que la empresa existe

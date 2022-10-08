@@ -18,7 +18,7 @@ $pdf->cell(45, 10, utf8_decode('Apellido empleado'), 1, 0, 'C', 1);
 $pdf->cell(45, 10, utf8_decode('Tipo de empleado'), 1, 0, 'C', 1);
 $pdf->cell(45, 10, utf8_decode('Archivos registrados'), 1, 1, 'C', 1);
 $pdf->Ln(5);
-if(!isset($_SESSION['id_usuario'])){
+if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
     header('location: ../../views/index.html');
 }
 // Se establece un color de relleno para mostrar el nombre de la categoría.

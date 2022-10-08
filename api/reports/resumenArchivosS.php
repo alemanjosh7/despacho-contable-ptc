@@ -9,7 +9,7 @@ if (1 == 1) {
     $pdf = new Report;
     $pdf->startReport('Reporte resumen de archivos que he subido', 'l');
     //Validando que halla una session
-    if(!isset($_SESSION['id_usuario'])){
+    if(!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != 4){
         header('location: ../../views/index.html');
     }
     //Comprobamos que sea un empleado 
