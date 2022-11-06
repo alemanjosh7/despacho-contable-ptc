@@ -4452,3 +4452,86 @@ input {
 .icono-modificar, .icono-descarga, .icono-eliminar, .icono-ver{
   margin-top: 10.5px;
 }
+
+/*Estilo de asiganiciones */
+/*Estilo de las empresas cuando el mouse esta por encima*/
+.jesusparte .card-task:hover {
+  background-color: white !important;
+  transform: scale(1.1) !important;
+}
+.jesusparte .floating-task-btn{
+  background-color: #FA7479;
+}
+
+.jesusparte .task-data{
+  max-height: 183px;
+  overflow: auto;
+}
+
+/*Scroll de la tabla*/
+.task-data::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.task-data::-webkit-scrollbar-thumb {
+  background: #FA7479;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.task-data::-webkit-scrollbar-thumb:hover {
+  background: #EB1D36;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.task-data::-webkit-scrollbar-thumb:active {
+  background-color: #850E35;
+}
+
+/*Estilo cuando la tarea ha sido fallada*/
+.card-title{
+  padding-left: 15px;
+}
+.task-failed{
+  border: 5px solid red;
+}
+
+.task-rejected{
+  border: 5px solid orange;
+}
+
+.jesusparte #inputbuscar-empl-task {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.jesusparte #inputbuscar-empl-task:focus {
+  border-bottom: 1px solid #fa7479;
+  box-shadow: 0 1px 0 0 #fa7479;
+}
+
+.jesusparte #inputbuscar-empl-task:focus+label {
+  color: #fa7479;
+}
+
+.jesusparte .icons-add-task{
+  cursor: pointer;
+}
+
+.jesusparte .icons-remove-emp{
+  color: black;
+}
+
+.table-task-emplb{
+  background-color: #F4A172;
+}
+
+.table-task-empl{
+  background-color: #FA7479;
+}

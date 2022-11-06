@@ -60,7 +60,7 @@ verifyP2 = Variable que verifica si paso el método P2
         }
 
         //Se verifica que el estado del empleado siga estando activo
-        if(isset($_SESSION['id_usuario'])){
+        if (isset($_SESSION['id_usuario'])) {
             if (!$rec->checkEmpleadosActivos($_SESSION['id_usuario'])) {
                 session_destroy();
             }
@@ -243,6 +243,40 @@ verifyP2 = Variable que verifica si paso el método P2
                     $result['message'] = 'Codigo de recuperación de contraseñas cambiado';
                 } else {
                     $result['exception'] = 'El codigo de recuperación de contraseñas no se pudo cambiar';
+                }
+                break;
+                //Función para redirigir al apartado que se escogio
+            case 'redirigirFTask':
+                if (isset($_POST['idfolder']) && isset($_POST['idempresa']) && ($_POST['apartado'] == 4)) {
+                    $_SESSION['id_folder'] = $_POST['idfolder'];
+                    $_SESSION['id_empresa'] = $_POST['idempresa'];
+
+                    $result['status'] = 'archivos';
+                } elseif (isset($_POST['idempresa']) && ($_POST['apartado'] == 4)) {
+                    $_SESSION['id_empresa'] = $_POST['idempresa'];
+
+                    $result['status'] = 'archivos';
+                } else {
+                    switch ($_POST['apartado']) {
+                        case 1:
+                            $result['status'] = 'inicio';
+                            break;
+                        case 2:
+                            $result['status'] = 'empleados';
+                            break;
+                        case 3:
+                            $result['status'] = 'archivosSubidos';
+                            break;
+                        case 4:
+                            $result['status'] = 'empresas';
+                            break;
+                        case 5:
+                            $result['status'] = 'asignaciones';
+                            break;
+                        default:
+                            $result['status'] = 'asignaciones';
+                            break;
+                    }
                 }
                 break;
             default:

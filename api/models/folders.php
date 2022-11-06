@@ -182,4 +182,18 @@ class Folders extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    /*
+        MÉTODOS POST EXPO
+    */
+    public function readFoldAllUser()
+    {
+        $sql = 'SELECT fol.id_folder, fol.nombre_folder, emp.nombre_empresa, est.nombre_estado, fol.fk_id_estado
+                FROM folders as fol
+                INNER JOIN estados AS est ON fol.fk_id_estado = est.id_estado
+                INNER JOIN empresas AS emp ON fol.fk_id_empresa = emp.id_empresa
+                WHERE fk_id_empresa = ? AND fol.fk_id_estado != 3;';
+        $params = array($this->fk_id_empresa);
+        return Database::getRows($sql, $params);
+    }
 }

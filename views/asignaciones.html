@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link type="text/css" rel="stylesheet" href="../resources/css/materialize.min.css" media="screen,projection" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../resources/css/styles.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <!--Importando las fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Icono del sitio web-->
+    <link rel="icon" href="../resources/icons/icono-web.png">
+    <title>Tareas</title>
+</head>
+
+<body class="jesusparte">
+    <header>
+    </header>
+    <main>
+        <!--Contenedor de las tareas-->
+        <div class="contenedor-empresas">
+            <!--Fila del subnav-->
+            <div class="row">
+                <!--Icono de home-->
+                <div class="col s2 m1 l1 " id="conthomeicon-subnavempre">
+                    <a href="inicio.html" class="logout-navbar tooltipped" data-position="top"
+                        data-tooltip="Regresar a Inicio"><img class="responsive-img"
+                            src="../resources/icons/home-icon-empresas.png"></a>
+                </div>
+                <!--Parte que indica en que página se encuentra-->
+                <div class="col s1 l1" id="contapartado-subnavempre">
+                    <a class="logout-navbar tooltipped" data-position="top" data-tooltip="Estas en Tareas">>Tareas</a>
+                </div>
+                <!--Buscador-->
+                <form method="post" class="col m12 l10" id="buscador-form">
+                    <div class="input-field col s12 m6 l4 offset-l3" id="contenedor-buscarempresas">
+                        <i class="material-icons prefix small buscar-empresas tooltipped" data-position="top"
+                            data-tooltip="Busca una tarea">search</i>
+                        <input id="inputbuscar-empresas" type="search" class="validate" placeholder="Buscar Tarea"
+                            name="search">
+                    </div>
+                    <div class="col s9 m6 l4 center">
+                        <a class="waves-effect waves-ligth btn z-depth-3" id="añadir-empresa">
+                            <i class="material-icons left">add</i>Añadir Tarea
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="row center">
+                <div class="col offset-s4 offset-m5 indic_pagination">Estás en la página:<span id="numbe_paginc"
+                        class="numbe_paginc">1</span></div>
+            </div>
+            <!--Parte de las cards para las tareas-->
+            <div class="row" id="tareas-card">
+            </div>
+            <!--Preloader de carga-->
+            <div class="preloader-wrapper big active" id="preloader-cargarJ">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <!--No borrar del codigo-->
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large " id="hasta_arriba">
+                    <i class="large material-icons">arrow_upward</i>
+                </a>
+                <ul>
+            </div>
+            <!--Modal de Tarea-->
+            <div id="modalAnadirTarea" class="modal">
+                <div class="modal-content">
+                    <!--Titulo del modal-->
+                    <h4 class="center-align"><span id="modal-title"></span></h4>
+                    <!--Indicaciones del modal-->
+                    <p class="center-align">Coloque una observación o solo la asignación y si lo desea ubique en que lugar realizarán el trabajo</p>
+                    <!--Formulario para añadir una tarea-->
+                    <form id="formModal">
+                        <!--Fila del formulario-->
+                        <div class="row filaform-empresa">
+                            <!--Observación 1-->
+                            <div class="input-field col s12 m5 offset-m1 l4 hide">
+                                <input id="id-task" type="text" class="validate center-align inputs-añadirempr"
+                                    name="id">
+                            </div>
+                            <!--Observación-->
+                            <div class="input-field col s12 m6">
+                                <textarea id="observacion-empr" placeholder="Observación de empresa"
+                                    class="materialize-textarea inputs-añadirempr center-align"
+                                    name="observacion"></textarea>
+                                <label for="observacion-empr" class="labels-anadirempr">Observación (opcional)</label>
+                            </div>
+                            <!--Asignación-->
+                            <div class="input-field col s12 m6">
+                                <textarea id="asignacion-empr" placeholder="Asignación de empresa"
+                                    class="materialize-textarea inputs-añadirempr center-align"
+                                    name="asignacion"></textarea>
+                                <label for="asignacion-empr" class="labels-anadirempr">Asignación</label>
+                            </div>
+                            <!--Fecha asignada-->
+                            <div class="input-field col s12 m6" id="fecha_asignada">
+                                <input placeholder="Fecha asignada" id="fecha_asig" type="text"
+                                    class="validate center-align inputs-añadirempr " disabled>
+                                <label for="fecha_asig" class="labels-anadirempr">Fecha asignada</label>
+                            </div>
+                            <!--Fecha limite-->
+                            <div class="input-field col s12 m6" id="fecha_limit">
+                                <input placeholder="Fecha limite a realizarse" id="fecha_lmt" type="date"
+                                    class="validate center-align inputs-añadirempr" name="fecha_lmt">
+                                <label for="fecha_lmt" class="labels-anadirempr">Fecha limite a terminar</label>
+                            </div>
+                            <!--Select de el apartado-->
+                            <div class="input-field col s12 m4 selects-form" id="select_apart">
+                                <select id="apartado_select" name="apartado">
+                                    <option value="" disabled selected>¿Donde se trabaja?</option>
+                                    <option value="1">Inicio</option>
+                                    <option value="2">Empleados</option>
+                                    <option value="3">Archivos Subidos</option>
+                                    <option value="4">Empresas</option>
+                                    <option value="5">Asignaciones</option>
+                                </select>
+                                <label class="labels-anadirempr">Selecciona el apartado</label>
+                            </div>
+                            <!--Select de la empresa-->
+                            <div class="input-field col s12 m4 selects-form" id="select_empresa">
+                                <select id="empresa_select" name="empresa">
+                                    <option value="" disabled selected>¿Cual empresa?</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label class="labels-anadirempr">Selecciona la empresa (opcional)</label>
+                            </div>
+                            <!--Select del folder-->
+                            <div class="input-field col s12 m4 selects-form" id="select_folder">
+                                <select id="folder_select" name="folder">
+                                    <option value="" disabled selected>¿Cual folder?</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label class="labels-anadirempr">Selecciona el folder (opcional)</label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="center">
+                            <a class="waves-effect waves-ligth btn z-depth-2" id="btn-añadirEmpresaModal">
+                                <i class="material-icons left">add</i>Guardar Tarea
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="left col offset-s1 m5 l4">
+                                <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                    id="cancelar-Añadirempr">
+                                    <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                                </a>
+                            </div>
+                            <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                <h6 id="mensaje-anadir">¡Verifique que los campos no esten vacios!</h6>
+                            </div>
+                            <div class="center col s12 m3 l4" id="preloader-añadirempr">
+                                <div class="preloader-wrapper active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal de añadir Empleados-->
+            <div id="modalEmpleados" class="modal">
+                <div class="modal-content">
+                    <!--Titulo del modal-->
+                    <h4 class="center-align">Asigne empleados</h4>
+                    <!--Indicaciones del modal-->
+                    <p class="center-align">Seleccione a los empleados que realizarán la asignación, de lo contrario no verán la asignación. También puede decidir no asignar de momento</p>
+                    <div class="row">
+                        <!--Observación 1-->
+                        <div class="input-field col s12 m5 offset-m1 l4 hide">
+                            <input id="id-task-emp" type="text" class="validate center-align inputs-añadirempr"
+                                name="id">
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix small buscar-empresas tooltipped" data-position="top"
+                                data-tooltip="Buscar una empleado">search</i>
+                            <input id="inputbuscar-empl-task" type="search" placeholder="Buscar Empleados"
+                                name="search">
+                        </div>
+                        <div class="col s12 m7">
+                            <p><b>Lista de búsqueda:</b></p>
+                            <table class="centered striped table-task-emplb">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="emp-search">
+                                    <tr>
+                                        <td>Jesús Gerardo Esquivel Ramírez</td>
+                                        <td>Administrador</td>
+                                        <td><a onclick="anadirEmp()" class="icons-add-task"><i
+                                                    class="small material-icons">person_add</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Tiempo Completo</td>
+                                        <td><a onclick="anadirEmp()" class="icons-add-task"><i
+                                            class="small material-icons">person_add</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonathan</td>
+                                        <td>Pasantia</td>
+                                        <td><a onclick="anadirEmp()" class="icons-add-task"><i
+                                            class="small material-icons">person_add</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col s12 m5" id="task-l-emp">
+                            <p><b>Lista de añadidos:</b></p>
+                            <table class="centered striped table-task-empl">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="empleados-table">
+                                    <tr>
+                                        <td>Jesús Gerardo Esquivel Ramírez</td>
+                                        <td><a onclick="eliminarEmp()" class="icons-add-task"><i
+                                                    class="small material-icons icons-remove-emp">remove_circle</i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonathan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="center">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close" id="btn-modificarEmpresaModal" onclick="reiniciarModal()">
+                                <i class="material-icons left">add</i>Finalizar asignaciones
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="left col offset-s1 m5 l4">
+                                <a class="waves-effect waves-ligth btn z-depth-2 modal-close cerrarModalEmpresa"
+                                    id="cancelar-Añadirempr" onclick="reiniciarModal()">
+                                    <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                                </a>
+                            </div>
+                            <div class="left col s12 m7 l4 center-align mensaje-modal">
+                                <h6 id="mensaje-modificar">¡Verifique que los campos no esten vacios!</h6>
+                            </div>
+                            <div class="center col s12 m3 l4" id="preloader-modificarempr">
+                                <div class="preloader-wrapper active">
+                                    <div class="spinner-layer spinner-red-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Diseño de logout-->
+            <div id="cerrarSesionModal" class="modal">
+                <div class="fondo-modaldatos modal-content">
+                    <div class="center-align">
+                        <h4>Confirmación de cerrar sesión</h4>
+                        <p>¿Desea cerrar sesión?</p>
+                    </div>
+                    <!--Contenido importante del modal-Boton de actualizar-->
+                    <div class="center-align">
+                        <a class="waves-effect waves-light btn center-align" id="cerrarSesionModalbtn">Cerrar
+                            Sesión</a>
+                    </div>
+                    <!--Pie del modal-->
+                    <div class="modal-footer" id="fondomodal-footer">
+                        <div class="left col offset-s1 m5 l4">
+                            <a class="waves-effect waves-ligth btn z-depth-2 modal-close cancelarEliminarempre"
+                                id="cancelar-cerrarSesion">
+                                <i class="material-icons left">keyboard_arrow_left</i>Regresar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer>
+        <!--Contenedor del menu para la páginación-->
+        <div class="container" id="contenedor_pags">
+            <div class="row">
+                <div class="col s2 offset-s2 m2 offset-m2 l1 offset-l4 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-atr">
+                        <a class="tooltipped" data-position="left" data-tooltip="Regresar página anterior"><i
+                                class="material-icons medium">chevron_left</i></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumeroi">1</span></a>
+                    </div>
+                </div>
+                <div class="col s2  m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center contnpag">
+                        <a><span class="pagnavg" id="pagnumerof">2</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center tooltipped" data-position="top" data-tooltip="¡Más muy pronto!"
+                        id="pagpoints">
+                        <a><span>...</span></a>
+                    </div>
+                </div>
+                <div class="col s2 m2 l1 center" id="contenedor-botonnavg">
+                    <div class="botonnavg-footer center" id="pagnavg-adl">
+                        <a class="tooltipped" data-position="right" data-tooltip="Página siguiente"><i
+                                class="material-icons medium">chevron_right</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Compilado y minimizado JavaScript -->
+    <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../controllers/components.js"></script>
+    <script type="text/javascript" src="../controllers/validaciones.js"></script>
+    <script type="text/javascript" src="../controllers/online.js"></script>
+    <script type="text/javascript" src="../controllers/asignaciones.js"></script>
+</body>
+
+</html>

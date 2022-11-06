@@ -98,6 +98,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                             Empresas
                                         </div>
                                     </a>
+                                    <!--Botón de Tareas-->
+                                    <a class="row waves-effect  botones-sidenav" href="asignaciones.html">
+                                        <div class="col s6" id="icono-opcion-sidenav">
+                                            <img class="responsive-img" src="../resources/icons/tareas-icon-sidenav.png">
+                                        </div>
+                                        <div class="col s6" id="texto-opcion-sidenav">
+                                            Asignaciones
+                                        </div>
+                                    </a>
                                     <!--Boton de Perfil solo para telefonos-->
                                     <a class="row waves-effect hide-on-med-and-up botones-sidenav" href="perfil.html">
                                         <div class="col s6" id="icono-opcion-sidenav">
@@ -196,6 +205,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                             Empresas
                                         </div>
                                     </a>
+                                    <!--Botón de Tareas-->
+                                    <a class="row waves-effect  botones-sidenav" href="asignaciones.html">
+                                        <div class="col s6" id="icono-opcion-sidenav">
+                                            <img class="responsive-img" src="../resources/icons/tareas-icon-sidenav.png">
+                                        </div>
+                                        <div class="col s6" id="texto-opcion-sidenav">
+                                            Asignaciones
+                                        </div>
+                                    </a>
                                     <!--Boton de Perfil solo para telefonos-->
                                     <a class="row waves-effect hide-on-med-and-up botones-sidenav" href="perfil.html">
                                         <div class="col s6" id="icono-opcion-sidenav">
@@ -277,6 +295,8 @@ function getAbsolutePath() {
         return 'Archivos-subidos'
     } else if (pathName.includes('rec')) {
         return ''
+    } else if(pathName.includes('asignaciones')){
+        return 'Asignaciones'
     }else if(pathName.includes('faq.html')){
         return 'FAQ'
     }
@@ -284,7 +304,7 @@ function getAbsolutePath() {
 
 function rec() {
     // Petición para obtener en nombre del usuario que ha iniciado sesión.
-    fetch(API_GLBVAR + 'getIdUsuario', {
+    fetch(API_HEADER + 'getIdUsuario', {
         method: 'get'
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.

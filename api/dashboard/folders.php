@@ -144,6 +144,21 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No se ha podido realizar la consulta';
                 }
                 break;
+                //Obtener los folders para todos los usuarios sin limit
+            case 'readFoldAllUser':
+                $_POST = $folders->validateForm($_POST);
+                if(!$folders->setIdEmpresa($_POST['idemp'])){
+                    $result['exception'] = 'Empresa incorrecta';
+                    echo($_POST['idemp']);
+                }elseif ($result['dataset'] = $folders->readFoldAllUser()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Folders encontrados';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = '¡Lo sentimos! No hay empresas registradas';
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

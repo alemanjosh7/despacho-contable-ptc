@@ -30,7 +30,7 @@ class Report extends FPDF
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
-            $this->setTitle('Despacho contable Esquivel - Reporte', true);
+            $this->setTitle('SmartBookkeeping - Reporte', true);
             // Se establecen los margenes del documento (izquierdo, superior y derecho).
             $this->setMargins(1.5, 10, 1.5);
             #Establecemos el margen inferior:
